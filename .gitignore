@@ -24,3 +24,4 @@ pnpm-debug.log*
 
 #folder
 node_modules/
+.metadata/
