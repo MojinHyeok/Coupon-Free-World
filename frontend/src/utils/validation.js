@@ -13,4 +13,9 @@ function UsernameValid(userName) {
   return !expression.test(userName)
 }
 
-export { validateEmail, UserIdValid, UsernameValid }
+function BlankValid(data) {
+  var expression = /\s/
+  return expression.test(data)
+}
+
+export { validateEmail, UserIdValid, UsernameValid, BlankValid }

@@ -15,6 +15,10 @@ const router = new VueRouter({
       component: () => import('@/views/LoginPage.vue'),
     },
     {
+      path: '/account/edit',
+      component: () => import('@/views/UserEdit.vue'),
+    },
+    {
       path: '/main',
       component: () => import('@/views/MainPage.vue'),
     },
