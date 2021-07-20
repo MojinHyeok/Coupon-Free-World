@@ -60,7 +60,7 @@ public class LoginController {
 	
 	// 사용자 정보 확인
 	@GetMapping("/info/{userid}")
-    public ResponseEntity<Map<String, Object>> getInfo(@PathVariable("userID")  String userID, HttpServletRequest request) {
+    public ResponseEntity<Map<String, Object>> getInfo(@PathVariable("userID") String userID, HttpServletRequest request) {
         Map<String, Object> resultMap = new HashMap<>();
         HttpStatus status;
         
@@ -82,5 +82,4 @@ public class LoginController {
         }
         return new ResponseEntity<>(resultMap, status);
     }
-	
 }
