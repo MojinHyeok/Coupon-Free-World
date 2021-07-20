@@ -4,20 +4,35 @@
       <div>
         <label for="userID">userID: </label>
         <input id="userID" type="text" v-model="userID" />
+        <p v-if="!isUserIdLenValid">
+          userID 길이 초과하였습니다.
+        </p>
+        <p v-if="!isUserIdValid">
+          영어, 숫자 조합만 가능합니다.
+        </p>
       </div>
       <div>
         <label for="userName">userName:</label>
         <input id="userName" type="text" v-model="userName" />
+        <p v-if="!isUsernameLenValid">
+          userName 길이 초과하였습니다.
+        </p>
+        <p v-if="!isUsernameValid">
+          특수문자 사용할 수 없습니다.
+        </p>
       </div>
       <div>
         <label for="password">password: </label>
         <input id="password" type="text" v-model="password" />
+        <p v-if="!isPasswordLenValid">
+          password 길이 초과하였습니다.
+        </p>
       </div>
       <div>
         <label for="passwordConfirm">passwordConfirm: </label>
         <input id="passwordConfirm" type="text" v-model="passwordConfirm" />
       </div>
-      <p v-if="passwordConfirm && !isPasswordValid">
+      <p v-if="passwordConfirm && !isPasswordConfirmValid">
         비밀번호가 옳바르지 않습니다.
       </p>
       <div>
@@ -26,10 +41,16 @@
         <p v-if="!isEmailValid && email">
           이메일 형식이 아닙니다.
         </p>
+        <p v-if="!isEmailLenValid">
+          email 길이 초과하였습니다.
+        </p>
       </div>
       <div>
         <label for="alias">alias: </label>
         <input id="alias" type="text" v-model="alias" />
+        <p v-if="!isAliasLenValid">
+          alias 길이 초과하였습니다.
+        </p>
       </div>
       <div>
         <label for="profilePath">profilePath: </label>
@@ -56,13 +77,20 @@
             !userName ||
             !password ||
             !passwordConfirm ||
-            !isPasswordValid ||
+            !isPasswordConfirmValid ||
             !email ||
             !isEmailValid ||
             !alias ||
             !profilePath ||
             !bio ||
-            !isBioValid
+            !isBioValid ||
+            !isUserIdLenValid ||
+            !isUsernameLenValid ||
+            !isPasswordLenValid ||
+            !isEmailLenValid ||
+            !isAliasLenValid ||
+            !isUserIdValid ||
+            !isUsernameValid
         "
       >
         회원가입
@@ -73,7 +101,7 @@
 
 <script>
 import { registerUser } from '@/api/auth'
-import { validateEmail } from '@/utils/validation'
+import { validateEmail, UserIdValid, UsernameValid } from '@/utils/validation'
 
 export default {
   data() {
@@ -91,7 +119,31 @@ export default {
     }
   },
   computed: {
-    isPasswordValid() {
+    // 길이
+    isUserIdLenValid() {
+      return this.userID.length <= 18
+    },
+    isUsernameLenValid() {
+      return this.userName.length <= 20
+    },
+    isPasswordLenValid() {
+      return this.password.length <= 18
+    },
+    isEmailLenValid() {
+      return this.email.length <= 30
+    },
+    isAliasLenValid() {
+      return this.alias.length <= 16
+    },
+    // 영어, 숫자 허용만 가능
+    isUserIdValid() {
+      return UserIdValid(this.userID)
+    },
+    // 한글, 영어, 숫자 허용
+    isUsernameValid() {
+      return UsernameValid(this.userName)
+    },
+    isPasswordConfirmValid() {
       return this.password === this.passwordConfirm
     },
     isEmailValid() {
