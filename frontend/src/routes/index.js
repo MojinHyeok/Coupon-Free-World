@@ -10,8 +10,8 @@ const router = new VueRouter({
       component: () => import('@/views/SignupPage.vue'),
     },
     {
-      path: '/testtwo',
-      component: () => import('@/views/TestTwo.vue'),
+      path: '/account/login',
+      component: () => import('@/views/LoginPage.vue'),
     },
   ],
 })
