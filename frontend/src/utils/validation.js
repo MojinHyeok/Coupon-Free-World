@@ -3,4 +3,19 @@ function validateEmail(email) {
   return re.test(String(email).toLowerCase())
 }
 
-export { validateEmail }
+function UserIdValid(userID) {
+  var expression = RegExp(/[^a-zA-Z0-9]/)
+  return !expression.test(userID)
+}
+// 한글, 영어, 숫자 허용
+function UsernameValid(userName) {
+  var expression = RegExp(/[^가-힣a-zA-Z0-9]/)
+  return !expression.test(userName)
+}
+
+function BlankValid(data) {
+  var expression = /\s/
+  return expression.test(data)
+}
+
+export { validateEmail, UserIdValid, UsernameValid, BlankValid }

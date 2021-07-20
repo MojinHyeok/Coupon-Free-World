@@ -15,12 +15,18 @@ const router = new VueRouter({
       component: () => import('@/views/LoginPage.vue'),
     },
     {
+      path: '/account/edit',
+      component: () => import('@/views/UserEdit.vue'),
+    },
+    {
       path: '/board/list',
       component: () => import('@/components/board/List.vue')
     },
     {
       path: '/board/create',
       component: () => import('@/components/board/Create.vue')
+    },
+    {
       path: '/main',
       component: () => import('@/views/MainPage.vue'),
     },
