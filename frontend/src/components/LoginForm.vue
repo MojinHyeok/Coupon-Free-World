@@ -23,7 +23,18 @@ export default {
     }
   },
   methods: {
-    async submitForm() {},
+    async submitForm() {
+      try {
+        const userData = {
+          userID: this.userID,
+          password: this.password,
+        }
+        console.log('userData 요청', userData)
+        await this.$store.dispatch('LOGIN', userData)
+      } catch (error) {
+        console.log('로그인에 대한 error', error)
+      }
+    },
   },
 }
 </script>
