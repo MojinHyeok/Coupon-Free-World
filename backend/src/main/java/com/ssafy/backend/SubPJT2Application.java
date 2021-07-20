@@ -1,13 +1,17 @@
 package com.ssafy.backend;
 
+import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.annotation.EnableAspectJAutoProxy;
 
 @SpringBootApplication
-public class DemoApplication {
+@EnableAspectJAutoProxy
+@MapperScan(basePackages = "com.ssafy.backend.**.mapper")
+public class SubPJT2Application {
 
 	public static void main(String[] args) {
-		SpringApplication.run(DemoApplication.class, args);
+		SpringApplication.run(SubPJT2Application.class, args);
 	}
 
 }
