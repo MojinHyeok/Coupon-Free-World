@@ -5,10 +5,10 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 
 public class DBUtil {
-	static final String URL = "jdbc:mysql://127.0.0.1:3306/happyhouse?serverTimezone=UTC";
+	static final String URL = "jdbc:mysql://127.0.0.1:3306/subpjt2?serverTimezone=UTC";
 	static final String DRIVER = "com.mysql.cj.jdbc.Driver";
 	static final String ID = "root";
-	static final String PASSWORD = "12301300";
+	static final String PASSWORD = "ssafy";
 
 	private static DBUtil util = new DBUtil();
 	public static DBUtil getUtil() {
