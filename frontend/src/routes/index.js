@@ -4,6 +4,7 @@ import VueRouter from 'vue-router'
 Vue.use(VueRouter)
 
 const router = new VueRouter({
+  mode: 'history',
   routes: [
     {
       path: '/account/signup',
@@ -20,6 +21,8 @@ const router = new VueRouter({
     {
       path: '/board/create',
       component: () => import('@/components/board/Create.vue')
+      path: '/main',
+      component: () => import('@/views/MainPage.vue'),
     },
   ],
 })
