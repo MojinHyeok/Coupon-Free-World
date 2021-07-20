@@ -21,36 +21,9 @@
         <label for="alias">alias: </label>
         <input id="alias" type="text" v-model="alias" />
       </div>
-      <div class="input-group">
+      <div>
         <label for="profilePath">profilePath: </label>
-        <input
-          type="text"
-          class="form-control"
-          placeholder="Input Image URL or  Drag & Drop or Select"
-          v-model="filename"
-          @dragover.prevent
-          @dragenter.prevent
-          @drop.prevent="onDrop"
-        />
-        <div class="input-group-append">
-          <span class="input-group-text" @click="onClickFile"
-            ><i class="fa fa-paperclip"> </i
-          ></span>
-          <button class="btn btn-outline-info" @click="onClickUpload">
-            Upload
-          </button>
-        </div>
-        <input
-          type="file"
-          class="file-input"
-          accept="image/*"
-          ref="fileInput"
-          @change="onFileChange"
-        />
-      </div>
-      <!-- IMG보이는지 TEST -->
-      <div v-show="imageSrc" class="upload-image">
-        <img :src="imageSrc" />
+        <input id="profilePath" type="text" v-model="profilePath" />
       </div>
       <div>
         <label for="Bio">Bio: </label>
@@ -74,9 +47,6 @@ export default {
       alias: '',
       profilePath: '',
       Bio: '',
-      // img
-      filename: '',
-      imageSrc: '',
     }
   },
   methods: {
@@ -95,43 +65,6 @@ export default {
       const { data } = await registerUser(userData)
       console.log('응답받은 데이터', data.username)
     },
-  },
-
-  // img
-  onDrop(event) {
-    this.inputImageFile(event.dataTransfer.files)
-  },
-  onClickFile() {
-    this.$refs.fileInput.click()
-  },
-  onFileChange(event) {
-    this.inputImageFile(event.target.files)
-  },
-  inputImageFile(files) {
-    if (files.length) {
-      let file = files[0]
-      if (!/^image\//.test(file.type)) {
-        alert('이미지 파일만 등록이 가능합니다')
-        return false
-      }
-      this.filename = file.name
-      this.preview(file)
-    }
-  },
-  onClickUpload() {
-    this.preview(this.filename)
-  },
-  preview(file) {
-    if (typeof file === 'string') {
-      this.imageSrc = file
-    } else {
-      let vm = this
-      let reader = new FileReader()
-      reader.onload = () => {
-        vm.imageSrc = reader.result
-      }
-      reader.readAsDataURL(file)
-    }
   },
 }
 </script>
