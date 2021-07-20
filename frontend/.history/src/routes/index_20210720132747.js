@@ -1,5 +1,6 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
+import Vue from '@/components/board/List'
 
 Vue.use(VueRouter)
 
@@ -15,11 +16,8 @@ const router = new VueRouter({
     },
     {
       path: '/board/list',
-      component: () => import('@/components/board/List.vue')
-    },
-    {
-      path: '/board/create',
-      component: () => import('@/components/board/Create.vue')
+      name: List,
+      component: List,
     },
   ],
 })

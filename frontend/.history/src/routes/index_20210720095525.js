@@ -13,14 +13,6 @@ const router = new VueRouter({
       path: '/testtwo',
       component: () => import('@/views/TestTwo.vue'),
     },
-    {
-      path: '/board/list',
-      component: () => import('@/components/board/List.vue')
-    },
-    {
-      path: '/board/create',
-      component: () => import('@/components/board/Create.vue')
-    },
   ],
 })
 
