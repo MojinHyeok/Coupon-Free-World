@@ -1,8 +1,9 @@
 <template>
   <header>
-    <router-link to="/testone">TestOne</router-link> |
-    <router-link to="/testtwo">TestTwo</router-link> |
-    <router-link to="/board/list">List</router-link>
+<<<<<<< frontend/src/components/common/AppHeader.vue
+    <router-link to="/board/list">List</router-link> |
+    <router-link to="/account/signup">signup</router-link> |
+    <router-link to="/account/login">login</router-link>
   </header>
 </template>
 

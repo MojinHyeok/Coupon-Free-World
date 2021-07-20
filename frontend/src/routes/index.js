@@ -6,12 +6,12 @@ Vue.use(VueRouter)
 const router = new VueRouter({
   routes: [
     {
-      path: '/testone',
-      component: () => import('@/views/TestOne.vue'),
+      path: '/account/signup',
+      component: () => import('@/views/SignupPage.vue'),
     },
     {
-      path: '/testtwo',
-      component: () => import('@/views/TestTwo.vue'),
+      path: '/account/login',
+      component: () => import('@/views/LoginPage.vue'),
     },
     {
       path: '/board/list',
