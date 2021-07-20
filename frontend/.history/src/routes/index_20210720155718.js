@@ -4,19 +4,14 @@ import VueRouter from 'vue-router'
 Vue.use(VueRouter)
 
 const router = new VueRouter({
-  mode: 'history',
   routes: [
     {
-      path: '/account/signup',
-      component: () => import('@/views/SignupPage.vue'),
+      path: '/testone',
+      component: () => import('@/views/TestOne.vue'),
     },
     {
-      path: '/account/login',
-      component: () => import('@/views/LoginPage.vue'),
-    },
-    {
-      path: '/account/edit',
-      component: () => import('@/views/UserEdit.vue'),
+      path: '/testtwo',
+      component: () => import('@/views/TestTwo.vue'),
     },
     {
       path: '/board/list',
@@ -25,10 +20,6 @@ const router = new VueRouter({
     {
       path: '/board/create',
       component: () => import('@/components/board/Create.vue')
-    },
-    {
-      path: '/main',
-      component: () => import('@/views/MainPage.vue'),
     },
   ],
 })
