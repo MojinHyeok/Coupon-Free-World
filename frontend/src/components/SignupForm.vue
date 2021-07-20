@@ -48,7 +48,7 @@
           30자 이내로 작성해주세요.
         </p>
       </div>
-
+      <p>{{ logMessage }}</p>
       <button
         type="submit"
         :disabled="
@@ -86,6 +86,8 @@ export default {
       alias: '',
       profilePath: '',
       bio: '',
+      // log
+      logMessage: '',
     }
   },
   computed: {
@@ -101,18 +103,21 @@ export default {
   },
   methods: {
     async submitForm() {
-      const userData = {
-        userID: this.userID,
-        userName: this.userName,
-        password: this.password,
-        email: this.email,
-        alias: this.alias,
-        profilePath: this.profilePath,
-        bio: this.bio,
+      try {
+        const userData = {
+          userID: this.userID,
+          userName: this.userName,
+          password: this.password,
+          email: this.email,
+          alias: this.alias,
+          profilePath: this.profilePath,
+          bio: this.bio,
+        }
+        await registerUser(userData)
+        this.$router.push('/account/login')
+      } catch (error) {
+        this.logMessage = '이미 존재하는 userID 입니다.'
       }
-      console.log('요청보낼 데이터', userData)
-      const response = await registerUser(userData)
-      console.log('응답받은 데이터', response)
     },
   },
 }
