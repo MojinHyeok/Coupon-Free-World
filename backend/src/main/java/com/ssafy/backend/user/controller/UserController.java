@@ -66,6 +66,7 @@ public class UserController {
 	
 	
 	//회원정보 수정
+	@PostMapping("/modify")
 	public ResponseEntity<String> userModify(@RequestBody UserModel model){
 		String msg="";
 		HttpStatus status;
@@ -82,6 +83,7 @@ public class UserController {
 		return new ResponseEntity<>(msg,status);
 	}
 	//회원정보삭제하기
+	@PostMapping("/delete")
 	public ResponseEntity<String> userDelte(@RequestBody UserModel model){
 		String msg="";
 		HttpStatus status;
