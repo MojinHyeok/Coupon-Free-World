@@ -8,5 +8,22 @@
 	insert into user
 	values(#{userID},#{userName},#{password},#{email},#{alias},#{profilePath},#{bio})	
 	</insert>
-
+	
+	<select id="getUserInfo" parameterType="String" resultType="userModel">
+	select *
+	from user
+	where userId = #{userID}
+	</select>
+	
+	<update id="userModify" parameterType="userModel">
+		update user
+		set userName=#{userName}, password=#{password}, email=#{email}, alias=#{alias}, profilePath=#{profilePath}, bio=#{bio}
+		where userId= #{userID}
+	</update>
+	
+	<delete id="userDelete" parameterType="String">
+	delete from user
+	where userID = #{userID}
+	</delete>
+	
 </mapper>

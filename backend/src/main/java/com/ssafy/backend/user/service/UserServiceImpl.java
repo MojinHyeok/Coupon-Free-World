@@ -17,4 +17,25 @@ public class UserServiceImpl implements UserService{
 		return mapper.userRegister(model);
 	}
 
+
+	@Override
+	public int userModify(UserModel model) {
+		// TODO Auto-generated method stub
+		return mapper.userModify(model);
+	}
+
+
+	@Override
+	public int userDelete(String userid) {
+		// TODO Auto-generated method stub
+		return mapper.userDelete(userid);
+	}
+
+
+	@Override
+	public UserModel getUserInfo(String userid) {
+		// TODO Auto-generated method stub
+		return mapper.getUserInfo(userid);
+	}
+
 }
