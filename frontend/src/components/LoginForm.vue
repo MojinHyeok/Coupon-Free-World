@@ -6,6 +6,7 @@
         <input
           id="userID"
           type="text"
+          autocomplete="off"
           v-model="userID"
           @focus="afterFocus('userID')"
           @keyup="isBlankVaild(userID, 'userID')"
@@ -23,6 +24,7 @@
           id="password"
           type="text"
           v-model="password"
+          autocomplete="off"
           @focus="afterFocus('password')"
           @keyup="isBlankVaild(password, 'password')"
         />

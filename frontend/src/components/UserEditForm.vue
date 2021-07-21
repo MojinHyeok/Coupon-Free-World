@@ -3,7 +3,13 @@
     <form @submit.prevent="submitForm">
       <div>
         <label for="userID">userID: </label>
-        <input id="userID" type="text" v-model="userID" disabled />
+        <input
+          id="userID"
+          type="text"
+          autocomplete="off"
+          v-model="userID"
+          disabled
+        />
         <p v-if="!isUserIdLenValid">
           userID 길이 초과하였습니다.
         </p>
@@ -13,7 +19,12 @@
       </div>
       <div>
         <label for="userName">userName:</label>
-        <input id="userName" type="text" v-model="userName" />
+        <input
+          id="userName"
+          type="text"
+          autocomplete="off"
+          v-model="userName"
+        />
         <p v-if="!isUsernameLenValid">
           userName 길이 초과하였습니다.
         </p>
@@ -22,12 +33,18 @@
         </p>
       </div>
       <label>비밀번호 변경 </label>
-      <input type="checkbox" id="passwordCheckbox" @click="passwordActive" />
+      <input
+        type="checkbox"
+        autocomplete="off"
+        id="passwordCheckbox"
+        @click="passwordActive"
+      />
       <div>
         <label for="passwordCurrent">passwordCurrent: </label>
         <input
           id="passwordCurrent"
           type="text"
+          autocomplete="off"
           v-model="passwordCurrent"
           :disabled="!isPwAcitve"
           @keyup="isBlankVaild(passwordCurrent, 'passwordCurrent')"
@@ -47,6 +64,7 @@
         <input
           id="passwordChange"
           type="text"
+          autocomplete="off"
           v-model="passwordChange"
           :disabled="!isPwAcitve"
           @keyup="isBlankVaild(passwordChange, 'passwordChange')"
@@ -63,6 +81,7 @@
         <input
           id="passwordChangeConfirm"
           type="text"
+          autocomplete="off"
           v-model="passwordChangeConfirm"
           :disabled="!isPwAcitve"
         />
@@ -73,7 +92,13 @@
 
       <div>
         <label for="email">email: </label>
-        <input id="email" type="text" v-model="email" disabled />
+        <input
+          id="email"
+          type="text"
+          autocomplete="off"
+          v-model="email"
+          disabled
+        />
         <p v-if="!isEmailValid && email">
           이메일 형식이 아닙니다.
         </p>
@@ -83,7 +108,7 @@
       </div>
       <div>
         <label for="alias">alias: </label>
-        <input id="alias" type="text" v-model="alias" />
+        <input id="alias" type="text" autocomplete="off" v-model="alias" />
         <p v-if="!isAliasLenValid">
           alias 길이 초과하였습니다.
         </p>
@@ -93,7 +118,12 @@
       </div>
       <div>
         <label for="profilePath">profilePath: </label>
-        <input id="profilePath" type="text" v-model="profilePath" />
+        <input
+          id="profilePath"
+          type="text"
+          autocomplete="off"
+          v-model="profilePath"
+        />
       </div>
       <div>
         <label for="bio">bio: </label>

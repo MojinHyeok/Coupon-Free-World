@@ -3,7 +3,7 @@
     <form @submit.prevent="submitForm">
       <div>
         <label for="userID">userID: </label>
-        <input id="userID" type="text" v-model="userID" />
+        <input id="userID" type="text" autocomplete="off" v-model="userID" />
         <p v-if="!isUserIdLenValid">
           userID 길이 초과하였습니다.
         </p>
@@ -13,7 +13,12 @@
       </div>
       <div>
         <label for="userName">userName:</label>
-        <input id="userName" type="text" v-model="userName" />
+        <input
+          id="userName"
+          type="text"
+          autocomplete="off"
+          v-model="userName"
+        />
         <p v-if="!isUsernameLenValid">
           userName 길이 초과하였습니다.
         </p>
@@ -26,6 +31,7 @@
         <input
           id="password"
           type="text"
+          autocomplete="off"
           v-model="password"
           @keyup="isBlankVaild(password, 'password')"
         />
@@ -38,14 +44,19 @@
       </div>
       <div>
         <label for="passwordConfirm">passwordConfirm: </label>
-        <input id="passwordConfirm" type="text" v-model="passwordConfirm" />
+        <input
+          id="passwordConfirm"
+          type="text"
+          autocomplete="off"
+          v-model="passwordConfirm"
+        />
       </div>
       <p v-if="passwordConfirm && !isPasswordConfirmValid">
         비밀번호가 옳바르지 않습니다.
       </p>
       <div>
         <label for="email">email: </label>
-        <input id="email" type="text" v-model="email" />
+        <input id="email" type="text" autocomplete="off" v-model="email" />
         <p v-if="!isEmailValid && email">
           이메일 형식이 아닙니다.
         </p>
@@ -55,7 +66,7 @@
       </div>
       <div>
         <label for="alias">alias: </label>
-        <input id="alias" type="text" v-model="alias" />
+        <input id="alias" type="text" autocomplete="off" v-model="alias" />
         <p v-if="!isAliasLenValid">
           alias 길이 초과하였습니다.
         </p>
@@ -65,7 +76,12 @@
       </div>
       <div>
         <label for="profilePath">profilePath: </label>
-        <input id="profilePath" type="text" v-model="profilePath" />
+        <input
+          id="profilePath"
+          type="text"
+          autocomplete="off"
+          v-model="profilePath"
+        />
       </div>
       <div>
         <label for="bio">bio: </label>
