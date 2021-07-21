@@ -6,11 +6,16 @@
         <input
           id="userID"
           type="text"
+          autocomplete="off"
           v-model="userID"
           @focus="afterFocus('userID')"
+          @keyup="isBlankVaild(userID, 'userID')"
         />
         <p v-if="userIDCheck && !userID">
           userID가 누락되었습니다.
+        </p>
+        <p v-if="userIDBlank">
+          {{ logBlankuserID }}
         </p>
       </div>
       <div>
@@ -19,10 +24,15 @@
           id="password"
           type="text"
           v-model="password"
+          autocomplete="off"
           @focus="afterFocus('password')"
+          @keyup="isBlankVaild(password, 'password')"
         />
         <p v-if="passwordCheck && !password">
           password가 누락되었습니다.
+        </p>
+        <p v-if="passwordBlank">
+          {{ logBlankpassword }}
         </p>
       </div>
       <p>{{ logMessage }}</p>
@@ -32,6 +42,7 @@
 </template>
 
 <script>
+import { BlankValid } from '@/utils/validation'
 export default {
   data() {
     return {
@@ -39,9 +50,14 @@ export default {
       password: '',
       // log
       logMessage: '',
+      logBlankuserID: '',
+      logBlankpassword: '',
       // check
       userIDCheck: false,
       passwordCheck: false,
+      // bool
+      userIDBlank: false,
+      passwordBlank: false,
     }
   },
   methods: {
@@ -65,6 +81,15 @@ export default {
           this[`${id}Check`] = true
         }
       })
+    },
+    isBlankVaild(data, id) {
+      if (BlankValid(this[`${id}`])) {
+        this[`${id}Blank`] = true
+        this[`logBlank${id}`] = '공백 사용할 수 없습니다.'
+        this[`${id}`] = ''
+      } else {
+        this[`${id}Blank`] = false
+      }
     },
   },
 }

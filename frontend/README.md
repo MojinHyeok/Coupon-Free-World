@@ -82,4 +82,4 @@ See [Configuration Reference](https://cli.vuejs.org/config/).
 4. 회원가입 - userID, userName -> 특수기호&길이제한, password,passwordForm, email, alias -> 길이제한(완료)
 1. 로그아웃 - 토큰제거 (완료)
 2. 회원탈퇴 - userID로 요청
-3. 회원정보수정 - userID로 요청(해당 유저 정보 다가지고옴) -> 회원가입할 때 처럼 모든 정보 다 보냄(단, 아이디, 이메일은 수정불가)
+3. 회원정보수정 - userID로 요청(해당 유저 정보 다가지고옴) -> 회원가입할 때 처럼 모든 정보 다 보냄(단, 아이디, 이메일은 수정불가) (완료)
