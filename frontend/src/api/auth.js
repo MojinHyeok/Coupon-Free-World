@@ -26,4 +26,9 @@ function deleteUser(userData) {
   return instance.post('user/delete', userData)
 }
 
-export { registerUser, loginUser, fetchUser, editUser, deleteUser }
+// 회원검색 API
+function searchUser(userData) {
+  return instance.get(`user/list/${userData}`)
+}
+
+export { registerUser, loginUser, fetchUser, editUser, deleteUser, searchUser }
