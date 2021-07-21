@@ -49,9 +49,13 @@
           type="text"
           v-model="passwordChange"
           :disabled="!isPwAcitve"
+          @keyup="isBlankVaild(passwordChange, 'passwordChange')"
         />
-        <p v-if="!isPasswordLenValid">
-          password 길이 초과하였습니다.
+        <p v-if="logMessage">
+          {{ logMessage }}
+        </p>
+        <p v-if="isPwAcitve && passwordChangeBlank">
+          {{ logBlankpasswordChange }}
         </p>
       </div>
       <div>
@@ -83,6 +87,9 @@
         <p v-if="!isAliasLenValid">
           alias 길이 초과하였습니다.
         </p>
+        <p v-if="!isAliasValid">
+          특수문자,공백 사용할 수 없습니다.
+        </p>
       </div>
       <div>
         <label for="profilePath">profilePath: </label>
@@ -97,8 +104,11 @@
           rows="3"
           v-model="bio"
         />
-        <p v-if="!isBioValid">
+        <p v-if="!isBioLenValid">
           30자 이내로 작성해주세요.
+        </p>
+        <p v-if="!bioBlank">
+          공백 사용할 수 없습니다.
         </p>
       </div>
       <button
@@ -111,11 +121,12 @@
             !alias ||
             !profilePath ||
             !bio ||
-            !isBioValid ||
+            !isBioLenValid ||
             !isUserIdLenValid ||
             !isUsernameLenValid ||
             !isEmailLenValid ||
             !isAliasLenValid ||
+            !isAliasValid ||
             !isUserIdValid ||
             !isUsernameValid ||
             (isPwAcitve &&
@@ -128,6 +139,7 @@
         수정
       </button>
     </form>
+    <button @click="deleteAccount">회원탈퇴</button>
   </div>
 </template>
 
@@ -143,8 +155,7 @@ import {
   UsernameValid,
   BlankValid,
 } from '@/utils/validation'
-import { fetchUser } from '@/api/auth'
-import { editUser } from '@/api/auth'
+import { fetchUser, editUser, deleteUser } from '@/api/auth'
 
 export default {
   data() {
@@ -164,8 +175,11 @@ export default {
       // log
       logMessage: '',
       logBlankpasswordCurrent: '',
-      // check
+      logBlankpasswordChange: '',
+      // bool
       passwordCurrentBlank: false,
+      passwordChangeBlank: false,
+      bioBlank: true,
     }
   },
   computed: {
@@ -185,6 +199,9 @@ export default {
     isAliasLenValid() {
       return this.alias.length <= 16
     },
+    isAliasValid() {
+      return UsernameValid(this.alias)
+    },
     // 영어, 숫자 허용만 가능
     isUserIdValid() {
       return UserIdValid(this.userID)
@@ -199,7 +216,7 @@ export default {
     isEmailValid() {
       return validateEmail(this.email)
     },
-    isBioValid() {
+    isBioLenValid() {
       return this.bio.length <= 30
     },
   },
@@ -226,6 +243,11 @@ export default {
     },
     async submitForm() {
       try {
+        if (this.bio.trim() === '') {
+          this.logBlankbio = '공백 사용할 수 없습니다.'
+          this.bioBlank = false
+          return
+        }
         if (this.passwordActive) {
           this.password = this.passwordChange
           if (this.password !== this.passwordCurrent) {
@@ -240,7 +262,7 @@ export default {
           email: this.email,
           alias: this.alias,
           profilePath: this.profilePath,
-          bio: this.bio,
+          bio: this.bio.trim(),
         }
         await editUser(userData)
         // 쿠키 삭제후 생성, state도 바꿔야함
@@ -262,6 +284,17 @@ export default {
       } else {
         this[`${id}Blank`] = false
       }
+    },
+    async deleteAccount() {
+      const userData = {
+        userID: this.userID,
+      }
+      await deleteUser(userData)
+      deleteCookie('one_user')
+      deleteCookie('one_auth')
+      this.$store.commit('clearUserid')
+      this.$store.commit('clearToken')
+      this.$router.push('/account/login')
     },
   },
 }

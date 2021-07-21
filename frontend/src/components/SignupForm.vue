@@ -18,14 +18,22 @@
           userName 길이 초과하였습니다.
         </p>
         <p v-if="!isUsernameValid">
-          특수문자 사용할 수 없습니다.
+          특수문자,공백 사용할 수 없습니다.
         </p>
       </div>
       <div>
         <label for="password">password: </label>
-        <input id="password" type="text" v-model="password" />
+        <input
+          id="password"
+          type="text"
+          v-model="password"
+          @keyup="isBlankVaild(password, 'password')"
+        />
         <p v-if="!isPasswordLenValid">
           password 길이 초과하였습니다.
+        </p>
+        <p v-if="passwordBlank">
+          {{ logBlankpassword }}
         </p>
       </div>
       <div>
@@ -51,6 +59,9 @@
         <p v-if="!isAliasLenValid">
           alias 길이 초과하였습니다.
         </p>
+        <p v-if="!isAliasValid">
+          특수문자,공백 사용할 수 없습니다.
+        </p>
       </div>
       <div>
         <label for="profilePath">profilePath: </label>
@@ -65,8 +76,11 @@
           rows="3"
           v-model="bio"
         />
-        <p v-if="!isBioValid">
+        <p v-if="!isBioLenValid">
           30자 이내로 작성해주세요.
+        </p>
+        <p v-if="!bioBlank">
+          공백 사용할 수 없습니다.
         </p>
       </div>
       <p>{{ logMessage }}</p>
@@ -83,14 +97,15 @@
             !alias ||
             !profilePath ||
             !bio ||
-            !isBioValid ||
+            !isBioLenValid ||
             !isUserIdLenValid ||
             !isUsernameLenValid ||
             !isPasswordLenValid ||
             !isEmailLenValid ||
             !isAliasLenValid ||
             !isUserIdValid ||
-            !isUsernameValid
+            !isUsernameValid ||
+            !isAliasValid
         "
       >
         회원가입
@@ -101,7 +116,12 @@
 
 <script>
 import { registerUser } from '@/api/auth'
-import { validateEmail, UserIdValid, UsernameValid } from '@/utils/validation'
+import {
+  validateEmail,
+  UserIdValid,
+  UsernameValid,
+  BlankValid,
+} from '@/utils/validation'
 
 export default {
   data() {
@@ -116,6 +136,10 @@ export default {
       bio: '',
       // log
       logMessage: '',
+      logBlankpassword: '',
+      //bool
+      passwordBlank: false,
+      bioBlank: true,
     }
   },
   computed: {
@@ -143,19 +167,26 @@ export default {
     isUsernameValid() {
       return UsernameValid(this.userName)
     },
+    isAliasValid() {
+      return UsernameValid(this.alias)
+    },
     isPasswordConfirmValid() {
       return this.password === this.passwordConfirm
     },
     isEmailValid() {
       return validateEmail(this.email)
     },
-    isBioValid() {
+    isBioLenValid() {
       return this.bio.length <= 30
     },
   },
   methods: {
     async submitForm() {
       try {
+        if (this.bio.trim() === '') {
+          this.bioBlank = false
+          return
+        }
         const userData = {
           userID: this.userID,
           userName: this.userName,
@@ -169,6 +200,15 @@ export default {
         this.$router.push('/account/login')
       } catch (error) {
         this.logMessage = '이미 존재하는 userID 입니다.'
+      }
+    },
+    isBlankVaild(data, id) {
+      if (BlankValid(this[`${id}`])) {
+        this[`${id}Blank`] = true
+        this[`logBlank${id}`] = '공백 사용할 수 없습니다.'
+        this[`${id}`] = ''
+      } else {
+        this[`${id}Blank`] = false
       }
     },
   },
