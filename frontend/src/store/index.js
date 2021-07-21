@@ -10,12 +10,20 @@ import {
 } from '@/utils/cookies'
 Vue.use(Vuex)
 
-import { loginUser } from '@/api/auth'
+import { loginUser, fetchUser } from '@/api/auth'
 
 export default new Vuex.Store({
   state: {
     userID: getUserFromCookie() || '',
     token: getAuthFromCookie() || '',
+    user: {},
+  },
+  getters: {
+    user(state) {
+      console.log('asdas')
+      console.log(state.user)
+      return state.user
+    },
   },
   mutations: {
     setUserid(state, userID) {
@@ -29,6 +37,11 @@ export default new Vuex.Store({
     },
     clearToken(state) {
       state.token = ''
+    },
+    setUser(state, payload) {
+      console.log('여기는 setuser')
+      console.log(payload)
+      state.user = payload
     },
   },
   actions: {
@@ -44,6 +57,15 @@ export default new Vuex.Store({
       saveAuthToCookie(data['access-token'])
       saveUserToCookie(userData.userID)
       return data
+    },
+    // async getUser({ commit }, userID) {
+    //   const { data } = await fetchUser(userID)
+
+    //   commit('setUser', data.userInfo)
+    // },
+    async getUser(context, payload) {
+      const { data } = await fetchUser(payload)
+      context.commit('setUser', data.userInfo)
     },
   },
 })
