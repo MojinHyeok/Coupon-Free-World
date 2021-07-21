@@ -106,7 +106,7 @@ public class UserController {
 	//회원 리스트 가져오기
 	@GetMapping("/list/{userID}")
 	public ResponseEntity<?> searchUserList(@PathVariable("userID") String userID) throws Exception {
-		List<UserModel> list = service.searchUserList(userID);
+		List<String> list = service.searchUserList(userID);
 		
 		if (list.isEmpty()) {
             return new ResponseEntity<Void>(HttpStatus.BAD_REQUEST);

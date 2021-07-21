@@ -14,6 +14,6 @@ public interface UserService {
 		//회원정보조회
 		UserModel getUserInfo(String userid);
 		//회원 리스트 검색
-		List<UserModel> searchUserList(String userid);
+		List<String> searchUserList(String userid);
 
 }

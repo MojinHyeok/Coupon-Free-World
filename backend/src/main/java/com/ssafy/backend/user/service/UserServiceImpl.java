@@ -40,7 +40,7 @@ public class UserServiceImpl implements UserService{
 		return mapper.getUserInfo(userid);
 	}
 	
-	public List<UserModel> searchUserList(String userid) {
+	public List<String> searchUserList(String userid) {
 		return mapper.searchUserList(userid);
 	}
 
