@@ -27,7 +27,7 @@
 	</delete>
 	
 	<select id="searchUserList" parameterType="String" resultType="userModel">
-		select *
+		select userID
 		from user
 		where userId LIKE concat('%', #{userId}, '%')
 	</select>
