@@ -34,6 +34,7 @@ function findFollowing(userData) {
   return instance.post('/social/following', userData)
 }
 
+<<<<<<< HEAD
 export {
   registerUser,
   loginUser,
@@ -43,3 +44,11 @@ export {
   findFollower,
   findFollowing,
 }
+=======
+// 회원검색 API
+function searchUser(userData) {
+  return instance.get(`user/list/${userData}`)
+}
+
+export { registerUser, loginUser, fetchUser, editUser, deleteUser, searchUser }
+>>>>>>> 027a2f83b1b4fa54e24f781207a971ee479fdc1c
