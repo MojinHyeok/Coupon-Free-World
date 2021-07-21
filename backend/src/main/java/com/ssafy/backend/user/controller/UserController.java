@@ -1,6 +1,7 @@
 package com.ssafy.backend.user.controller;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,6 +9,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -99,5 +101,17 @@ public class UserController {
 		}
 		
 		return new ResponseEntity<>(msg,status);
+	}
+	
+	//회원 리스트 가져오기
+	@GetMapping("/list/{userID}")
+	public ResponseEntity<?> searchUserList(@PathVariable("userID") String userID) throws Exception {
+		List<UserModel> list = service.searchUserList(userID);
+		
+		if (list.isEmpty()) {
+            return new ResponseEntity<Void>(HttpStatus.BAD_REQUEST);
+        }
+
+        return new ResponseEntity<>(list, HttpStatus.OK);
 	}
 }
