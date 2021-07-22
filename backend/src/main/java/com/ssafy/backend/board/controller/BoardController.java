@@ -47,6 +47,14 @@ public class BoardController {
 	}
 	
 	// 글 목록 불러오기
+	// limit = 출력할 행의 수
+	// offset = 몇번째 row부터 출력할 것인지(0부터 시작)
+	@GetMapping("/list")
+	public ResponseEntity<?> boardList(@PathVariable("limit") int limit, @PathVariable("offset") int offset) throws Exception {
+		List<BoardModel> list = service.selectBoardLimitOffset(limit, offset);
+		
+		return new ResponseEntity<>(list, HttpStatus.OK);
+	}
 	
 	// 글 삭제
 	
