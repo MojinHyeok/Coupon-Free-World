@@ -28,7 +28,7 @@ const router = new VueRouter({
     },
     {
       path: '/board/detail',
-      name: 'Detail',
+      name: Detail,
       component: () => import('@/components/board/Detail.vue'),
     },
     {
