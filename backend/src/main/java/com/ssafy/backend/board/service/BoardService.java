@@ -6,17 +6,17 @@ import com.ssafy.backend.board.model.BoardModel;
 
 public interface BoardService {
 	// 글쓰기
-    int writeBoard(BoardModel noticeBoardModel) throws Exception;
+    int writeBoard(BoardModel BoardModel) throws Exception;
     // 글목록 가져오기
     List<BoardModel> showList() throws Exception;
     // 글삭제
-    int deleteBoard(int boardNum) throws Exception;
+    int deleteBoard(int boardID) throws Exception;
     // 
-    BoardModel selectBoard(int boardNum) throws Exception;
+    BoardModel selectBoard(int boardID) throws Exception;
     // 게시글 검색
     List<BoardModel> searchBoard(String searchOption, String value, int limit, int offset) throws Exception;
     // 게시글 수정
-    int updateBoard(BoardModel noticeBoardModel) throws Exception;
+    int updateBoard(BoardModel BoardModel) throws Exception;
     // 전체 게시글 수
     public int getTotalCount() throws Exception;
     // 

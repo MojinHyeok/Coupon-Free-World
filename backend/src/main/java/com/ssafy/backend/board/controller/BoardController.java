@@ -2,14 +2,17 @@ package com.ssafy.backend.board.controller;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -42,9 +45,11 @@ public class BoardController {
         	return new ResponseEntity<Void>(HttpStatus.BAD_REQUEST);
         }
 	}
+	
 	// 글 목록 불러오기
 	
-	// 글 삭제(게시글 번호(테이블의 PK)로 접근함)
+	// 글 삭제
+	// 게시글 번호(테이블의 PK)로 접근함, 값 보낼 때 boardID를 보내야 함
 	@DeleteMapping("/delete/{boardID}")
 	public ResponseEntity<?> deleteBoard(@PathVariable("boardID") int boardID) throws Exception {
 		int res = service.deleteBoard(boardID);
@@ -55,9 +60,32 @@ public class BoardController {
 			return new ResponseEntity<Void>(HttpStatus.BAD_REQUEST);
 		}
 	}
+	
 	// 글 수정
+	@PutMapping("/update")
+	public ResponseEntity<?> updateBoard(@RequestBody BoardModel model) throws Exception {
+		int res = service.updateBoard(model);
+		
+		if(res >= 1) {
+			return new ResponseEntity<Void>(HttpStatus.OK);
+		} else {
+			return new ResponseEntity<Void>(HttpStatus.BAD_REQUEST);
+		}
+	}
 	
-	// 게시글 검색(옵션-작성자, 내용, 제목)
-	
+	// 게시글 검색
+	// searchOption = 검색옵션(내용, 제목, 작성자)
+	// value = 포함될 값
+	// limit = 한 페이지당 몇개의 글을 가져올지
+	// offset = 총 몇페이지인지
+	@GetMapping("/search/{searchOption}/{value}/{limit}/{offset}")
+	public ResponseEntity<?> searchBoard(@PathVariable("searchOption") String searchOption,
+										 @PathVariable("value") String value,
+										 @PathVariable("limit") int limit,
+										 @PathVariable("offset") int offset) throws Exception {
+		List<BoardModel> list = service.searchBoard(searchOption, value, limit, offset);
+		
+		return new ResponseEntity<>(list, HttpStatus.OK);
+	}
 	// 게시글 내용 보기(클릭 시 조회수 올라가게)
 }

@@ -13,8 +13,8 @@ public class BoardServiceImpl implements BoardService{
     public BoardMapper mapper;
 
     @Override
-    public int writeBoard(BoardModel boardDto) throws Exception {
-        return mapper.writeBoard(boardDto);
+    public int writeBoard(BoardModel model) throws Exception {
+        return mapper.writeBoard(model);
     }
 
     @Override
@@ -23,13 +23,13 @@ public class BoardServiceImpl implements BoardService{
     }
 
     @Override
-    public int deleteBoard(int boardNum) throws Exception {
-        return mapper.deleteBoard(boardNum);
+    public int deleteBoard(int boardID) throws Exception {
+        return mapper.deleteBoard(boardID);
     }
 
     @Override
-    public BoardModel selectBoard(int boardNum) throws Exception {
-        return mapper.selectBoard(boardNum);
+    public BoardModel selectBoard(int boardID) throws Exception {
+        return mapper.selectBoard(boardID);
     }
 
     @Override
@@ -38,8 +38,8 @@ public class BoardServiceImpl implements BoardService{
     }
 
     @Override
-    public int updateBoard(BoardModel boardDto) throws Exception {
-        return mapper.updateBoard(boardDto);
+    public int updateBoard(BoardModel model) throws Exception {
+        return mapper.updateBoard(model);
     }
 
     @Override

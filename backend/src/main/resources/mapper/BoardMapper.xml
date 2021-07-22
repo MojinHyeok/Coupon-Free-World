@@ -29,5 +29,12 @@
 			#{viewCount}
 		)
 	</insert>
-
+	<delete id="deleteBoard" parameterType="int">
+		DELETE
+		FROM BOARD
+		WHERE boardID = #{boardID}
+	</delete>
+	<update id="updateBoard" parameterType="BoardModel">
+		
+	</update>
 </mapper>
