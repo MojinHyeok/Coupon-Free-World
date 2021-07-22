@@ -19,7 +19,8 @@
       </b-row>
       <b-row>
         <button v-if="tempuserID == userID">회원정보수정</button>
-        <button v-else v-bind:disabled="requestFollow">팔로우요청</button>
+        <button v-else-if="this.requestFollow">팔로우요청</button>
+        <button v-else>팔로우 취소</button>
       </b-row>
     </b-container>
   </div>
@@ -49,7 +50,7 @@ export default {
       followerCnt: '',
       followingCnt: '',
       tempuserID: '', // 이 사용자가 마이페이지로 들어왔다면 회원정보 수정을 해주기 위해 로그인유저 ID이다.
-      requestFollow: false, // 팔로우요청 할지..
+      requestFollow: true, // 팔로우요청 할지..
 
       // eslint-disable-next-line prettier/prettier
       };
@@ -83,7 +84,7 @@ export default {
     const temp = getUserFromCookie()
     this.tempuserID = temp
     for (var i = 0; i < this.followerCnt; i++) {
-      if (res.data[i] == temp) this.requestFollow = true
+      if (res.data[i] == temp) this.requestFollow = false
     }
     console.log(this.requestFollow)
   },
