@@ -39,7 +39,6 @@ export default {
           this.logMessage = '해당 유저가 없습니다.'
           return
         }
-        console.error = function() {}
         const { data } = await searchUser(this.searchData)
         this.results = data
         this.logMessage = ''
