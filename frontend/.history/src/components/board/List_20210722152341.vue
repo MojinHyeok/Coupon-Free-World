@@ -75,6 +75,8 @@ export default {
       })
     },
     detail(idx) {
+      console.log('ㅎㅇ')
+      console.log(idx)
       this.$router.push({
         name: 'Detail', // 특정 데이터만 params로 넘김
         params: {

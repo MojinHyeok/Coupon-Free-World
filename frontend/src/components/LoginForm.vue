@@ -1,43 +1,69 @@
 <template>
   <div>
-    <form @submit.prevent="submitForm">
-      <div>
-        <label for="userID">userID: </label>
-        <input
-          id="userID"
-          type="text"
-          autocomplete="off"
-          v-model="userID"
-          @focus="afterFocus('userID')"
-          @keyup="isBlankVaild(userID, 'userID')"
-        />
-        <p v-if="userIDCheck && !userID">
-          userID가 누락되었습니다.
-        </p>
-        <p v-if="userIDBlank">
-          {{ logBlankuserID }}
-        </p>
+    <div class="login-box">
+      <form @submit.prevent="submitForm">
+        <p class="sub-title">로그인</p>
+        <div class="item">
+          <div class="input-box">
+            <input
+              id="userID"
+              type="text"
+              placeholder=" "
+              autocomplete="off"
+              v-model="userID"
+              @focus="afterFocus('userID')"
+              @keyup="isBlankVaild(userID, 'userID')"
+            />
+            <label for="userID">아이디</label>
+          </div>
+          <p v-if="userIDCheck && !userID">
+            userID가 누락되었습니다.
+          </p>
+          <p v-if="userIDBlank">
+            {{ logBlankuserID }}
+          </p>
+        </div>
+        <div class="item">
+          <div class="input-box">
+            <input
+              id="password"
+              type="text"
+              placeholder=" "
+              v-model="password"
+              autocomplete="off"
+              @focus="afterFocus('password')"
+              @keyup="isBlankVaild(password, 'password')"
+            />
+            <label for="password">비밀번호</label>
+          </div>
+          <p v-if="passwordCheck && !password">
+            password가 누락되었습니다.
+          </p>
+          <p v-if="passwordBlank">
+            {{ logBlankpassword }}
+          </p>
+        </div>
+        <div style="width: 100%; height: 44px;">
+          <div v-if="logMessage" class="logMessage">{{ logMessage }}</div>
+        </div>
+        <button :disabled="!userID || !password">로그인</button>
+      </form>
+    </div>
+    <!-- modal -->
+    <div class="modal" v-if="modalSwitch">
+      <div class="dialog">
+        <div class="screenAlert-icon screenAlert-success animate">
+          <span
+            class="screenAlert-line screenAlert-tip animateSuccessTip"
+          ></span>
+          <span
+            class="screenAlert-line screenAlert-long animateSuccessLong"
+          ></span>
+          <div class="screenAlert-placeholder"></div>
+          <div class="screenAlert-fix"></div>
+        </div>
       </div>
-      <div>
-        <label for="password">password: </label>
-        <input
-          id="password"
-          type="text"
-          v-model="password"
-          autocomplete="off"
-          @focus="afterFocus('password')"
-          @keyup="isBlankVaild(password, 'password')"
-        />
-        <p v-if="passwordCheck && !password">
-          password가 누락되었습니다.
-        </p>
-        <p v-if="passwordBlank">
-          {{ logBlankpassword }}
-        </p>
-      </div>
-      <p>{{ logMessage }}</p>
-      <button :disabled="!userID || !password">로그인</button>
-    </form>
+    </div>
   </div>
 </template>
 
@@ -46,6 +72,7 @@ import { BlankValid } from '@/utils/validation'
 export default {
   data() {
     return {
+      data: [1, 2, 3, 4, 5],
       userID: '',
       password: '',
       // log
@@ -58,6 +85,8 @@ export default {
       // bool
       userIDBlank: false,
       passwordBlank: false,
+      // modal switch
+      modalSwitch: false,
     }
   },
   methods: {
@@ -66,11 +95,13 @@ export default {
         userID: this.userID,
         password: this.password,
       }
+      this.logMessage = ''
       const res = await this.$store.dispatch('LOGIN', userData)
       if (res.message === 'fail') {
         this.logMessage = '정보를 정확히 입력해주세요'
       } else {
-        this.$router.push('/main')
+        this.modalSwitch = true
+        setTimeout(() => this.$router.push('/main'), 1500)
       }
     },
     afterFocus(id) {
@@ -95,4 +126,7 @@ export default {
 }
 </script>
 
-<style></style>
+<style scoped src="./css/user/default.css"></style>
+<style scoped src="./css/user/box.css"></style>
+<style scoped src="./css/user/modal.css"></style>
+<style scoped></style>

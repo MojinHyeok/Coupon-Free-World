@@ -74,11 +74,13 @@ export default {
         path: '/board/create',
       })
     },
-    detail(idx) {
+    detail() {
+      console.log('ㅎㅇ')
+      console.log(this.idx)
       this.$router.push({
         name: 'Detail', // 특정 데이터만 params로 넘김
         params: {
-          board_idx: idx,
+          board_idx: this.idx,
         },
       })
     },

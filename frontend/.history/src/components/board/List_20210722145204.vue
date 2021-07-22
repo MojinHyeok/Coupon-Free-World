@@ -44,7 +44,7 @@
           </tr>
         </thead>
         <tbody>
-          <tr :key="idx" v-for="(value, idx) in data" @click="detail(idx)">
+          <tr :key="idx" v-for="(value, idx) in data" @click="detail">
             <th scope="row">{{ value.order }}</th>
             <td>{{ value.category }}</td>
             <td>{{ value.title }}</td>
@@ -74,12 +74,9 @@ export default {
         path: '/board/create',
       })
     },
-    detail(idx) {
+    detail() {
       this.$router.push({
-        name: 'Detail', // 특정 데이터만 params로 넘김
-        params: {
-          board_idx: idx,
-        },
+        path: '/board/read',
       })
     },
   },

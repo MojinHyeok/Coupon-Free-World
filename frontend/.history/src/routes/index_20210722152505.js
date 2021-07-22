@@ -28,7 +28,7 @@ const router = new VueRouter({
     },
     {
       path: '/board/detail',
-      name: 'Detail',
+      name: Detail,
       component: () => import('@/components/board/Detail.vue'),
     },
     {
@@ -38,10 +38,6 @@ const router = new VueRouter({
     {
       path: '/user/profile',
       component: () => import('@/views/Profile.vue'),
-    },
-    {
-      path: '/user/followList',
-      component: () => import('@/components/user/followList.vue'),
     },
   ],
 })
