@@ -44,14 +44,9 @@ export default {
   },
   methods: {
     write() {
-      // getDate 함수가 보정이 필요해서 ___ 코드 고쳐야함
       const today = new Date()
       const date_today =
-        today.getFullYear() +
-        '-' +
-        (today.getMonth() + 1) +
-        '-' +
-        today.getDate()
+        today.getYear() + '-' + today.getMonth() + '-' + today.getDate()
       this.data.push({
         // 글 번호, 카테고리, 닉네임, 날짜, 추천 수, 조회수 등록 필요
         title: this.title,
