@@ -1,6 +1,21 @@
 <template>
   <div>
-    <input type="text" placeholder="userID" v-model="searchData" />
+    <input
+      type="text"
+      id="searchData"
+      placeholder="userID"
+      v-model="searchData"
+      @keyup="search"
+      @focus="afterFocus('searchData')"
+    />
+    <ul>
+      <li v-for="result in results" :key="result.id">
+        {{ result }}
+      </li>
+      <li v-if="logMessage">
+        {{ logMessage }}
+      </li>
+    </ul>
   </div>
 </template>
 
@@ -24,6 +39,7 @@ export default {
           this.logMessage = '해당 유저가 없습니다.'
           return
         }
+        console.error = function() {}
         const { data } = await searchUser(this.searchData)
         this.results = data
         this.logMessage = ''

@@ -25,6 +25,11 @@ function editUser(userData) {
 function deleteUser(userData) {
   return instance.post('user/delete', userData)
 }
+// 회원찾기 API
+function searchUser(userData) {
+  console.log(userData)
+  return instance.get(`/user/list/${userData}`)
+}
 //팔로워찾기
 function findFollower(userData) {
   return instance.post('/social/follower', userData)
@@ -40,6 +45,7 @@ export {
   fetchUser,
   editUser,
   deleteUser,
+  searchUser,
   findFollower,
   findFollowing,
 }
