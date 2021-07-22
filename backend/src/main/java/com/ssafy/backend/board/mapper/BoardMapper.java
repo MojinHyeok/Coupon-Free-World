@@ -20,7 +20,7 @@ public interface BoardMapper {
     int updateBoard(BoardModel model) throws SQLException;
     // 전체 게시글 수
     int getTotalCount() throws SQLException;
-    // 게시글 하나 검색
+    // 게시글 내용 보기
     BoardModel selectBoard(int boardNum) throws SQLException;
     
     List<BoardModel> selectBoardLimitOffset(@Param("limit") int limit, @Param("offset") int offset) throws SQLException;
