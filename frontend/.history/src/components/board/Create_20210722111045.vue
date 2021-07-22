@@ -44,7 +44,6 @@ export default {
   },
   methods: {
     write() {
-      // getDate 함수가 보정이 필요해서 ___ 코드 고쳐야함
       const today = new Date()
       const date_today =
         today.getFullYear() +
