@@ -20,7 +20,7 @@
         ></textarea>
       </div>
       <div class="d-flex justify-content-end">
-        <button @click="write" type="submit" class="btn btn-light">
+        <button @onclick="write" type="submit" class="btn btn-light">
           등 록
         </button>
       </div>
@@ -37,31 +37,13 @@ export default {
       data: data,
       title: '',
       content: '',
-      views: '',
-      recommends: '',
-      date: '',
     }
   },
   methods: {
     write() {
-      // getDate 함수가 보정이 필요해서 ___ 코드 고쳐야함
-      const today = new Date()
-      const date_today =
-        today.getFullYear() +
-        '-' +
-        (today.getMonth() + 1) +
-        '-' +
-        today.getDate()
       this.data.push({
-        // 글 번호, 카테고리, 닉네임, 날짜, 추천 수, 조회수 등록 필요
         title: this.title,
         content: this.content,
-        date: date_today,
-        views: 0,
-        recommends: 0,
-      })
-      this.$router.push({
-        path: '/board/list',
       })
     },
   },

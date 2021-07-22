@@ -1,21 +1,6 @@
 <template>
   <div>
-    <input
-      type="text"
-      id="searchData"
-      placeholder="userID"
-      v-model="searchData"
-      @keyup="search"
-      @focus="afterFocus('searchData')"
-    />
-    <ul>
-      <li v-for="result in results" :key="result.id">
-        {{ result }}
-      </li>
-      <li v-if="logMessage">
-        {{ logMessage }}
-      </li>
-    </ul>
+    <input type="text" placeholder="userID" v-model="searchData" />
   </div>
 </template>
 

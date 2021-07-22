@@ -1,7 +1,6 @@
 package com.ssafy.backend.board.model;
 
 public class BoardModel {
-	int boardNum;
 	int noticeOption;
 	String title;
 	String contents;
@@ -11,14 +10,8 @@ public class BoardModel {
 	String filePath2;
 	String filePath3;
 	String filePath4;
-
-	
-	public int getBoardNum() {
-		return boardNum;
-	}
-	public void setBoardNum(int boardNum) {
-		this.boardNum = boardNum;
-	}
+	int recommend;
+	int viewCount;
 	public int getNoticeOption() {
 		return noticeOption;
 	}
@@ -73,9 +66,21 @@ public class BoardModel {
 	public void setFilePath4(String filePath4) {
 		this.filePath4 = filePath4;
 	}
+	public int getRecommend() {
+		return recommend;
+	}
+	public void setRecommend(int recommend) {
+		this.recommend = recommend;
+	}
+	public int getViewCount() {
+		return viewCount;
+	}
+	public void setViewCount(int viewCount) {
+		this.viewCount = viewCount;
+	}
 	@Override
 	public String toString() {
-		return "BoardModel [boardNum=" + boardNum + ", noticeOption=" + noticeOption + ", title=" + title
+		return "BoardModel [noticeOption=" + noticeOption + ", title=" + title
 				+ ", contents=" + contents + ", writer=" + writer + ", regDate=" + regDate + ", filePath1=" + filePath1
 				+ ", filePath2=" + filePath2 + ", filePath3=" + filePath3 + ", filePath4=" + filePath4 + "]";
 	}

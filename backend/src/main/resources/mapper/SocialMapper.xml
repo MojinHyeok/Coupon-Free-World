@@ -3,5 +3,16 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.ssafy.backend.social.mapper.SocialMapper">
+	<select id="findFollower" parameterType="String" resultType="String">
+		select sourceID
+		from follow
+		where targetID = #{userID}
+	</select>
+	
+	<select id="findFollowing" parameterType="String" resultType="String">
+		select targetID
+		from follow
+		where sourceID = #{userID}
+	</select>
 
 </mapper>
