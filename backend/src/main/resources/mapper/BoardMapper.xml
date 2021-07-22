@@ -29,12 +29,24 @@
 			#{viewCount}
 		)
 	</insert>
+	
 	<delete id="deleteBoard" parameterType="int">
 		DELETE
 		FROM BOARD
 		WHERE boardID = #{boardID}
 	</delete>
+	
 	<update id="updateBoard" parameterType="BoardModel">
-		
+		UPDATE board
+		SET content = #{content}
+		WHERE boardID = #{boardID}
 	</update>
+	
+	<select id="searchBoard" parameterType="String" resultType="BoardModel">
+		SELECT *
+		FROM board
+		WHERE searchOption LIKE concat('%', #{value} ,'%')
+		LIMIT ${limit}
+		OFFSET ${offset}
+	</select>
 </mapper>

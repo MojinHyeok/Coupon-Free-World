@@ -49,6 +49,7 @@ public class BoardController {
 	// 글 목록 불러오기
 	
 	// 글 삭제
+	
 	// 게시글 번호(테이블의 PK)로 접근함, 값 보낼 때 boardID를 보내야 함
 	@DeleteMapping("/delete/{boardID}")
 	public ResponseEntity<?> deleteBoard(@PathVariable("boardID") int boardID) throws Exception {
@@ -76,8 +77,8 @@ public class BoardController {
 	// 게시글 검색
 	// searchOption = 검색옵션(내용, 제목, 작성자)
 	// value = 포함될 값
-	// limit = 한 페이지당 몇개의 글을 가져올지
-	// offset = 총 몇페이지인지
+	// limit = 출력할 행의 수
+	// offset = 몇번째 row부터 출력할 것인지(0부터 시작)
 	@GetMapping("/search/{searchOption}/{value}/{limit}/{offset}")
 	public ResponseEntity<?> searchBoard(@PathVariable("searchOption") String searchOption,
 										 @PathVariable("value") String value,
