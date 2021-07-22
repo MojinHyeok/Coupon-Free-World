@@ -5,12 +5,17 @@
     <router-link to="/account/login">login</router-link> |
     <a href="javascript:;" @click="logoutUser">logout</a> |
     <router-link to="/account/edit">userEdit</router-link>
+    <SearchUserForm></SearchUserForm>
   </header>
 </template>
 
 <script>
 import { deleteCookie } from '@/utils/cookies'
+import SearchUserForm from '@/components/common/SearchUserForm.vue'
 export default {
+  components: {
+    SearchUserForm,
+  },
   methods: {
     logoutUser() {
       this.$store.commit('clearUserid')

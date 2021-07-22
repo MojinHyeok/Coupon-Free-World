@@ -1,5 +1,7 @@
 package com.ssafy.backend.user.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -36,6 +38,10 @@ public class UserServiceImpl implements UserService{
 	public UserModel getUserInfo(String userid) {
 		// TODO Auto-generated method stub
 		return mapper.getUserInfo(userid);
+	}
+	
+	public List<String> searchUserList(String userid) {
+		return mapper.searchUserList(userid);
 	}
 
 }

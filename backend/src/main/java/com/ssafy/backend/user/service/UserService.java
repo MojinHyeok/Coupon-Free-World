@@ -1,5 +1,7 @@
 package com.ssafy.backend.user.service;
 
+import java.util.List;
+
 import com.ssafy.backend.user.model.UserModel;
 
 public interface UserService {
@@ -11,6 +13,7 @@ public interface UserService {
 		int userDelete(String userid);
 		//회원정보조회
 		UserModel getUserInfo(String userid);
-	
+		//회원 리스트 검색
+		List<String> searchUserList(String userid);
 
 }

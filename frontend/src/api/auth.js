@@ -21,4 +21,25 @@ function editUser(userData) {
   return instance.post('user/modify', userData)
 }
 
-export { registerUser, loginUser, fetchUser, editUser }
+// 회원탈퇴 API
+function deleteUser(userData) {
+  return instance.post('user/delete', userData)
+}
+//팔로워찾기
+function findFollower(userData) {
+  return instance.post('/social/follower', userData)
+}
+//팔로잉찾기
+function findFollowing(userData) {
+  return instance.post('/social/following', userData)
+}
+
+export {
+  registerUser,
+  loginUser,
+  fetchUser,
+  editUser,
+  deleteUser,
+  findFollower,
+  findFollowing,
+}

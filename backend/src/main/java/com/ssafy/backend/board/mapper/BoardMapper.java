@@ -4,9 +4,11 @@ import java.sql.SQLException;
 import java.util.List;
 
 import org.springframework.data.repository.query.Param;
+import org.springframework.stereotype.Repository;
 
 import com.ssafy.backend.board.model.BoardModel;
 
+@Repository
 public interface BoardMapper {
 	// 글쓰기
     int writeBoard(BoardModel model) throws SQLException;
