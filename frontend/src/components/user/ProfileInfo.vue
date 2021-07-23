@@ -91,7 +91,7 @@ export default {
     console.log(data)
     this.userID = data.userInfo.userID
     this.userName = data.userInfo.userName
-    this.password = data.userInfo.password`
+    this.password = data.userInfo.password
     this.email = data.userInfo.email
     this.alias = data.userInfo.alias
     this.profilePath = data.userInfo.profilePath
