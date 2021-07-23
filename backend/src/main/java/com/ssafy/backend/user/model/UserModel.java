@@ -8,9 +8,16 @@ public class UserModel {
 	String alias;		// 별명
 	String profilePath;	// 프로필사진 경로
 	String bio;			// 자기소개
+	int likeCnt;
 	
 	public String getUserID() {
 		return userID;
+	}
+	public int getLikeCnt() {
+		return likeCnt;
+	}
+	public void setLikeCnt(int likeCnt) {
+		this.likeCnt = likeCnt;
 	}
 	public void setUserID(String userID) {
 		this.userID = userID;

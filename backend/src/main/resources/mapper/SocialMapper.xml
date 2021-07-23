@@ -22,7 +22,7 @@
 	
 	<update id="allowFollow" parameterType="SocialModel">
 	update follow
-	set type =0
+	set type = 0
 	where sourceID = #{sourceID} and targetID= #{targetID}
 	</update>
 	

@@ -30,10 +30,11 @@ public class UserController {
 	@PostMapping("/join")
 	public ResponseEntity<String> join(@RequestBody UserModel model){
 		String msg="";
-		
+		System.out.println(model.getUserID());
 		HttpStatus status;
 		try {
 			int result=service.userRegister(model);
+			System.out.println(result);
 			if(result>=1) {
 				msg="success";
 			}else {
@@ -41,6 +42,7 @@ public class UserController {
 			}
 			status=HttpStatus.ACCEPTED;
 		}catch(Exception e) {
+			System.out.println(e);
 			msg="error";
 			status = HttpStatus.INTERNAL_SERVER_ERROR;
 		}
@@ -52,7 +54,6 @@ public class UserController {
 	public ResponseEntity<Map<String, Object>> userInfo(@RequestBody UserModel model){
 		Map<String, Object> resultMap = new HashMap<>();
 		HttpStatus status;
-		
 		String userId=model.getUserID();
 		try {
 			UserModel user=service.getUserInfo(userId);
