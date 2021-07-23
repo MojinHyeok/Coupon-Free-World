@@ -91,7 +91,7 @@ export default {
     console.log(data)
     this.userID = data.userInfo.userID
     this.userName = data.userInfo.userName
-    this.password = data.userInfo.password
+    this.password = data.userInfo.password`
     this.email = data.userInfo.email
     this.alias = data.userInfo.alias
     this.profilePath = data.userInfo.profilePath
@@ -106,7 +106,9 @@ export default {
     const temp = getUserFromCookie()
     this.tempuserID = temp
     for (var i = 0; i < this.followerCnt; i++) {
-      if (res.data[i] == temp) this.requestFollow = false
+      if (res.data[i] == temp) {
+        this.requestFollow = false
+      }
     }
     console.log(this.requestFollow)
   },
