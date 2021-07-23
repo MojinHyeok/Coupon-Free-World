@@ -45,7 +45,7 @@
 	<select id="searchBoard" parameterType="String" resultType="BoardModel">
 		SELECT *
 		FROM board
-		WHERE searchOption LIKE concat('%', #{value} ,'%')
+		WHERE ${searchOption} LIKE concat('%', #{value} ,'%')
 		LIMIT ${limit}
 		OFFSET ${offset}
 	</select>
@@ -55,5 +55,16 @@
 		FROM board
 		LIMIT ${limit}
 		offset ${offset}
+	</select>
+	
+	<select id="totalCount" resultType="int">
+		SELECT count(*)
+		FROM board
+	</select>
+	
+	<select id="selectBoard" parameterType="int" resultType="BoardModel">
+		SELECT *
+		FROM board
+		WHERE boardID = #{boardID}
 	</select>
 </mapper>

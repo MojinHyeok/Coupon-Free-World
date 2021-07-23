@@ -49,7 +49,7 @@ public class BoardController {
 	// 글 목록 불러오기
 	// limit = 출력할 행의 수
 	// offset = 몇번째 row부터 출력할 것인지(0부터 시작)
-	@GetMapping("/list")
+	@GetMapping("/list/{limit}/{offset}")
 	public ResponseEntity<?> boardList(@PathVariable("limit") int limit, @PathVariable("offset") int offset) throws Exception {
 		List<BoardModel> list = service.selectBoardLimitOffset(limit, offset);
 		
@@ -57,6 +57,7 @@ public class BoardController {
 	}
 	
 	// 글 삭제
+	
 	
 	// 게시글 번호(테이블의 PK)로 접근함, 값 보낼 때 boardID를 보내야 함
 	@DeleteMapping("/delete/{boardID}")
@@ -84,6 +85,7 @@ public class BoardController {
 	
 	// 게시글 검색
 	// searchOption = 검색옵션(내용, 제목, 작성자)
+	// searchOption 값 보낼때 내용 = content, 작성자 = writer, 제목 = title로 보내기
 	// value = 포함될 값
 	// limit = 출력할 행의 수
 	// offset = 몇번째 row부터 출력할 것인지(0부터 시작)
@@ -92,9 +94,29 @@ public class BoardController {
 										 @PathVariable("value") String value,
 										 @PathVariable("limit") int limit,
 										 @PathVariable("offset") int offset) throws Exception {
+		
 		List<BoardModel> list = service.searchBoard(searchOption, value, limit, offset);
 		
 		return new ResponseEntity<>(list, HttpStatus.OK);
 	}
+	
 	// 게시글 내용 보기(클릭 시 조회수 올라가게)
+	@GetMapping("/select/{boardID}")
+	public ResponseEntity<?> selectBoard(@PathVariable("boardID") int boardID) throws Exception {
+		BoardModel model = service.selectBoard(boardID);
+		
+        if (model == null) {
+            return new ResponseEntity<Void>(HttpStatus.NO_CONTENT);
+        }
+        //
+        return new ResponseEntity<>(model, HttpStatus.OK);
+	}
+	
+	// 전체 게시글 수 가져오기
+	@GetMapping("/totalCnt")
+	public ResponseEntity<?> totalCount() throws Exception {
+		int cnt = service.totalCount();
+		
+		 return new ResponseEntity<Integer>(cnt, HttpStatus.OK);
+	}
 }

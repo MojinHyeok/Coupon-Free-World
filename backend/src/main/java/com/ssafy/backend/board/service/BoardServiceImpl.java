@@ -18,11 +18,6 @@ public class BoardServiceImpl implements BoardService{
     }
 
     @Override
-    public List<BoardModel> showList() throws Exception {
-        return mapper.showList();
-    }
-
-    @Override
     public int deleteBoard(int boardID) throws Exception {
         return mapper.deleteBoard(boardID);
     }
@@ -43,12 +38,12 @@ public class BoardServiceImpl implements BoardService{
     }
 
     @Override
-    public int getTotalCount() throws Exception {
-        return mapper.getTotalCount();
+    public int totalCount() throws Exception {
+        return mapper.totalCount();
     }
 
     @Override
     public List<BoardModel> selectBoardLimitOffset(int limit, int offset) throws Exception {
-        return mapper.selectBoardLimitOffset(limit, offset);
+        return mapper.boardList(limit, offset);
     }
 }
