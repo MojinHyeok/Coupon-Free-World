@@ -19,17 +19,16 @@ const router = new VueRouter({
       component: () => import('@/views/UserEdit.vue'),
     },
     {
-      path: '/board/list',
-      component: () => import('@/components/board/List.vue'),
+      path: '/board',
+      component: () => import('@/views/board/BoardPage.vue'),
     },
     {
       path: '/board/create',
       component: () => import('@/components/board/Create.vue'),
     },
     {
-      path: '/board/detail',
-      name: 'Detail',
-      component: () => import('@/components/board/Detail.vue'),
+      path: '/board/:id',
+      component: () => import('@/views/board/DetailPage.vue'),
     },
     {
       path: '/main',
