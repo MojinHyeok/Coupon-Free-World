@@ -6,7 +6,7 @@
 	
 	<insert id="userRegister" parameterType="userModel">
 	insert into user
-	values(#{userID},#{userName},#{password},#{email},#{alias},#{profilePath},#{bio},#{likeCnt})	
+	values(#{userID},#{userName},#{password},#{email},#{alias},#{profilePath},#{bio},#{likeCnt})
 	</insert>
 	
 	<select id="getUserInfo" parameterType="String" resultType="userModel">
