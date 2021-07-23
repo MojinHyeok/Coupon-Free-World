@@ -78,8 +78,29 @@ yarn lint
 ### Customize configuration
 See [Configuration Reference](https://cli.vuejs.org/config/).
 
-### 해야할 것(오후 6시~)
-4. 회원가입 - userID, userName -> 특수기호&길이제한, password,passwordForm, email, alias -> 길이제한(완료)
-1. 로그아웃 - 토큰제거 (완료)
-2. 회원탈퇴 - userID로 요청
-3. 회원정보수정 - userID로 요청(해당 유저 정보 다가지고옴) -> 회원가입할 때 처럼 모든 정보 다 보냄(단, 아이디, 이메일은 수정불가) (완료)
+### board CRUD
+Pages -> views폴더에 4개를 생성
+1. 모든 게시글 보여주는 Page
+2. 게시글 생성 Page
+2. @클릭시 게시글 상세 Page
+3. 수정Page
+
+## 모든 게시글 보여주는 Page
+> 컴포넌트 구조
+1. 게시글list 보여주기 - 우선순위: 1
+4. 관리자만 가능한 공지사항(나중에)
+
+## @클릭시 게시글 상세 Page
+> 컴포넌트 구조
+1. 해당 boadID에대한 item - 우선순위: 2
+2. 해당 boadID에 대한 댓글 list (댓글 삭제,수정 포함(비동기로))
+3. 댓글 작성 폼
+
+## 수정Page
+> 컴포넌트 구조
+1. 수정폼 - 우선순위: 3
+
+## 기타
+1. 게시글 삭제(상세페이지에서) - 우선순위: 4
+2. 페이지네이션 버튼
+3. 게시글 검색 컴포넌트
