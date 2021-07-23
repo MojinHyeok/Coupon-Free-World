@@ -38,6 +38,18 @@ function findFollower(userData) {
 function findFollowing(userData) {
   return instance.post('/social/following', userData)
 }
+//팔로우요청 명단 가져오기
+function findrequestFollow(userData) {
+  return instance.post('/social/findrequestFollow', userData)
+}
+//팔로우 요청하기
+function requestFollow(userData) {
+  return instance.post('/social/requestFollow', userData)
+}
+//팔로우 요청수락하기
+function allowFollow(userData) {
+  return instance.post('/social/allowFollow', userData)
+}
 
 export {
   registerUser,
@@ -48,4 +60,7 @@ export {
   searchUser,
   findFollower,
   findFollowing,
+  findrequestFollow,
+  requestFollow,
+  allowFollow,
 }

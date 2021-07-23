@@ -19,7 +19,13 @@
       </b-row>
       <b-row>
         <button v-if="tempuserID == userID">회원정보수정</button>
-        <button v-else-if="this.requestFollow">팔로우요청</button>
+        <button
+          v-else-if="this.requestFollow"
+          :disabled="!isSubmit"
+          @click="requestFollow2"
+        >
+          팔로우요청
+        </button>
         <button v-else>팔로우 취소</button>
       </b-row>
     </b-container>
@@ -32,7 +38,12 @@
 <script>
 import { mapGetters, mapActions } from 'vuex'
 import { getUserFromCookie } from '@/utils/cookies.js'
-import { fetchUser, findFollower, findFollowing } from '@/api/auth'
+import {
+  fetchUser,
+  findFollower,
+  findFollowing,
+  requestFollow,
+} from '@/api/auth'
 export default {
   computes: {
     ...mapGetters(['user']),
@@ -51,7 +62,7 @@ export default {
       followingCnt: '',
       tempuserID: '', // 이 사용자가 마이페이지로 들어왔다면 회원정보 수정을 해주기 위해 로그인유저 ID이다.
       requestFollow: true, // 팔로우요청 할지..
-
+      isSubmit: true,
       // eslint-disable-next-line prettier/prettier
       };
   },
@@ -59,6 +70,17 @@ export default {
     ...mapActions(['getUser']),
     move() {
       this.$router.push('/user/followList?userID=' + this.userID)
+    },
+    async requestFollow2() {
+      const tempData = {
+        targetID: this.$route.query.userID,
+        sourceID: getUserFromCookie(),
+      }
+      console.log(tempData.sourceID)
+      const data = await requestFollow(tempData)
+      if (data.data == 'fail') alert('이미 팔로우 요청하셨습니다')
+      else alert('팔로우 요청을 성공적으로 하셨습니다.!')
+      this.isSubmit = false
     },
   },
   async created() {

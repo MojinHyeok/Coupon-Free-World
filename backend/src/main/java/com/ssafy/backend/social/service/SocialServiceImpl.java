@@ -24,4 +24,24 @@ public class SocialServiceImpl implements SocialService{
 		return mapper.findFollowing(userid);
 	}
 
+	@Override
+	public int requestFollow(SocialModel model) {
+		return mapper.requestFollow(model);
+	}
+
+	@Override
+	public int allowFollow(SocialModel model) {
+		return mapper.allowFollow(model);
+	}
+
+	@Override
+	public List<String> findrequestFollow(String userid) {
+		return mapper.findrequestFollow(userid);
+	}
+
+	@Override
+	public SocialModel checkDuplicate(SocialModel model) {
+		return mapper.checkDuplicate(model);
+	}
+
 }
