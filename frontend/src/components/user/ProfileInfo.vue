@@ -18,7 +18,9 @@
         </b-col>
       </b-row>
       <b-row>
-        <button v-if="tempuserID == userID">회원정보수정</button>
+        <button @click="moveProfile" v-if="tempuserID == userID">
+          회원정보수정
+        </button>
         <button
           v-else-if="this.requestFollow"
           :disabled="!isSubmit"
@@ -111,6 +113,9 @@ export default {
         }
       }
       console.log(this.requestFollow)
+    },
+    moveProfile() {
+      this.$router.push('/account/edit')
     },
   },
   created() {
