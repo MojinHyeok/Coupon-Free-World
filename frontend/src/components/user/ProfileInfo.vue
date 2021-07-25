@@ -18,7 +18,9 @@
         </b-col>
       </b-row>
       <b-row>
-        <button v-if="tempuserID == userID">회원정보수정</button>
+        <button @click="moveProfile" v-if="tempuserID == userID">
+          회원정보수정
+        </button>
         <button
           v-else-if="this.requestFollow"
           :disabled="!isSubmit"
@@ -82,35 +84,50 @@ export default {
       else alert('팔로우 요청을 성공적으로 하셨습니다.!')
       this.isSubmit = false
     },
-  },
-  async created() {
-    const userData = {
-      userID: this.$route.query.userID,
-    }
-    const { data } = await fetchUser(userData)
-    console.log(data)
-    this.userID = data.userInfo.userID
-    this.userName = data.userInfo.userName
-    this.password = data.userInfo.password
-    this.email = data.userInfo.email
-    this.alias = data.userInfo.alias
-    this.profilePath = data.userInfo.profilePath
-    this.bio = data.userInfo.bio
-    const res = await findFollower(userData)
-    const res2 = await findFollowing(userData)
-    console.log(res2)
-    this.follower = res.data
-    this.following = res2.data
-    this.followerCnt = res.data.length
-    this.followingCnt = res2.data.length
-    const temp = getUserFromCookie()
-    this.tempuserID = temp
-    for (var i = 0; i < this.followerCnt; i++) {
-      if (res.data[i] == temp) {
-        this.requestFollow = false
+    async detectParams(params) {
+      console.log(params)
+      const userData = {
+        userID: this.$route.params.userID,
       }
-    }
-    console.log(this.requestFollow)
+      const { data } = await fetchUser(userData)
+      console.log(data)
+      this.userID = data.userInfo.userID
+      this.userName = data.userInfo.userName
+      this.password = data.userInfo.password
+      this.email = data.userInfo.email
+      this.alias = data.userInfo.alias
+      this.profilePath = data.userInfo.profilePath
+      this.bio = data.userInfo.bio
+      const res = await findFollower(userData)
+      const res2 = await findFollowing(userData)
+      console.log(res2)
+      this.follower = res.data
+      this.following = res2.data
+      this.followerCnt = res.data.length
+      this.followingCnt = res2.data.length
+      const temp = getUserFromCookie()
+      this.tempuserID = temp
+      for (var i = 0; i < this.followerCnt; i++) {
+        if (res.data[i] == temp) {
+          this.requestFollow = false
+        }
+      }
+      console.log(this.requestFollow)
+    },
+    moveProfile() {
+      this.$router.push('/account/edit')
+    },
+  },
+  created() {
+    this.detectParams(this.$route.params.userID)
+  },
+  watch: {
+    $route(to, from) {
+      if (to.path !== from.path) {
+        console.log('작동되나?')
+        this.detectParams(this.$route.params.userID)
+      }
+    },
   },
 }
 </script>

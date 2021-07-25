@@ -1,15 +1,19 @@
 <template>
   <div>
+    <label for="searchData" @click="offResult('searchData')">❤ </label>
     <input
-      type="text"
+      type="search"
       id="searchData"
       placeholder="userID"
       v-model="searchData"
       @keyup="search"
-      @focus="afterFocus('searchData')"
     />
-    <ul>
-      <li v-for="result in results" :key="result.id">
+    <ul v-if="resultsDisplay">
+      <li
+        @click="moveProfile(result)"
+        v-for="result in results"
+        :key="result.id"
+      >
         {{ result }}
       </li>
       <li v-if="logMessage">
@@ -29,6 +33,8 @@ export default {
       searchData: '',
       results: [],
       logMessage: '',
+      // display
+      resultsDisplay: false,
     }
   },
   methods: {
@@ -42,19 +48,21 @@ export default {
         console.error = function() {}
         const { data } = await searchUser(this.searchData)
         this.results = data
+        this.resultsDisplay = true
         this.logMessage = ''
       } catch (error) {
         this.results = []
         this.logMessage = '해당 유저가 없습니다.'
+        this.resultsDisplay = true
       }
     },
-    afterFocus(id) {
-      const el = document.querySelector(`#${id}`)
-      el.addEventListener('blur', () => {
-        this[`${id}`] = ''
-        this.results = []
-        this.logMessage = ''
-      })
+    offResult(id) {
+      this[`${id}`] = ''
+      this.logMessage = ''
+      this.resultsDisplay = !this.resultsDisplay
+    },
+    moveProfile(result) {
+      this.$router.push(`/user/profile/${result}`).catch(() => {})
     },
   },
 }
