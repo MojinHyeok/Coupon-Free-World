@@ -17,5 +17,6 @@ public interface SocialService {
 	List<String> findrequestFollow(String userid);
 	//중복검사하기
 	SocialModel checkDuplicate(SocialModel model);
-
+	//팦로우취소
+	int cancleFollow(SocialModel model);
 }

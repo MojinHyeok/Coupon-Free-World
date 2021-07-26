@@ -53,6 +53,10 @@ function allowFollow(userData) {
 function confirmEmail(userData) {
   return instance.get(`/user/mail/${userData}`, userData)
 }
+//팔로우 취소하기
+function cancleFollow(userData) {
+  return instance.post('/social/cancleFollow', userData)
+}
 
 export {
   registerUser,
@@ -67,4 +71,5 @@ export {
   requestFollow,
   allowFollow,
   confirmEmail,
+  cancleFollow,
 }

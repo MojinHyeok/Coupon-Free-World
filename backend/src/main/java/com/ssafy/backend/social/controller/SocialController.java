@@ -68,7 +68,16 @@ public class SocialController {
 		else msg="fail";
 		return new ResponseEntity<String>(msg,HttpStatus.OK);
 	}
-	
+	//팔로우 취소하기
+	@PostMapping("/cancleFollow")
+	public ResponseEntity<String> cancleFollow(@RequestBody SocialModel model){
+		String msg="";
+		System.out.println(model.getTargetID());
+		int result=service.cancleFollow(model);
+		if(result>=1)msg="success";
+		else msg="fail";
+		return new ResponseEntity<String>(msg,HttpStatus.OK);
+	}
 	
 	
 	
