@@ -15,5 +15,7 @@ public interface UserService {
 		UserModel getUserInfo(String userid);
 		//회원 리스트 검색
 		List<String> searchUserList(String userid);
+		//Email로 검색 중복 검사하기위해
+		UserModel  getUserInfoByEmail(String email);
 
 }
