@@ -4,7 +4,6 @@
     <router-link to="/account/signup">signup</router-link> |
     <router-link to="/account/login">login</router-link> |
     <a href="javascript:;" @click="logoutUser">logout</a> |
-    <router-link to="/account/edit">userEdit</router-link>
     <SearchUserForm></SearchUserForm>
   </header>
 </template>

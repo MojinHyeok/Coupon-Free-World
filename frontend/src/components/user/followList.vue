@@ -43,7 +43,7 @@ export default {
   },
   methods: {
     move(v) {
-      this.$router.push('/user/Profile?userID=' + v)
+      this.$router.push(`/user/profile?userID=${v}`)
     },
   },
 }

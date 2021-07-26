@@ -57,8 +57,6 @@ public class BoardController {
 	}
 	
 	// 글 삭제
-	
-	
 	// 게시글 번호(테이블의 PK)로 접근함, 값 보낼 때 boardID를 보내야 함
 	@DeleteMapping("/delete/{boardID}")
 	public ResponseEntity<?> deleteBoard(@PathVariable("boardID") int boardID) throws Exception {

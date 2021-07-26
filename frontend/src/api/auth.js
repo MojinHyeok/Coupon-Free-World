@@ -27,7 +27,6 @@ function deleteUser(userData) {
 }
 // 회원찾기 API
 function searchUser(userData) {
-  console.log(userData)
   return instance.get(`/user/list/${userData}`)
 }
 //팔로워찾기
