@@ -39,23 +39,23 @@ public class CommentController {
 		 * 코멘트 등록 시 DB에 INSERT가 되며 등록한 코멘트를 바로 Front에서 불러올 수 있음
 		 */
 	}
-	/*
+	
 	// 피드에 코멘트 등록
 	@PostMapping("/registFeed")
 	public ResponseEntity<?> registFeedComment(@RequestBody CommentModel model) throws Exception {
-		
+		return new ResponseEntity<Void>(HttpStatus.BAD_REQUEST);
 	}
 	
 	// 게시판 클릭 시 코멘트 불러오기
 	@GetMapping("/getBoard/{boardID}")
 	public ResponseEntity<?> getBoardComment(@PathVariable("boardID") int boardID) throws Exception {
-		
+		return new ResponseEntity<Void>(HttpStatus.BAD_REQUEST);
 	}
 	
 	// 피드 클릭 시 코멘트 불러오기
 	@GetMapping("/getFeed/{feedID}")
 	public ResponseEntity<?> getFeedComment(@PathVariable("feedID") int feedID) throws Exception {
-		
+		return new ResponseEntity<Void>(HttpStatus.BAD_REQUEST);
 	}
-	*/
+	
 }

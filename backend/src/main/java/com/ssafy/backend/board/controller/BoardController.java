@@ -106,7 +106,7 @@ public class BoardController {
         if (model == null) {
             return new ResponseEntity<Void>(HttpStatus.NO_CONTENT);
         }
-        //
+        // 여기서 조회수 올라가게 해야함
         return new ResponseEntity<>(model, HttpStatus.OK);
 	}
 	
@@ -115,6 +115,6 @@ public class BoardController {
 	public ResponseEntity<?> totalCount() throws Exception {
 		int cnt = service.totalCount();
 		
-		 return new ResponseEntity<Integer>(cnt, HttpStatus.OK);
+		return new ResponseEntity<Integer>(cnt, HttpStatus.OK);
 	}
 }
