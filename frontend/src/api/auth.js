@@ -49,6 +49,10 @@ function requestFollow(userData) {
 function allowFollow(userData) {
   return instance.post('/social/allowFollow', userData)
 }
+//이메일인증하기
+function confirmEmail(userData) {
+  return instance.get(`/user/mail/${userData}`, userData)
+}
 
 export {
   registerUser,
@@ -62,4 +66,5 @@ export {
   findrequestFollow,
   requestFollow,
   allowFollow,
+  confirmEmail,
 }

@@ -15,6 +15,12 @@
 	where userId = #{userID}
 	</select>
 	
+	<select id="getUserInfoByEmail" parameterType="String" resultType="userModel">
+	select *
+	from user
+	where email = #{email}
+	</select>
+	
 	<update id="userModify" parameterType="userModel">
 		update user
 		set userName=#{userName}, password=#{password}, email=#{email}, alias=#{alias}, profilePath=#{profilePath}, bio=#{bio}

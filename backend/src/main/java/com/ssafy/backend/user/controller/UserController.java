@@ -3,16 +3,23 @@ package com.ssafy.backend.user.controller;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Random;
+
+import javax.mail.internet.MimeMessage;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.mail.MailSender;
+import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.ssafy.backend.user.model.UserModel;
@@ -24,6 +31,9 @@ import com.ssafy.backend.user.service.UserService;
 public class UserController {
 	@Autowired
 	private UserService service;
+	@Autowired
+	private JavaMailSender mailSender;
+	
 	
 	
 	//회원가입 URI (RquestBody에 회원정보 전송)
@@ -114,5 +124,54 @@ public class UserController {
         }
 
         return new ResponseEntity<>(list, HttpStatus.OK);
+	}
+	
+	//아래부터는 메일 서비스를 위한 확인 절차
+	@GetMapping("/mail/{email}")
+	public ResponseEntity<Integer> email(@PathVariable("email") String email){
+		System.out.println(email);
+		UserModel user=service.getUserInfoByEmail(email);
+		if(user!=null) {
+			return new ResponseEntity<Integer>(1,HttpStatus.OK);
+		}
+		Random r = new Random();
+		int dice=r.nextInt(458932)+49311;//난수생성
+		String setfrom= "gkgkgk4610@gamil.com";
+		String tomail= email;
+		String title="회원가입 인증 이메일 입니다.";//제목
+		String content =
+	            
+	            System.getProperty("line.separator")+ //한줄씩 줄간격을 두기위해 작성
+	            
+	            System.getProperty("line.separator")+
+	                    
+	            "안녕하세요 회원님 저희 홈페이지를 찾아주셔서 감사합니다"
+	            
+	            +System.getProperty("line.separator")+
+	            
+	            System.getProperty("line.separator")+
+	    
+	            " 인증번호는 " +dice+ " 입니다. "
+	            
+	            +System.getProperty("line.separator")+
+	            
+	            System.getProperty("line.separator")+
+	            
+	            "받으신 인증번호를 홈페이지에 입력해 주시면 다음으로 넘어갑니다."; // 내용
+		try {
+			MimeMessage message = mailSender.createMimeMessage();
+			MimeMessageHelper messageHelper = new MimeMessageHelper(message,
+                    true, "UTF-8");
+			messageHelper.setFrom(setfrom);
+			messageHelper.setTo(tomail);
+			messageHelper.setSubject(title);
+			messageHelper.setText(content);
+			
+			mailSender.send(message);
+			System.out.println("성공?");
+		}catch(Exception e) {
+			System.out.println(e);
+		}
+		return new ResponseEntity<Integer>(dice,HttpStatus.OK); 
 	}
 }

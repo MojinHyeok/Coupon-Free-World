@@ -44,4 +44,11 @@ public class UserServiceImpl implements UserService{
 		return mapper.searchUserList(userid);
 	}
 
+
+	@Override
+	public UserModel getUserInfoByEmail(String email) {
+		// TODO Auto-generated method stub
+		return mapper.getUserInfoByEmail(email);
+	}
+
 }
