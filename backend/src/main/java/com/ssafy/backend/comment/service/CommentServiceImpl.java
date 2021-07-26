@@ -14,12 +14,12 @@ public class CommentServiceImpl implements CommentService {
 	public CommentMapper mapper;
 	
 	// 게시판에 코멘트 달기
-	public CommentModel boardComment(CommentModel model) throws Exception {
+	public int boardComment(CommentModel model) throws Exception {
 		return mapper.boardComment(model);
 	}
 	
 	// 상대방 피드에 코멘트 달기
-	public CommentModel feedComment(CommentModel model) throws Exception {
+	public int feedComment(CommentModel model) throws Exception {
 		return mapper.feedComment(model);
 	}
 	
