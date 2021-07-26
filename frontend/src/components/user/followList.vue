@@ -44,6 +44,7 @@ export default {
   methods: {
     move(v) {
       this.$router.push(`/user/profile?userID=${v}`)
+      //ㄴ
     },
   },
 }

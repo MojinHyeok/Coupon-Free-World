@@ -56,13 +56,19 @@
       </p>
       <div>
         <label for="email">email: </label>
-        <input id="email" type="text" autocomplete="off" v-model="email" />
-        <p v-if="!isEmailValid && email">
+        <input
+          id="email"
+          type="text"
+          autocomplete="off"
+          v-model="email"
+          disabled
+        />
+        <!-- <p v-if="!isEmailValid && email">
           이메일 형식이 아닙니다.
         </p>
         <p v-if="!isEmailLenValid">
           email 길이 초과하였습니다.
-        </p>
+        </p> -->
       </div>
       <div>
         <label for="alias">alias: </label>
@@ -227,6 +233,9 @@ export default {
         this[`${id}Blank`] = false
       }
     },
+  },
+  created() {
+    this.email = this.$route.query.email
   },
 }
 </script>

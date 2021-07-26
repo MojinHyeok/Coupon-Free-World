@@ -46,6 +46,10 @@ const router = new VueRouter({
       path: '/user/requestFollowList',
       component: () => import('@/components/user/requestFollowList.vue'),
     },
+    {
+      path: '/user/confirmEmail',
+      component: () => import('@/components/user/confirmEmail.vue'),
+    },
   ],
 })
 
