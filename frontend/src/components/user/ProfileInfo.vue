@@ -28,7 +28,7 @@
         >
           팔로우요청
         </button>
-        <button v-else>팔로우 취소</button>
+        <button v-else @click="cancleFollow">팔로우 취소</button>
       </b-row>
     </b-container>
   </div>
@@ -45,6 +45,7 @@ import {
   findFollower,
   findFollowing,
   requestFollow,
+  cancleFollow,
 } from '@/api/auth'
 export default {
   computes: {
@@ -75,7 +76,7 @@ export default {
     },
     async requestFollow2() {
       const tempData = {
-        targetID: this.$route.query.userID,
+        targetID: this.$route.params.userID,
         sourceID: getUserFromCookie(),
       }
       console.log(tempData.sourceID)
@@ -116,6 +117,17 @@ export default {
     },
     moveProfile() {
       this.$router.push('/account/edit')
+    },
+    async cancleFollow() {
+      const tempData = {
+        targetID: this.$route.params.userID,
+        sourceID: getUserFromCookie(),
+      }
+      const Data = await cancleFollow(tempData)
+      if (Data.data == 'success') alert('팔로우를 취소하였습니다.!!')
+      else {
+        alert('에러발생')
+      }
     },
   },
   created() {

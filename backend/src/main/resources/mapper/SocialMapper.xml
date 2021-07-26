@@ -26,6 +26,11 @@
 	where sourceID = #{sourceID} and targetID= #{targetID}
 	</update>
 	
+	<delete id="cancleFollow" parameterType="SocialModel">
+	delete from follow
+	where sourceID = #{sourceID} and targetID= #{targetID}
+	</delete>
+	
 	<select id="findrequestFollow" parameterType="String" resultType="String">
 	select sourceID 
 	from follow

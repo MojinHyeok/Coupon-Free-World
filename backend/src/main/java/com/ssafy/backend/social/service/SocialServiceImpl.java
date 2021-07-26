@@ -44,4 +44,9 @@ public class SocialServiceImpl implements SocialService{
 		return mapper.checkDuplicate(model);
 	}
 
+	@Override
+	public int cancleFollow(SocialModel model) {
+		return mapper.cancleFollow(model);
+	}
+
 }
