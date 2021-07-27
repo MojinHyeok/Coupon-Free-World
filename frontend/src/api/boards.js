@@ -12,7 +12,7 @@ function fetchBoards(limit, offset) {
 
 // 특정 게시글 가져오는 API
 function fetchBoard(boardID) {
-  return instance.get(`/board/${boardID}`)
+  return instance.get(`/board/select/${boardID}`)
 }
 
 // 글쓰기
@@ -22,7 +22,7 @@ function createBoard(boardData) {
 
 // 글 삭제
 function deleteBoard(boardID) {
-  return instance.delete(`/board/${boardID}`)
+  return instance.delete(`/board/delete/${boardID}`)
 }
 
 // 글 수정

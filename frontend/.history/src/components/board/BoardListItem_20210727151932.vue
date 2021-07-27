@@ -1,5 +1,6 @@
 <template>
   <div>
+    <h1>리스트 목록</h1>
     <!-- 밑에 @click="detail(idx) -->
     <tr :key="idx" v-for="(value, idx) in listItem">
       <th scope="row">{{ value.order }}</th>
@@ -25,7 +26,6 @@ export default {
   },
   async created() {
     // 특정 게시물 정보
-    console.log(this.listItem)
     const boardList = await fetchBoard(this.boardID)
     this.boardList = boardList
     console.log(boardList)

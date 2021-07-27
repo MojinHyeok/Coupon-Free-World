@@ -1,15 +1,15 @@
 <template>
   <div>
-    <!-- 밑에 @click="detail(idx) -->
-    <tr :key="idx" v-for="(value, idx) in listItem">
+    <h1>리스트 목록</h1>
+    <!-- <tr :key="idx" v-for="(value, idx) in data" @click="detail(idx)">
       <th scope="row">{{ value.order }}</th>
       <td>{{ value.category }}</td>
       <td>{{ value.title }}</td>
       <td>{{ value.writer }}</td>
       <td>{{ value.date }}</td>
-      <td>{{ value.viewCount }}</td>
-      <td>{{ value.recommend }}</td>
-    </tr>
+      <td>{{ value.views }}</td>
+      <td>{{ value.recommends }}</td>
+    </tr> -->
   </div>
 </template>
 
@@ -18,24 +18,21 @@ import { fetchBoard } from '@/api/boards'
 
 export default {
   props: {
-    listItem: {
+    list: {
       type: Object,
       required: true,
     },
   },
+  data() {
+    return {
+      boardID: list.id,
+    }
+  },
   async created() {
     // 특정 게시물 정보
-    console.log(this.listItem)
     const boardList = await fetchBoard(this.boardID)
     this.boardList = boardList
     console.log(boardList)
-  },
-  methods: {
-    // detail() {
-    //   this.$router.push({
-    //     path: '/board/detail',
-    //   })
-    // },
   },
 }
 </script>
