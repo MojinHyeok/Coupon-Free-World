@@ -1,5 +1,6 @@
 <template>
   <div>
+    <h1>리스트 목록</h1>
     <!-- 밑에 @click="detail(idx) -->
     <tr :key="idx" v-for="(value, idx) in listItem">
       <th scope="row">{{ value.order }}</th>
