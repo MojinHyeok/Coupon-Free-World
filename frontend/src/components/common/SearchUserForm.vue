@@ -8,18 +8,28 @@
       v-model="searchData"
       @keyup="search"
     />
-    <ul v-if="resultsDisplay">
-      <li
-        @click="moveProfile(result)"
-        v-for="result in results"
-        :key="result.id"
-      >
-        {{ result }}
-      </li>
-      <li v-if="logMessage">
-        {{ logMessage }}
-      </li>
-    </ul>
+    <div v-if="isActive">
+      <ul>
+        <p>현재 검색</p>
+        <li
+          @click="saveCache(result)"
+          v-for="result in results"
+          :key="result.id"
+        >
+          {{ result }}
+        </li>
+        <p>최근 검색</p>
+        <li v-for="currentResult in currentResults" :key="currentResult.id">
+          <span @click="moveProfile(currentResult)">
+            {{ currentResult }}
+          </span>
+          <button @click="deleteCache(currentResult)">삭제</button>
+        </li>
+        <li v-if="logMessage">
+          {{ logMessage }}
+        </li>
+      </ul>
+    </div>
   </div>
 </template>
 
@@ -34,7 +44,8 @@ export default {
       results: [],
       logMessage: '',
       // display
-      resultsDisplay: false,
+      currentResults: [],
+      isActive: false,
     }
   },
   methods: {
@@ -57,12 +68,56 @@ export default {
       }
     },
     offResult(id) {
+      this.isActive = !this.isActive
       this[`${id}`] = ''
+      this.results = []
       this.logMessage = ''
       this.resultsDisplay = !this.resultsDisplay
+      this.getCache()
+    },
+    saveCache(result) {
+      // 캐시추가
+      const cacheName = this.$store.state.userID
+      caches.open(cacheName).then(cache => {
+        cache.add(result)
+      })
+      this.getCache()
+      this.moveProfile(result)
     },
     moveProfile(result) {
+      this.isActive = false
       this.$router.push(`/user/profile/${result}`).catch(() => {})
+    },
+    getCache() {
+      // 캐시가져오기
+      const cacheName = this.$store.state.userID
+      caches.open(cacheName).then(cache => {
+        cache.matchAll().then(responses => {
+          for (let response of responses) {
+            const findIndex = response['url'].lastIndexOf('/') + 1
+            const temp = response['url'].substring(findIndex)
+            if (!this.currentResults.includes(temp)) {
+              this.currentResults.push(temp)
+            }
+          }
+        })
+      })
+    },
+    // 캐시 삭제
+    deleteCache(currentResult) {
+      const cacheName = this.$store.state.userID
+      caches.open(cacheName).then(cache => {
+        cache.matchAll().then(responses => {
+          for (let response of responses) {
+            if (response['url'].includes(currentResult)) {
+              cache.delete(response['url'])
+              const findIndex = response['url'].lastIndexOf('/') + 1
+              const temp = response['url'].substring(findIndex)
+              this.currentResults.splice(this.currentResults.indexOf(temp), 1)
+            }
+          }
+        })
+      })
     },
   },
 }

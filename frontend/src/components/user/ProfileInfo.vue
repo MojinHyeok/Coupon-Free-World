@@ -79,19 +79,17 @@ export default {
         targetID: this.$route.params.userID,
         sourceID: getUserFromCookie(),
       }
-      console.log(tempData.sourceID)
       const data = await requestFollow(tempData)
       if (data.data == 'fail') alert('이미 팔로우 요청하셨습니다')
       else alert('팔로우 요청을 성공적으로 하셨습니다.!')
       this.isSubmit = false
     },
-    async detectParams(params) {
-      console.log(params)
+    async detectParams() {
       const userData = {
         userID: this.$route.params.userID,
       }
       const { data } = await fetchUser(userData)
-      console.log(data)
+
       this.userID = data.userInfo.userID
       this.userName = data.userInfo.userName
       this.password = data.userInfo.password
@@ -101,7 +99,7 @@ export default {
       this.bio = data.userInfo.bio
       const res = await findFollower(userData)
       const res2 = await findFollowing(userData)
-      console.log(res2)
+
       this.follower = res.data
       this.following = res2.data
       this.followerCnt = res.data.length
@@ -113,7 +111,6 @@ export default {
           this.requestFollow = false
         }
       }
-      console.log(this.requestFollow)
     },
     moveProfile() {
       this.$router.push('/account/edit')
@@ -136,7 +133,6 @@ export default {
   watch: {
     $route(to, from) {
       if (to.path !== from.path) {
-        console.log('작동되나?')
         this.detectParams(this.$route.params.userID)
       }
     },
