@@ -5,11 +5,11 @@ public class BoardModel {
 	String title;
 	String content;
 	String writer;
-	String regDate;
-	String filePath1;
-	String filePath2;
-	String filePath3;
-	String filePath4;
+	String date;
+	String photoPath1;
+	String photoPath2;
+	String photoPath3;
+	String photoPath4;
 	int recommend;
 	int viewCount;
 	public int getNoticeOption() {
@@ -36,35 +36,35 @@ public class BoardModel {
 	public void setWriter(String writer) {
 		this.writer = writer;
 	}
-	public String getRegDate() {
-		return regDate;
+	public String getdate() {
+		return date;
 	}
-	public void setRegDate(String regDate) {
-		this.regDate = regDate;
+	public void setdate(String date) {
+		this.date = date;
 	}
-	public String getFilePath1() {
-		return filePath1;
+	public String getphotoPath1() {
+		return photoPath1;
 	}
-	public void setFilePath1(String filePath1) {
-		this.filePath1 = filePath1;
+	public void setphotoPath1(String photoPath1) {
+		this.photoPath1 = photoPath1;
 	}
-	public String getFilePath2() {
-		return filePath2;
+	public String getphotoPath2() {
+		return photoPath2;
 	}
-	public void setFilePath2(String filePath2) {
-		this.filePath2 = filePath2;
+	public void setphotoPath2(String photoPath2) {
+		this.photoPath2 = photoPath2;
 	}
-	public String getFilePath3() {
-		return filePath3;
+	public String getphotoPath3() {
+		return photoPath3;
 	}
-	public void setFilePath3(String filePath3) {
-		this.filePath3 = filePath3;
+	public void setphotoPath3(String photoPath3) {
+		this.photoPath3 = photoPath3;
 	}
-	public String getFilePath4() {
-		return filePath4;
+	public String getphotoPath4() {
+		return photoPath4;
 	}
-	public void setFilePath4(String filePath4) {
-		this.filePath4 = filePath4;
+	public void setphotoPath4(String photoPath4) {
+		this.photoPath4 = photoPath4;
 	}
 	public int getRecommend() {
 		return recommend;
@@ -81,8 +81,8 @@ public class BoardModel {
 	@Override
 	public String toString() {
 		return "BoardModel [noticeOption=" + noticeOption + ", title=" + title
-				+ ", content=" + content + ", writer=" + writer + ", regDate=" + regDate + ", filePath1=" + filePath1
-				+ ", filePath2=" + filePath2 + ", filePath3=" + filePath3 + ", filePath4=" + filePath4 + "]";
+				+ ", content=" + content + ", writer=" + writer + ", date=" + date + ", photoPath1=" + photoPath1
+				+ ", photoPath2=" + photoPath2 + ", photoPath3=" + photoPath3 + ", photoPath4=" + photoPath4 + "]";
 	}
 	
 	

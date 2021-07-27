@@ -33,8 +33,8 @@ public class BoardController {
 	public ResponseEntity<?> writeBoard(@RequestBody BoardModel model) throws Exception {
 		SimpleDateFormat format = new SimpleDateFormat("yy-MM-dd HH:mm:ss");
         Date time = new Date();
-        
-        model.setRegDate(format.format(time));
+  
+        model.setdate(format.format(time));
         model.setRecommend(0);
         model.setViewCount(1);
         int res = service.writeBoard(model);
