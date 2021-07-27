@@ -30,7 +30,6 @@
 
 <script>
 import { createBoard } from '@/api/boards'
-import { getUserFromCookie } from '@/utils/cookies.js'
 
 export default {
   data() {
@@ -38,7 +37,7 @@ export default {
       boardData: {
         title: '',
         content: '',
-        writer: getUserFromCookie(),
+        writer: 'asdf',
       },
     }
   },
