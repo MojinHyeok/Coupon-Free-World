@@ -1,14 +1,15 @@
 <template>
-  <!-- 밑에 @click="detail(idx) -->
-  <tr>
-    <th scope="row">{{ listItem.boardID }}</th>
-    <td>쿠키런 킹덤</td>
-    <td>{{ listItem.title }}</td>
-    <td>{{ listItem.writer }}</td>
-    <td>{{ listItem.date }}</td>
-    <td>{{ listItem.viewCount }}</td>
-    <td>{{ listItem.recommend }}</td>
-  </tr>
+  <div>
+    <!-- 밑에 @click="detail(idx) -->
+    <tr>
+      <th scope="row">{{ value.boardID }}</th>
+      <td>{{ value.title }}</td>
+      <td>{{ value.writer }}</td>
+      <td>{{ value.date }}</td>
+      <td>{{ value.viewCount }}</td>
+      <td>{{ value.recommend }}</td>
+    </tr>
+  </div>
 </template>
 
 <script>

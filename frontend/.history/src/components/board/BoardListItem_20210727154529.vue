@@ -1,13 +1,13 @@
 <template>
   <!-- 밑에 @click="detail(idx) -->
-  <tr>
-    <th scope="row">{{ listItem.boardID }}</th>
-    <td>쿠키런 킹덤</td>
-    <td>{{ listItem.title }}</td>
-    <td>{{ listItem.writer }}</td>
-    <td>{{ listItem.date }}</td>
-    <td>{{ listItem.viewCount }}</td>
-    <td>{{ listItem.recommend }}</td>
+  <tr :key="idx" v-for="(value, idx) in listItem">
+    <th scope="row">{{ value.order }}</th>
+    <td>{{ value.category }}</td>
+    <td>{{ value.title }}</td>
+    <td>{{ value.writer }}</td>
+    <td>{{ value.date }}</td>
+    <td>{{ value.viewCount }}</td>
+    <td>{{ value.recommend }}</td>
   </tr>
 </template>
 
