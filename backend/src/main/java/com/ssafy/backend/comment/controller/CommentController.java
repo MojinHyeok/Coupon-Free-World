@@ -1,6 +1,7 @@
 package com.ssafy.backend.comment.controller;
 
 import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,9 +27,13 @@ public class CommentController {
 	
 	SimpleDateFormat format = new SimpleDateFormat("yy-mm-dd HH:mm:ss");
 	
-	// 게시판에 코멘트 등록 
+	// 게시판에 코멘트 등록
+	// 게시판 ID를 필수로 가져와야 합니다.
 	@PostMapping("/registBoard")
 	public ResponseEntity<?> registBoardComment(@RequestBody CommentModel model) throws Exception {
+		Date time = new Date();
+		model.setDate(format.format(time));
+		
 		int res = service.boardComment(model);
 		
 		if(res >= 1) {
@@ -42,8 +47,12 @@ public class CommentController {
 	}
 	
 	// 피드에 코멘트 등록
+	// 피드 ID를 필수로 가져와야 합니다.
 	@PostMapping("/registFeed")
 	public ResponseEntity<?> registFeedComment(@RequestBody CommentModel model) throws Exception {
+		Date time = new Date();
+		model.setDate(format.format(time));
+		
 		int res = service.feedComment(model);
 		
 		if(res >= 1) {
