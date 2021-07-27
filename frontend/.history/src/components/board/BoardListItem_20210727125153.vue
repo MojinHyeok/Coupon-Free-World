@@ -1,6 +1,5 @@
 <template>
   <div>
-    <h1>리스트 목록</h1>
     <!-- <tr :key="idx" v-for="(value, idx) in data" @click="detail(idx)">
       <th scope="row">{{ value.order }}</th>
       <td>{{ value.category }}</td>

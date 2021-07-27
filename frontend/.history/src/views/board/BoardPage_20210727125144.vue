@@ -20,7 +20,7 @@
           </tr>
         </thead>
         <tbody>
-          <BoardListItem />
+          <!-- <BoardListItem /> -->
         </tbody>
       </table>
     </div>

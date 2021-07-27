@@ -39,10 +39,9 @@ export default {
     }
   },
   setup() {
-    const totalBoardCount = CountBoard()
-    console.log(totalBoardCount)
+    totalBoardCount = CountBoard()
     // LIMIT 행 갯수 OFFSET 시작 행
-    const boardList = fetchBoards(totalBoardCount, 0)
+    const boardList = fetchBoards(2, 0)
     this.boardList = boardList
     console.log(boardList)
     // this.requestFollowList = res.data

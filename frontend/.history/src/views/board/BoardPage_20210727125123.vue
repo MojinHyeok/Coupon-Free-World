@@ -40,7 +40,7 @@ export default {
   },
   setup() {
     const totalBoardCount = CountBoard()
-    console.log(totalBoardCount)
+    console.log(totalBoardCOunt)
     // LIMIT 행 갯수 OFFSET 시작 행
     const boardList = fetchBoards(totalBoardCount, 0)
     this.boardList = boardList

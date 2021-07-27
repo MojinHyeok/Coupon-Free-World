@@ -20,7 +20,7 @@
           </tr>
         </thead>
         <tbody>
-          <BoardListItem />
+          <boardListItem />>
         </tbody>
       </table>
     </div>
@@ -28,21 +28,19 @@
 </template>
 
 <script>
-import { fetchBoards, CountBoard } from '@/api/boards'
+import { fetchBoards } from '@/api/boards'
 import { BoardListItem } from '@/components/board/BoardListItem.vue'
 
 export default {
-  components: { BoardListItem },
+  components: { BoardLilstItem },
   data() {
     return {
       boardList: '',
     }
   },
   setup() {
-    const totalBoardCount = CountBoard()
-    console.log(totalBoardCount)
     // LIMIT 행 갯수 OFFSET 시작 행
-    const boardList = fetchBoards(totalBoardCount, 0)
+    const boardList = await fetchBoards(2, 0)
     this.boardList = boardList
     console.log(boardList)
     // this.requestFollowList = res.data

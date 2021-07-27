@@ -32,7 +32,7 @@ import { fetchBoards, CountBoard } from '@/api/boards'
 import { BoardListItem } from '@/components/board/BoardListItem.vue'
 
 export default {
-  components: { BoardListItem },
+  components: 'BoardListItem',
   data() {
     return {
       boardList: '',
