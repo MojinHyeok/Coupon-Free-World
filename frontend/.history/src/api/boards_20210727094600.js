@@ -1,8 +1,8 @@
 import { instance } from './index'
 
 // 게시글 가져오는 API
-function fetchBoards(limit, offset) {
-  return instance.get(`/board/list/${limit}/${offset}`)
+function fetchBoards(params) {
+  return instance.get('/board/list', params)
 }
 
 // 특정 게시글 가져오는 API

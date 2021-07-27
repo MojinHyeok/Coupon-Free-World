@@ -1,8 +1,5 @@
 <template>
-  <div>
-    <h1>자유 게시판</h1>
-    <button @click="write" type="button" class="btn btn-light">글쓰기</button>
-  </div>
+  <div></div>
 </template>
 
 <script>
