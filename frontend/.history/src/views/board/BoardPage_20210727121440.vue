@@ -20,7 +20,15 @@
           </tr>
         </thead>
         <tbody>
-          <BoardListItem />
+          <tr :key="idx" v-for="(value, idx) in data" @click="detail(idx)">
+            <th scope="row">{{ value.order }}</th>
+            <td>{{ value.category }}</td>
+            <td>{{ value.title }}</td>
+            <td>{{ value.writer }}</td>
+            <td>{{ value.date }}</td>
+            <td>{{ value.views }}</td>
+            <td>{{ value.recommends }}</td>
+          </tr>
         </tbody>
       </table>
     </div>
@@ -28,25 +36,7 @@
 </template>
 
 <script>
-import { fetchBoards, CountBoard } from '@/api/boards'
-import { BoardListItem } from '@/components/board/BoardListItem.vue'
-
 export default {
-  components: { BoardListItem },
-  data() {
-    return {
-      boardList: '',
-    }
-  },
-  setup() {
-    const totalBoardCount = CountBoard()
-    console.log(totalBoardCount)
-    // LIMIT 행 갯수 OFFSET 시작 행
-    const boardList = fetchBoards(totalBoardCount, 0)
-    this.boardList = boardList
-    console.log(boardList)
-    // this.requestFollowList = res.data
-  },
   methods: {
     write() {
       this.$router.push({
