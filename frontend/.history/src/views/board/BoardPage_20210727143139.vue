@@ -42,6 +42,7 @@ export default {
   },
   async created() {
     const totalBoardCount = await CountBoard()
+    console.log(totalBoardCount)
     this.boardTotal = totalBoardCount.data
 
     // LIMIT 행 갯수 OFFSET 시작 행

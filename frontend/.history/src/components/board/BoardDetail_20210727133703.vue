@@ -4,4 +4,7 @@
   </div>
 </template>
 
-<script></script>
+<script>
+
+}
+</script>
