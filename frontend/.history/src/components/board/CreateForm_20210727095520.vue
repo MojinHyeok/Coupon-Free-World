@@ -4,7 +4,7 @@
     <fieldset class="p-4">
       <div class="mb-3">
         <input
-          v-model="board.title"
+          v-model="title"
           type="text"
           class="form-control"
           id="title"
@@ -13,7 +13,7 @@
       </div>
       <div class="mb-3">
         <textarea
-          v-model="boardcontent"
+          v-model="content"
           class="form-control"
           id="content"
           rows="3"
@@ -29,34 +29,44 @@
 </template>
 
 <script>
+import data from '@/data'
 import { createBoard } from '@/api/board'
 
 export default {
   name: 'Create',
   data() {
     return {
-      boardData: {
-        title: '',
-        content: '',
-        views: '',
-        recommends: '',
-        date: '',
-      },
+      data: data,
+      title: '',
+      content: '',
+      views: '',
+      recommends: '',
+      date: '',
     }
   },
-
   methods: {
-    async write() {
-      if (this.title === '' || this.content === '') {
-        console.log('한 글자도 입력하지 않음')
-      }
-      await createBoard(this.boardData)
-        .then(() => {
-          this.$router.push('/board/list')
-        })
-        .catch(() => {
-          console.error('글 작성 실패')
-        })
+    write() {
+      // getDate 함수가 보정이 필요해서 ___ 코드 고쳐야함
+      const today = new Date()
+      const date_today =
+        today.getFullYear() +
+        '-' +
+        (today.getMonth() + 1) +
+        '-' +
+        today.getDate()
+        
+      const boardData= [
+        // 글 번호, 카테고리, 닉네임, 날짜, 추천 수, 조회수 등록 필요
+        title: this.title,
+        content: this.content,
+        date: date_today,
+        views: 0,
+        recommends: 0,
+      ]
+
+      this.$router.push({
+        path: '/board/list',
+      })
     },
   },
 }

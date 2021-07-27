@@ -47,17 +47,16 @@ export default {
 
   methods: {
     async write() {
-      if (this.title === '' || this.content === '') {
+      if (this.title === ''|| this.content === '') {
         console.log('한 글자도 입력하지 않음')
       }
       await createBoard(this.boardData)
-        .then(() => {
+      .then(() => {
           this.$router.push('/board/list')
-        })
-        .catch(() => {
-          console.error('글 작성 실패')
-        })
-    },
+      })
+      .catch(() => {
+        console.error('글 작성 실패')
+      })
   },
 }
 </script>
