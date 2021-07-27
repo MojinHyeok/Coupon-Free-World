@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h2>상세페이지</h2>
+    <h1>글쓰기 페이지</h1>
   </div>
 </template>
 

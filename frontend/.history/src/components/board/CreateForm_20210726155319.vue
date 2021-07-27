@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h2>상세페이지</h2>
+    <h1>create form</h1>
   </div>
 </template>
 
