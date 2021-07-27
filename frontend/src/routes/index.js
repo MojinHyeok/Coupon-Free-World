@@ -31,6 +31,10 @@ const router = new VueRouter({
       component: () => import('@/views/board/DetailPage.vue'),
     },
     {
+      path: '/board/edit/:id',
+      component: () => import('@/components/board/editForm.vue'),
+    },
+    {
       path: '/main',
       component: () => import('@/views/MainPage.vue'),
     },
