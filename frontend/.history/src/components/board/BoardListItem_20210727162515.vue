@@ -1,6 +1,6 @@
 <template>
   <!-- 밑에 @click="detail(idx) -->
-  <tr @click="$router.push('board/' + listItem.boardID)">
+  <tr @click="detail()">
     <th scope="row">{{ listItem.boardID }}</th>
     <td>쿠키런 킹덤</td>
     <td>{{ listItem.title }}</td>
@@ -17,6 +17,11 @@ export default {
     listItem: {
       type: Object,
       required: true,
+    },
+  },
+  methods: {
+    detail() {
+      this.$router.push(`/board/${listTtem.boardID}`)
     },
   },
 }
