@@ -20,8 +20,7 @@
           </tr>
         </thead>
         <tbody>
-          <BoardListItem v-for="list in boardList" :key="list.id">
-          </BoardListItem>
+          <BoardListItem />
         </tbody>
       </table>
     </div>
@@ -36,17 +35,20 @@ export default {
   components: { BoardListItem },
   data() {
     return {
-      boardList: {},
+      boardList: '',
       boardTotal: 0,
     }
   },
   async created() {
     const totalBoardCount = await CountBoard()
+    console.log(totalBoardCount)
     this.boardTotal = totalBoardCount.data
-
+    console.log(this.boardTotal)
     // LIMIT 행 갯수 OFFSET 시작 행
-    const boardList = await fetchBoards(this.boardTotal, 0)
-    this.boardList = boardList
+    const boardList = await fetchBoards(1, 1)
+    this.boardList = boardList // 객체
+    console.log(boardList)
+    // this.requestFollowList = res.data
   },
   methods: {
     write() {
