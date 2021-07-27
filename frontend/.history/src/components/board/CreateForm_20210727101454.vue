@@ -4,7 +4,7 @@
     <fieldset class="p-4">
       <div class="mb-3">
         <input
-          v-model="boardData.title"
+          v-model="board.title"
           type="text"
           class="form-control"
           id="title"
@@ -13,7 +13,7 @@
       </div>
       <div class="mb-3">
         <textarea
-          v-model="boardData.content"
+          v-model="boardcontent"
           class="form-control"
           id="content"
           rows="3"
@@ -29,16 +29,17 @@
 </template>
 
 <script>
-import { createBoard } from '@/api/boards'
+import { createBoard } from '@/api/board'
 
 export default {
+  name: 'Create',
   data() {
     return {
       boardData: {
         title: '',
         content: '',
-        viewCount: '',
-        recommend: '',
+        views: '',
+        recommends: '',
         date: '',
       },
     }
@@ -46,17 +47,18 @@ export default {
 
   methods: {
     async write() {
-      if (this.title === '' || this.content === '') {
+      if (this.title === ''|| this.content === '') {
         console.log('한 글자도 입력하지 않음')
       }
       await createBoard(this.boardData)
-        .then(() => {
-          this.$router.push('/board/list')
-        })
-        .catch(() => {
-          console.error('글 작성 실패')
-        })
-    },
+      .then(
+        this.$router.push({
+          path: '/board/list',
+        }),
+      )
+      .catch(() => {
+        console.error('글 작성 실패')
+      })
   },
 }
 </script>

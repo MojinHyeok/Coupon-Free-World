@@ -11,7 +11,7 @@ function fetchBoard(boardID) {
 }
 
 // 글쓰기
-function createBoard(boardData) {
+function writeBoard(boardData) {
   return instance.post('board/write', boardData)
 }
 
@@ -33,7 +33,7 @@ function searchBoard(searchOption, value, limit, offset) {
 export {
   fetchBoards,
   fetchBoard,
-  createBoard,
+  writeBoard,
   deleteBoard,
   updateBoard,
   searchBoard,

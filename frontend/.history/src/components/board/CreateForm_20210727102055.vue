@@ -4,7 +4,7 @@
     <fieldset class="p-4">
       <div class="mb-3">
         <input
-          v-model="boardData.title"
+          v-model="board.title"
           type="text"
           class="form-control"
           id="title"
@@ -13,7 +13,7 @@
       </div>
       <div class="mb-3">
         <textarea
-          v-model="boardData.content"
+          v-model="boardcontent"
           class="form-control"
           id="content"
           rows="3"
@@ -29,16 +29,17 @@
 </template>
 
 <script>
-import { createBoard } from '@/api/boards'
+import { createBoard } from '@/api/board'
 
 export default {
+  name: 'Create',
   data() {
     return {
       boardData: {
         title: '',
         content: '',
-        viewCount: '',
-        recommend: '',
+        views: '',
+        recommends: '',
         date: '',
       },
     }

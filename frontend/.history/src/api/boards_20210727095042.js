@@ -1,17 +1,17 @@
 import { instance } from './index'
 
 // 게시글 가져오는 API
-function fetchBoards(limit, offset) {
+function createBoards(limit, offset) {
   return instance.get(`/board/list/${limit}/${offset}`)
 }
 
 // 특정 게시글 가져오는 API
-function fetchBoard(boardID) {
+function detailBoard(boardID) {
   return instance.get(`/board/${boardID}`)
 }
 
 // 글쓰기
-function createBoard(boardData) {
+function writeBoard(boardData) {
   return instance.post('board/write', boardData)
 }
 
@@ -31,9 +31,9 @@ function searchBoard(searchOption, value, limit, offset) {
 }
 
 export {
-  fetchBoards,
-  fetchBoard,
-  createBoard,
+  createBoards,
+  searchBoard,
+  writeBoard,
   deleteBoard,
   updateBoard,
   searchBoard,
