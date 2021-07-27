@@ -3,7 +3,7 @@ package com.ssafy.backend.board.model;
 public class BoardModel {
 	int noticeOption;
 	String title;
-	String contents;
+	String content;
 	String writer;
 	String regDate;
 	String filePath1;
@@ -24,11 +24,11 @@ public class BoardModel {
 	public void setTitle(String title) {
 		this.title = title;
 	}
-	public String getContents() {
-		return contents;
+	public String getcontent() {
+		return content;
 	}
-	public void setContents(String contents) {
-		this.contents = contents;
+	public void setcontent(String content) {
+		this.content = content;
 	}
 	public String getWriter() {
 		return writer;
@@ -81,7 +81,7 @@ public class BoardModel {
 	@Override
 	public String toString() {
 		return "BoardModel [noticeOption=" + noticeOption + ", title=" + title
-				+ ", contents=" + contents + ", writer=" + writer + ", regDate=" + regDate + ", filePath1=" + filePath1
+				+ ", content=" + content + ", writer=" + writer + ", regDate=" + regDate + ", filePath1=" + filePath1
 				+ ", filePath2=" + filePath2 + ", filePath3=" + filePath3 + ", filePath4=" + filePath4 + "]";
 	}
 	
