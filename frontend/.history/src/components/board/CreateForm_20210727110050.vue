@@ -37,13 +37,16 @@ export default {
       boardData: {
         title: '',
         content: '',
+        viewCount: '',
+        recommend: '',
+        date: '',
+        write: '',
       },
     }
   },
 
   methods: {
     async write() {
-      console.log(this.boardData)
       if (this.title === '' || this.content === '') {
         console.log('한 글자도 입력하지 않음')
       }

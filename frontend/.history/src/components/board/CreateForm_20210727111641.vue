@@ -37,6 +37,10 @@ export default {
       boardData: {
         title: '',
         content: '',
+        viewCount: '',
+        recommend: '',
+        date: '11-11-11',
+        writer: 'sdfsdf',
       },
     }
   },
