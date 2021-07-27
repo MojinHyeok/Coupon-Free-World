@@ -1,6 +1,7 @@
 package com.ssafy.backend.comment.controller;
 
 import java.text.SimpleDateFormat;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -43,19 +44,30 @@ public class CommentController {
 	// 피드에 코멘트 등록
 	@PostMapping("/registFeed")
 	public ResponseEntity<?> registFeedComment(@RequestBody CommentModel model) throws Exception {
-		return new ResponseEntity<Void>(HttpStatus.BAD_REQUEST);
+		int res = service.feedComment(model);
+		
+		if(res >= 1) {
+			return new ResponseEntity<>(model, HttpStatus.OK);
+		} else {
+			return new ResponseEntity<Void>(HttpStatus.BAD_REQUEST);
+		}
+		/*
+		 * 코멘트 등록 시 DB에 INSERT가 되며 등록한 코멘트를 바로 Front에서 불러올 수 있음
+		 */
 	}
 	
 	// 게시판 클릭 시 코멘트 불러오기
 	@GetMapping("/getBoard/{boardID}")
 	public ResponseEntity<?> getBoardComment(@PathVariable("boardID") int boardID) throws Exception {
-		return new ResponseEntity<Void>(HttpStatus.BAD_REQUEST);
+		List<CommentModel> list = service.getBoardComment(boardID);
+		return new ResponseEntity<>(list, HttpStatus.OK);
 	}
 	
 	// 피드 클릭 시 코멘트 불러오기
 	@GetMapping("/getFeed/{feedID}")
 	public ResponseEntity<?> getFeedComment(@PathVariable("feedID") int feedID) throws Exception {
-		return new ResponseEntity<Void>(HttpStatus.BAD_REQUEST);
+		List<CommentModel> list = service.getFeedComment(feedID);
+		return new ResponseEntity<>(list, HttpStatus.OK);
 	}
 	
 }
