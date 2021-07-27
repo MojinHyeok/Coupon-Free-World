@@ -37,8 +37,8 @@ export default {
       boardData: {
         title: '',
         content: '',
-        viewCount: '',
-        recommend: '',
+        views: '',
+        recommends: '',
         date: '',
       },
     }

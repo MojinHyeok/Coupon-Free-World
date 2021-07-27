@@ -40,6 +40,7 @@ export default {
         viewCount: '',
         recommend: '',
         date: '',
+        writer: '',
       },
     }
   },
