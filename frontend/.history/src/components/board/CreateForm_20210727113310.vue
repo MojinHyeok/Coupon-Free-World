@@ -38,7 +38,7 @@ export default {
       boardData: {
         title: '',
         content: '',
-        writer: getUserFromCookie(),
+        writer: getUserFromCookie(),,
       },
     }
   },
