@@ -20,11 +20,7 @@
           </tr>
         </thead>
         <tbody>
-          <BoardListItem
-            v-for="listItem in boardList"
-            :key="listItem.id"
-            :listItem="listItem"
-          >
+          <BoardListItem v-for="list in boardList" :key="list.id" :list="list">
           </BoardListItem>
         </tbody>
       </table>
@@ -38,6 +34,7 @@ import BoardListItem from '@/components/board/BoardListItem.vue'
 
 export default {
   components: { BoardListItem },
+  props: ['list']
   data() {
     return {
       boardList: {},
@@ -51,7 +48,6 @@ export default {
     // LIMIT 행 갯수 OFFSET 시작 행
     const boardList = await fetchBoards(this.boardTotal, 0)
     this.boardList = boardList
-    console.log(this.boardList)
   },
   methods: {
     write() {
