@@ -29,7 +29,6 @@ const router = new VueRouter({
     {
       name: 'boardDetail',
       path: '/board/:id',
-      props: true,
       component: () => import('@/views/board/DetailPage.vue'),
     },
     {

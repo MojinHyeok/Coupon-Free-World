@@ -27,9 +27,8 @@ const router = new VueRouter({
       component: () => import('@/components/board/CreateForm.vue'),
     },
     {
-      name: 'boardDetail',
+      name: boardDetail,
       path: '/board/:id',
-      props: true,
       component: () => import('@/views/board/DetailPage.vue'),
     },
     {
