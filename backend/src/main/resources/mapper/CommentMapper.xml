@@ -45,7 +45,9 @@
 		)
 	</insert>
 	<select id="getBoardComment" parameterType="int" resultType="CommentModel">
+		SELECT * FROM comment where boardID = #{boardID}
 	</select>
 	<select id="getFeedComment" parameterType="int" resultType="CommentModel">
+		SELECT * FROM comment where feedID = #{feedID}
 	</select>
 </mapper>
