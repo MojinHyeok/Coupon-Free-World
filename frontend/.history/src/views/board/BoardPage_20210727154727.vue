@@ -51,6 +51,7 @@ export default {
     // LIMIT 행 갯수 OFFSET 시작 행
     const boardList = await fetchBoards(this.boardTotal, 0)
     this.boardList = boardList.data
+    console.log(this.boardList)
   },
   methods: {
     write() {

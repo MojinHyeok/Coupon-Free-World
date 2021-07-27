@@ -2,7 +2,6 @@
   <!-- 밑에 @click="detail(idx) -->
   <tr>
     <th scope="row">{{ listItem.boardID }}</th>
-    <td>쿠키런 킹덤</td>
     <td>{{ listItem.title }}</td>
     <td>{{ listItem.writer }}</td>
     <td>{{ listItem.date }}</td>
