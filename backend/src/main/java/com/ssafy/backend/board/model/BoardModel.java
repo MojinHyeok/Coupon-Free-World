@@ -1,6 +1,7 @@
 package com.ssafy.backend.board.model;
 
 public class BoardModel {
+	int boardID;
 	int noticeOption;
 	String title;
 	String content;
@@ -12,6 +13,13 @@ public class BoardModel {
 	String photoPath4;
 	int recommend;
 	int viewCount;
+	
+	public int getBoardID() {
+		return boardID;
+	}
+	public void setBoardID(int boardID) {
+		this.boardID = boardID;
+	}
 	public int getNoticeOption() {
 		return noticeOption;
 	}

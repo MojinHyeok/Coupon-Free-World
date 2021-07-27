@@ -19,5 +19,6 @@ public interface BoardService {
     public int totalCount() throws Exception;
     // 
     List<BoardModel> selectBoardLimitOffset(@Param("limit") int limit, @Param("offset") int offset) throws Exception;
-
+    // 조회수 업데이트
+    int updateViewCount(@Param("boardID") int boardID, @Param("viewCount") int viewCount) throws Exception;
 }

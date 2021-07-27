@@ -46,4 +46,9 @@ public class BoardServiceImpl implements BoardService{
     public List<BoardModel> selectBoardLimitOffset(int limit, int offset) throws Exception {
         return mapper.boardList(limit, offset);
     }
+    
+    @Override
+    public int updateViewCount(int boardID, int viewCount) throws Exception {
+    	return mapper.updateViewCount(boardID, viewCount);
+    }
 }

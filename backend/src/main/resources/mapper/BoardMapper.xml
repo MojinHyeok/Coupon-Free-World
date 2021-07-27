@@ -38,7 +38,14 @@
 	
 	<update id="updateBoard" parameterType="BoardModel">
 		UPDATE board
-		SET content = #{content}
+		SET content = #{content},
+			title = #{title}
+		WHERE boardID = #{boardID}
+	</update>
+	
+	<update id="updateViewCount" parameterType="BoardModel">
+		UPDATE board
+		SET viewCount = #{viewCount}
 		WHERE boardID = #{boardID}
 	</update>
 	

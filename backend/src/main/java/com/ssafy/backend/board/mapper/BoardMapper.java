@@ -28,4 +28,6 @@ public interface BoardMapper {
             @Param("value") String value,
             @Param("limit") int limit,
             @Param("offset") int offset) throws SQLException;
+    
+    int updateViewCount(@Param("boardID") int boardID, @Param("viewCount") int viewCount) throws Exception;
 }
