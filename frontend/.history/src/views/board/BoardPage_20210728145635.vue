@@ -36,39 +36,19 @@
               <span aria-hidden="true">&laquo;</span>
             </a>
           </li>
-          <li
-            v-if="pagingNum(first_page)"
-            class="page-item page-link"
-            @click="paging(first_page)"
-          >
+          <li class="page-item page-link" @click="paging(first_page)">
             {{ first_page }}
           </li>
-          <li
-            v-if="pagingNum(second_page)"
-            class="page-item page-link"
-            @click="paging(second_page)"
-          >
+          <li class="page-item page-link" @click="paging(second_page)">
             {{ second_page }}
           </li>
-          <li
-            v-if="pagingNum(third_page)"
-            class="page-item page-link"
-            @click="paging(third_page)"
-          >
+          <li class="page-item page-link" @click="paging(third_page)">
             {{ third_page }}
           </li>
-          <li
-            v-if="pagingNum(forth_page)"
-            class="page-item page-link"
-            @click="paging(forth_page)"
-          >
+          <li class="page-item page-link" @click="paging(forth_page)">
             {{ forth_page }}
           </li>
-          <li
-            v-if="pagingNum(fifth_page)"
-            class="page-item page-link"
-            @click="paging(fifth_page)"
-          >
+          <li class="page-item page-link" @click="paging(fifth_page)">
             {{ fifth_page }}
           </li>
           <li class="page-item page-link" aria-label="Next">
@@ -101,6 +81,7 @@ export default {
   async created() {
     const totalBoardCount = await CountBoard()
     this.boardTotal = totalBoardCount.data
+
     // LIMIT 행 갯수 OFFSET 시작 행
     const boardList = await fetchBoards(10, 0)
     this.boardList = boardList.data
@@ -120,13 +101,6 @@ export default {
       const boardList = await fetchBoards(10, startPage)
       this.boardList = boardList.data
       console.log(this.boardList)
-    },
-    pagingNum(pageNum) {
-      if ((pageNum - 1) * 10 < this.boardTotal) {
-        return true
-      } else {
-        return false
-      }
     },
   },
 }

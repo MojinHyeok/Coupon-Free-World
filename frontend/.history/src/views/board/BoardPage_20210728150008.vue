@@ -122,11 +122,7 @@ export default {
       console.log(this.boardList)
     },
     pagingNum(pageNum) {
-      if ((pageNum - 1) * 10 < this.boardTotal) {
-        return true
-      } else {
-        return false
-      }
+      if pageNum
     },
   },
 }
