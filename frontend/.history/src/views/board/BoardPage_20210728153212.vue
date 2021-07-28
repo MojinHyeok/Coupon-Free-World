@@ -146,7 +146,7 @@ export default {
         this.third_page = this.third_page + pageSymbol * 5
         this.forth_page = this.forth_page + pageSymbol * 5
         this.fifth_page = this.fifth_page + pageSymbol * 5
-        this.paging(this.first_page)
+        this.paging(first_page)
       }
     },
   },

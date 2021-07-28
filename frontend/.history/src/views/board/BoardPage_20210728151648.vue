@@ -107,9 +107,10 @@ export default {
   async created() {
     const totalBoardCount = await CountBoard()
     this.boardTotal = totalBoardCount.data
-
+    // LIMIT 행 갯수 OFFSET 시작 행
     const boardList = await fetchBoards(10, 0)
     this.boardList = boardList.data
+    console.log(this.boardList)
   },
   methods: {
     write() {
@@ -124,6 +125,7 @@ export default {
       const startPage = (clickPage - 1) * 10
       const boardList = await fetchBoards(10, startPage)
       this.boardList = boardList.data
+      console.log(this.boardList)
     },
     pagingNum(pageNum) {
       if ((pageNum - 1) * 10 < this.boardTotal) {
@@ -134,19 +136,14 @@ export default {
     },
     nextPaging(pageSymbol) {
       if (
-        this.first_page + pageSymbol * 5 > 0 &&
-        (this.first_page + pageSymbol * 5) * 10 <= this.boardTotal
+        this.first_page + pageSymbol * 5 &&
+        (this.first_page * 5 - 1) * 10 > this.boardTotal
       ) {
-        console.log('더하기')
-        console.log(this.first_page + pageSymbol * 5)
-        console.log('총합')
-        console.log(this.boardTotal)
         this.first_page = this.first_page + pageSymbol * 5
         this.second_page = this.second_page + pageSymbol * 5
         this.third_page = this.third_page + pageSymbol * 5
         this.forth_page = this.forth_page + pageSymbol * 5
         this.fifth_page = this.fifth_page + pageSymbol * 5
-        this.paging(this.first_page)
       }
     },
   },
