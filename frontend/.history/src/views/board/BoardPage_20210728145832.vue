@@ -101,6 +101,7 @@ export default {
   async created() {
     const totalBoardCount = await CountBoard()
     this.boardTotal = totalBoardCount.data
+
     // LIMIT 행 갯수 OFFSET 시작 행
     const boardList = await fetchBoards(10, 0)
     this.boardList = boardList.data
@@ -121,13 +122,7 @@ export default {
       this.boardList = boardList.data
       console.log(this.boardList)
     },
-    pagingNum(pageNum) {
-      if ((pageNum - 1) * 10 < this.boardTotal) {
-        return true
-      } else {
-        return false
-      }
-    },
+    pagingNum() {},
   },
 }
 </script>
