@@ -1,138 +1,174 @@
 <template>
-  <div>
-    <form @submit.prevent="submitForm">
-      <div>
-        <label for="userID">userID: </label>
-        <input id="userID" type="text" autocomplete="off" v-model="userID" />
-        <p v-if="!isUserIdLenValid">
-          userID 길이 초과하였습니다.
-        </p>
-        <p v-if="!isUserIdValid">
-          영어, 숫자 조합만 가능합니다.
-        </p>
-      </div>
-      <div>
-        <label for="userName">userName:</label>
-        <input
-          id="userName"
-          type="text"
-          autocomplete="off"
-          v-model="userName"
-        />
-        <p v-if="!isUsernameLenValid">
-          userName 길이 초과하였습니다.
-        </p>
-        <p v-if="!isUsernameValid">
-          특수문자,공백 사용할 수 없습니다.
-        </p>
-      </div>
-      <div>
-        <label for="password">password: </label>
-        <input
-          id="password"
-          type="text"
-          autocomplete="off"
-          v-model="password"
-          @keyup="isBlankVaild(password, 'password')"
-        />
-        <p v-if="!isPasswordLenValid">
-          password 길이 초과하였습니다.
-        </p>
-        <p v-if="passwordBlank">
-          {{ logBlankpassword }}
-        </p>
-      </div>
-      <div>
-        <label for="passwordConfirm">passwordConfirm: </label>
-        <input
-          id="passwordConfirm"
-          type="text"
-          autocomplete="off"
-          v-model="passwordConfirm"
-        />
-      </div>
-      <p v-if="passwordConfirm && !isPasswordConfirmValid">
-        비밀번호가 옳바르지 않습니다.
-      </p>
-      <div>
-        <label for="email">email: </label>
-        <input
-          id="email"
-          type="text"
-          autocomplete="off"
-          v-model="email"
-          disabled
-        />
-        <!-- <p v-if="!isEmailValid && email">
+  <div class="box">
+    <div class="container">
+      <div class="item">
+        <form @submit.prevent="submitForm">
+          <div class="item">
+            <div class="input-box">
+              <input
+                id="userID"
+                type="text"
+                autocomplete="off"
+                v-model="userID"
+                placeholder=" "
+              />
+              <label for="userID">아이디</label>
+            </div>
+            <p v-if="!isUserIdLenValid">
+              userID 길이 초과하였습니다.
+            </p>
+            <p v-if="!isUserIdValid">
+              영어, 숫자 조합만 가능합니다.
+            </p>
+          </div>
+          <div class="item">
+            <div class="input-box">
+              <input
+                id="userName"
+                type="text"
+                autocomplete="off"
+                v-model="userName"
+                placeholder=" "
+              />
+              <label for="userName">사용자 이름</label>
+            </div>
+            <p v-if="!isUsernameLenValid">
+              userName 길이 초과하였습니다.
+            </p>
+            <p v-if="!isUsernameValid">
+              특수문자,공백 사용할 수 없습니다.
+            </p>
+          </div>
+          <div class="item">
+            <div class="input-box">
+              <input
+                id="password"
+                type="text"
+                autocomplete="off"
+                v-model="password"
+                placeholder=" "
+              />
+              <label for="password">비밀번호</label>
+            </div>
+            <p v-if="!isPasswordLenValid">
+              password 길이 초과하였습니다.
+            </p>
+            <p v-if="passwordBlank">
+              {{ logBlankpassword }}
+            </p>
+          </div>
+          <div class="item">
+            <div class="input-box">
+              <input
+                id="passwordConfirm"
+                type="text"
+                autocomplete="off"
+                v-model="passwordConfirm"
+                placeholder=" "
+              />
+              <label for="passwordConfirm">비밀번호 확인</label>
+            </div>
+          </div>
+          <p v-if="passwordConfirm && !isPasswordConfirmValid">
+            비밀번호가 옳바르지 않습니다.
+          </p>
+          <div class="item">
+            <div class="input-box">
+              <input
+                id="email"
+                type="text"
+                autocomplete="off"
+                v-model="email"
+                placeholder=" "
+                disabled
+              />
+              <label for="email">이메일 </label>
+            </div>
+            <!-- <p v-if="!isEmailValid && email">
           이메일 형식이 아닙니다.
         </p>
         <p v-if="!isEmailLenValid">
           email 길이 초과하였습니다.
         </p> -->
+          </div>
+          <div class="item">
+            <div class="input-box">
+              <input
+                id="alias"
+                type="text"
+                autocomplete="off"
+                v-model="alias"
+                placeholder=" "
+              />
+              <label for="alias">닉네임 </label>
+            </div>
+            <p v-if="!isAliasLenValid">
+              alias 길이 초과하였습니다.
+            </p>
+            <p v-if="!isAliasValid">
+              특수문자,공백 사용할 수 없습니다.
+            </p>
+          </div>
+          <div class="item">
+            <div class="input-box">
+              <input
+                id="profilePath"
+                type="text"
+                autocomplete="off"
+                v-model="profilePath"
+                placeholder=" "
+              />
+              <label for="profilePath">파일경로</label>
+            </div>
+          </div>
+          <div class="item">
+            <div class="input-box">
+              <textarea
+                id="bio"
+                type="text"
+                placeholder=""
+                rows="3"
+                v-model="bio"
+              />
+              <label for="bio">자기소개 </label>
+            </div>
+            <p v-if="!isBioLenValid">
+              30자 이내로 작성해주세요.
+            </p>
+            <p v-if="!bioBlank">
+              공백 사용할 수 없습니다.
+            </p>
+          </div>
+          <p>{{ logMessage }}</p>
+          <button
+            type="submit"
+            :disabled="
+              !userID ||
+                !userName ||
+                !password ||
+                !passwordConfirm ||
+                !isPasswordConfirmValid ||
+                !email ||
+                !isEmailValid ||
+                !alias ||
+                !profilePath ||
+                !bio ||
+                !isBioLenValid ||
+                !isUserIdLenValid ||
+                !isUsernameLenValid ||
+                !isPasswordLenValid ||
+                !isEmailLenValid ||
+                !isAliasLenValid ||
+                !isUserIdValid ||
+                !isUsernameValid ||
+                !isAliasValid
+            "
+          >
+            회원가입
+          </button>
+        </form>
       </div>
-      <div>
-        <label for="alias">alias: </label>
-        <input id="alias" type="text" autocomplete="off" v-model="alias" />
-        <p v-if="!isAliasLenValid">
-          alias 길이 초과하였습니다.
-        </p>
-        <p v-if="!isAliasValid">
-          특수문자,공백 사용할 수 없습니다.
-        </p>
-      </div>
-      <div>
-        <label for="profilePath">profilePath: </label>
-        <input
-          id="profilePath"
-          type="text"
-          autocomplete="off"
-          v-model="profilePath"
-        />
-      </div>
-      <div>
-        <label for="bio">bio: </label>
-        <textarea
-          id="bio"
-          type="text"
-          placeholder="30자 이내로 작성"
-          rows="3"
-          v-model="bio"
-        />
-        <p v-if="!isBioLenValid">
-          30자 이내로 작성해주세요.
-        </p>
-        <p v-if="!bioBlank">
-          공백 사용할 수 없습니다.
-        </p>
-      </div>
-      <p>{{ logMessage }}</p>
-      <button
-        type="submit"
-        :disabled="
-          !userID ||
-            !userName ||
-            !password ||
-            !passwordConfirm ||
-            !isPasswordConfirmValid ||
-            !email ||
-            !isEmailValid ||
-            !alias ||
-            !profilePath ||
-            !bio ||
-            !isBioLenValid ||
-            !isUserIdLenValid ||
-            !isUsernameLenValid ||
-            !isPasswordLenValid ||
-            !isEmailLenValid ||
-            !isAliasLenValid ||
-            !isUserIdValid ||
-            !isUsernameValid ||
-            !isAliasValid
-        "
-      >
-        회원가입
-      </button>
-    </form>
+    </div>
   </div>
 </template>
 
@@ -240,4 +276,6 @@ export default {
 }
 </script>
 
-<style></style>
+<style scoped src="./css/user/default.css"></style>
+<style scoped src="./css/user/Signup.css"></style>
+<style scoped></style>

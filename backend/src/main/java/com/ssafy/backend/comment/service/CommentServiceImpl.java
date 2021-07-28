@@ -33,4 +33,14 @@ public class CommentServiceImpl implements CommentService {
 		return mapper.getFeedComment(feedID);
 	}
 	
+	// 코멘트 추천
+	public int recommendUp(int commentID) throws Exception {
+		return mapper.recommendUp(commentID);
+	}
+	
+	// 코멘트 비추천
+	public int recommendDown(int commentID) throws Exception {
+		return mapper.recommendDown(commentID);
+	}
+	
 }

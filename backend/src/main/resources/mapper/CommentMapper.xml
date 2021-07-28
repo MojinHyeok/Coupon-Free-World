@@ -23,6 +23,7 @@
 			#{recommendCnt}
 		)
 	</insert>
+	
 	<insert id="feedComment" parameterType="CommentModel">
 		INSERT
 		INTO comment (
@@ -44,10 +45,30 @@
 			#{recommendCnt}
 		)
 	</insert>
+	
 	<select id="getBoardComment" parameterType="int" resultType="CommentModel">
-		SELECT * FROM comment where boardID = #{boardID}
+		SELECT *
+		FROM comment 
+		WHERE boardID = #{boardID} 
+		ORDER BY IF(ISNULL(parentComment), commentID, parentComment);
 	</select>
+	
 	<select id="getFeedComment" parameterType="int" resultType="CommentModel">
-		SELECT * FROM comment where feedID = #{feedID}
+		SELECT *
+		FROM comment 
+		WHERE feedID = #{feedID} 
+		ORDER BY IF(ISNULL(parentComment), commentID, parentComment);
 	</select>
+	
+	<update id="recommendUp" parameterType="int">
+		UPDATE comment
+		SET recommendCnt = recommendCnt+1 
+		WHERE commentID = #{commentID};
+	</update>
+	
+	<update id="recommendDown" parameterType="int">
+		UPDATE comment
+		SET recommendCnt = recommendCnt-1 
+		WHERE commentID = #{commentID};
+	</update>
 </mapper>

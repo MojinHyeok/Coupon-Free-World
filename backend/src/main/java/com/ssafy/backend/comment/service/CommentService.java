@@ -17,4 +17,9 @@ public interface CommentService {
 	// 피드 누르면 코멘트 불러오기
 	public List<CommentModel> getFeedComment(int feedID) throws Exception;
 	
+	// 코멘트 추천
+	int recommendUp(int commentID) throws Exception;
+	
+	// 코멘트 비추천
+	int recommendDown(int commentID) throws Exception;
 }

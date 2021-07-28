@@ -22,13 +22,13 @@ public class FeedServiceImpl implements FeedService {
 	}
 
 	@Override
-	public int incLikeCnt(int feedID, int likeCount) throws Exception {
-		return mapper.incLikeCnt(feedID, likeCount);
+	public int incLikeCnt(int feedID) throws Exception {
+		return mapper.incLikeCnt(feedID);
 	}
 
 	@Override
-	public int decLikeCnt(int feedID, int likeCount) throws Exception {
-		return mapper.decLikeCnt(feedID, likeCount);
+	public int decLikeCnt(int feedID) throws Exception {
+		return mapper.decLikeCnt(feedID);
 	}
 
 }

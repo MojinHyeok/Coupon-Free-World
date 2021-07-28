@@ -14,8 +14,8 @@ public interface FeedMapper {
 	int deleteFeed(int feedID) throws Exception;
 	
 	// 좋아요 설정
-	int incLikeCnt(@Param("feedID") int feedID, @Param("likeCount") int likeCount) throws Exception;
+	int incLikeCnt(@Param("feedID") int feedID) throws Exception;
 	
 	// 좋아요 해제
-	int decLikeCnt(@Param("feedID") int feedID, @Param("likeCount") int likeCount) throws Exception;
+	int decLikeCnt(@Param("feedID") int feedID) throws Exception;
 }
