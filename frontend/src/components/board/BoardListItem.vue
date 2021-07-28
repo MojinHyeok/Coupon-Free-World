@@ -12,7 +12,7 @@
 </template>
 
 <script>
-import { fetchBoard } from '@/api/boards'
+// import { fetchBoard } from '@/api/boards'
 
 export default {
   props: {

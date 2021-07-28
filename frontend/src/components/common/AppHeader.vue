@@ -1,7 +1,7 @@
 <template>
   <header>
     <router-link to="/board">BoardList</router-link> |
-    <router-link to="/account/signup">signup</router-link> |
+    <router-link to="/user/confirmEmail">signup</router-link> |
     <router-link to="/account/login">login</router-link> |
     <a href="javascript:;" @click="logoutUser">logout</a> |
     <SearchUserForm></SearchUserForm>
