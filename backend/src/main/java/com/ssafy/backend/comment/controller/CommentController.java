@@ -79,4 +79,18 @@ public class CommentController {
 		return new ResponseEntity<>(list, HttpStatus.OK);
 	}
 	
+	// 추천
+	@PostMapping("/recommendUp")
+	public ResponseEntity<?> recommendUp(@RequestBody int commentID) {
+		
+		return new ResponseEntity<Void>(HttpStatus.OK);
+	}
+	
+	// 비추천
+	@PostMapping("/recommendDown")
+	public ResponseEntity<?> recommendDown(@RequestBody int commentID) {
+		
+		return new ResponseEntity<Void>(HttpStatus.OK);
+	}
+	
 }
