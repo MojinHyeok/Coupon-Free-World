@@ -12,8 +12,6 @@
 </template>
 
 <script>
-// import { fetchBoard } from '@/api/boards'
-
 export default {
   props: {
     listItem: {
@@ -21,12 +19,5 @@ export default {
       required: true,
     },
   },
-  // methods: {
-  //   detail() {
-  //     this.$router.push({
-  //       path: '/board/detail',
-  //     })
-  //   },
-  // },
 }
 </script>
