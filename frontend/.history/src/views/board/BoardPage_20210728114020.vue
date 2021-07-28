@@ -7,7 +7,6 @@
     <div class="m-5">
       <h3>전체 게시물</h3>
       <button @click="write" type="button" class="btn btn-light">글쓰기</button>
-      <SearchBar @on-keyword-enter="onKeywordEnter" />
       <table class="table table-hover">
         <thead>
           <tr>
@@ -52,11 +51,10 @@
 
 <script>
 import { fetchBoards, CountBoard } from '@/api/boards'
-import SearchBar from '@/components/board/SearchBar.vue'
 import BoardListItem from '@/components/board/BoardListItem.vue'
 
 export default {
-  components: { BoardListItem, SearchBar },
+  components: { BoardListItem },
   data() {
     return {
       boardList: [],
@@ -77,9 +75,6 @@ export default {
       this.$router.push({
         path: '/board/create',
       })
-    },
-    onKeywordEnter(boardList) {
-      this.boardList = boardList
     },
   },
 }
