@@ -56,7 +56,7 @@ import SearchBar from '@/components/board/SearchBar.vue'
 import BoardListItem from '@/components/board/BoardListItem.vue'
 
 export default {
-  components: { BoardListItem, SearchBar },
+  components: { BoardListItem },
   data() {
     return {
       boardList: [],
@@ -77,9 +77,6 @@ export default {
       this.$router.push({
         path: '/board/create',
       })
-    },
-    onKeywordEnter(boardList) {
-      this.boardList = boardList
     },
   },
 }
