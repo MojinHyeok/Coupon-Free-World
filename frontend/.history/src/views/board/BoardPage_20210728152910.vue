@@ -105,11 +105,9 @@ export default {
     }
   },
   async created() {
-    const totalBoardCount = await CountBoard()
-    this.boardTotal = totalBoardCount.data
-
     const boardList = await fetchBoards(10, 0)
     this.boardList = boardList.data
+    console.log(this.boardList)
   },
   methods: {
     write() {
@@ -146,7 +144,7 @@ export default {
         this.third_page = this.third_page + pageSymbol * 5
         this.forth_page = this.forth_page + pageSymbol * 5
         this.fifth_page = this.fifth_page + pageSymbol * 5
-        this.paging(this.first_page)
+        paging(first_page)
       }
     },
   },

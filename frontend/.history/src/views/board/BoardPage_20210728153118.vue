@@ -105,9 +105,6 @@ export default {
     }
   },
   async created() {
-    const totalBoardCount = await CountBoard()
-    this.boardTotal = totalBoardCount.data
-
     const boardList = await fetchBoards(10, 0)
     this.boardList = boardList.data
   },
