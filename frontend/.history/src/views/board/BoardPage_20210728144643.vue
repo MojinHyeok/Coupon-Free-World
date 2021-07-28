@@ -83,7 +83,7 @@ export default {
     this.boardTotal = totalBoardCount.data
 
     // LIMIT 행 갯수 OFFSET 시작 행
-    const boardList = await fetchBoards(10, 0)
+    const boardList = await fetchBoards(this.boardTotal, 0)
     this.boardList = boardList.data
     console.log(this.boardList)
   },
@@ -96,11 +96,13 @@ export default {
     onKeywordEnter(boardList) {
       this.boardList = boardList
     },
-    async paging(clickPage) {
-      const startPage = (clickPage - 1) * 10
-      const boardList = await fetchBoards(10, startPage)
-      this.boardList = boardList.data
-      console.log(this.boardList)
+    async paging(event) {
+      console.log(event)
+      // const clickPage = this.key
+      // const startPage = (clickPage - 1) * 10
+      // const boardList = await fetchBoards(10, startPage)
+      // this.boardList = boardList.data
+      // console.log(this.boardList)
     },
   },
 }
