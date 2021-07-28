@@ -1,30 +1,32 @@
 /* 첫번째 div */
-.login-box {
-  padding: 0 5%;
-}
-/* 전체 form */
-form {
-  display: flex;
-  flex-wrap: wrap;
-}
-/* 해당 page 제목 */
 .sub-title {
   font-weight: bold;
 }
-
-/* title&logMessage */
-form p {
+.box {
+  padding: 0 5%;
+}
+.box p {
   margin-bottom: 1.5rem;
 }
-/* 각각의 입력 항목을 포함한 div */
+.container {
+  display: flex;
+  flex-wrap: wrap;
+}
 .item {
   width: 100%;
   display: flex;
   flex-wrap: wrap;
-  margin-bottom: 1.25em;
+  justify-content: space-between;
 }
-/* input style */
-#userID, #password {
+.item p {
+  width: 100%;
+  color: #e87c03;
+  font-size: 13px;
+  font-weight: bold;
+  margin-bottom: 0;
+  padding: 3px 6px;
+}
+#email, #code {
   width: 100%;
   height: 34px;
   outline: none;
@@ -34,7 +36,7 @@ form p {
   color: #fff;
   font-size: 1.1rem;
 }
-/* input과 label을 묶은 input-box style */
+
 .input-box {
   position: relative;
   width: 100%;
@@ -42,6 +44,7 @@ form p {
   background: #333;
   border-radius: 4px;
 }
+
 /* label style */
 label {
   display: flex;
@@ -61,34 +64,8 @@ label {
   transform: translateY(-1em);
   font-size: 10px;
 }
-/* 작은 경고 알림 style */
-.item p {
-  width: 100%;
-  color: #e87c03;
-  font-size: 13px;
-  font-weight: bold;
-  margin-bottom: 0;
-  padding: 3px 6px;
-}
-/* 로그인 시 경고 style */
-.logMessage {
-  background: #e87c03;
-  width: 100%;
-  border-radius: 4px;
-  text-align: center;
-  padding: 10px 20px;
-  color: #fff;
-  position: relative;
-  animation-name: fadeOut;
-  animation-duration: 0.2s;
-  animation-iteration-count: initial;
-}
-@keyframes fadeOut {
-  from { opacity: 0; }
-  to   { opacity: 1; }
-}
 
-/* button 크기 style */
+
 button {
   width: 100%;
   padding: 0;
@@ -100,6 +77,18 @@ button {
   font-weight: bold;
   border-radius: 4px;
 }
+.alert-email {
+  padding-left: 2em;
+  font-weight: bold;
+  color: #8c8c8c;
+  animation-name: fadeOut;
+  animation-duration: 0.2s;
+  animation-iteration-count: initial;
+}
+@keyframes fadeOut {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
 /* 비활성화 */
 button:disabled {
   background: gray;
@@ -107,4 +96,31 @@ button:disabled {
 /* 활성화 */
 button:enabled {
   background: #e50914;
+}
+
+.smooth {
+  animation-name: fadeOutTwo;
+  animation-duration: 0.15s;
+  animation-iteration-count: initial;
+}
+@keyframes fadeOutTwo {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+.content-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.loding {
+  width: 1.5em;
+  height: 1.5em;
+  border: 0.3em solid white;
+  border-color: white transparent transparent;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+@keyframes spin {
+  100% {transform: rotate(360deg);}
 }

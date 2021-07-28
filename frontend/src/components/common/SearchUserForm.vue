@@ -97,7 +97,7 @@ export default {
             const findIndex = response['url'].lastIndexOf('/') + 1
             const temp = response['url'].substring(findIndex)
             if (!this.currentResults.includes(temp)) {
-              this.currentResults.push(temp)
+              this.currentResults.unshift(temp)
             }
           }
         })
