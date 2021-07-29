@@ -2,5 +2,42 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.ssafy.backend.feed.mapper.FeedMapper">
+	<select id="writeFeed" parameterType="FeedModel">
+		INSERT
+		INTO feed (
+			userID,
+			photoPath1,
+			photoPath2,
+			content,
+			date,
+			likeCnt
+		)
+		VALUES (
+			#{userID},
+			#{photoPath1},
+			#{photoPath2},
+			#{content},
+			#{date},
+			#{likeCnt}
+		)
+	</select>
+	
+	<delete id="deleteFeed" parameterType="int">
+		DELETE
+		FROM feed
+		WHERE feedID = #{feedID} AND userID = #{userID}
+	</delete>
+	
+	<update id="incLikeCnt" parameterType="int">
+		UPDATE feed
+		SET likeCnt = likeCnt+1 
+		WHERE feedID = #{feedID};
+	</update>
 
+	<update id="decLikeCnt" parameterType="int">
+		UPDATE feed
+		SET likeCnt = likeCnt-1 
+		WHERE feedID = #{feedID};
+	</update>
+	
 </mapper>

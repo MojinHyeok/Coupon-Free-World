@@ -11,7 +11,7 @@ public interface FeedMapper {
 	int writeFeed(FeedModel model) throws Exception;
 	
 	// 피드 삭제
-	int deleteFeed(int feedID) throws Exception;
+	int deleteFeed(@Param("feedID") int feedID, @Param("userID") String userID) throws Exception;
 	
 	// 좋아요 설정
 	int incLikeCnt(@Param("feedID") int feedID) throws Exception;

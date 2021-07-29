@@ -17,8 +17,8 @@ public class FeedServiceImpl implements FeedService {
 	}
 
 	@Override
-	public int deleteFeed(int feedID) throws Exception {
-		return mapper.deleteFeed(feedID);
+	public int deleteFeed(int feedID, String userID) throws Exception {
+		return mapper.deleteFeed(feedID, userID);
 	}
 
 	@Override
