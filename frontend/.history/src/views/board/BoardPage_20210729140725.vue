@@ -130,7 +130,7 @@ export default {
     const totalBoardCount = await CountBoard()
     this.boardTotal = totalBoardCount.data
 
-    const boardListTotal = await fetchBoards(this.boardTotal, 0)
+    const boardListTotal = await fetchBoards(totalBoardCount, 0)
     this.boardListTotal = boardListTotal.data
 
     const boardList = await fetchBoards(10, 0)
@@ -144,13 +144,10 @@ export default {
         path: '/board/create',
       })
     },
-    onKeywordEnter(boardListTotal, boardTotal) {
-      this.boardListTotal = boardListTotal
-      this.boardTotal = boardTotal
-      this.boardList = boardListTotal.slice(0, 10)
-      console.log(this.boardListTotal)
+    onKeywordEnter(boardList) {
+      this.boardList = boardList
     },
-    paging(clickPage) {
+    async paging(clickPage) {
       const startPage = (clickPage - 1) * 10
       // const boardList = await fetchBoards(10, startPage)
       // this.boardList = boardList.data

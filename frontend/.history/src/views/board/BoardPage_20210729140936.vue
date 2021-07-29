@@ -144,11 +144,8 @@ export default {
         path: '/board/create',
       })
     },
-    onKeywordEnter(boardListTotal, boardTotal) {
-      this.boardListTotal = boardListTotal
-      this.boardTotal = boardTotal
-      this.boardList = boardListTotal.slice(0, 10)
-      console.log(this.boardListTotal)
+    onKeywordEnter(boardList) {
+      this.boardList = boardList
     },
     paging(clickPage) {
       const startPage = (clickPage - 1) * 10
