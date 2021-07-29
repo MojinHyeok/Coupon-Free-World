@@ -15,6 +15,7 @@ export default {
       const res = await searchBoard('title', keyword, 10, 0)
       const boardListTotal = res.data
       const boardTotal = boardListTotal.length
+      console.log(boardTotal)
       this.$emit('on-keyword-enter', boardListTotal, boardTotal)
     },
   },

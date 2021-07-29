@@ -147,7 +147,7 @@ export default {
     onKeywordEnter(boardListTotal, boardTotal) {
       this.boardListTotal = boardListTotal
       this.boardTotal = boardTotal
-      this.boardList = boardListTotal.slice(0, 10)
+      this.boardList = boardListTotal.slice(10)
       console.log(this.boardListTotal)
     },
     paging(clickPage) {
