@@ -17,13 +17,12 @@
       @click="$router.push('board/' + listItem.boardID)"
     >
       <div>
-        <th scope="row" style="color:blue;" class="pe-2">[쿠키런 킹덤]</th>
-        <td class="text-wrap">{{ listItem.title }}</td>
+        <th scope="row" style="color:blue;" class="pr-3">[쿠키런 킹덤]</th>
+        <td>{{ listItem.title }}</td>
       </div>
       <td style="color:gray; font-size:small;" class="row">
         <div>
-          <span v-if="listItem.writer">{{ listItem.writer }}</span>
-          <span v-else>익명</span> |
+          <span class="">{{ listItem.writer }}</span> |
           <span>조회 : {{ listItem.viewCount }}</span> |
           <span>추천 : {{ listItem.recommend }}</span> |
           <span>{{ listItem.date }}</span>

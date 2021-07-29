@@ -1,28 +1,13 @@
 <template>
   <div>
-    <hr />
-    <h1 style="text-align :center;">자유 게시판</h1>
+    <h1>자유 게시판</h1>
 
     <hr />
 
-    <div class="m-3">
-      <div class="d-flex justify-content-end  align-items-center">
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          width="16"
-          height="16"
-          fill="currentColor"
-          class="bi bi-search"
-          viewBox="0 0 16 16"
-        >
-          <path
-            d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"
-          />
-        </svg>
-        <SearchBar @on-keyword-enter="onKeywordEnter" class="ps-1" />
-      </div>
+    <div class="m-5">
       <h3>전체 게시물</h3>
       <div class="d-flex justify-content-end">
+        <SearchBar @on-keyword-enter="onKeywordEnter" />
         <button @click="write" type="button" class="btn btn-light">
           글쓰기
         </button>
