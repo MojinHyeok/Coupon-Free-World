@@ -27,7 +27,7 @@
           <div class="input-box">
             <input
               id="password"
-              type="password"
+              type="text"
               placeholder=" "
               v-model="password"
               autocomplete="off"
