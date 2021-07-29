@@ -21,11 +21,10 @@
         <button @click="moveProfile" v-if="tempuserID == userID">
           회원정보수정
         </button>
-        <button
-          v-else-if="this.requestFollow"
-          :disabled="!isSubmit"
-          @click="requestFollow2"
-        >
+        <button v-else-if="this.findrequestFollow" @click="canclerequestFollow">
+          팔로우 요청 취소
+        </button>
+        <button v-else-if="this.requestFollow" @click="requestFollow2">
           팔로우요청
         </button>
         <button v-else @click="cancleFollow">팔로우 취소</button>
@@ -46,6 +45,8 @@ import {
   findFollowing,
   requestFollow,
   cancleFollow,
+  findrequestFollowOne,
+  canclerequestFollow,
 } from '@/api/auth'
 export default {
   computes: {
@@ -65,7 +66,7 @@ export default {
       followingCnt: '',
       tempuserID: '', // 이 사용자가 마이페이지로 들어왔다면 회원정보 수정을 해주기 위해 로그인유저 ID이다.
       requestFollow: true, // 팔로우요청 할지..
-      isSubmit: true,
+      findrequestFollow: false,
       // eslint-disable-next-line prettier/prettier
       };
   },
@@ -82,9 +83,18 @@ export default {
       const data = await requestFollow(tempData)
       if (data.data == 'fail') alert('이미 팔로우 요청하셨습니다')
       else alert('팔로우 요청을 성공적으로 하셨습니다.!')
-      this.isSubmit = false
+      this.findrequestFollow = true
     },
     async detectParams() {
+      const tempData = {
+        targetID: this.$route.params.userID,
+        sourceID: getUserFromCookie(),
+      }
+      const res3 = await findrequestFollowOne(tempData)
+      console.log(res3.data)
+      if (res3.data != '') {
+        this.findrequestFollow = true
+      }
       const userData = {
         userID: this.$route.params.userID,
       }
@@ -111,6 +121,19 @@ export default {
           this.requestFollow = false
         }
       }
+    },
+    async canclerequestFollow() {
+      const tempData = {
+        targetID: this.$route.params.userID,
+        sourceID: getUserFromCookie(),
+      }
+      const Data = await canclerequestFollow(tempData)
+      if (Data.data == 'success') alert('팔로우를 요청취소하였습니다.!!')
+      else {
+        alert('에러발생')
+      }
+      this.findrequestFollow = false
+      this.requestFollow = true
     },
     moveProfile() {
       this.$router.push('/account/edit')

@@ -43,5 +43,15 @@
 	where sourceID = #{sourceID} and targetID= #{targetID}
 	</select>
 	
+	<select id="findrequestFollowOne" parameterType="SocialModel" resultType="SocialModel">
+	select * 
+	from follow
+	where sourceID= #{sourceID} and targetID= #{targetID} and type=1;
+	</select>
+	
+	<delete id="canclerequestFollow" parameterType="SocialModel">
+	delete from follow
+	where sourceID= #{sourceID} and targetID= #{targetID} and type=1;
+	</delete>
 
 </mapper>

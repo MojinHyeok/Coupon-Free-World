@@ -78,7 +78,21 @@ public class SocialController {
 		else msg="fail";
 		return new ResponseEntity<String>(msg,HttpStatus.OK);
 	}
-	
+	//팔로우 요청중인지 확인하기
+	@PostMapping("/findrequestFollowOne")
+	public ResponseEntity<Object> findreqeustFollowOne(@RequestBody SocialModel model){
+		SocialModel temp=service.findrequestFollowOne(model);
+		return new ResponseEntity<>(temp,HttpStatus.OK);
+	}
+	//팔로우 요청 취소하기
+	@PostMapping("/canclerequestFollow")
+	public ResponseEntity<String> canclerequestFollow(@RequestBody SocialModel model){
+		int result=service.canclerequestFollow(model);
+		String msg="";
+		if(result>0)msg="success";
+		else msg="fail";
+		return new ResponseEntity<String>(msg,HttpStatus.OK);
+	}
 	
 	
 }

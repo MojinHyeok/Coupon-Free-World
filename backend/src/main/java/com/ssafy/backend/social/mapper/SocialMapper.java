@@ -16,4 +16,7 @@ public interface SocialMapper {
 	List<String> findrequestFollow(String userid);
 	SocialModel checkDuplicate(SocialModel model);
 	int cancleFollow(SocialModel model);
+	SocialModel findrequestFollowOne(SocialModel model);
+	int canclerequestFollow(SocialModel model);
+	
 }

@@ -49,4 +49,14 @@ public class SocialServiceImpl implements SocialService{
 		return mapper.cancleFollow(model);
 	}
 
+	@Override
+	public SocialModel findrequestFollowOne(SocialModel model) {
+		return mapper.findrequestFollowOne(model);
+	}
+
+	@Override
+	public int canclerequestFollow(SocialModel model) {
+		return mapper.canclerequestFollow(model);
+	}
+
 }
