@@ -57,6 +57,14 @@ function confirmEmail(userData) {
 function cancleFollow(userData) {
   return instance.post('/social/cancleFollow', userData)
 }
+//팔로우 요청중인지 확인하기
+function findrequestFollowOne(userData) {
+  return instance.post('/social/findrequestFollowOne', userData)
+}
+//팔로우 요청 취소하기
+function canclerequestFollow(userData) {
+  return instance.post('/social/canclerequestFollow', userData)
+}
 
 export {
   registerUser,
@@ -72,4 +80,6 @@ export {
   allowFollow,
   confirmEmail,
   cancleFollow,
+  findrequestFollowOne,
+  canclerequestFollow,
 }

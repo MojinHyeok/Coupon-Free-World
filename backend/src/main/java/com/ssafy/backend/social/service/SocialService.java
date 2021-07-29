@@ -19,4 +19,9 @@ public interface SocialService {
 	SocialModel checkDuplicate(SocialModel model);
 	//팦로우취소
 	int cancleFollow(SocialModel model);
+	//팔로우 요청 취소하기 위한 검증단계 
+	SocialModel findrequestFollowOne(SocialModel model);
+	//팔로우 요청 취소
+	int canclerequestFollow(SocialModel model);
+	
 }

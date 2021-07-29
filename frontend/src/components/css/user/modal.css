@@ -36,9 +36,9 @@ body{background-color:#111;color:#eee;}
 
 .dialog {
   position: relative;
-  bottom: 23%;
   /* 뷰포트너비의 100분의 x */
-  width: 50vw;
+  width: 70vw;
+  height: 65vw;
   padding: 2em;
   border-radius: 1em;
   background: white;
