@@ -5,7 +5,7 @@
 
     <hr />
 
-    <div class="m-3">
+    <div class="m-5">
       <div class="d-flex justify-content-end  align-items-center">
         <svg
           xmlns="http://www.w3.org/2000/svg"

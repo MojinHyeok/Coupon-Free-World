@@ -4,13 +4,13 @@
       class="d-none d-sm-block"
       @click="$router.push('board/' + listItem.boardID)"
     >
-      <th scope="row">{{ listItem.boardID }}</th>
-      <td>쿠키런 킹덤</td>
-      <td class="text-wrap">{{ listItem.title }}</td>
-      <td>{{ listItem.writer }}</td>
-      <td>{{ listItem.date }}</td>
-      <td>{{ listItem.viewCount }}</td>
-      <td>{{ listItem.recommend }}</td>
+      <th scope="col">{{ listItem.boardID }}</th>
+      <td scope="col">쿠키런 킹덤</td>
+      <td scope="col" class="text-wrap">{{ listItem.title }}</td>
+      <td scope="col">{{ listItem.writer }}</td>
+      <td scope="col">{{ listItem.date }}</td>
+      <td scope="col">{{ listItem.viewCount }}</td>
+      <td scope="col">{{ listItem.recommend }}</td>
     </tr>
     <tr
       class="d-block d-sm-none"

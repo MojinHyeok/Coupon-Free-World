@@ -18,7 +18,7 @@
     >
       <div>
         <th scope="row" style="color:blue;" class="pe-2">[쿠키런 킹덤]</th>
-        <td class="text-wrap">{{ listItem.title }}</td>
+        <td>{{ listItem.title }}</td>
       </div>
       <td style="color:gray; font-size:small;" class="row">
         <div>
