@@ -22,3 +22,5 @@ for i in page :
         else : B += j
     # 쿠폰 코드 추가
     couponCode.append(B)
+
+print(couponCode)
