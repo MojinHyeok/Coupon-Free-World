@@ -1,34 +1,66 @@
 <template>
   <div>
-    <label for="searchData" @click="offResult('searchData')">❤ </label>
-    <input
-      type="search"
-      id="searchData"
-      placeholder="userID"
-      v-model="searchData"
-      @keyup="search"
-    />
-    <div v-if="isActive">
-      <ul>
-        <p>현재 검색</p>
-        <li
-          @click="saveCache(result)"
-          v-for="result in results"
-          :key="result.id"
-        >
-          {{ result }}
-        </li>
-        <p>최근 검색</p>
-        <li v-for="currentResult in currentResults" :key="currentResult.id">
-          <span @click="moveProfile(currentResult)">
-            {{ currentResult }}
-          </span>
-          <button @click="deleteCache(currentResult)">삭제</button>
-        </li>
-        <li v-if="logMessage">
-          {{ logMessage }}
-        </li>
-      </ul>
+    <label for="searchData" @click="offResult('searchData')">
+      <span v-show="clickCheck">
+        <i class="fas fa-search fa-lg"></i>
+      </span>
+    </label>
+    <div v-if="!clickCheck" class="modal">
+      <div class="dialog">
+        <div class="box">
+          <div class="container-nowrap">
+            <div v-if="isActive">
+              <input
+                type="text"
+                id="searchData"
+                autocomplete="off"
+                placeholder="userID"
+                v-model="searchData"
+                @keyup="search"
+              />
+            </div>
+            <label for="searchData" @click="offResult('searchData')">
+              <span v-show="!clickCheck">
+                <i class="fas fa-times-circle fa-lg"></i>
+              </span>
+            </label>
+          </div>
+          <div v-if="isActive">
+            <hr style="margin: 0.5rem 0" />
+            <ul>
+              <li
+                @click="saveCache(result)"
+                v-for="result in results"
+                :key="result.id"
+              >
+                {{ result }}
+              </li>
+              <div v-if="!searchData">
+                <p style="font-weight:900; font-size:0.8rem;">최근 검색</p>
+                <hr style="margin: 0.3rem 0;" />
+                <li
+                  class="list"
+                  v-for="currentResult in currentResults"
+                  :key="currentResult.id"
+                >
+                  <div>
+                    <span @click="moveProfile(currentResult)">
+                      {{ currentResult }}
+                    </span>
+                    <button @click="deleteCache(currentResult)">
+                      <i class="fas fa-user-times"></i>
+                    </button>
+                  </div>
+                  <hr style="margin: 0.3rem 0;" />
+                </li>
+              </div>
+              <li v-if="logMessage && searchData">
+                {{ logMessage }}
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </template>
@@ -46,6 +78,7 @@ export default {
       // display
       currentResults: [],
       isActive: false,
+      clickCheck: true,
     }
   },
   methods: {
@@ -56,7 +89,6 @@ export default {
           this.logMessage = '해당 유저가 없습니다.'
           return
         }
-        console.error = function() {}
         const { data } = await searchUser(this.searchData)
         this.results = data
         this.resultsDisplay = true
@@ -68,6 +100,7 @@ export default {
       }
     },
     offResult(id) {
+      this.clickCheck = !this.clickCheck
       this.isActive = !this.isActive
       this[`${id}`] = ''
       this.results = []
@@ -85,6 +118,7 @@ export default {
       this.moveProfile(result)
     },
     moveProfile(result) {
+      this.clickCheck = true
       this.isActive = false
       this.$router.push(`/user/profile/${result}`).catch(() => {})
     },
@@ -123,4 +157,6 @@ export default {
 }
 </script>
 
-<style></style>
+<style scoped src="../css/user/default.css"></style>
+<style scoped src="../css/user/search.css"></style>
+<style scoped></style>
