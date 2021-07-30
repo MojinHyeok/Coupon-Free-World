@@ -91,6 +91,7 @@ export default {
         this.isLoding = false
         this.buttonCheck = true
         this.data = temp.data
+        console.log(temp)
         if (this.data == 1) this.emailCheck = true
         else {
           this.emailCheck = false
