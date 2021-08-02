@@ -128,7 +128,7 @@ nav {
 .modal {
   display: flex;
   justify-content: flex-end;
-  align-items:end;
+  /* align-items:end; */
   position: fixed;
   left: 0;
   right:0;
