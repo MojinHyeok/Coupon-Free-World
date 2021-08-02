@@ -20,6 +20,10 @@ import com.ssafy.backend.user.model.UserModel;
 import com.ssafy.backend.user.service.JwtServiceImpl;
 import com.ssafy.backend.user.service.LoginService;
 
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiResponse;
+import io.swagger.annotations.ApiResponses;
+
 @RestController
 @CrossOrigin(origins = {"*"}, maxAge = 6000)
 @RequestMapping("/login")
@@ -33,6 +37,12 @@ public class LoginController {
 	private LoginService service;
 	
 	// 로그인 URI(RequestBody에 id, pw 전송)
+	@ApiOperation(value = "로그인하기", notes = "사용자의 정보를 입력받아 로그인을 검증합니다..")
+	@ApiResponses({
+		@ApiResponse(code = 200, message = "로그인 성공"),
+		@ApiResponse(code = 404, message = "페이지를 찾을 수 없음"),
+		@ApiResponse(code = 500, message = "내부 서버 오류")
+	})
 	@PostMapping("/confirm")
 	public ResponseEntity<Map<String, Object>> login(@RequestBody UserModel model) {
 		Map<String, Object> resultMap = new HashMap<>();
@@ -59,6 +69,12 @@ public class LoginController {
 	}
 	
 	// 사용자 정보 확인
+	@ApiOperation(value = "사용자 검증", notes = "해당 사용자가 맞는지 검증합니다.")
+	@ApiResponses({
+		@ApiResponse(code = 200, message = "사용자 검증 성공"),
+		@ApiResponse(code = 404, message = "페이지를 찾을 수 없음"),
+		@ApiResponse(code = 500, message = "내부 서버 오류")
+	})
 	@GetMapping("/info/{userid}")
     public ResponseEntity<Map<String, Object>> getInfo(@PathVariable("userID") String userID, HttpServletRequest request) {
         Map<String, Object> resultMap = new HashMap<>();
