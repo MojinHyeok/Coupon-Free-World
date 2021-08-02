@@ -30,17 +30,17 @@ public class SwaggerConfiguration {
 //	http://localhost:8080/{your-app-root}/swagger-ui.html
 
 	private String version = "V1";
-	private String title = "SSAFY GuestBook API " + version;
+	private String title = "Game Coupon SNS API " + version;
 	
 	@Bean
 	public Docket api() {
 		List<ResponseMessage> responseMessages = new ArrayList<ResponseMessage>();
-		responseMessages.add(new ResponseMessageBuilder().code(200).message("OK !!!").build());
-		responseMessages.add(new ResponseMessageBuilder().code(500).message("서버 문제 발생 !!!").responseModel(new ModelRef("Error")).build());
-		responseMessages.add(new ResponseMessageBuilder().code(404).message("페이지를 찾을 수 없습니다 !!!").build());
+		responseMessages.add(new ResponseMessageBuilder().code(200).message("Http OK").build());
+		responseMessages.add(new ResponseMessageBuilder().code(500).message("Server ERROR").responseModel(new ModelRef("Error")).build());
+		responseMessages.add(new ResponseMessageBuilder().code(404).message("HTTP Not Found").build());
 		return new Docket(DocumentationType.SWAGGER_2).consumes(getConsumeContentTypes()).produces(getProduceContentTypes())
 					.apiInfo(apiInfo()).groupName(version).select()
-					.apis(RequestHandlerSelectors.basePackage("com.ssafy.guestbook.controller"))
+					.apis(RequestHandlerSelectors.basePackage("com.ssafy.backend.*.controller"))
 					.paths(postPaths()).build()
 					.useDefaultResponseMessages(false)
 					.globalResponseMessage(RequestMethod.GET,responseMessages);
@@ -49,7 +49,6 @@ public class SwaggerConfiguration {
 	private Set<String> getConsumeContentTypes() {
         Set<String> consumes = new HashSet<>();
         consumes.add("application/json;charset=UTF-8");
-//        consumes.add("application/xml;charset=UTF-8");
         consumes.add("application/x-www-form-urlencoded");
         return consumes;
     }
@@ -68,7 +67,7 @@ public class SwaggerConfiguration {
 
 	private ApiInfo apiInfo() {
 		return new ApiInfoBuilder().title(title)
-				.description("<h3>SSAFY API Reference for Developers</h3>Swagger를 이용한 GuestBook API<br><img src=\"img/ssafy_logo.png\" width=\"150\">") 
+				.description("<h3>API Reference for Developers</h3>Swagger를 이용한 Game Coupon SNS API<br>") 
 				.contact(new Contact("SSAFY", "https://edu.ssafy.com", "ssafy@ssafy.com"))
 				.license("SSAFY License")
 				.licenseUrl("https://www.ssafy.com/ksp/jsp/swp/etc/swpPrivacy.jsp")
