@@ -7,7 +7,8 @@
 
 <script>
 import CreateForm from '@/components/board/CreateForm.vue'
+import CommentCreateForm from '@/components/board/CommentCreateForm.vue'
 export default {
-  components: CreateForm,
+  components: { CreateForm, CommentCreateForm },
 }
 </script>
