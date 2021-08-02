@@ -85,11 +85,13 @@ export default {
     async submit() {
       try {
         const userData = this.email
+        this.buttonCheck = false
         this.isLoding = true
         const temp = await confirmEmail(userData)
         this.isLoding = false
         this.buttonCheck = true
         this.data = temp.data
+        console.log(temp)
         if (this.data == 1) this.emailCheck = true
         else {
           this.emailCheck = false
@@ -113,5 +115,4 @@ export default {
 
 <style scoped src="../css/user/default.css"></style>
 <style scoped src="../css/user/confirm.css"></style>
-<style scoped src="../css/user/modal.css"></style>
 <style scoped></style>

@@ -1,10 +1,38 @@
 <template>
   <header>
-    <router-link to="/board">BoardList</router-link> |
-    <router-link to="/user/confirmEmail">signup</router-link> |
-    <router-link to="/account/login">login</router-link> |
-    <a href="javascript:;" @click="logoutUser">logout</a> |
-    <SearchUserForm></SearchUserForm>
+    <nav>
+      <div id="menuToggle">
+        <input type="checkbox" />
+        <span></span>
+        <span></span>
+        <span></span>
+        <ul id="menu">
+          <li>
+            <router-link class="link" to="/board">BoardList</router-link>
+          </li>
+          <li>
+            <router-link class="link" to="/feed">feed</router-link>
+          </li>
+          <!-- menu에 항목을 추가하실려면 밑에 주석처럼 만들면됩니다. -->
+          <!-- <li>
+            <router-link class="link" to="/board">피드</router-link>
+          </li> -->
+        </ul>
+      </div>
+      <div class="menu-item" style="margin-left: auto;">
+        <SearchUserForm></SearchUserForm>
+        <span @click="openUser" style="color: white; padding-left: 1rem;">
+          <i class="fas fa-user fa-lg"></i>
+          <div v-if="isOpen" class="modal">
+            <div class="dialog">
+              <router-link to="/user/confirmEmail">signup</router-link>
+              <router-link to="/account/login">login</router-link>
+              <a href="javascript:;" @click="logoutUser">logout</a>
+            </div>
+          </div>
+        </span>
+      </div>
+    </nav>
   </header>
 </template>
 
@@ -15,6 +43,11 @@ export default {
   components: {
     SearchUserForm,
   },
+  data() {
+    return {
+      isOpen: false,
+    }
+  },
   methods: {
     logoutUser() {
       this.$store.commit('clearUserid')
@@ -23,8 +56,13 @@ export default {
       deleteCookie('one_user')
       this.$router.push('/account/login')
     },
+    openUser() {
+      this.isOpen = !this.isOpen
+    },
   },
 }
 </script>
 
-<style></style>
+<style scoped src="../css/user/default.css"></style>
+<style scoped src="../css/menu.css"></style>
+<style scoped></style>

@@ -118,9 +118,9 @@
       <div>
         <label for="alias">alias: </label>
         <input id="alias" type="text" autocomplete="off" v-model="alias" />
-        <p v-if="!isAliasLenValid">
+        <!-- <p v-if="!isAliasLenValid">
           alias 길이 초과하였습니다.
-        </p>
+        </p> -->
         <p v-if="!isAliasValid">
           특수문자,공백 사용할 수 없습니다.
         </p>
@@ -143,9 +143,9 @@
           rows="3"
           v-model="bio"
         />
-        <p v-if="!isBioLenValid">
+        <!-- <p v-if="!isBioLenValid">
           30자 이내로 작성해주세요.
-        </p>
+        </p> -->
         <p v-if="!bioBlank">
           공백 사용할 수 없습니다.
         </p>
@@ -160,11 +160,9 @@
             !alias ||
             !profilePath ||
             !bio ||
-            !isBioLenValid ||
             !isUserIdLenValid ||
             !isUsernameLenValid ||
             !isEmailLenValid ||
-            !isAliasLenValid ||
             !isAliasValid ||
             !isUserIdValid ||
             !isUsernameValid ||
@@ -238,9 +236,9 @@ export default {
     isEmailLenValid() {
       return this.email.length <= 30
     },
-    isAliasLenValid() {
-      return this.alias.length <= 16
-    },
+    // isAliasLenValid() {
+    //   return this.alias.length <= 16
+    // },
     isAliasValid() {
       return UsernameValid(this.alias)
     },
@@ -258,9 +256,9 @@ export default {
     isEmailValid() {
       return validateEmail(this.email)
     },
-    isBioLenValid() {
-      return this.bio.length <= 30
-    },
+    // isBioLenValid() {
+    //   return this.bio.length <= 30
+    // },
   },
   async created() {
     const userData = {

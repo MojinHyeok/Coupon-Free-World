@@ -17,6 +17,10 @@ import org.springframework.web.bind.annotation.RestController;
 import com.ssafy.backend.feed.model.FeedModel;
 import com.ssafy.backend.feed.service.FeedService;
 
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiResponse;
+import io.swagger.annotations.ApiResponses;
+
 @RestController
 @CrossOrigin(origins = {"*"}, maxAge = 6000)
 @RequestMapping("/feed")
@@ -24,6 +28,12 @@ public class FeedController {
 	@Autowired
 	FeedService service;
 	
+	@ApiOperation(value = "피드 작성", notes = "피드를 작성합니다.")
+	@ApiResponses({
+		@ApiResponse(code = 200, message = "피드 작성 성공"),
+		@ApiResponse(code = 404, message = "페이지를 찾을 수 없음"),
+		@ApiResponse(code = 500, message = "내부 서버 오류")
+	})
 	@PostMapping("/write")
 	public ResponseEntity<?> writeFeed(@RequestBody FeedModel model) throws Exception {
 		SimpleDateFormat format = new SimpleDateFormat("yy-MM-dd HH:mm:ss");
@@ -41,9 +51,17 @@ public class FeedController {
 		}
 	}
 
-	@DeleteMapping("/delete/{feedID}")
-	public ResponseEntity<?> deleteFeed(@PathVariable("feedID") int feedID) throws Exception {
-		int res = service.deleteFeed(feedID);
+	@ApiOperation(value = "피드 삭제", notes = "피드를 삭제합니다.")
+	@ApiResponses({
+		@ApiResponse(code = 200, message = "피드 삭제 성공"),
+		@ApiResponse(code = 404, message = "페이지를 찾을 수 없음"),
+		@ApiResponse(code = 500, message = "내부 서버 오류")
+	})
+	@DeleteMapping("/delete/{userID}/{feedID}")
+	public ResponseEntity<?> deleteFeed(@PathVariable("feedID") int feedID, 
+										@PathVariable("userID") String userID) throws Exception {
+		
+		int res = service.deleteFeed(feedID, userID);
 		
 		if(res >= 1) {
 			return new ResponseEntity<Void>(HttpStatus.OK);
@@ -52,6 +70,12 @@ public class FeedController {
 		}
 	}
 	
+	@ApiOperation(value = "피드 좋아요", notes = "피드에 좋아요를 눌러 좋아요 수를 증가시킵니다.")
+	@ApiResponses({
+		@ApiResponse(code = 200, message = "좋아요 성공"),
+		@ApiResponse(code = 404, message = "페이지를 찾을 수 없음"),
+		@ApiResponse(code = 500, message = "내부 서버 오류")
+	})
 	@PostMapping("/incLikeCnt")
 	public ResponseEntity<?> incLikeCnt(int feedID) throws Exception {
 		service.incLikeCnt(feedID);
@@ -59,6 +83,12 @@ public class FeedController {
 		return new ResponseEntity<Void>(HttpStatus.OK);
 	}
 	
+	@ApiOperation(value = "피드 싫어요", notes = "피드에 싫어요를 눌러 좋아요 수를 감소시킵니다.")
+	@ApiResponses({
+		@ApiResponse(code = 200, message = "싫어요 성공"),
+		@ApiResponse(code = 404, message = "페이지를 찾을 수 없음"),
+		@ApiResponse(code = 500, message = "내부 서버 오류")
+	})
 	@PostMapping("/decLikeCnt")
 	public ResponseEntity<?> decLikeCnt(int feedID) throws Exception {
 		service.decLikeCnt(feedID);

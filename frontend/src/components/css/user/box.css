@@ -37,6 +37,7 @@ form p {
 /* input과 label을 묶은 input-box style */
 .input-box {
   position: relative;
+  z-index: 0;
   width: 100%;
   padding: 1em 1.25em 0 1.25em;
   background: #333;

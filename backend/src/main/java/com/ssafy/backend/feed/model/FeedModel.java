@@ -2,12 +2,19 @@ package com.ssafy.backend.feed.model;
 
 public class FeedModel {
 	int feedID;
+	String userID;
 	String photoPath1;
 	String photoPath2;
 	String content;
 	String date;
 	int likeCnt;
 	
+	public String getUserID() {
+		return userID;
+	}
+	public void setUserID(String userID) {
+		this.userID = userID;
+	}
 	public int getFeedID() {
 		return feedID;
 	}
