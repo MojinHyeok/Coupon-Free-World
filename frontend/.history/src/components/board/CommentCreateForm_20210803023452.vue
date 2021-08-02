@@ -1,16 +1,14 @@
 <template>
   <div>
     <h3>댓글 작성 Form</h3>
-    <div class="d-flex">
-      <input
-        type="text"
-        @keyup.enter="onSubmit"
-        v-model="userComment"
-        class="form-control"
-        autofocus
-      />
-      <button @click="onSubmit" class="btn btn-primary">등록</button>
-    </div>
+    <input
+      type="text"
+      @keyup.enter="onSubmit"
+      v-model="userComment"
+      class="form-control"
+      autofocus
+    />
+    <button @click="onSubmit" class="btn btn-primary">등록</button>
   </div>
 </template>
 
