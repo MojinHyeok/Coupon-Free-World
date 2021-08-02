@@ -1,7 +1,7 @@
 <template>
   <div>
     <label for="searchData" @click="offResult('searchData')">
-      <span v-show="clickCheck">
+      <span v-show="clickCheck" style="color:white;">
         <i class="fas fa-search fa-lg"></i>
       </span>
     </label>

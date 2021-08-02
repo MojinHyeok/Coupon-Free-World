@@ -41,9 +41,11 @@ public class FeedController {
 		}
 	}
 
-	@DeleteMapping("/delete/{feedID}")
-	public ResponseEntity<?> deleteFeed(@PathVariable("feedID") int feedID) throws Exception {
-		int res = service.deleteFeed(feedID);
+	@DeleteMapping("/delete/{userID}/{feedID}")
+	public ResponseEntity<?> deleteFeed(@PathVariable("feedID") int feedID, 
+										@PathVariable("userID") String userID) throws Exception {
+		
+		int res = service.deleteFeed(feedID, userID);
 		
 		if(res >= 1) {
 			return new ResponseEntity<Void>(HttpStatus.OK);
