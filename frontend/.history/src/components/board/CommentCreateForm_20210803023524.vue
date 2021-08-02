@@ -1,7 +1,7 @@
 <template>
   <div>
-    <h3>댓글 작성 Form</h3>
     <div class="d-flex">
+      <h3>댓글 작성 Form</h3>
       <input
         type="text"
         @keyup.enter="onSubmit"
