@@ -1,5 +1,7 @@
 package com.ssafy.backend.user.controller;
 
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -21,7 +23,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
 
+import com.ssafy.backend.amazonS3.S3Uploader;
 import com.ssafy.backend.user.model.UserModel;
 import com.ssafy.backend.user.service.UserService;
 
@@ -33,6 +37,9 @@ public class UserController {
 	private UserService service;
 	@Autowired
 	private JavaMailSender mailSender;
+	
+	@Autowired
+	S3Uploader s3UPloader;
 	
 	
 	
@@ -80,9 +87,29 @@ public class UserController {
 	
 	//회원정보 수정
 	@PostMapping("/modify")
-	public ResponseEntity<String> userModify(@RequestBody UserModel model){
+	public ResponseEntity<String> userModify(
+//			@RequestBody UserModel model,
+			@RequestParam("imageData") MultipartFile multipartFile,
+			@RequestParam("userID") String userID,
+			@RequestParam("userName") String userName,
+			@RequestParam("password") String password,
+			@RequestParam("email") String email,
+			@RequestParam("alias") String alias,
+			@RequestParam("bio") String bio
+			) throws IllegalArgumentException, FileNotFoundException, IOException{
+		System.out.println(multipartFile);
 		String msg="";
 		HttpStatus status;
+//		System.out.println(x+" x는 무엇인가"+x);
+		UserModel model=new UserModel();
+		model.setUserID(userID);
+		model.setUserName(userName);
+		model.setPassword(password);
+		model.setEmail(email);
+		model.setAlias(alias);
+		model.setBio(bio);
+		model.setProfilePath(s3UPloader.upload(multipartFile, "static"));
+		System.out.println(model.getProfilePath());
 		try {
 			int result=service.userModify(model);
 			if(result>=1)msg="success";
