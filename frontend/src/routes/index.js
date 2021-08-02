@@ -56,6 +56,22 @@ const router = new VueRouter({
       path: '/user/confirmEmail',
       component: () => import('@/components/user/confirmEmail.vue'),
     },
+    {
+      path: '/feed',
+      component: () => import('@/views/feed/FeedPage.vue'),
+    },
+    {
+      path: '/feed/create',
+      component: () => import('@/views/feed/CreatePage.vue'),
+    },
+    {
+      path: '/feed/:id/update',
+      component: () => import('@/views/feed/UpdatePage.vue'),
+    },
+    {
+      path: '/feed/:id',
+      component: () => import('@/views/feed/DetailPage.vue'),
+    },
   ],
 })
 
