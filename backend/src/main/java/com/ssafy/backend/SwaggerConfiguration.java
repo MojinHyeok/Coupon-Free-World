@@ -1,4 +1,4 @@
-package com.ssafy.guestbook;
+package com.ssafy.backend;
 
 import static springfox.documentation.builders.PathSelectors.regex;
 
