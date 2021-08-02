@@ -8,12 +8,10 @@
 
 <script>
 import BoardDetail from '@/components/board/BoardDetail.vue'
-import CommentCreateForm from '@/components/board/CommentCreateForm.vue'
 
 export default {
   components: {
     BoardDetail,
-    CommentCreateForm,
   },
 }
 </script>

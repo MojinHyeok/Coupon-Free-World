@@ -37,23 +37,9 @@ function searchBoard(searchOption, value, limit, offset) {
   )
 }
 
-// 댓글 등록
+// 댓글
 function createComment(boardData) {
   return instance.post('comment/registBoard', boardData)
-}
-
-// 댓글 불러오기
-function detailComment(boardID) {
-  return instance.get(`comment/getBoard/${boardID}`)
-}
-
-// 댓글 추천
-function likeComment(commentID) {
-  return instance.post('comment/recommendUp', commentID)
-}
-
-function unlikeComment(commentID) {
-  return instance.post('comment/recommendDown', commentID)
 }
 
 export {
@@ -65,7 +51,4 @@ export {
   updateBoard,
   searchBoard,
   createComment,
-  detailComment,
-  likeComment,
-  unlikeComment,
 }

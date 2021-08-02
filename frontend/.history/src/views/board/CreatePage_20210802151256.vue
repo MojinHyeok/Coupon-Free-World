@@ -8,6 +8,6 @@
 <script>
 import CreateForm from '@/components/board/CreateForm.vue'
 export default {
-  components: CreateForm,
+  components: 'CreateForm',
 }
 </script>

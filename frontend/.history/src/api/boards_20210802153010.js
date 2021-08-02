@@ -47,15 +47,6 @@ function detailComment(boardID) {
   return instance.get(`comment/getBoard/${boardID}`)
 }
 
-// 댓글 추천
-function likeComment(commentID) {
-  return instance.post('comment/recommendUp', commentID)
-}
-
-function unlikeComment(commentID) {
-  return instance.post('comment/recommendDown', commentID)
-}
-
 export {
   CountBoard,
   fetchBoards,
@@ -66,6 +57,4 @@ export {
   searchBoard,
   createComment,
   detailComment,
-  likeComment,
-  unlikeComment,
 }
