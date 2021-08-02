@@ -10,6 +10,9 @@
           <li>
             <router-link class="link" to="/board">BoardList</router-link>
           </li>
+          <li>
+            <router-link class="link" to="/feed">feed</router-link>
+          </li>
           <!-- menu에 항목을 추가하실려면 밑에 주석처럼 만들면됩니다. -->
           <!-- <li>
             <router-link class="link" to="/board">피드</router-link>
