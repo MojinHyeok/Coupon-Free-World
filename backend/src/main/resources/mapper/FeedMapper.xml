@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.ssafy.backend.feed.mapper.FeedMapper">
-	<select id="writeFeed" parameterType="FeedModel">
+	<insert id="writeFeed" parameterType="FeedModel" >
 		INSERT
 		INTO feed (
 			userID,
@@ -24,7 +24,7 @@
 			#{date},
 			#{likeCnt}
 		)
-	</select>
+	</insert>
 	
 	<delete id="deleteFeed" parameterType="int">
 		DELETE
