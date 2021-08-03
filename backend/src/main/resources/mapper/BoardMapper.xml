@@ -53,17 +53,17 @@
 		SELECT *
 		FROM board
 		WHERE ${searchOption} LIKE concat('%', #{value} ,'%')
+		ORDER BY date DESC
 		LIMIT ${limit}
 		OFFSET ${offset}
-		ORDER BY date DESC
 	</select>
 	
 	<select id="boardList" resultType="BoardModel">
 		SELECT boardID, title, writer, date, recommend, viewCount
 		FROM board
+		ORDER BY date DESC
 		LIMIT ${limit}
 		offset ${offset}
-		ORDER BY date DESC
 	</select>
 	
 	<select id="totalCount" resultType="int">
