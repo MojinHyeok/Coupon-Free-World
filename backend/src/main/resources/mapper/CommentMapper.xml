@@ -6,7 +6,7 @@
 		INSERT
 		INTO comment (
 			boardID,
-			comment,
+			commentID,
 			parentComment,
 			content,
 			userID,
@@ -28,7 +28,7 @@
 		INSERT
 		INTO comment (
 			feedID,
-			comment,
+			commentID,
 			parentComment,
 			content,
 			userID,
