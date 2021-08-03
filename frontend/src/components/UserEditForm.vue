@@ -3,12 +3,20 @@
     <form @submit.prevent="submitForm">
       <div>
         <p>회원사진</p>
-        <input type="file" @change="previewImage" accept="image/*" />
+      </div>
+      <!-- 기본이미지 구현-->
+      <div v-if="this.profilePath == null && preview == null">
+        <p>기본이미지입니다.</p>
+        <img src="" alt="" />
+      </div>
+      <div v-else-if="preview == null">
+        <img :src="picture" />
+      </div>
+      <div v-else>
+        <img :src="preview" />
       </div>
       <div>
-        <img class="preview" :src="picture" />
-        <br />
-        <button>Upload</button>
+        <input type="file" @change="previewImage" accept="image/*" />
       </div>
       <div>
         <label for="userID">userID: </label>
@@ -220,6 +228,7 @@ export default {
       //이미지데이터
       imageData: null,
       picture: null,
+      preview: null,
     }
   },
   computed: {
@@ -280,7 +289,7 @@ export default {
     previewImage(event) {
       this.picture = null
       this.imageData = event.target.files[0]
-      console.log(this.imageData)
+      this.preview = URL.createObjectURL(event.target.files[0])
     },
 
     passwordActive() {
