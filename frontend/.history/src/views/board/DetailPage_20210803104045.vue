@@ -2,7 +2,7 @@
   <div>
     <h1>게시글 상세페이지</h1>
     <div><BoardDetail></BoardDetail></div>
-    <div v-if="userLogin"><CommentCreateForm /></div>
+    <div><v-if="getUserFromCookie()" CommentCreateForm /></div>
   </div>
 </template>
 
@@ -12,11 +12,6 @@ import CommentCreateForm from '@/components/board/CommentCreateForm.vue'
 import { getUserFromCookie } from '@/utils/cookies.js'
 
 export default {
-  computed: {
-    userLogin() {
-      return getUserFromCookie()
-    },
-  },
   components: {
     BoardDetail,
     CommentCreateForm,

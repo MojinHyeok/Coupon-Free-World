@@ -21,25 +21,21 @@ import { getUserFromCookie } from '@/utils/cookies.js'
 export default {
   data() {
     return {
-      userComment: '',
-      boardID: this.$route.params.id,
-      userID: getUserFromCookie(),
+      boardData: {
+        userComment: '',
+        boardID: 'this.$route.params.id',
+        writer: getUserFromCookie(),
+      },
     }
   },
   methods: {
     onSubmit() {
+      console.log(this.userComment)
       if (this.userComment.length > 200) {
         this.userComment = ''
         console.log('200자가 넘는 댓글은 작성하실 수 없습니다')
       } else {
-        console.log(`댓글 내용 ${this.userComment}`)
-        const boardData = {
-          content: this.userComment,
-          boardID: this.boardID,
-          userID: this.userID,
-        }
-        console.log(boardData)
-        createComment(boardData)
+        createComment(this.userComment)
           .then(() => {
             console.log('댓글저장성공')
             this.userComment = ''
