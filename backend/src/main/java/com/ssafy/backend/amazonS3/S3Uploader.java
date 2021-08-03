@@ -22,7 +22,7 @@ import lombok.extern.slf4j.Slf4j;
 @Component
 public class S3Uploader {
 	
-	private AmazonS3Client amazonS3Client;
+	private final AmazonS3Client amazonS3Client;
 	
 	@Value("${cloud.aws.s3.bucket}")
 	private String bucket;
@@ -41,15 +41,16 @@ public class S3Uploader {
 	}
 	
 	private String putS3(File uploadFile,String fileName) {
+		System.out.println(uploadFile+" "+fileName);
 		amazonS3Client.putObject(new PutObjectRequest(bucket, fileName, uploadFile).withCannedAcl(CannedAccessControlList.PublicRead));
 		return amazonS3Client.getUrl(bucket, fileName).toString();
 	}
 	
 	private void removeNewFile(File targetFile) {
-		if(targetFile.delete()) {
-			System.out.println("파일이 삭제되었습니다.");
-		}else {
-			System.out.println("파일이 삭제되지 못했습니다.");
+		if (targetFile.delete()) { 
+			log.info("파일이 삭제되었습니다.");
+		} else { 
+			log.info("파일이 삭제되지 못했습니다.");
 		}
 	}
 
