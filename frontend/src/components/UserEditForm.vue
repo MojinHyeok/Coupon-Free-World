@@ -86,9 +86,6 @@
           :disabled="!isPwAcitve"
           @keyup="isBlankVaild(passwordChange, 'passwordChange')"
         />
-        <p v-if="logMessage">
-          {{ logMessage }}
-        </p>
         <p v-if="isPwAcitve && passwordChangeBlank">
           {{ logBlankpasswordChange }}
         </p>
@@ -134,15 +131,6 @@
         </p>
       </div>
       <div>
-        <label for="profilePath">profilePath: </label>
-        <input
-          id="profilePath"
-          type="text"
-          autocomplete="off"
-          v-model="profilePath"
-        />
-      </div>
-      <div>
         <label for="bio">bio: </label>
         <textarea
           id="bio"
@@ -151,9 +139,6 @@
           rows="3"
           v-model="bio"
         />
-        <!-- <p v-if="!isBioLenValid">
-          30자 이내로 작성해주세요.
-        </p> -->
         <p v-if="!bioBlank">
           공백 사용할 수 없습니다.
         </p>
@@ -189,11 +174,7 @@
 </template>
 
 <script>
-import {
-  getUserFromCookie,
-  deleteCookie,
-  saveUserToCookie,
-} from '@/utils/cookies'
+import { getUserFromCookie, deleteCookie } from '@/utils/cookies'
 import {
   validateEmail,
   UserIdValid,
@@ -294,6 +275,7 @@ export default {
 
     passwordActive() {
       this.isPwAcitve = !this.isPwAcitve
+      console.log(this.isPwAcitve)
       this.passwordCurrent = ''
       this.passwordChange = ''
       this.passwordChangeConfirm = ''
@@ -306,21 +288,24 @@ export default {
           this.bioBlank = false
           return
         }
-        if (this.passwordActive) {
-          this.password = this.passwordChange
+        if (this.isPwAcitve) {
           if (this.password !== this.passwordCurrent) {
             this.logMessage = '암호가 정확하지 않습니다.'
             return
+          } else {
+            this.password = this.passwordChange
           }
         }
         const data = new FormData()
         data.append('userID', this.userID)
         data.append('userName', this.userName)
+        console.log('data에 담는 pw', this.password)
         data.append('password', this.password)
         data.append('email', this.email)
         data.append('alias', this.alias)
         data.append('imageData', this.imageData)
         data.append('bio', this.bio)
+        data.append('profilePath', this.profilePath)
         console.log(this.imageData)
         // const userData = {
         //   userID: this.userID,
@@ -334,13 +319,7 @@ export default {
         // console.log(userData)
         // console.log(data)
         await editUser(data)
-        // 쿠키 삭제후 생성, state도 바꿔야함
-        deleteCookie('one_user')
-        saveUserToCookie(this.userName)
-        // state 값 바꿈
-        this.$store.commit('setUserid', this.userName)
-        // 일단 main으로
-        this.$router.push('/main')
+        this.$router.push(`/user/profile/${getUserFromCookie()}`)
       } catch (error) {
         console.log(error)
       }
