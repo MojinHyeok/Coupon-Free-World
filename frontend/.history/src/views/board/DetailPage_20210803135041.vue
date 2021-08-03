@@ -10,7 +10,7 @@
 <script>
 import BoardDetail from '@/components/board/BoardDetail.vue'
 import CommentCreateForm from '@/components/board/CommentCreateForm.vue'
-import CommentListItem from '@/components/board/CommentListItem.vue'
+import CommentListItem from '@/components/board/CommentCreateForm.vue'
 import { getUserFromCookie } from '@/utils/cookies.js'
 
 export default {
