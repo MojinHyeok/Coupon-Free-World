@@ -5,7 +5,7 @@
       <input
         type="text"
         @keyup.enter="onSubmit"
-        v-model="userComment"
+        v-model="boardData.content"
         class="form-control"
         autofocus
       />
@@ -21,32 +21,30 @@ import { getUserFromCookie } from '@/utils/cookies.js'
 export default {
   data() {
     return {
-      userComment: '',
-      boardID: this.$route.params.id,
-      userID: getUserFromCookie(),
+      boardData: {
+        content: '',
+        boardID: this.$route.params.id,
+        userID: getUserFromCookie(),
+      },
     }
   },
   methods: {
     onSubmit() {
-      if (this.userComment.length > 200) {
-        this.userComment = ''
+      if (this.boardData.content.length > 200) {
+        this.boardData.content = ''
         console.log('200자가 넘는 댓글은 작성하실 수 없습니다')
       } else {
-        console.log(`댓글 내용 ${this.userComment}`)
-        const boardData = {
-          content: this.userComment,
-          boardID: this.boardID,
-          userID: this.userID,
-        }
-        console.log(boardData)
-        createComment(boardData)
+        console.log(`댓글 내용 ${this.boardData.content}`)
+        console.log(this.boardData.content)
+        console.log(this.boardData)
+        createComment(this.boardData)
           .then(() => {
             console.log('댓글저장성공')
-            this.userComment = ''
+            this.boardData.content = ''
           })
           .catch(() => {
             console.log('댓글작성실패')
-            this.userComment = ''
+            this.boardData.content = ''
           })
       }
     },
