@@ -29,7 +29,7 @@ public class CommentController {
 	@Autowired
 	CommentService service;
 	
-	SimpleDateFormat format = new SimpleDateFormat("yy-mm-dd HH:mm:ss");
+	static SimpleDateFormat format = new SimpleDateFormat("yy-MM-dd HH:mm:ss");;
 	
 	// 게시판에 코멘트 등록
 	// 게시판 ID를 필수로 가져와야 합니다.
