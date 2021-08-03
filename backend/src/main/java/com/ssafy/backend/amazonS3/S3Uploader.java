@@ -54,23 +54,23 @@ public class S3Uploader {
 		}
 	}
 
-	private Optional<File> convert(MultipartFile file) throws IllegalStateException, IOException {
-		File convertFile=new File(file.getOriginalFilename());
-		file.transferTo(convertFile);
-		return Optional.of(convertFile);
-	}
-//	private Optional<File> convert(MultipartFile file) throws IOException {
-//		File convertFile = new File(file.getOriginalFilename());
-//		System.out.println("컨버트파일: "+convertFile);
-//		boolean success=convertFile.createNewFile();
-//		System.out.println(success);
-//		if(convertFile.createNewFile()) {
-//			try (FileOutputStream fos = new FileOutputStream(convertFile)) {
-//				fos.write(file.getBytes());
-//				} 
-//			return Optional.of(convertFile); 
-//			} 
-//		return Optional.empty(); 
-//		}
+//	private Optional<File> convert(MultipartFile file) throws IllegalStateException, IOException {
+//		File convertFile=new File(file.getOriginalFilename());
+//		file.transferTo(convertFile);
+//		return Optional.of(convertFile);
+//	}
+	private Optional<File> convert(MultipartFile file) throws IOException {
+		File convertFile = new File(file.getOriginalFilename());
+		System.out.println("컨버트파일: "+convertFile);
+		boolean success=convertFile.createNewFile();
+		System.out.println(success);
+		if(success) {
+			try (FileOutputStream fos = new FileOutputStream(convertFile)) {
+				fos.write(file.getBytes());
+				} 
+			return Optional.of(convertFile); 
+			} 
+		return Optional.empty(); 
+		}
 	
 }	
