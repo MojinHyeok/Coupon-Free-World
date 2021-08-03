@@ -1,6 +1,9 @@
 package com.ssafy.backend.feed.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Service;
 
 import com.ssafy.backend.feed.mapper.FeedMapper;
@@ -29,6 +32,11 @@ public class FeedServiceImpl implements FeedService {
 	@Override
 	public int decLikeCnt(int feedID) throws Exception {
 		return mapper.decLikeCnt(feedID);
+	}
+	
+	@Override
+	public List<FeedModel> getFeedList(@Param("feedID") int feedID) throws Exception {
+		return mapper.getFeedList(feedID);
 	}
 
 }

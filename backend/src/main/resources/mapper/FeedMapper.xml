@@ -8,6 +8,8 @@
 			userID,
 			photoPath1,
 			photoPath2,
+			photoPath3,
+			photoPath4,
 			content,
 			date,
 			likeCnt
@@ -16,6 +18,8 @@
 			#{userID},
 			#{photoPath1},
 			#{photoPath2},
+			#{photoPath3},
+			#{photoPath4},
 			#{content},
 			#{date},
 			#{likeCnt}
@@ -39,5 +43,12 @@
 		SET likeCnt = likeCnt-1 
 		WHERE feedID = #{feedID};
 	</update>
+	
+	<select id="getFeedList" parameterType="int">
+		SELECT *
+		FROM feed
+		WHERE userID = #{userID}
+		ORDER BY date DESC;
+	</select>
 	
 </mapper>

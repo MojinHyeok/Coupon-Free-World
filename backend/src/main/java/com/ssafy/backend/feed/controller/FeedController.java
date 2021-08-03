@@ -2,6 +2,7 @@ package com.ssafy.backend.feed.controller;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -94,5 +95,18 @@ public class FeedController {
 		service.decLikeCnt(feedID);
 		
 		return new ResponseEntity<Void>(HttpStatus.OK);
+	}
+	
+	@ApiOperation(value = "피드 불러오기", notes = "해당 유저의 피드를 불러옵니다.")
+	@ApiResponses({
+		@ApiResponse(code = 200, message = "피드 불러오기 성공"),
+		@ApiResponse(code = 404, message = "페이지를 찾을 수 없음"),
+		@ApiResponse(code = 500, message = "내부 서버 오류")
+	})
+	@PostMapping("/getFeedList")
+	public ResponseEntity<?> getFeedList(int feedID) throws Exception {
+		List<FeedModel> list = service.getFeedList(feedID);
+		
+		return new ResponseEntity<>(list, HttpStatus.OK);
 	}
 }

@@ -5,6 +5,8 @@ public class FeedModel {
 	String userID;
 	String photoPath1;
 	String photoPath2;
+	String photoPath3;
+	String photoPath4;
 	String content;
 	String date;
 	int likeCnt;
@@ -32,6 +34,18 @@ public class FeedModel {
 	}
 	public void setPhotoPath2(String photoPath2) {
 		this.photoPath2 = photoPath2;
+	}
+	public String getPhotoPath3() {
+		return photoPath3;
+	}
+	public void setPhotoPath3(String photoPath3) {
+		this.photoPath3 = photoPath3;
+	}
+	public String getPhotoPath4() {
+		return photoPath4;
+	}
+	public void setPhotoPath4(String photoPath4) {
+		this.photoPath4 = photoPath4;
 	}
 	public String getContent() {
 		return content;
