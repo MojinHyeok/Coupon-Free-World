@@ -2,7 +2,7 @@
   <div>
     <h1>게시글 상세페이지</h1>
     <div><BoardDetail></BoardDetail></div>
-    <div v-if="userLogin"><CommentCreateForm /></div>
+    <div><v-if="userLogin" CommentCreateForm /></div>
   </div>
 </template>
 
@@ -13,10 +13,8 @@ import { getUserFromCookie } from '@/utils/cookies.js'
 
 export default {
   computed: {
-    userLogin() {
-      return getUserFromCookie()
-    },
-  },
+    userLogin() { return getUserFromCookie() }
+  }
   components: {
     BoardDetail,
     CommentCreateForm,
