@@ -20,5 +20,5 @@ public interface FeedService {
 	int decLikeCnt(@Param("feedID") int feedID) throws Exception;
 	
 	// 해당 유저의 피드 불러오기
-	List<FeedModel> getFeedList(@Param("feedID") int feedID) throws Exception;
+	List<FeedModel> getFeedList(@Param("userID") int userID) throws Exception;
 }

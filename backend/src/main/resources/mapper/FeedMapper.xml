@@ -44,7 +44,7 @@
 		WHERE feedID = #{feedID};
 	</update>
 	
-	<select id="getFeedList" parameterType="int">
+	<select id="getFeedList" parameterType="int" resultType="FeedModel">
 		SELECT *
 		FROM feed
 		WHERE userID = #{userID}

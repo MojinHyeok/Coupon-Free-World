@@ -104,8 +104,8 @@ public class FeedController {
 		@ApiResponse(code = 500, message = "내부 서버 오류")
 	})
 	@PostMapping("/getFeedList")
-	public ResponseEntity<?> getFeedList(int feedID) throws Exception {
-		List<FeedModel> list = service.getFeedList(feedID);
+	public ResponseEntity<?> getFeedList(int userID) throws Exception {
+		List<FeedModel> list = service.getFeedList(userID);
 		
 		return new ResponseEntity<>(list, HttpStatus.OK);
 	}
