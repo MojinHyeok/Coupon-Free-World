@@ -89,18 +89,18 @@ public class UserController {
 	@PostMapping("/modify")
 	public ResponseEntity<String> userModify(
 //			@RequestBody UserModel model,
-			@RequestParam("imageData") MultipartFile multipartFile,
+			@RequestParam(value="imageData",required=false) MultipartFile multipartFile,
 			@RequestParam("userID") String userID,
 			@RequestParam("userName") String userName,
 			@RequestParam("password") String password,
 			@RequestParam("email") String email,
 			@RequestParam("alias") String alias,
-			@RequestParam("bio") String bio
+			@RequestParam(value="bio",required=false) String bio,
+			@RequestParam(value="profilePath",required=false)String profilePath
 			) throws IllegalArgumentException, FileNotFoundException, IOException{
 		System.out.println(multipartFile);
 		String msg="";
 		HttpStatus status;
-//		System.out.println(x+" x는 무엇인가"+x);
 		UserModel model=new UserModel();
 		model.setUserID(userID);
 		model.setUserName(userName);
@@ -108,8 +108,11 @@ public class UserController {
 		model.setEmail(email);
 		model.setAlias(alias);
 		model.setBio(bio);
-		model.setProfilePath(s3UPloader.upload(multipartFile, "static"));
-		System.out.println(model.getProfilePath());
+		if(multipartFile!=null) {
+			model.setProfilePath(s3UPloader.upload(multipartFile, "static"));			
+		}else if(multipartFile==null&&profilePath!=null) {
+			model.setProfilePath(profilePath);
+		}
 		try {
 			int result=service.userModify(model);
 			if(result>=1)msg="success";

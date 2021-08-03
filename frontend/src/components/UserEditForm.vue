@@ -312,6 +312,7 @@ export default {
         data.append('alias', this.alias)
         data.append('imageData', this.imageData)
         data.append('bio', this.bio)
+        data.append('profilePath', this.profilePath)
         console.log(this.imageData)
         // const userData = {
         //   userID: this.userID,
