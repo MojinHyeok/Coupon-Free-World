@@ -2,7 +2,7 @@
   <div>
     <h3>댓글 조회</h3>
     <ul>
-      <li v-for="comment in commentList" :key="comment.commentID">
+      <li v-for="comment in commentList">
         {{ comment.content }}
         <!-- 삭제 버튼 -->
         <button 
