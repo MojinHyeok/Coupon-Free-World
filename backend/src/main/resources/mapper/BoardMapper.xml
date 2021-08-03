@@ -55,6 +55,7 @@
 		WHERE ${searchOption} LIKE concat('%', #{value} ,'%')
 		LIMIT ${limit}
 		OFFSET ${offset}
+		ORDER BY date DESC
 	</select>
 	
 	<select id="boardList" resultType="BoardModel">
@@ -62,6 +63,7 @@
 		FROM board
 		LIMIT ${limit}
 		offset ${offset}
+		ORDER BY date DESC
 	</select>
 	
 	<select id="totalCount" resultType="int">
