@@ -38,7 +38,7 @@
                 >
                   취소
                 </button>
-                <button type="button" class="btn btn-primary">삭제</button>
+                <button type="button" class="btn btn-primary" @click="deleteConfirm">삭제</button>
               </div>
             </div>
           </div>
@@ -64,9 +64,9 @@ export default {
     console.log(this.commnetList)
   },
   method() {
-    // deleteConfirm() {
-    //   delete api 가 아직 없음..
-    // }
+    deleteConfirm() {
+      return;
+    }
   },
 }
 </script>
