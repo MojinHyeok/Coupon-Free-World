@@ -9,14 +9,7 @@ const router = new VueRouter({
   routes: [
     {
       path: '/',
-      component: () => import('@/views/LoginPage.vue'),
-      beforeEnter(to, form, next) {
-        if (store.getters.user) {
-          next({ name: 'Main' })
-        } else {
-          next()
-        }
-      },
+      redirect: '/main',
     },
     {
       path: '/account/signup',
@@ -25,13 +18,6 @@ const router = new VueRouter({
     {
       path: '/account/login',
       component: () => import('@/views/LoginPage.vue'),
-      beforeEnter(to, form, next) {
-        if (store.getters.user) {
-          next({ name: 'Main' })
-        } else {
-          next()
-        }
-      },
     },
     {
       path: '/account/edit',
@@ -59,6 +45,7 @@ const router = new VueRouter({
       path: '/main',
       name: 'Main',
       component: () => import('@/views/MainPage.vue'),
+      meta: { auth: true },
     },
     {
       path: '/user/profile/:userID',
@@ -93,6 +80,16 @@ const router = new VueRouter({
       component: () => import('@/views/feed/DetailPage.vue'),
     },
   ],
+})
+
+router.beforeEach((to, from, next) => {
+  console.log(store.getters.userID)
+  if (to.meta.auth && !store.getters.userID) {
+    next('/account/login')
+    return
+  } else {
+    next()
+  }
 })
 
 export default router

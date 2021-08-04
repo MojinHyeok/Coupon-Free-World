@@ -28,6 +28,9 @@ export default new Vuex.Store({
     getCommentList(state) {
       return state.nowCommentList
     },
+    userID(state) {
+      return state.userID
+    },
   },
   mutations: {
     setUserid(state, userID) {
