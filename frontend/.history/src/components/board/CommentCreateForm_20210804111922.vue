@@ -66,15 +66,8 @@ export default {
           })
       }
     },
-    deleteCommentConfirm() {
+    deleteComment() {
       deleteComment(this.key)
-        .then(() => {
-          console.log('삭제성공')
-          this.listUpdate()
-        })
-        .catch(() => {
-          console.log('삭제실패')
-        })
     },
   },
 }
