@@ -3,19 +3,20 @@
     <h3>댓글 조회</h3>
     <ul>
       <li v-for="comment in commentList" :key="comment.commentID">
+        <p>asdf</p>
         {{ comment.content }}
         <!-- 삭제 버튼 -->
-
+        <!--         
         <button
           type="button"
           class="btn btn-primary"
           data-bs-toggle="modal"
-          data-bs-target="#Delete-Modal"
+          data-bs-target="#exampleModal"
         >
           X
-        </button>
+        </button> -->
         <!-- 삭제 confirm 모달 -->
-        <div class="modal" tabindex="-1" id="Delete-Modal">
+        <!-- <div class="modal" tabindex="-1">
           <div class="modal-dialog">
             <div class="modal-content">
               <div class="modal-header">
@@ -42,8 +43,7 @@
               </div>
             </div>
           </div>
-        </div>
-        <!-- modal -->
+        </div> -->
       </li>
     </ul>
   </div>
@@ -65,7 +65,6 @@ export default {
   },
   method() {
     // deleteConfirm() {
-    //   delete api 가 아직 없음..
     // }
   },
 }

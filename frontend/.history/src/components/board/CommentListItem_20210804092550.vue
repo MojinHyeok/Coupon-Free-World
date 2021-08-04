@@ -43,7 +43,6 @@
             </div>
           </div>
         </div>
-        <!-- modal -->
       </li>
     </ul>
   </div>
@@ -65,7 +64,6 @@ export default {
   },
   method() {
     // deleteConfirm() {
-    //   delete api 가 아직 없음..
     // }
   },
 }

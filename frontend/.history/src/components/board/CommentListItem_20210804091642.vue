@@ -10,12 +10,12 @@
           type="button"
           class="btn btn-primary"
           data-bs-toggle="modal"
-          data-bs-target="#Delete-Modal"
+          data-bs-target="#exampleModal"
         >
           X
         </button>
         <!-- 삭제 confirm 모달 -->
-        <div class="modal" tabindex="-1" id="Delete-Modal">
+        <div class="modal" tabindex="-1">
           <div class="modal-dialog">
             <div class="modal-content">
               <div class="modal-header">
@@ -43,7 +43,6 @@
             </div>
           </div>
         </div>
-        <!-- modal -->
       </li>
     </ul>
   </div>
@@ -65,7 +64,6 @@ export default {
   },
   method() {
     // deleteConfirm() {
-    //   delete api 가 아직 없음..
     // }
   },
 }
