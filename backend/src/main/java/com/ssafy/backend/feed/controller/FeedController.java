@@ -212,21 +212,22 @@ public class FeedController {
 		FeedModel model = service.getFeed(feedID);
 		return new ResponseEntity<>(model,HttpStatus.OK);
 	}
-	//유저가 좋아요 눌렀는지 확인하는
-	@ApiOperation(value="좋아요한 유저찾기", notes="좋아요한 유저를 찾습니다.")
-	@ApiResponses({
-		@ApiResponse(code = 200, message = "좋아요 유저 찾기 성공"),
-		@ApiResponse(code = 404, message = "페이지를 찾을 수 없음"),
-		@ApiResponse(code = 500, message = "내부 서버 오류")
-	})
-	@PostMapping("/selectLike")
-	public ResponseEntity<String> selectLike(@RequestBody LikeFeedModel temp) throws Exception{
-		System.out.println(temp.getUserID());
-		System.out.println(temp.getFeedID());
-		String msg="";
+	//유저가 좋아요 눌렀는지 확인하는  아직미완..
+//	@ApiOperation(value="좋아요한 유저찾기", notes="좋아요한 유저를 찾습니다.")
+//	@ApiResponses({
+//		@ApiResponse(code = 200, message = "좋아요 유저 찾기 성공"),
+//		@ApiResponse(code = 404, message = "페이지를 찾을 수 없음"),
+//		@ApiResponse(code = 500, message = "내부 서버 오류")
+//	})
+//	@PostMapping("/selectLike")
+//	public ResponseEntity<String> selectLike(@RequestBody LikeFeedModel temp) throws Exception{
+//		System.out.println(temp.getUserID());
+//		System.out.println(temp.getFeedID());
+//		feedID
+//		String msg="";
 //		LikeFeedModel model=service.selectLike(feedID, userID);
 //		if(model==null)msg="success";
 //		else msg="fail";
-		return new ResponseEntity<String>(msg,HttpStatus.OK);
-	}
+//		return new ResponseEntity<String>(msg,HttpStatus.OK);
+//	}
 }
