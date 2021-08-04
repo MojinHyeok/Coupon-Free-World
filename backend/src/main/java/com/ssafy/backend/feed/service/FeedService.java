@@ -27,4 +27,7 @@ public interface FeedService {
 		
 	// 피드 좋아요 리스트 삭제
 	int deleteLikeFeed(@Param("feedID") int feedID, @Param("userID") String userID) throws Exception;
+	
+	// 내 타임라인 보기
+	List<FeedModel> getMyTimeline(String userID) throws Exception;
 }

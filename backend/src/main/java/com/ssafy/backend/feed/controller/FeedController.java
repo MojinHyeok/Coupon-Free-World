@@ -113,7 +113,7 @@ public class FeedController {
 		@ApiResponse(code = 500, message = "내부 서버 오류")
 	})
 	@PostMapping("/getFeedList")
-	public ResponseEntity<?> getFeedList(String userID) throws Exception {
+	public ResponseEntity<?> getFeedList(@RequestBody String userID) throws Exception {
 		List<FeedModel> list = service.getFeedList(userID);
 		
 		return new ResponseEntity<>(list, HttpStatus.OK);
@@ -155,6 +155,17 @@ public class FeedController {
 	}
 	
 	// 내 타임라인의 피드(내 피드 + 내가 팔로우하는 사람의 피드) 불러오기
-	
+	@ApiOperation(value = "내 타임라인 보기", notes = "나의 타임라인을 봅니다.")
+	@ApiResponses({
+		@ApiResponse(code = 200, message = "내 타임라인 보기 성공"),
+		@ApiResponse(code = 404, message = "페이지를 찾을 수 없음"),
+		@ApiResponse(code = 500, message = "내부 서버 오류")
+	})
+	@PostMapping("/getMyTimeline")
+	public ResponseEntity<?> getMyTimeline(@RequestBody String userID) throws Exception {
+		List<FeedModel> list = service.getMyTimeline(userID);
+		
+		return new ResponseEntity<>(list, HttpStatus.OK);
+	}
 	
 }

@@ -48,4 +48,8 @@ public class FeedServiceImpl implements FeedService {
 	public int deleteLikeFeed(@Param("feedID") int feedID, @Param("userID") String userID) throws Exception {
 		return mapper.deleteFeed(feedID, userID);
 	}
+	
+	public List<FeedModel> getMyTimeline(String userID) throws Exception {
+		return mapper.getMyTimeline(userID);
+	}
 }
