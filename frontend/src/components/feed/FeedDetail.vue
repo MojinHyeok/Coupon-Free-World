@@ -8,10 +8,10 @@
     <div>사진1url: {{ feedItem.photoPath1 }}</div>
     <div>사진2url: {{ feedItem.photoPath2 }}</div>
     <!-- 좋아요 버튼 -->
-    <!-- <button v-if="isLike">like</button>
-    <button v-else @click="">unlike</button> -->
+    <button v-if="isLike" @click="incLike">like</button>
+    <button v-else @click="decLick">unlike</button>
     <!-- 피드 삭제 버튼 -->
-    <button @click="feedDelete">삭제</button>
+    <button v-if="isUserValid" @click="feedDelete">삭제</button>
   </div>
 </template>
 
@@ -30,6 +30,13 @@ export default {
   methods: {
     feedDelete() {
       deleteFeed(this.$store.state.userID, this.feedItem.feedID)
+    },
+    incLike() {},
+    decLike() {},
+  },
+  computed: {
+    isUserValid() {
+      return this.$store.state.userID === this.feedItem.userID
     },
   },
 }

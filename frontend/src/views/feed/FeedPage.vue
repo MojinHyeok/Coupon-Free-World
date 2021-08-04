@@ -28,8 +28,8 @@ export default {
     // feeds 불러오기
     async fetchData() {
       const response = await fetchFeeds()
-      console.log('fetchData: ', response)
-      this.feedItems = response
+      console.log('fetchData: ', response.data)
+      this.feedItems = response.data
     },
     moveCreate() {
       this.$router.push('/feed/create')
