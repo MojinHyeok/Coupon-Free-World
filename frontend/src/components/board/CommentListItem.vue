@@ -2,9 +2,9 @@
   <div>
     <h3>댓글 조회</h3>
     <ul>
-      <li v-for="comment in commentList">
+      <!-- <li v-for="comment in commentList">
         {{ comment.content }}
-      </li>
+      </li> -->
     </ul>
   </div>
 </template>

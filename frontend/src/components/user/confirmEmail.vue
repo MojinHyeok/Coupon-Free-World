@@ -9,6 +9,7 @@
             id="email"
             v-model="email"
             placeholder=" "
+            spellcheck="false"
             autocomplete="off"
           />
           <label for="email">이메일</label>
@@ -47,7 +48,11 @@
           <input id="code" v-model="code" placeholder=" " autocomplete="off" />
           <label for="code">인증번호</label>
         </div>
-        <button style="width: 20%; margin: 0" @click="move" :disabled="!code">
+        <button
+          style="width: 20%; margin: 0.4em; padding: 0;"
+          @click="move"
+          :disabled="!code"
+        >
           확인
         </button>
         <p v-if="logMessage">{{ logMessage }}</p>
