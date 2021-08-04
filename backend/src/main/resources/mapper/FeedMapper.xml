@@ -51,4 +51,22 @@
 		ORDER BY date DESC;
 	</select>
 	
+	<insert id="insertLikeFeed" parameterType="map">
+		INSERT
+		INTO likefeed(
+			userID,
+			feedID
+		)
+		VALUES (
+			#{userID},
+			#{feedID}
+		)
+	</insert>
+	
+	<delete id="deleteLikeFeed" parameterType="map">
+		DELETE
+		FROM likefeed
+		WHERE userID = #{userID} AND feedID = #{feedID}
+	</delete>
+	
 </mapper>

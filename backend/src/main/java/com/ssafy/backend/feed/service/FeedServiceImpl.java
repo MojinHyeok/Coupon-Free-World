@@ -39,4 +39,13 @@ public class FeedServiceImpl implements FeedService {
 		return mapper.getFeedList(userID);
 	}
 
+	@Override
+	public int insertLikeFeed(@Param("feedID") int feedID, @Param("userID") String userID) throws Exception {
+		return mapper.insertLikeFeed(feedID, userID);
+	}
+		
+	@Override
+	public int deleteLikeFeed(@Param("feedID") int feedID, @Param("userID") String userID) throws Exception {
+		return mapper.deleteFeed(feedID, userID);
+	}
 }

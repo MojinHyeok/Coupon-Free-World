@@ -106,33 +106,7 @@ public class FeedController {
 		}
 	}
 	
-	@ApiOperation(value = "피드 좋아요", notes = "피드에 좋아요를 눌러 좋아요 수를 증가시킵니다.")
-	@ApiResponses({
-		@ApiResponse(code = 200, message = "좋아요 성공"),
-		@ApiResponse(code = 404, message = "페이지를 찾을 수 없음"),
-		@ApiResponse(code = 500, message = "내부 서버 오류")
-	})
-	@PostMapping("/incLikeCnt")
-	public ResponseEntity<?> incLikeCnt(int feedID) throws Exception {
-		service.incLikeCnt(feedID);
-		
-		return new ResponseEntity<Void>(HttpStatus.OK);
-	}
-	
-	@ApiOperation(value = "피드 싫어요", notes = "피드에 싫어요를 눌러 좋아요 수를 감소시킵니다.")
-	@ApiResponses({
-		@ApiResponse(code = 200, message = "싫어요 성공"),
-		@ApiResponse(code = 404, message = "페이지를 찾을 수 없음"),
-		@ApiResponse(code = 500, message = "내부 서버 오류")
-	})
-	@PostMapping("/decLikeCnt")
-	public ResponseEntity<?> decLikeCnt(int feedID) throws Exception {
-		service.decLikeCnt(feedID);
-		
-		return new ResponseEntity<Void>(HttpStatus.OK);
-	}
-	
-	@ApiOperation(value = "피드 불러오기", notes = "해당 유저의 피드를 불러옵니다.")
+	@ApiOperation(value = "나의 피드 불러오기", notes = "해당 유저의 피드를 불러옵니다.")
 	@ApiResponses({
 		@ApiResponse(code = 200, message = "피드 불러오기 성공"),
 		@ApiResponse(code = 404, message = "페이지를 찾을 수 없음"),
@@ -144,4 +118,42 @@ public class FeedController {
 		
 		return new ResponseEntity<>(list, HttpStatus.OK);
 	}
+	
+	@ApiOperation(value = "피드 좋아요", notes = "피드에 좋아요를 눌러 좋아요 수를 증가시킵니다.")
+	@ApiResponses({
+		@ApiResponse(code = 200, message = "좋아요 성공"),
+		@ApiResponse(code = 404, message = "페이지를 찾을 수 없음"),
+		@ApiResponse(code = 500, message = "내부 서버 오류")
+	})
+	@PostMapping("/incLikeCnt")
+	public ResponseEntity<?> incLikeCnt(@RequestParam("feedID") int feedID, 
+										@RequestParam("userID") String userID) throws Exception {
+		
+		int res = service.insertLikeFeed(feedID, userID);
+		
+		if(res >= 1) {
+			service.incLikeCnt(feedID);
+			return new ResponseEntity<Void>(HttpStatus.OK);	
+		} else {
+			return new ResponseEntity<Void>(HttpStatus.BAD_REQUEST);
+		}
+	}
+	
+	@ApiOperation(value = "피드 좋아요 취소", notes = "피드에 좋아요를 취소합니다.")
+	@ApiResponses({
+		@ApiResponse(code = 200, message = "피드 좋아요 취소 성공"),
+		@ApiResponse(code = 404, message = "페이지를 찾을 수 없음"),
+		@ApiResponse(code = 500, message = "내부 서버 오류")
+	})
+	@PostMapping("/decLikeCnt")
+	public ResponseEntity<?> decLikeCnt(@RequestParam("feedID") int feedID, 
+										@RequestParam("userID") String userID) throws Exception {
+		service.decLikeCnt(feedID);
+		service.deleteLikeFeed(feedID, userID);
+		
+		return new ResponseEntity<Void>(HttpStatus.OK);
+	}
+	
+	// 내 타임라인의 피드 불러오기
+	
 }
