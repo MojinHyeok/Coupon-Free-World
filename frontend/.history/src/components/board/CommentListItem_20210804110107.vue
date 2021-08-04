@@ -56,6 +56,7 @@ export default {
     return {
       boardID: this.$route.params.id,
       commentList: '',
+      showModal: false,
     }
   },
   created() {

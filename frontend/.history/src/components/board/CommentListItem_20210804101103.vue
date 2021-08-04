@@ -5,7 +5,7 @@
       <li v-for="comment in commentList" :key="comment.commentID">
         {{ comment.content }}
         <!-- 삭제 버튼 -->
-        <!-- 
+
         <button
           type="button"
           class="btn btn-primary"
@@ -13,9 +13,9 @@
           data-bs-target="#Delete-Modal"
         >
           X
-        </button> -->
+        </button>
         <!-- 삭제 confirm 모달 -->
-        <!-- <div class="modal" tabindex="-1" id="Delete-Modal">
+        <div class="modal" tabindex="-1" id="Delete-Modal">
           <div class="modal-dialog">
             <div class="modal-content">
               <div class="modal-header">
@@ -42,7 +42,7 @@
               </div>
             </div>
           </div>
-        </div> -->
+        </div>
         <!-- modal -->
       </li>
     </ul>
@@ -59,13 +59,13 @@ export default {
     }
   },
   created() {
-    this.listUpdate()
+    listUpdate();
   },
-  method: {
+  method() {
     async listUpdate() {
       const commentList = await detailComment(this.boardID)
       this.commentList = commentList.data
-      console.log(this.commentList)
+      console.log(this.commnetList)
     },
   },
 }

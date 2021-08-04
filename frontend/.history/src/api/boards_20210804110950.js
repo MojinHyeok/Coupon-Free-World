@@ -73,5 +73,4 @@ export {
   detailComment,
   likeComment,
   unlikeComment,
-  deleteComment,
 }
