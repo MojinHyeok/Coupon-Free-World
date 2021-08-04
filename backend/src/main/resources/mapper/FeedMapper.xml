@@ -99,7 +99,7 @@
 	where feedID = #{feedID}
 	</select>
 	
-	<select id="selectLike" parameterType="LikeFeedModel">
+	<select id="selectLike" parameterType="map" resultType="likeFeedModel">
 	select * from likefeed
 	WHERE feedID = #{feedID} AND userID = #{userID}
 	</select>
