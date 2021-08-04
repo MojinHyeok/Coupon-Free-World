@@ -1,6 +1,6 @@
 <template>
-  <div>
-    <h3>댓글 작성 Form</h3>
+  <div class="pt-5">
+    <h3>댓글</h3>
     <div class="d-flex">
       <input
         type="text"
@@ -12,11 +12,21 @@
       <button @click="onSubmit" class="btn btn-primary">등록</button>
     </div>
     <ul>
+      <hr />
       <li v-for="comment in commentList" :key="comment.commentID">
-        {{ comment.content }}
-        <button class="btn" @click="deleteCommentConfirm(comment.commentID)">
-          X
-        </button>
+        <div class="d-flex justify-content-between">
+          <div class="ms-3">
+            <p>{{ comment.content }}</p>
+            <em>
+              <span>{{ comment.userID }}</span>
+              <span>{{ comment.date }}</span>
+            </em>
+          </div>
+          <button class="btn" @click="deleteCommentConfirm(comment.commentID)">
+            X
+          </button>
+        </div>
+        <hr />
       </li>
     </ul>
   </div>
@@ -47,6 +57,8 @@ export default {
       if (this.userComment.length > 200) {
         this.userComment = ''
         console.log('200자가 넘는 댓글은 작성하실 수 없습니다')
+      } else if (this.userComment.length === 0) {
+        alert('내용을 입력해주세요')
       } else {
         console.log(`댓글 내용 ${this.userComment}`)
         const boardData = {
@@ -87,8 +99,40 @@ export default {
 </script>
 
 <style>
-.button {
+button {
   border: 0;
   outline: 0;
+}
+ul {
+  padding-left: 0;
+}
+li {
+  list-style: none;
+  list-style-position: initial;
+  list-style-image: initial;
+  list-style-type: none;
+}
+em {
+  color: gray;
+  font-style: normal;
+}
+hr {
+  width: 100%;
+}
+.btn-primary {
+  background-color: #ffa061;
+  border: none;
+}
+.btn-primary:visited {
+  background-color: #fa904d;
+  border: none;
+}
+.btn-primary:active {
+  background-color: #fa904d;
+  border: none;
+}
+.btn-primary:hover {
+  background-color: #fa904d;
+  border: none;
 }
 </style>
