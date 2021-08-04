@@ -2,16 +2,24 @@
   <header>
     <nav>
       <div id="menuToggle">
-        <input type="checkbox" />
+        <input type="checkbox" id="testInput" />
         <span></span>
         <span></span>
         <span></span>
-        <ul id="menu">
+        <ul @click="offMenu" class="clickIcon" id="menu">
           <li>
-            <router-link class="link" to="/board">BoardList</router-link>
+            <router-link class="link" to="/board">
+              <div style="padding-left: 0.3em;">
+                <i class="fas fa-book"></i>
+              </div>
+            </router-link>
           </li>
           <li>
-            <router-link class="link" to="/feed">feed</router-link>
+            <router-link class="link" to="/feed">
+              <div style="padding-left: 0.3em;">
+                <i class="fas fa-comment-dots"></i>
+              </div>
+            </router-link>
           </li>
           <!-- menu에 항목을 추가하실려면 밑에 주석처럼 만들면됩니다. -->
           <!-- <li>
@@ -58,6 +66,9 @@ export default {
     },
     openUser() {
       this.isOpen = !this.isOpen
+    },
+    offMenu() {
+      document.getElementById('testInput').click()
     },
   },
 }
