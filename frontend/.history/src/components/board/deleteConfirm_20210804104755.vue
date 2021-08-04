@@ -1,5 +1,14 @@
 <template>
-  <div class="modal" tabindex="-1">
+  <button
+    type="button"
+    class="btn btn-primary"
+    data-bs-toggle="modal"
+    data-bs-target="#Delete-Modal"
+  >
+    X
+  </button>
+  <!-- 삭제 confirm 모달 -->
+  <div class="modal" tabindex="-1" id="Delete-Modal">
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">

@@ -5,47 +5,43 @@
       <li v-for="comment in commentList" :key="comment.commentID">
         {{ comment.content }}
         <!-- 삭제 버튼 -->
-        <!-- 
-        <button
-          type="button"
-          class="btn btn-primary"
-          data-bs-toggle="modal"
-          data-bs-target="#Delete-Modal"
-        >
-          X
-        </button> -->
+
+        <button class="btn" @click="showModal = true">Show</button>
+        <modal v-if="showModal" @close="showModal = false" name="Umesh">
+          <p>X</p>
+        </modal>
         <!-- 삭제 confirm 모달 -->
-        <!-- <div class="modal" tabindex="-1" id="Delete-Modal">
+        <div class="modal fade in modal-active">
           <div class="modal-dialog">
             <div class="modal-content">
               <div class="modal-header">
-                <h5 class="modal-title">삭제하시겠습니까?</h5>
-                <button
-                  type="button"
-                  class="btn-close"
-                  data-bs-dismiss="modal"
-                  aria-label="Close"
-                ></button>
+                <button type="button" @click="$emit('close')" class="close">
+                  <span>&times;</span>
+                </button>
+                <h4 class="modal-title">
+                  정말 삭제하시겠습니까?
+                </h4>
               </div>
               <div class="modal-body">
-                <p>삭제 시 다시 되돌릴 수 없습니다</p>
+                <slot></slot>
               </div>
               <div class="modal-footer">
                 <button
                   type="button"
-                  class="btn btn-secondary"
-                  data-bs-dismiss="modal"
+                  class="btn btn-default"
+                  @click="$emit('close')"
                 >
-                  취소
+                  Close
                 </button>
-                <button type="button" class="btn btn-primary">삭제</button>
+                <button type="button" class="btn btn-primary">
+                  Save changes
+                </button>
               </div>
             </div>
           </div>
-        </div> -->
+        </div>
         <!-- modal -->
       </li>
->>>>>>> frontend/src/components/board/CommentListItem.vue
     </ul>
   </div>
 </template>
@@ -57,6 +53,7 @@ export default {
     return {
       boardID: this.$route.params.id,
       commentList: '',
+      showModal: false,
     }
   },
   created() {

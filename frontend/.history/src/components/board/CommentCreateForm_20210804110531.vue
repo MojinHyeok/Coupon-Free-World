@@ -13,15 +13,14 @@
     </div>
     <ul>
       <li v-for="comment in commentList" :key="comment.commentID">
-        {{ comment.content }}
-        <button @click="deleteCommentConfirm">X</button>
+        댓글 : {{ comment.content }}
       </li>
     </ul>
   </div>
 </template>
 
 <script>
-import { createComment, detailComment, deleteComment } from '@/api/boards.js'
+import { createComment, detailComment } from '@/api/boards.js'
 import { getUserFromCookie } from '@/utils/cookies.js'
 
 export default {
@@ -58,23 +57,12 @@ export default {
           .then(() => {
             console.log('댓글저장성공')
             this.userComment = ''
-            this.listUpdate()
           })
           .catch(() => {
             console.log('댓글작성실패')
             this.userComment = ''
           })
       }
-    },
-    deleteCommentConfirm() {
-      deleteComment(this.key)
-        .then(() => {
-          console.log('삭제성공')
-          this.listUpdate()
-        })
-        .catch(() => {
-          console.log('삭제실패')
-        })
     },
   },
 }

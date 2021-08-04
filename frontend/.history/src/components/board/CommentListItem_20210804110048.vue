@@ -5,7 +5,7 @@
       <li v-for="comment in commentList" :key="comment.commentID">
         {{ comment.content }}
         <!-- 삭제 버튼 -->
-        <!-- 
+
         <button
           type="button"
           class="btn btn-primary"
@@ -13,9 +13,9 @@
           data-bs-target="#Delete-Modal"
         >
           X
-        </button> -->
+        </button>
         <!-- 삭제 confirm 모달 -->
-        <!-- <div class="modal" tabindex="-1" id="Delete-Modal">
+        <div class="modal" tabindex="-1" id="Delete-Modal">
           <div class="modal-dialog">
             <div class="modal-content">
               <div class="modal-header">
@@ -42,10 +42,9 @@
               </div>
             </div>
           </div>
-        </div> -->
+        </div>
         <!-- modal -->
       </li>
->>>>>>> frontend/src/components/board/CommentListItem.vue
     </ul>
   </div>
 </template>
@@ -57,6 +56,7 @@ export default {
     return {
       boardID: this.$route.params.id,
       commentList: '',
+      showModal: false,
     }
   },
   created() {

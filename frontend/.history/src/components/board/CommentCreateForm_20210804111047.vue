@@ -14,7 +14,7 @@
     <ul>
       <li v-for="comment in commentList" :key="comment.commentID">
         {{ comment.content }}
-        <button @click="deleteCommentConfirm">X</button>
+        <button @click="deleteComment">X</button>
       </li>
     </ul>
   </div>
@@ -66,15 +66,8 @@ export default {
           })
       }
     },
-    deleteCommentConfirm() {
-      deleteComment(this.key)
-        .then(() => {
-          console.log('삭제성공')
-          this.listUpdate()
-        })
-        .catch(() => {
-          console.log('삭제실패')
-        })
+    deleteComment() {
+      deleteComment(this.comment.commentID)
     },
   },
 }

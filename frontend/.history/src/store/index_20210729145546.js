@@ -17,16 +17,12 @@ export default new Vuex.Store({
     userID: getUserFromCookie() || '',
     token: getAuthFromCookie() || '',
     user: {},
-    nowCommentList: [],
   },
   getters: {
     user(state) {
       console.log('asdas')
       console.log(state.user)
       return state.user
-    },
-    getCommentList(state) {
-      return state.nowCommentList
     },
   },
   mutations: {
@@ -46,9 +42,6 @@ export default new Vuex.Store({
       console.log('여기는 setuser')
       console.log(payload)
       state.user = payload
-    },
-    CREATE_COMMENT(state, newComment) {
-      state.nowCommentList.push(newComment)
     },
   },
   actions: {

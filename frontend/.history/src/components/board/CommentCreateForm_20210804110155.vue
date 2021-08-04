@@ -14,14 +14,13 @@
     <ul>
       <li v-for="comment in commentList" :key="comment.commentID">
         {{ comment.content }}
-        <button @click="deleteCommentConfirm">X</button>
       </li>
     </ul>
   </div>
 </template>
 
 <script>
-import { createComment, detailComment, deleteComment } from '@/api/boards.js'
+import { createComment } from '@/api/boards.js'
 import { getUserFromCookie } from '@/utils/cookies.js'
 
 export default {
@@ -30,18 +29,9 @@ export default {
       userComment: '',
       boardID: this.$route.params.id,
       userID: getUserFromCookie(),
-      commentList: '',
     }
   },
-  created() {
-    this.listUpdate()
-  },
   methods: {
-    async listUpdate() {
-      const commentList = await detailComment(this.boardID)
-      this.commentList = commentList.data
-      console.log(this.commentList)
-    },
     onSubmit() {
       if (this.userComment.length > 200) {
         this.userComment = ''
@@ -58,23 +48,12 @@ export default {
           .then(() => {
             console.log('댓글저장성공')
             this.userComment = ''
-            this.listUpdate()
           })
           .catch(() => {
             console.log('댓글작성실패')
             this.userComment = ''
           })
       }
-    },
-    deleteCommentConfirm() {
-      deleteComment(this.key)
-        .then(() => {
-          console.log('삭제성공')
-          this.listUpdate()
-        })
-        .catch(() => {
-          console.log('삭제실패')
-        })
     },
   },
 }

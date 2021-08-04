@@ -45,7 +45,6 @@
         </div> -->
         <!-- modal -->
       </li>
->>>>>>> frontend/src/components/board/CommentListItem.vue
     </ul>
   </div>
 </template>
@@ -57,6 +56,7 @@ export default {
     return {
       boardID: this.$route.params.id,
       commentList: '',
+      showModal: false,
     }
   },
   created() {
