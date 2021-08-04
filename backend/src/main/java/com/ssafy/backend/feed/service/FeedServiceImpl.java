@@ -63,4 +63,9 @@ public class FeedServiceImpl implements FeedService {
 	public List<FeedModel> mainFeedList() throws Exception {
 		return mapper.mainFeedList();
 	}
+
+	@Override
+	public FeedModel getFeed(int feedID) throws Exception {
+		return mapper.getFeed(feedID);
+	}
 }

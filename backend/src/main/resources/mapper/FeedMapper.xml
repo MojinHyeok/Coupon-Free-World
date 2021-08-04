@@ -92,5 +92,9 @@
 		FROM feed
 		ORDER BY date DESC
 	</select>
+	<select id="getFeed" parameterType="int" resultType="FeedModel">
+	select * from feed
+	where feedID = #{feedID}
+	</select>
 	
 </mapper>

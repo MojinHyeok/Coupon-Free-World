@@ -38,4 +38,7 @@ public interface FeedMapper {
 	
 	// 메인 화면 피드 보기(모든 피드)
 	List<FeedModel> mainFeedList() throws Exception;
+	
+	//상세 피드글 보기
+	FeedModel getFeed(int feedID) throws Exception;
 }
