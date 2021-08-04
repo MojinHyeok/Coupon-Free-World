@@ -35,7 +35,7 @@ public class FeedServiceImpl implements FeedService {
 	}
 	
 	@Override
-	public List<FeedModel> getFeedList(@Param("userID") int userID) throws Exception {
+	public List<FeedModel> getFeedList(String userID) throws Exception {
 		return mapper.getFeedList(userID);
 	}
 
