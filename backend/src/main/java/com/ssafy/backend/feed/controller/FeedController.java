@@ -106,19 +106,6 @@ public class FeedController {
 		}
 	}
 	
-	@ApiOperation(value = "나의 피드 불러오기", notes = "해당 유저의 피드를 불러옵니다.")
-	@ApiResponses({
-		@ApiResponse(code = 200, message = "피드 불러오기 성공"),
-		@ApiResponse(code = 404, message = "페이지를 찾을 수 없음"),
-		@ApiResponse(code = 500, message = "내부 서버 오류")
-	})
-	@PostMapping("/getFeedList")
-	public ResponseEntity<?> getFeedList(@RequestBody String userID) throws Exception {
-		List<FeedModel> list = service.getFeedList(userID);
-		
-		return new ResponseEntity<>(list, HttpStatus.OK);
-	}
-	
 	@ApiOperation(value = "피드 좋아요", notes = "피드에 좋아요를 눌러 좋아요 수를 증가시킵니다.")
 	@ApiResponses({
 		@ApiResponse(code = 200, message = "좋아요 성공"),
@@ -154,7 +141,7 @@ public class FeedController {
 		return new ResponseEntity<Void>(HttpStatus.OK);
 	}
 	
-	// 내 타임라인의 피드(내 피드 + 내가 팔로우하는 사람의 피드) 불러오기
+	// 내 타임라인의 피드(내가 팔로우하는 사람들의 피드) 불러오기
 	@ApiOperation(value = "내 타임라인 보기", notes = "나의 타임라인을 봅니다.")
 	@ApiResponses({
 		@ApiResponse(code = 200, message = "내 타임라인 보기 성공"),
@@ -164,6 +151,48 @@ public class FeedController {
 	@PostMapping("/getMyTimeline")
 	public ResponseEntity<?> getMyTimeline(@RequestBody String userID) throws Exception {
 		List<FeedModel> list = service.getMyTimeline(userID);
+		
+		return new ResponseEntity<>(list, HttpStatus.OK);
+	}
+	
+	// 특정 유저의 피드 불러오기
+	@ApiOperation(value = "특정 유저의 피드 불러오기", notes = "해당 유저의 피드를 불러옵니다.")
+	@ApiResponses({
+		@ApiResponse(code = 200, message = "피드 불러오기 성공"),
+		@ApiResponse(code = 404, message = "페이지를 찾을 수 없음"),
+		@ApiResponse(code = 500, message = "내부 서버 오류")
+	})
+	@PostMapping("/getFeedList")
+	public ResponseEntity<?> getFeedList(@RequestBody String userID) throws Exception {
+		List<FeedModel> list = service.getFeedList(userID);
+		
+		return new ResponseEntity<>(list, HttpStatus.OK);
+	}
+	
+	// 내가 좋아요 한 피드 불러오기
+	@ApiOperation(value = "내가 좋아요 한 피드 불러오기", notes = "내가 좋아요 한 피드를 불러옵니다.")
+	@ApiResponses({
+		@ApiResponse(code = 200, message = "피드 불러오기 성공"),
+		@ApiResponse(code = 404, message = "페이지를 찾을 수 없음"),
+		@ApiResponse(code = 500, message = "내부 서버 오류")
+	})
+	@PostMapping("/likeFeedList")
+	public ResponseEntity<?> likeFeedList(@RequestBody String userID) throws Exception {
+		List<FeedModel> list = service.likeFeedList(userID);
+		
+		return new ResponseEntity<>(list, HttpStatus.OK);
+	}
+	
+	// 메인 화면 피드 보기(모든 유저들)
+	@ApiOperation(value = "메인 피드 불러오기", notes = "메인 피드를 불러옵니다.")
+	@ApiResponses({
+		@ApiResponse(code = 200, message = "피드 불러오기 성공"),
+		@ApiResponse(code = 404, message = "페이지를 찾을 수 없음"),
+		@ApiResponse(code = 500, message = "내부 서버 오류")
+	})
+	@PostMapping("/mainFeedList")
+	public ResponseEntity<?> mainFeedList() throws Exception {
+		List<FeedModel> list = service.mainFeedList();
 		
 		return new ResponseEntity<>(list, HttpStatus.OK);
 	}

@@ -32,4 +32,10 @@ public interface FeedMapper {
 	
 	// 내 타임라인 가져오기
 	List<FeedModel> getMyTimeline(String userID) throws Exception;
+	
+	// 내가 좋아요 한 피드 보기
+	List<FeedModel> likeFeedList(String userID) throws Exception;
+	
+	// 메인 화면 피드 보기(모든 피드)
+	List<FeedModel> mainFeedList() throws Exception;
 }

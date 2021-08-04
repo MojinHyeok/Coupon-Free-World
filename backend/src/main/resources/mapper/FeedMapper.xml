@@ -70,7 +70,27 @@
 	</delete>
 	
 	<select id="getMyTimeline" parameterType="String">
+		SELECT feedID, userID, photoPath1, content, date, likeCnt
+		FROM feed A 
+		RIGHT JOIN follow B 
+		ON A.userID = B.targetID
+		WHERE B.sourceID = #{userID}
+		ORDER BY date DESC
+	</select>
 	
+	<select id="likeFeedList" parameterType="String">
+		SELECT A.feedID, A.userID, photoPath1, content, date, likeCnt
+		FROM feed A 
+		RIGHT JOIN likefeed B 
+		ON A.feedID = B.feedID
+		WHERE B.userID = #{userID}
+		ORDER BY date DESC
+	</select>
+	
+	<select id="mainFeedList">
+		SELECT *
+		FROM feed
+		ORDER BY date DESC
 	</select>
 	
 </mapper>

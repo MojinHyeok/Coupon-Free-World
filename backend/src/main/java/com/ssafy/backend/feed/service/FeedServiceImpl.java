@@ -49,7 +49,18 @@ public class FeedServiceImpl implements FeedService {
 		return mapper.deleteFeed(feedID, userID);
 	}
 	
+	@Override
 	public List<FeedModel> getMyTimeline(String userID) throws Exception {
 		return mapper.getMyTimeline(userID);
+	}
+	
+	@Override
+	public List<FeedModel> likeFeedList(String userID) throws Exception {
+		return mapper.likeFeedList(userID);
+	}
+
+	@Override
+	public List<FeedModel> mainFeedList() throws Exception {
+		return mapper.mainFeedList();
 	}
 }
