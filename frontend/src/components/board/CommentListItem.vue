@@ -45,6 +45,7 @@
         </div>
         <!-- modal -->
       </li>
+>>>>>>> frontend/src/components/board/CommentListItem.vue
     </ul>
   </div>
 </template>
