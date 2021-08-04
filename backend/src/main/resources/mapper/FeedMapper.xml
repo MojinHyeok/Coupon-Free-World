@@ -87,7 +87,7 @@
 		ORDER BY date DESC
 	</select>
 	
-	<select id="mainFeedList">
+	<select id="mainFeedList" resultType="FeedModel">
 		SELECT *
 		FROM feed
 		ORDER BY date DESC
