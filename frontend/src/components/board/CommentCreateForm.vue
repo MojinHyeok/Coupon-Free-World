@@ -11,24 +11,48 @@
       />
       <button @click="onSubmit" class="btn btn-primary">등록</button>
     </div>
-    <ul>
-      <hr />
-      <li v-for="comment in commentList" :key="comment.commentID">
-        <div class="d-flex justify-content-between">
-          <div class="ms-3">
-            <p>{{ comment.content }}</p>
-            <em>
-              <span>{{ comment.userID }}</span>
-              <span>{{ comment.date }}</span>
-            </em>
+    <div class="pt-4">
+      <ul class="border-top border-bottom border-3">
+        <li v-for="(comment, index) in commentList" :key="comment.commentID">
+          <div
+            v-if="index === commentList.length - 1"
+            class="d-flex justify-content-between pt-2 pb-2"
+          >
+            <div class="ms-3">
+              <p>{{ comment.content }}</p>
+              <em>
+                <span>{{ comment.userID }}</span>
+                <span>{{ comment.date }}</span>
+              </em>
+            </div>
+            <button
+              class="btn"
+              @click="deleteCommentConfirm(comment.commentID)"
+            >
+              X
+            </button>
           </div>
-          <button class="btn" @click="deleteCommentConfirm(comment.commentID)">
-            X
-          </button>
-        </div>
-        <hr />
-      </li>
-    </ul>
+          <div
+            v-else
+            class="d-flex justify-content-between border-bottom pt-2 pb-2"
+          >
+            <div class="ms-3">
+              <p>{{ comment.content }}</p>
+              <em>
+                <span>{{ comment.userID }}</span>
+                <span>{{ comment.date }}</span>
+              </em>
+            </div>
+            <button
+              class="btn"
+              @click="deleteCommentConfirm(comment.commentID)"
+            >
+              X
+            </button>
+          </div>
+        </li>
+      </ul>
+    </div>
   </div>
 </template>
 
@@ -115,9 +139,6 @@ li {
 em {
   color: gray;
   font-style: normal;
-}
-hr {
-  width: 100%;
 }
 .btn-primary {
   background-color: #ffa061;

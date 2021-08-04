@@ -13,7 +13,7 @@
       <td>내용 :</td>
       <td>{{ detail.content }}</td>
     </tr>
-    <button>목록</button>
+    <button @click="$router.push('/board')">목록</button>
     <div v-if="userID == `${detail.writer}`">
       <button @click="deleteBoardData">삭제하기</button>
       <button @click="move">수정하기</button>
@@ -29,6 +29,7 @@ export default {
     return {
       detail: [],
       userID: getUserFromCookie(),
+      boardID: this.$route.params.id,
     }
   },
   async created() {
@@ -48,7 +49,7 @@ export default {
       }
     },
     move() {
-      this.$router.pus('/board')
+      this.$router.push(`/board/edit/${this.boardID}`)
     },
   },
 }
