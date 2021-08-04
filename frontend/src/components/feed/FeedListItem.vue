@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div @click="moveDetail">
     <div>userID: {{ feedItem.userID }}</div>
     <div>feedID: {{ feedItem.feedID }}</div>
     <div>내용: {{ feedItem.content }}</div>

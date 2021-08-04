@@ -4,22 +4,22 @@
     <!-- 댓글 뺀 상세 피드 컴포넌트 -->
     <FeedDetail :feedItem="feedItem"></FeedDetail>
     <!-- 댓글 상세 피드 -->
-    <FeedComment :feedItem="feedItem"></FeedComment>
+    <!-- <FeedComment :feedItem="feedItem"></FeedComment> -->
   </div>
 </template>
 
 <script>
 import { fetchFeed } from '@/api/feed.js'
 import FeedDetail from '@/components/feed/FeedDetail'
-import FeedComment from '@/components/feed/FeedComment'
+// import FeedComment from '@/components/feed/FeedComment'
 export default {
   components: {
     FeedDetail,
-    FeedComment,
+    // FeedComment,
   },
   data() {
     return {
-      feedItem: [],
+      feedItem: {},
     }
   },
   methods: {
@@ -27,8 +27,8 @@ export default {
       try {
         // 피드 가져오기
         const response = await fetchFeed(id)
-        console.log('fetchData(피드만): ', response)
-        this.feedItem = response
+        console.log('fetchData(피드만): ', response.data)
+        this.feedItem = response.data
         // 댓글 가져오기
       } catch (error) {
         console.log(error)

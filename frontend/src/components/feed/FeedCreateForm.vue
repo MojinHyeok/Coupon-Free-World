@@ -45,10 +45,9 @@ export default {
           formData.append('files', filesElement.files[i])
         }
         console.log(formData)
-        const response = await createFeed(formData)
-        console.log(response)
+        await createFeed(formData)
         // 해당 detailpage로 이동
-        this.$router.push(`/feed/${response.feedID}`)
+        this.$router.push('/feed')
       } catch (error) {
         console.log(error)
       }
