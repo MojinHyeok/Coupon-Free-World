@@ -25,4 +25,7 @@ public interface CommentMapper {
 	
 	// 코멘트 비추천
 	int recommendDown(int commentID) throws Exception;
+	
+	// 코멘트 삭제
+	int deleteComment(int commentID) throws Exception;
 }
