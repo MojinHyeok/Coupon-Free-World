@@ -1,24 +1,37 @@
 <template>
-  <div>
-    <form @submit.prevent="submitForm">
-      <div>
-        <p>회원사진</p>
+  <div class="box">
+    <p class="sub-title">회원정보 수정</p>
+    <form @submit.prevent="submitForm" class="form-box">
+      <div class="item img-box" @click="imgClick">
+        <!-- 기본이미지 구현-->
+        <div v-if="profilePath == '' && preview == null">
+          <img
+            src="../assets/profileDefault.jpg"
+            style="width: 30vw; height: 30vw;"
+          />
+        </div>
+        <div v-else-if="preview == null">
+          <img
+            :src="picture"
+            style="  border: 1px solid #333;border-radius: 50%;width: 30vw; height: 30vw;"
+          />
+        </div>
+        <div v-else>
+          <img
+            :src="preview"
+            style="border: 1px solid #333;width: 30vw; height: 30vw;border-radius: 50%;"
+          />
+        </div>
+        <div>
+          <input
+            type="file"
+            @change="previewImage"
+            accept="image/*"
+            id="addImg"
+          />
+        </div>
       </div>
-      <!-- 기본이미지 구현-->
-      <div v-if="this.profilePath == null && preview == null">
-        <p>기본이미지입니다.</p>
-        <img src="" alt="" />
-      </div>
-      <div v-else-if="preview == null">
-        <img :src="picture" />
-      </div>
-      <div v-else>
-        <img :src="preview" />
-      </div>
-      <div>
-        <input type="file" @change="previewImage" accept="image/*" />
-      </div>
-      <div>
+      <!-- <div class="item">
         <label for="userID">userID: </label>
         <input
           id="userID"
@@ -33,132 +46,119 @@
         <p v-if="!isUserIdValid">
           영어, 숫자 조합만 가능합니다.
         </p>
-      </div>
-      <div>
-        <label for="userName">userName:</label>
-        <input
-          id="userName"
-          type="text"
-          autocomplete="off"
-          v-model="userName"
-        />
-        <p v-if="!isUsernameLenValid">
-          userName 길이 초과하였습니다.
+      </div> -->
+      <div class="item">
+        <div class="input-box">
+          <input
+            id="alias"
+            type="text"
+            placeholder=" "
+            spellcheck="false"
+            autocomplete="off"
+            v-model="alias"
+          />
+          <label for="alias">닉네임</label>
+        </div>
+
+        <p v-if="!isAliasValid">
+          특수문자,공백 사용할 수 없습니다.
         </p>
-        <p v-if="!isUsernameValid">
-          특수문자 사용할 수 없습니다.
+      </div>
+      <div class="item">
+        <div class="input-box">
+          <textarea
+            id="bio"
+            type="text"
+            placeholder=" "
+            spellcheck="false"
+            autocomplete="off"
+            v-model="bio"
+          />
+          <label for="bio">인사말</label>
+        </div>
+        <p v-if="!bioBlank">
+          공백 사용할 수 없습니다.
         </p>
       </div>
-      <label>비밀번호 변경 </label>
+      <p style="font-size: 0.8rem;font-weight: bold; margin-right:1em;">
+        비밀번호 변경
+      </p>
       <input
         type="checkbox"
         autocomplete="off"
         id="passwordCheckbox"
         @click="passwordActive"
       />
-      <div>
-        <label for="passwordCurrent">passwordCurrent: </label>
-        <input
-          id="passwordCurrent"
-          type="text"
-          autocomplete="off"
-          v-model="passwordCurrent"
-          :disabled="!isPwAcitve"
-          @keyup="isBlankVaild(passwordCurrent, 'passwordCurrent')"
-        />
-        <p v-if="!isPasswordLenValid">
-          password 길이 초과하였습니다.
-        </p>
-        <p v-if="logMessage">
-          {{ logMessage }}
-        </p>
-        <p v-if="isPwAcitve && passwordCurrentBlank">
-          {{ logBlankpasswordCurrent }}
-        </p>
-      </div>
-      <div>
-        <label for="passwordChange">passwordChange: </label>
-        <input
-          id="passwordChange"
-          type="text"
-          autocomplete="off"
-          v-model="passwordChange"
-          :disabled="!isPwAcitve"
-          @keyup="isBlankVaild(passwordChange, 'passwordChange')"
-        />
-        <p v-if="isPwAcitve && passwordChangeBlank">
-          {{ logBlankpasswordChange }}
-        </p>
-      </div>
-      <div>
-        <label for="passwordChangeConfirm">passwordChangeConfirm: </label>
-        <input
-          id="passwordChangeConfirm"
-          type="text"
-          autocomplete="off"
-          v-model="passwordChangeConfirm"
-          :disabled="!isPwAcitve"
-        />
-        <p v-if="passwordChangeConfirm && !isPasswordConfirmValid">
-          비밀번호가 옳바르지 않습니다.
-        </p>
-      </div>
-
-      <div>
-        <label for="email">email: </label>
-        <input
-          id="email"
-          type="text"
-          autocomplete="off"
-          v-model="email"
-          disabled
-        />
-        <p v-if="!isEmailValid && email">
-          이메일 형식이 아닙니다.
-        </p>
-        <p v-if="!isEmailLenValid">
-          email 길이 초과하였습니다.
-        </p>
-      </div>
-      <div>
-        <label for="alias">alias: </label>
-        <input id="alias" type="text" autocomplete="off" v-model="alias" />
-        <!-- <p v-if="!isAliasLenValid">
-          alias 길이 초과하였습니다.
-        </p> -->
-        <p v-if="!isAliasValid">
-          특수문자,공백 사용할 수 없습니다.
-        </p>
-      </div>
-      <div>
-        <label for="bio">bio: </label>
-        <textarea
-          id="bio"
-          type="text"
-          placeholder="30자 이내로 작성"
-          rows="3"
-          v-model="bio"
-        />
-        <p v-if="!bioBlank">
-          공백 사용할 수 없습니다.
-        </p>
+      <div v-if="isPwAcitve" class="pw-box">
+        <div class="item">
+          <div class="input-box-pw">
+            <input
+              id="passwordCurrent"
+              type="password"
+              placeholder=" "
+              spellcheck="false"
+              autocomplete="off"
+              v-model="passwordCurrent"
+              :disabled="!isPwAcitve"
+              @keyup="isBlankVaild(passwordCurrent, 'passwordCurrent')"
+            />
+            <label for="passwordCurrent">현재 비밀번호</label>
+          </div>
+          <p v-if="!isPasswordLenValid">
+            password 길이 초과하였습니다.
+          </p>
+          <p v-if="logMessage">
+            {{ logMessage }}
+          </p>
+          <p v-if="isPwAcitve && passwordCurrentBlank">
+            {{ logBlankpasswordCurrent }}
+          </p>
+        </div>
+        <div class="item">
+          <div class="input-box-pw">
+            <input
+              id="passwordChange"
+              type="password"
+              placeholder=" "
+              spellcheck="false"
+              autocomplete="off"
+              v-model="passwordChange"
+              :disabled="!isPwAcitve"
+              @keyup="isBlankVaild(passwordChange, 'passwordChange')"
+            />
+            <label for="passwordChange">변경할 비밀번호</label>
+          </div>
+          <p v-if="isPwAcitve && passwordChangeBlank">
+            {{ logBlankpasswordChange }}
+          </p>
+        </div>
+        <div class="item">
+          <div class="input-box-pw">
+            <input
+              id="passwordChangeConfirm"
+              type="password"
+              placeholder=" "
+              spellcheck="false"
+              autocomplete="off"
+              v-model="passwordChangeConfirm"
+              :disabled="!isPwAcitve"
+            />
+            <label for="passwordChangeConfirm">변경할 비밀번호 확인</label>
+          </div>
+          <p v-if="passwordChangeConfirm && !isPasswordConfirmValid">
+            비밀번호가 옳바르지 않습니다.
+          </p>
+        </div>
       </div>
       <button
+        style="width: 100%; height:2em; padding:0;"
         type="submit"
         :disabled="
-          !userID ||
-            !userName ||
-            !email ||
-            !isEmailValid ||
-            !alias ||
-            !profilePath ||
+          !alias ||
             !bio ||
-            !isUserIdLenValid ||
-            !isUsernameLenValid ||
+            isChange ||
             !isEmailLenValid ||
             !isAliasValid ||
-            !isUserIdValid ||
-            !isUsernameValid ||
             (isPwAcitve &&
               (!passwordCurrent ||
                 !passwordChange ||
@@ -169,7 +169,14 @@
         수정
       </button>
     </form>
-    <button @click="deleteAccount">회원탈퇴</button>
+    <div class="deleteButton">
+      <button
+        @click="deleteAccount"
+        style="margin: 0; height:1.4em; padding: 0 0.5em; background: #e50914; "
+      >
+        회원탈퇴
+      </button>
+    </div>
   </div>
 </template>
 
@@ -196,6 +203,8 @@ export default {
       alias: '',
       profilePath: '',
       bio: '',
+      tempAlias: '',
+      tempBio: '',
       // checkbox
       isPwAcitve: false,
       // log
@@ -213,6 +222,13 @@ export default {
     }
   },
   computed: {
+    isChange() {
+      return (
+        !this.isPwAcitve &&
+        this.bio === this.tempBio &&
+        this.alias === this.tempAlias
+      )
+    },
     // 길이
     isUserIdLenValid() {
       return this.userID.length <= 18
@@ -262,11 +278,16 @@ export default {
     this.password = data.userInfo.password
     this.email = data.userInfo.email
     this.alias = data.userInfo.alias
+    this.tempAlias = data.userInfo.alias
+    this.tempBio = data.userInfo.bio
     this.profilePath = data.userInfo.profilePath
     this.bio = data.userInfo.bio
     this.picture = data.userInfo.profilePath
   },
   methods: {
+    imgClick() {
+      document.getElementById('addImg').click()
+    },
     previewImage(event) {
       this.picture = null
       this.imageData = event.target.files[0]
@@ -348,4 +369,6 @@ export default {
 }
 </script>
 
-<style></style>
+<style scoped src="./css/user/default.css"></style>
+<style scoped src="./css/user/edit.css"></style>
+<style scoped></style>

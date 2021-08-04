@@ -1,5 +1,6 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
+import store from '@/store/index'
 
 Vue.use(VueRouter)
 
@@ -7,12 +8,30 @@ const router = new VueRouter({
   mode: 'history',
   routes: [
     {
+      path: '/',
+      component: () => import('@/views/LoginPage.vue'),
+      beforeEnter(to, form, next) {
+        if (store.getters.user) {
+          next({ name: 'Main' })
+        } else {
+          next()
+        }
+      },
+    },
+    {
       path: '/account/signup',
       component: () => import('@/views/SignupPage.vue'),
     },
     {
       path: '/account/login',
       component: () => import('@/views/LoginPage.vue'),
+      beforeEnter(to, form, next) {
+        if (store.getters.user) {
+          next({ name: 'Main' })
+        } else {
+          next()
+        }
+      },
     },
     {
       path: '/account/edit',
@@ -38,6 +57,7 @@ const router = new VueRouter({
     },
     {
       path: '/main',
+      name: 'Main',
       component: () => import('@/views/MainPage.vue'),
     },
     {
