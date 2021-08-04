@@ -2,7 +2,7 @@ import { instance } from './index'
 
 // 피드 데이터 목록을 조회하는 API
 function fetchFeeds() {
-  return instance.get('/feed/')
+  return instance.post('/feed/mainFeedList')
 }
 
 // 특정 피드를 조회하는 API
