@@ -13,15 +13,14 @@
     </div>
     <ul>
       <li v-for="comment in commentList" :key="comment.commentID">
-        {{ comment.content }}
-        <button @click="deleteComment">X</button>
+        댓글 : {{ comment.content }}
       </li>
     </ul>
   </div>
 </template>
 
 <script>
-import { createComment, detailComment, deleteComment } from '@/api/boards.js'
+import { createComment, detailComment } from '@/api/boards.js'
 import { getUserFromCookie } from '@/utils/cookies.js'
 
 export default {
@@ -65,9 +64,6 @@ export default {
             this.userComment = ''
           })
       }
-    },
-    deleteComment() {
-      deleteComment(this.key)
     },
   },
 }

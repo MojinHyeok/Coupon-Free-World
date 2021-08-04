@@ -67,7 +67,7 @@ export default {
       }
     },
     deleteComment() {
-      deleteComment(this.key)
+      deleteComment(this.comment.commentID)
     },
   },
 }

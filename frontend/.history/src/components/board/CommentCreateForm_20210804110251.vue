@@ -14,14 +14,13 @@
     <ul>
       <li v-for="comment in commentList" :key="comment.commentID">
         {{ comment.content }}
-        <button @click="deleteComment">X</button>
       </li>
     </ul>
   </div>
 </template>
 
 <script>
-import { createComment, detailComment, deleteComment } from '@/api/boards.js'
+import { createComment, detailComment } from '@/api/boards.js'
 import { getUserFromCookie } from '@/utils/cookies.js'
 
 export default {
@@ -30,11 +29,10 @@ export default {
       userComment: '',
       boardID: this.$route.params.id,
       userID: getUserFromCookie(),
-      commentList: '',
     }
   },
   created() {
-    this.listUpdate()
+    listUpdate()
   },
   methods: {
     async listUpdate() {
@@ -58,16 +56,12 @@ export default {
           .then(() => {
             console.log('댓글저장성공')
             this.userComment = ''
-            this.listUpdate()
           })
           .catch(() => {
             console.log('댓글작성실패')
             this.userComment = ''
           })
       }
-    },
-    deleteComment() {
-      deleteComment(this.key)
     },
   },
 }
