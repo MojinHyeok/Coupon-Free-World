@@ -67,7 +67,7 @@ export default {
       }
     },
     deleteCommentConfirm(commentID) {
-      console.log(commentID)
+      console.log()
       deleteComment(commentID)
         .then(() => {
           console.log('삭제성공')
