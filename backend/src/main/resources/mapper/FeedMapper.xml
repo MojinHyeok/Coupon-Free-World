@@ -92,9 +92,16 @@
 		FROM feed
 		ORDER BY date DESC
 	</select>
+	
+	
 	<select id="getFeed" parameterType="int" resultType="FeedModel">
 	select * from feed
 	where feedID = #{feedID}
+	</select>
+	
+	<select id="selectLike" parameterType="LikeFeedModel">
+	select * from likefeed
+	WHERE feedID = #{feedID} AND userID = #{userID}
 	</select>
 	
 </mapper>

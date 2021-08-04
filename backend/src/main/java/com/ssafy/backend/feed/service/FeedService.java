@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.data.repository.query.Param;
 
 import com.ssafy.backend.feed.model.FeedModel;
+import com.ssafy.backend.feed.model.LikeFeedModel;
 
 public interface FeedService {
 	// 피드 작성
@@ -39,4 +40,7 @@ public interface FeedService {
 	
 	//상세 피드글 보기
 	FeedModel getFeed(int feedID) throws Exception;
+	
+	//좋아요 인원찾기
+	LikeFeedModel selectLike(@Param("feedID") int feedID, @Param("userID") String userID) throws Exception;
 }

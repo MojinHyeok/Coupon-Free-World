@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.ssafy.backend.feed.mapper.FeedMapper;
 import com.ssafy.backend.feed.model.FeedModel;
+import com.ssafy.backend.feed.model.LikeFeedModel;
 
 @Service
 public class FeedServiceImpl implements FeedService {
@@ -67,5 +68,10 @@ public class FeedServiceImpl implements FeedService {
 	@Override
 	public FeedModel getFeed(int feedID) throws Exception {
 		return mapper.getFeed(feedID);
+	}
+
+	@Override
+	public LikeFeedModel selectLike(int feedID, String userID) throws Exception {
+		return mapper.selectLike(feedID, userID);
 	}
 }
