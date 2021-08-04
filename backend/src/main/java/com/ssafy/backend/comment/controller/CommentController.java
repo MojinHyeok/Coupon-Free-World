@@ -143,8 +143,8 @@ public class CommentController {
 		@ApiResponse(code = 404, message = "페이지를 찾을 수 없음"),
 		@ApiResponse(code = 500, message = "내부 서버 오류")
 	})
-	@DeleteMapping("/deleteComment")
-	public ResponseEntity<?> deleteComment(@RequestBody int commentID) throws Exception {
+	@DeleteMapping("/deleteComment/{commentID}")
+	public ResponseEntity<?> deleteComment(@PathVariable int commentID) throws Exception {
 		int res = service.deleteComment(commentID);
 		
 		if(res >= 1) {
