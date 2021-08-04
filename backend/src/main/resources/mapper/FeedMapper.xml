@@ -26,7 +26,7 @@
 		)
 	</insert>
 	
-	<delete id="deleteFeed" parameterType="int">
+	<delete id="deleteFeed" parameterType="map">
 		DELETE
 		FROM feed
 		WHERE feedID = #{feedID} AND userID = #{userID}
