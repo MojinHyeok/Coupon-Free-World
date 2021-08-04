@@ -43,4 +43,9 @@ public class CommentServiceImpl implements CommentService {
 		return mapper.recommendDown(commentID);
 	}
 	
+	// 코멘트 삭제
+	public int deleteComment(int commentID) throws Exception {
+		return mapper.deleteComment(commentID);
+	}
+	
 }

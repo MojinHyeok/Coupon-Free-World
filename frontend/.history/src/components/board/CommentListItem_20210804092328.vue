@@ -43,9 +43,7 @@
             </div>
           </div>
         </div>
-        <!-- modal -->
       </li>
->>>>>>> frontend/src/components/board/CommentListItem.vue
     </ul>
   </div>
 </template>
@@ -66,7 +64,6 @@ export default {
   },
   method() {
     // deleteConfirm() {
-    //   delete api 가 아직 없음..
     // }
   },
 }

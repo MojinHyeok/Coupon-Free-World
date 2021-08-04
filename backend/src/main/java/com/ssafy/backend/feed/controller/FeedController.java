@@ -13,8 +13,11 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
 
+import com.ssafy.backend.amazonS3.S3Uploader;
 import com.ssafy.backend.feed.model.FeedModel;
 import com.ssafy.backend.feed.service.FeedService;
 
@@ -29,6 +32,9 @@ public class FeedController {
 	@Autowired
 	FeedService service;
 	
+	@Autowired
+	S3Uploader s3UPloader;
+	
 	@ApiOperation(value = "피드 작성", notes = "피드를 작성합니다.")
 	@ApiResponses({
 		@ApiResponse(code = 200, message = "피드 작성 성공"),
@@ -36,13 +42,42 @@ public class FeedController {
 		@ApiResponse(code = 500, message = "내부 서버 오류")
 	})
 	@PostMapping("/write")
-	public ResponseEntity<?> writeFeed(@RequestBody FeedModel model) throws Exception {
+	public ResponseEntity<?> writeFeed(
+//			@RequestBody FeedModel model,
+			@RequestParam("userID")String userID,
+			@RequestParam("content")String content,
+			@RequestParam("files")List<MultipartFile> multipartFiles
+			) throws Exception {
 		SimpleDateFormat format = new SimpleDateFormat("yy-MM-dd HH:mm:ss");
 		Date time = new Date();
-		
+		FeedModel model=new FeedModel();
+		System.out.println(userID);
+		model.setUserID(userID);
+		model.setContent(content);
+//		사진 작업
+		int size=multipartFiles.size();
+		switch (size) {
+		case 1:
+			model.setPhotoPath1(s3UPloader.upload(multipartFiles.get(0), "feed"));			
+			break;
+		case 2:
+			model.setPhotoPath1(s3UPloader.upload(multipartFiles.get(0), "feed"));
+			model.setPhotoPath2(s3UPloader.upload(multipartFiles.get(1), "feed"));
+			break;
+		case 3:
+			model.setPhotoPath1(s3UPloader.upload(multipartFiles.get(0), "feed"));
+			model.setPhotoPath2(s3UPloader.upload(multipartFiles.get(1), "feed"));
+			model.setPhotoPath3(s3UPloader.upload(multipartFiles.get(2), "feed"));
+			break;
+		case 4:
+			model.setPhotoPath1(s3UPloader.upload(multipartFiles.get(0), "feed"));
+			model.setPhotoPath2(s3UPloader.upload(multipartFiles.get(1), "feed"));
+			model.setPhotoPath3(s3UPloader.upload(multipartFiles.get(2), "feed"));
+			model.setPhotoPath4(s3UPloader.upload(multipartFiles.get(3), "feed"));
+			break;
+		}
 		model.setDate(format.format(time));
 		model.setLikeCnt(0);
-		
 		int res = service.writeFeed(model);
 		
 		if(res >= 1) {

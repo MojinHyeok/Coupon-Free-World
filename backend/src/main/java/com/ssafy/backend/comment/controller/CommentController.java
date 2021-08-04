@@ -115,7 +115,8 @@ public class CommentController {
 		@ApiResponse(code = 500, message = "내부 서버 오류")
 	})
 	@PostMapping("/recommendUp")
-	public ResponseEntity<?> recommendUp(@RequestBody int commentID) {
+	public ResponseEntity<?> recommendUp(@RequestBody int commentID) throws Exception {
+		service.recommendUp(commentID);
 		
 		return new ResponseEntity<Void>(HttpStatus.OK);
 	}
@@ -128,9 +129,28 @@ public class CommentController {
 		@ApiResponse(code = 500, message = "내부 서버 오류")
 	})
 	@PostMapping("/recommendDown")
-	public ResponseEntity<?> recommendDown(@RequestBody int commentID) {
+	public ResponseEntity<?> recommendDown(@RequestBody int commentID) throws Exception {
+		service.recommendDown(commentID);
 		
 		return new ResponseEntity<Void>(HttpStatus.OK);
 	}
 	
+	
+	@ApiOperation(value = "코멘트 삭제", notes = "해당 코멘트를 삭제합니다.")
+	@ApiResponses({
+		@ApiResponse(code = 200, message = "코멘트 삭제하기 성공"),
+		@ApiResponse(code = 404, message = "페이지를 찾을 수 없음"),
+		@ApiResponse(code = 500, message = "내부 서버 오류")
+	})
+	@PostMapping("/deleteComment")
+	public ResponseEntity<?> deleteComment(@RequestBody int commentID) throws Exception {
+		int res = service.deleteComment(commentID);
+		
+		if(res >= 1) {
+			return new ResponseEntity<Void>(HttpStatus.OK);	
+		} else {
+			return new ResponseEntity<Void>(HttpStatus.BAD_REQUEST);
+		}
+		
+	}
 }
