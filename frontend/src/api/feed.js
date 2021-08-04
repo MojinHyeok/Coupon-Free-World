@@ -25,6 +25,11 @@ function deleteFeed(userID, feedID) {
   return instance.delete(`feed/delete/${userID}/${feedID}`)
 }
 
+// 좋아요 누른 유저인지 Check 하는 API
+function isUserLike(data) {
+  return instance.post('feed/selectLike', data)
+}
+
 // 피드 좋아요 증가 API
 function likeFeed(data) {
   return instance.post('feed/incLikeCnt', data)
@@ -41,6 +46,7 @@ export {
   createFeed,
   updateFeed,
   deleteFeed,
+  isUserLike,
   likeFeed,
   unlikeFeed,
 }

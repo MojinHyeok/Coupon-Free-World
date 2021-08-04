@@ -14,9 +14,11 @@
     <button v-if="isUserValid" @click="feedDelete">삭제</button>
   </div>
 </template>
-
 <script>
-import { deleteFeed } from '@/api/feed.js'
+// <i class="far fa-heart"></i
+// >            <i class="fas fa-heart"></i
+// >
+import { deleteFeed, isUserLike, likeFeed, unlikeFeed } from '@/api/feed.js'
 export default {
   props: {
     feedItem: {
@@ -25,19 +27,45 @@ export default {
     },
   },
   data() {
-    return {}
+    return {
+      isLike: true,
+    }
   },
   methods: {
-    feedDelete() {
-      deleteFeed(this.$store.state.userID, this.feedItem.feedID)
+    async feedDelete() {
+      await deleteFeed(this.$store.state.userID, this.feedItem.feedID)
+      this.$router.push('/feed')
     },
-    incLike() {},
-    decLike() {},
+    async incLike() {
+      const data = new FormData()
+      data.append('userID', this.$store.state.userID)
+      data.append('feedID', this.feedItem.feedID)
+      await likeFeed(data)
+      this.isLike = false
+      console.log('incLike작동')
+    },
+    async decLike() {
+      const data = new FormData()
+      data.append('userID', this.$store.state.userID)
+      data.append('feedID', this.feedItem.feedID)
+      await unlikeFeed(data)
+      this.isLike = true
+      console.log('decLike작동')
+    },
   },
   computed: {
     isUserValid() {
       return this.$store.state.userID === this.feedItem.userID
     },
+  },
+  async created() {
+    const data = new FormData()
+    data.append('userID', this.$store.state.userID)
+    data.append('feedID', this.feedItem.feedID)
+
+    const response = await isUserLike(data)
+    console.log('isUserLike =>', response)
+    this.isLike = response
   },
 }
 </script>
