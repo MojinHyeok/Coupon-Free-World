@@ -38,12 +38,11 @@
                 >
                   취소
                 </button>
-                <button type="button" class="btn btn-primary" @click="deleteConfirm">삭제</button>
+                <button type="button" class="btn btn-primary">삭제</button>
               </div>
             </div>
           </div>
         </div>
-        <!-- modal -->
       </li>
     </ul>
   </div>
@@ -64,8 +63,8 @@ export default {
     console.log(this.commnetList)
   },
   method() {
-    deleteConfirm() {
-    }
+    // deleteConfirm() {
+    // }
   },
 }
 </script>
