@@ -28,7 +28,6 @@ export default {
     // feeds 불러오기
     async fetchData() {
       const response = await fetchFeeds()
-      console.log('fetchData: ', response.data)
       this.feedItems = response.data
     },
     moveCreate() {
