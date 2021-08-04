@@ -151,7 +151,6 @@
                 !email ||
                 !isEmailValid ||
                 !alias ||
-                !profilePath ||
                 !bio ||
                 !isBioLenValid ||
                 !isUserIdLenValid ||
