@@ -154,6 +154,7 @@ public class FeedController {
 		return new ResponseEntity<Void>(HttpStatus.OK);
 	}
 	
-	// 내 타임라인의 피드 불러오기
+	// 내 타임라인의 피드(내 피드 + 내가 팔로우하는 사람의 피드) 불러오기
+	
 	
 }
