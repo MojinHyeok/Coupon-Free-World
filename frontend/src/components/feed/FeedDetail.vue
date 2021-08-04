@@ -8,8 +8,8 @@
     <div>사진1url: {{ feedItem.photoPath1 }}</div>
     <div>사진2url: {{ feedItem.photoPath2 }}</div>
     <!-- 좋아요 버튼 -->
-    <!-- 피드 수정버튼 -->
-    <button @click="moveUpdate">수정</button>
+    <!-- <button v-if="isLike">like</button>
+    <button v-else @click="">unlike</button> -->
     <!-- 피드 삭제 버튼 -->
     <button @click="feedDelete">삭제</button>
   </div>
@@ -28,9 +28,6 @@ export default {
     return {}
   },
   methods: {
-    moveUpdate() {
-      this.$router.push(`/feed/${this.feedItem.feedID}/update`)
-    },
     feedDelete() {
       deleteFeed(this.$store.state.userID, this.feedItem.feedID)
     },
