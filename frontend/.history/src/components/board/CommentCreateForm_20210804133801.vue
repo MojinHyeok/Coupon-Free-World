@@ -14,9 +14,7 @@
     <ul>
       <li v-for="comment in commentList" :key="comment.commentID">
         {{ comment.content }}
-        <button class="btn" @click="deleteCommentConfirm(comment.commentID)">
-          X
-        </button>
+        <button @click="deleteCommentConfirm(comment.commentID)">X</button>
       </li>
     </ul>
   </div>
@@ -42,6 +40,7 @@ export default {
     async listUpdate() {
       const commentList = await detailComment(this.boardID)
       this.commentList = commentList.data
+      console.log(this.commentList)
     },
     onSubmit() {
       if (this.userComment.length > 200) {
@@ -68,27 +67,21 @@ export default {
       }
     },
     deleteCommentConfirm(commentID) {
-      if (confirm('댓글을 삭제하시겠습니까?')) {
-        console.log(commentID)
-        deleteComment(commentID)
-          .then(() => {
-            console.log('삭제성공')
-            this.listUpdate()
-          })
-          .catch(() => {
-            console.log('삭제실패')
-          })
-      } else {
-        console.log('삭제취소')
+      console.log(commentID)
+      var data = {
+        commentID: commentID,
       }
+      console.log(data)
+
+      deleteComment(data)
+        .then(() => {
+          console.log('삭제성공')
+          this.listUpdate()
+        })
+        .catch(() => {
+          console.log('삭제실패')
+        })
     },
   },
 }
 </script>
-
-<style>
-.button {
-  border: 0;
-  outline: 0;
-}
-</style>

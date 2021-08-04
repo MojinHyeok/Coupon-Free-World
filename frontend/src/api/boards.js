@@ -49,7 +49,7 @@ function detailComment(boardID) {
 
 // 댓글 삭제
 function deleteComment(commentID) {
-  return instance.delete('comment/deleteComment', commentID)
+  return instance.delete(`comment/deleteComment/${commentID}`)
 }
 
 // 댓글 추천
