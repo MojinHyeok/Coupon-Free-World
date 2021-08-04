@@ -71,4 +71,10 @@
 		SET recommendCnt = recommendCnt-1 
 		WHERE commentID = #{commentID};
 	</update>
+	
+	<delete id="deleteComment" parameterType="int">
+		DELETE
+		FROM comment
+		WHERE commentID = #{commentID};
+	</delete>
 </mapper>
