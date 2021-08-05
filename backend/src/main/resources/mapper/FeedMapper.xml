@@ -78,7 +78,7 @@
 		ORDER BY date DESC
 	</select>
 	
-	<select id="likeFeedList" parameterType="String">
+	<select id="likeFeedList" parameterType="String" resultType="FeedModel">
 		SELECT A.feedID, A.userID, photoPath1, content, date, likeCnt
 		FROM feed A 
 		RIGHT JOIN likefeed B 
