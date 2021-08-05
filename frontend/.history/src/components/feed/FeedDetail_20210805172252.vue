@@ -2,7 +2,7 @@
   <div>
     <!-- 유저 정보가 나타나는 곳 -->
     <div class="feed-detail-top">
-      <p>{{ feedItem.userID }}</p>
+      <p class="align-items-center">{{ feedItem.userID }}</p>
       <!-- 피드 삭제 버튼 -->
       <button v-if="isUserValid" @click="feedDelete">삭제</button>
     </div>
@@ -18,10 +18,10 @@
       <div class="d-flex">
         <div>
           <button v-if="isLike" @click="incLike(feedItem.feedID)">
-            <span><i class="far fa-heart heart"></i></span>
+            <i class="far fa-heart heart"></i>
           </button>
           <button v-else @click="decLike(feedItem.feedID)">
-            <span><i class="fas fa-heart heart"></i></span>
+            <i class="fas fa-heart heart"></i>
           </button>
         </div>
         <div class="i-am-like">

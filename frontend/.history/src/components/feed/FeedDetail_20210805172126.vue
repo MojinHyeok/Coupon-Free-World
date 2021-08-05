@@ -18,10 +18,10 @@
       <div class="d-flex">
         <div>
           <button v-if="isLike" @click="incLike(feedItem.feedID)">
-            <span><i class="far fa-heart heart"></i></span>
+            <i class="far fa-heart heart"></i>
           </button>
           <button v-else @click="decLike(feedItem.feedID)">
-            <span><i class="fas fa-heart heart"></i></span>
+            <i class="fas fa-heart heart"></i>
           </button>
         </div>
         <div class="i-am-like">

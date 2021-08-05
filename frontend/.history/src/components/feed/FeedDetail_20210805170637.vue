@@ -15,23 +15,20 @@
     <!-- 하단부 -->
     <div class="feed-detail-bottom margin-sm">
       <!-- 좋아요 버튼 -->
-      <div class="d-flex">
-        <div>
-          <button v-if="isLike" @click="incLike(feedItem.feedID)">
-            <span><i class="far fa-heart heart"></i></span>
-          </button>
-          <button v-else @click="decLike(feedItem.feedID)">
-            <span><i class="fas fa-heart heart"></i></span>
-          </button>
-        </div>
-        <div class="i-am-like">
-          <p v-if="isLike">{{ feedItem.likeCnt }} 명이 좋아합니다.</p>
-          <p v-else-if="feedItem.likeCnt - 1 > 0">
-            {{ feedItem.userID }}님 외에 {{ feedItem.likeCnt - 1 }} 명이
-            좋아합니다.
-          </p>
-          <p v-else>{{ feedItem.userID }}님이 좋아합니다.</p>
-        </div>
+      <div>
+        <button v-if="isLike" @click="incLike(feedItem.feedID)">
+          <i class="far fa-heart heart"></i>
+        </button>
+        <button v-else @click="decLike(feedItem.feedID)">
+          <i class="fas fa-heart heart"></i>
+        </button>
+        <p v-if="isLike" @click="incLike(feedItem.feedID)">
+          {{ feedItem.likeCnt }} 명이 좋아합니다.
+        </p>
+        <p v-else @click="decLike(feedItem.feedID)">
+          {{ feedItem.userID }}님 외에 {{ feedItem.likeCnt - 1 }} 명이
+          좋아합니다.
+        </p>
       </div>
 
       <!-- 좋아요와 내용 정보가 나타나는 곳 -->

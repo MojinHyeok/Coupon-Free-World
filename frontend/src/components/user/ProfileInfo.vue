@@ -1,13 +1,13 @@
 <template>
-  <div>
+  <div style="margin-top: 10%">
     <div v-if="userID.length">
-      <b-container class="bv-example-row top">
+      <b-container class="bv-example-row ">
         <b-row class="justify-content-md-center">
-          <b-col class="imgbox" cols="4">
+          <b-col class="imgbox top ps-3" cols="3">
             <div v-if="profilePath == ''">
               <img
                 src="../../assets/profileDefault.jpg"
-                style="width:30vw;height:30vw;  "
+                style="width:20vw;height:20vw;  "
               />
             </div>
             <div v-else>
@@ -17,7 +17,7 @@
               />
             </div>
           </b-col>
-          <b-col class="top" cols="8">
+          <b-col class="top ps-5" cols="">
             <b-row>
               <b-col cols="3"> 좋아요<br />{{ this.likeCnt }}</b-col>
               <b-col cols="3" @click="move"
@@ -47,15 +47,37 @@
           <button v-else @click="cancleFollow">팔로우 취소</button>
         </b-row>
       </b-container>
+      <div>
+        <button class="menu-button" @click="MyFeed" :disabled="boxCheck">
+          <span>
+            <i class="fab fa-buromobelexperte fa-2x"></i>
+          </span>
+        </button>
+        <button class="menu-button" @click="followFeed" :disabled="boxCheckTwo">
+          <span>
+            <i class="fas fa-heart fa-2x"></i>
+          </span>
+        </button>
+      </div>
+      <div v-if="boxCheck">
+        <div v-if="photos == ''">
+          <h1>피드가 존재하지 않습니다.</h1>
+        </div>
+        <div v-else class="photo">
+          <profile-feed v-for="feed in photos" :key="feed.id" :feed="feed" />
+        </div>
+      </div>
+      <div v-if="boxCheckTwo">
+        <div v-if="likePhotos == ''">
+          <h1>좋아하는 사진이 존재하지 않습니다.</h1>
+        </div>
+        <div v-else class="photo">
+          <like-feed v-for="feed in likePhotos" :key="feed.id" :feed="feed" />
+        </div>
+      </div>
     </div>
     <div v-else>
       <h1>일치하는 ID가 존재하지 않습니다.!</h1>
-    </div>
-    <div v-if="photos == ''">
-      <h1>피드가 존재하지 않습니다.</h1>
-    </div>
-    <div v-else class="photo">
-      <profile-feed v-for="feed in photos" :key="feed.id" :feed="feed" />
     </div>
   </div>
 </template>
@@ -73,11 +95,13 @@ import {
   canclerequestFollow,
 } from '@/api/auth'
 
-import { getFeedList } from '@/api/feed.js'
+import { getFeedList, isUserLike } from '@/api/feed.js'
 import ProfileFeed from './ProfileFeed.vue'
+import LikeFeed from './likeFeed.vue'
 export default {
   components: {
     ProfileFeed,
+    LikeFeed,
   },
   computes: {
     ...mapGetters(['user']),
@@ -99,6 +123,9 @@ export default {
       requestFollow: true, // 팔로우요청 할지..
       findrequestFollow: false,
       photos: [],
+      likePhotos: [],
+      boxCheck: true,
+      boxCheckTwo: false,
       // eslint-disable-next-line prettier/prettier
       };
   },
@@ -187,10 +214,24 @@ export default {
       this.photos = res.data
       console.log(this.photos)
     },
+    MyFeed() {
+      this.boxCheck = true
+      this.boxCheckTwo = false
+    },
+    followFeed() {
+      this.boxCheck = false
+      this.boxCheckTwo = true
+    },
+    async isUserLike() {
+      const temp = this.$route.params.userID
+      var res = await isUserLike(temp)
+      this.likePhotos = res.data
+    },
   },
   created() {
     this.detectParams(this.$route.params.userID)
     this.getFeedList()
+    this.isUserLike()
   },
   watch: {
     $route(to, from) {
