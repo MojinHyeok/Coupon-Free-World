@@ -2,13 +2,21 @@
   <div style="margin-top: 15%;">
     <div>
       <div>
-        <button class="menu-button">
-          <span @click="allFeed">
+        <button
+          @click="allFeed"
+          :class="{ active: boxCheck, 'no-active': boxCheckTwo }"
+          class="menu-button"
+        >
+          <span>
             <i class="fab fa-buromobelexperte fa-2x"></i>
           </span>
         </button>
-        <button class="menu-button">
-          <span @click="followFeed">
+        <button
+          @click="followFeed"
+          :class="{ active: boxCheckTwo, 'no-active': boxCheck }"
+          class="menu-button"
+        >
+          <span>
             <i class="far fa-comment fa-2x"></i>
           </span>
         </button>

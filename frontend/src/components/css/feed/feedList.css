@@ -16,3 +16,9 @@
   width: 50%;
   background-color: #8c92a3
 }
+.active {
+  background-color: #ffa061;
+}
+.no-active {
+  background-color: #8c92a3;
+}
