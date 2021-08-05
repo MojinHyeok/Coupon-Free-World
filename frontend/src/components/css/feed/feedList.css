@@ -2,8 +2,9 @@
   padding: 5% 5%;
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-between;
 }
+
+
 .box-button {
   padding: 0 5%;
 }
