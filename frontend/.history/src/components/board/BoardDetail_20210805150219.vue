@@ -10,8 +10,8 @@
       <td>{{ detail.writer }}</td>
     </tr>
     <tr>
-      <td>조회수 :</td>
-      <td>{{ detail.viewCount }}</td>
+      <td>작성자 :</td>
+      <td>{{ detail.writer }}</td>
     </tr>
     <tr>
       <td>내용 :</td>
