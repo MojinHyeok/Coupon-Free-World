@@ -3,10 +3,11 @@
 
 <mapper namespace="com.ssafy.backend.feed.mapper.FeedMapper">
 	<insert id="writeFeed" parameterType="FeedModel" >
+	<![CDATA[
 		INSERT
 		INTO feed (
 			userID,
-			photoPath
+			photoPath,
 			content,
 			date,
 			likeCnt
@@ -17,7 +18,7 @@
 			#{content},
 			#{date},
 			#{likeCnt}
-		)
+		)]]>
 	</insert>
 	
 	<delete id="deleteFeed" parameterType="map">
