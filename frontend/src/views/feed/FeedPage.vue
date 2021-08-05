@@ -1,22 +1,35 @@
 <template>
   <div style="margin-top: 15%;">
-    <button @click="moveCreate">피드작성 +</button>
-    <div class="box-button">
-      <button>
-        <span>
-          <i class="fab fa-buromobelexperte fa-2x"></i>
-        </span>
-      </button>
-      <button><i class="far fa-comment fa-2x"></i></button>
+    <div>
+      <div>
+        <button class="menu-button">
+          <span @click="allFeed">
+            <i class="fab fa-buromobelexperte fa-2x"></i>
+          </span>
+        </button>
+        <button class="menu-button">
+          <span @click="followFeed">
+            <i class="far fa-comment fa-2x"></i>
+          </span>
+        </button>
+        <div class="div-create-button">
+          <span @click="moveCreate" class="create-button">
+            <i class="far fa-plus-square fa-2x"></i>
+          </span>
+        </div>
+      </div>
     </div>
-    <div class="box">
+    <div v-if="boxCheck" class="box">
       <!-- 모든 피드들 뿌려주기 -->
       <FeedListItem
         v-for="feedItem in feedItems"
         :key="feedItem.id"
         :feedItem="feedItem"
       ></FeedListItem>
-      <!-- 피드 작성 button -->
+    </div>
+    <!-- 팔로우한 유저 피드 불러오기 -->
+    <div v-if="boxCheckTwo" @click="followFeed">
+      <p>(공사중)팔로우한 유저 피드 불러오기</p>
     </div>
   </div>
 </template>
@@ -31,6 +44,8 @@ export default {
   data() {
     return {
       feedItems: [],
+      boxCheck: true,
+      boxCheckTwo: false,
     }
   },
   methods: {
@@ -41,6 +56,14 @@ export default {
     },
     moveCreate() {
       this.$router.push('/feed/create')
+    },
+    allFeed() {
+      this.boxCheck = true
+      this.boxCheckTwo = false
+    },
+    followFeed() {
+      this.boxCheck = false
+      this.boxCheckTwo = true
     },
   },
   created() {
