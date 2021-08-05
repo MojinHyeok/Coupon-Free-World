@@ -25,7 +25,7 @@ nav {
   background-color: #ffa061;
   width: 100vw;
   height: 8vh;
-  /* position: fixed; */
+  position: sticky;
   top: 0;
   display: flex;
   align-items: center;
