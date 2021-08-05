@@ -3,7 +3,7 @@
     <div v-if="userID.length">
       <b-container class="bv-example-row ">
         <b-row class="justify-content-md-center">
-          <b-col class="imgbox top" cols="3">
+          <b-col class="imgbox top ps-3" cols="3">
             <div v-if="profilePath == ''">
               <img
                 src="../../assets/profileDefault.jpg"
@@ -17,7 +17,7 @@
               />
             </div>
           </b-col>
-          <b-col class="top" cols="">
+          <b-col class="top ps-5" cols="">
             <b-row>
               <b-col cols="3"> 좋아요<br />{{ this.likeCnt }}</b-col>
               <b-col cols="3" @click="move"
