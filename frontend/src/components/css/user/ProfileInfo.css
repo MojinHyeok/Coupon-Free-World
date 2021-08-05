@@ -13,3 +13,6 @@ button {
       display: flex;
       flex-wrap: wrap;
   }
+  .top{
+    align-content: center;
+  }

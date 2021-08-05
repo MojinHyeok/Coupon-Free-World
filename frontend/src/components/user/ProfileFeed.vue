@@ -1,6 +1,10 @@
 <template>
-  <div @click="move()">
-    <img :src="photoPath" alt="" />
+  <div @click="move()" style="margin-bottom :2vw">
+    <img
+      :src="photoPath"
+      alt=""
+      style="width: 30vw; height: 30vw; padding: 0 1vw;"
+    />
   </div>
 </template>
 
@@ -26,8 +30,4 @@ export default {
 }
 </script>
 
-<style>
-img {
-  width: 33%;
-}
-</style>
+<style></style>

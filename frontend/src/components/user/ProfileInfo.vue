@@ -1,7 +1,7 @@
 <template>
   <div>
     <div v-if="userID.length">
-      <b-container class="bv-example-row">
+      <b-container class="bv-example-row top">
         <b-row class="justify-content-md-center">
           <b-col class="imgbox" cols="4">
             <div v-if="profilePath == ''">
@@ -19,7 +19,7 @@
           </b-col>
           <b-col class="top" cols="8">
             <b-row>
-              <b-col cols="3"> 좋아요<br />{{ this.userID }}</b-col>
+              <b-col cols="3"> 좋아요<br />{{ this.likeCnt }}</b-col>
               <b-col cols="3" @click="move"
                 >팔로잉<br />
                 {{ this.followerCnt }}</b-col
@@ -89,7 +89,7 @@ export default {
       password: '',
       email: '',
       alias: '',
-      likeCnt: '',
+      likeCnt: 0,
       profilePath: '',
       follower: [],
       following: [],
