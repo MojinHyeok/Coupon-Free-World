@@ -1,26 +1,8 @@
-.sub-title {
-  font-weight: 900;
-  font-size: 1.5rem;
-  margin-top: 15%;
-}
-
-#code {
-  width: 100%;
-  height: 34px;
-  outline: none;
-  background: white;
-  border: 0;
-  padding: 0;
-  color: black;
-  font-size: 1.1rem;
-}
-
 .box {
   padding: 0 5%;
   display: flex;
   flex-wrap: wrap;
 }
-
 form {
   display: flex;
   flex-wrap: wrap;
@@ -67,6 +49,7 @@ form p {
 #userName,
 #password,
 #passwordConfirm,
+#profilePath,
 #email,
 #alias {
   width: 100%;
@@ -97,9 +80,6 @@ form p {
   transform: translateY(-1em);
   font-size: 10px;
 }
-.item-bottom {
-  padding-bottom: 20px;
-}
 .item p {
   width: 100%;
   color: #e87c03;
@@ -129,9 +109,9 @@ button {
 }
 /* 비활성화 */
 button:disabled {
-  background: #8c92a3;
+  background: gray;
 }
 /* 활성화 */
 button:enabled {
-  background: #ffa061;
+  background: #e50914;
 }

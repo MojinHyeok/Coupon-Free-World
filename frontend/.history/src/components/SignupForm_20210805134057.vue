@@ -22,6 +22,25 @@
               영어, 숫자 조합만 가능합니다.
             </p>
           </div>
+          <br />
+          <div class="item">
+            <div class="input-box">
+              <input
+                id="userName"
+                type="text"
+                autocomplete="off"
+                v-model="userName"
+                placeholder=" "
+              />
+              <label for="userName">사용자 이름</label>
+            </div>
+            <p v-if="!isUsernameLenValid">
+              userName 길이 초과하였습니다.
+            </p>
+            <p v-if="!isUsernameValid">
+              특수문자,공백 사용할 수 없습니다.
+            </p>
+          </div>
           <div class="item">
             <div class="input-box">
               <input
@@ -40,7 +59,7 @@
               {{ logBlankpassword }}
             </p>
           </div>
-          <div class="item item-bottom">
+          <div class="item">
             <div class="input-box">
               <input
                 id="passwordConfirm"
@@ -51,31 +70,11 @@
               />
               <label for="passwordConfirm">비밀번호 확인</label>
             </div>
-            <p v-if="passwordConfirm && !isPasswordConfirmValid">
-              비밀번호가 옳바르지 않습니다.
-            </p>
           </div>
-
+          <p v-if="passwordConfirm && !isPasswordConfirmValid">
+            비밀번호가 옳바르지 않습니다.
+          </p>
           <div class="item">
-            <div class="input-box">
-              <input
-                id="userName"
-                type="text"
-                autocomplete="off"
-                v-model="userName"
-                placeholder=" "
-              />
-              <label for="userName">이름</label>
-            </div>
-            <p v-if="!isUsernameLenValid">
-              userName 길이 초과하였습니다.
-            </p>
-            <p v-if="!isUsernameValid">
-              특수문자,공백 사용할 수 없습니다.
-            </p>
-          </div>
-
-          <div class="item item-bottom">
             <div class="input-box">
               <input
                 id="email"
@@ -87,6 +86,12 @@
               />
               <label for="email">이메일 </label>
             </div>
+            <!-- <p v-if="!isEmailValid && email">
+          이메일 형식이 아닙니다.
+        </p>
+        <p v-if="!isEmailLenValid">
+          email 길이 초과하였습니다.
+        </p> -->
           </div>
           <div class="item">
             <div class="input-box">
@@ -105,6 +110,18 @@
             <p v-if="!isAliasValid">
               특수문자,공백 사용할 수 없습니다.
             </p>
+          </div>
+          <div class="item">
+            <div class="input-box">
+              <input
+                id="profilePath"
+                type="text"
+                autocomplete="off"
+                v-model="profilePath"
+                placeholder=" "
+              />
+              <label for="profilePath">파일경로</label>
+            </div>
           </div>
           <div class="item">
             <div class="input-box">

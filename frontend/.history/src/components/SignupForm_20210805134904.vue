@@ -51,12 +51,12 @@
               />
               <label for="passwordConfirm">비밀번호 확인</label>
             </div>
-            <p v-if="passwordConfirm && !isPasswordConfirmValid">
-              비밀번호가 옳바르지 않습니다.
-            </p>
           </div>
+          <p v-if="passwordConfirm && !isPasswordConfirmValid">
+            비밀번호가 옳바르지 않습니다.
+          </p>
 
-          <div class="item">
+          <div class="item item-bottom">
             <div class="input-box">
               <input
                 id="userName"
@@ -87,6 +87,12 @@
               />
               <label for="email">이메일 </label>
             </div>
+            <!-- <p v-if="!isEmailValid && email">
+          이메일 형식이 아닙니다.
+        </p>
+        <p v-if="!isEmailLenValid">
+          email 길이 초과하였습니다.
+        </p> -->
           </div>
           <div class="item">
             <div class="input-box">

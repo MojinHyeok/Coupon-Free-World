@@ -20,7 +20,6 @@
   display: flex;
   flex-wrap: wrap;
 }
-
 form {
   display: flex;
   flex-wrap: wrap;
@@ -67,6 +66,7 @@ form p {
 #userName,
 #password,
 #passwordConfirm,
+#profilePath,
 #email,
 #alias {
   width: 100%;
@@ -96,9 +96,6 @@ form p {
 .input-box textarea:focus + label {
   transform: translateY(-1em);
   font-size: 10px;
-}
-.item-bottom {
-  padding-bottom: 20px;
 }
 .item p {
   width: 100%;

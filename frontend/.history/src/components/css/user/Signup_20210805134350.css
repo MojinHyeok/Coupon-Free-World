@@ -67,6 +67,7 @@ form p {
 #userName,
 #password,
 #passwordConfirm,
+#profilePath,
 #email,
 #alias {
   width: 100%;

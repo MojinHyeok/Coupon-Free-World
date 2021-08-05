@@ -67,6 +67,7 @@ form p {
 #userName,
 #password,
 #passwordConfirm,
+#profilePath,
 #email,
 #alias {
   width: 100%;
@@ -98,7 +99,7 @@ form p {
   font-size: 10px;
 }
 .item-bottom {
-  padding-bottom: 20px;
+  padding: 10px;
 }
 .item p {
   width: 100%;

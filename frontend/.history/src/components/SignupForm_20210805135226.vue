@@ -87,6 +87,12 @@
               />
               <label for="email">이메일 </label>
             </div>
+            <!-- <p v-if="!isEmailValid && email">
+          이메일 형식이 아닙니다.
+        </p>
+        <p v-if="!isEmailLenValid">
+          email 길이 초과하였습니다.
+        </p> -->
           </div>
           <div class="item">
             <div class="input-box">
