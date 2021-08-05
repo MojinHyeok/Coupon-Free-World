@@ -6,20 +6,14 @@
 		INSERT
 		INTO feed (
 			userID,
-			photoPath1,
-			photoPath2,
-			photoPath3,
-			photoPath4,
+			photoPath
 			content,
 			date,
 			likeCnt
 		)
 		VALUES (
 			#{userID},
-			#{photoPath1},
-			#{photoPath2},
-			#{photoPath3},
-			#{photoPath4},
+			#{photoPath},
 			#{content},
 			#{date},
 			#{likeCnt}
@@ -70,7 +64,7 @@
 	</delete>
 	
 	<select id="getMyTimeline" parameterType="String">
-		SELECT feedID, userID, photoPath1, content, date, likeCnt
+		SELECT feedID, userID, photoPath, content, date, likeCnt
 		FROM feed A 
 		RIGHT JOIN follow B 
 		ON A.userID = B.targetID
@@ -79,7 +73,7 @@
 	</select>
 	
 	<select id="likeFeedList" parameterType="String" resultType="FeedModel">
-		SELECT A.feedID, A.userID, photoPath1, content, date, likeCnt
+		SELECT A.feedID, A.userID, photoPath, content, date, likeCnt
 		FROM feed A 
 		RIGHT JOIN likefeed B 
 		ON A.feedID = B.feedID

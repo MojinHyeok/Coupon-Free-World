@@ -30,6 +30,8 @@ import io.swagger.annotations.ApiResponses;
 @CrossOrigin(origins = {"*"}, maxAge = 6000)
 @RequestMapping("/feed")
 public class FeedController {
+	private final String seperator = "|";
+	
 	@Autowired
 	FeedService service;
 	
@@ -52,31 +54,21 @@ public class FeedController {
 		SimpleDateFormat format = new SimpleDateFormat("yy-MM-dd HH:mm:ss");
 		Date time = new Date();
 		FeedModel model=new FeedModel();
+		
 		System.out.println(userID);
 		model.setUserID(userID);
 		model.setContent(content);
+		StringBuilder sb = new StringBuilder();
 //		사진 작업
 		int size=multipartFiles.size();
-		switch (size) {
-		case 1:
-			model.setPhotoPath1(s3UPloader.upload(multipartFiles.get(0), "feed"));			
-			break;
-		case 2:
-			model.setPhotoPath1(s3UPloader.upload(multipartFiles.get(0), "feed"));
-			model.setPhotoPath2(s3UPloader.upload(multipartFiles.get(1), "feed"));
-			break;
-		case 3:
-			model.setPhotoPath1(s3UPloader.upload(multipartFiles.get(0), "feed"));
-			model.setPhotoPath2(s3UPloader.upload(multipartFiles.get(1), "feed"));
-			model.setPhotoPath3(s3UPloader.upload(multipartFiles.get(2), "feed"));
-			break;
-		case 4:
-			model.setPhotoPath1(s3UPloader.upload(multipartFiles.get(0), "feed"));
-			model.setPhotoPath2(s3UPloader.upload(multipartFiles.get(1), "feed"));
-			model.setPhotoPath3(s3UPloader.upload(multipartFiles.get(2), "feed"));
-			model.setPhotoPath4(s3UPloader.upload(multipartFiles.get(3), "feed"));
-			break;
+		for(int i = 0; i < size; i++) {
+			if(i == size - 1) {
+				sb.append(s3UPloader.upload(multipartFiles.get(i), "feed"));
+			} else {
+				sb.append(s3UPloader.upload(multipartFiles.get(0), "feed") + seperator);
+			}
 		}
+		model.setPhotoPath(sb.toString());
 		model.setDate(format.format(time));
 		model.setLikeCnt(0);
 		int res = service.writeFeed(model);
