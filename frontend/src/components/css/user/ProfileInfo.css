@@ -7,12 +7,26 @@ button {
     color: #fff;
     font-weight: bold;
     border-radius: 4px;
-    background: #ffa061;
   }
   .photo{
       display: flex;
       flex-wrap: wrap;
+      padding: 5% 5%;
   }
   .top{
-    align-content: center;
+    align-items: center;
+    justify-content: center;
+    align-self: center;
   }
+  .menu-button {
+    width: 50%;
+    background-color: #8c92a3
+  }
+  button:disabled {
+    background: #8c92a3;
+  }
+  /* 활성화 */
+  button:enabled {
+    background: #ffa061;
+  }
+  
