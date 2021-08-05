@@ -1,6 +1,5 @@
 <template>
   <div>
-    <h1>Create페이지</h1>
     <FeedCreateForm></FeedCreateForm>
   </div>
 </template>
