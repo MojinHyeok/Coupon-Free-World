@@ -22,7 +22,7 @@
 </template>
 
 <script>
-import { deleteBoard, viewUp } from '@/api/boards.js'
+import { fetchBoard, deleteBoard, viewUp } from '@/api/boards.js'
 import { getUserFromCookie } from '@/utils/cookies.js'
 export default {
   data() {

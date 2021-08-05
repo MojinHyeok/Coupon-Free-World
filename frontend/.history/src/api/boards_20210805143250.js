@@ -38,9 +38,6 @@ function searchBoard(searchOption, value, limit, offset) {
 }
 
 // 글 조회수 증가 api
-function viewUp(boardID) {
-  return instance.get(`board/select/${boardID}`)
-}
 
 // 댓글 등록 --- 게시판 ID를 필수로
 function createComment(boardData) {
@@ -74,7 +71,6 @@ export {
   deleteBoard,
   updateBoard,
   searchBoard,
-  viewUp,
   createComment,
   detailComment,
   likeComment,

@@ -1,9 +1,16 @@
 import { instance } from './index'
 
 // 전체 게시글 수
+
+const boardCRUD = [
+  // 글쓰기
+  function createBoard(boardData) {
+    return instance.post('board/write', boardData)
+  }
+]
 function CountBoard() {
   return instance.get('/board/totalCnt')
-}
+},
 
 // 게시글 가져오는 API
 function fetchBoards(limit, offset) {
@@ -15,10 +22,6 @@ function fetchBoard(boardID) {
   return instance.get(`/board/select/${boardID}`)
 }
 
-// 글쓰기
-function createBoard(boardData) {
-  return instance.post('board/write', boardData)
-}
 
 // 글 삭제
 function deleteBoard(boardID) {
@@ -67,6 +70,7 @@ function unlikeComment(commentID) {
 }
 
 export {
+  boardCRUD,
   CountBoard,
   fetchBoards,
   fetchBoard,
