@@ -87,6 +87,15 @@
               />
               <label for="email">이메일 </label>
             </div>
+            <p>
+              비밀번호 분실 시 실제로 연락 받을 수 있는 이메일
+            </p>
+            <!-- <p v-if="!isEmailValid && email">
+          이메일 형식이 아닙니다.
+        </p>
+        <p v-if="!isEmailLenValid">
+          email 길이 초과하였습니다.
+        </p> -->
           </div>
           <div class="item">
             <div class="input-box">
