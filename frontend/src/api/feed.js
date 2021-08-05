@@ -39,6 +39,10 @@ function likeFeed(data) {
 function unlikeFeed(data) {
   return instance.post('feed/decLikeCnt', data)
 }
+// 특정 유저의 피드 불러오기
+function getFeedList(data) {
+  return instance.post('feed/getFeedList', data)
+}
 
 export {
   fetchFeeds,
@@ -49,4 +53,5 @@ export {
   isUserLike,
   likeFeed,
   unlikeFeed,
+  getFeedList,
 }
