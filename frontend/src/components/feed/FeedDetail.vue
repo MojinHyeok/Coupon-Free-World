@@ -9,7 +9,7 @@
     <div>사진2url: {{ feedItem.photoPath2 }}</div>
     <!-- 좋아요 버튼 -->
     <button v-if="isLike" @click="incLike">like</button>
-    <button v-else @click="decLick">unlike</button>
+    <button v-else @click="decLike">unlike</button>
     <!-- 피드 삭제 버튼 -->
     <button v-if="isUserValid" @click="feedDelete">삭제</button>
   </div>
@@ -61,7 +61,6 @@ export default {
   async created() {
     const data = new FormData()
     data.append('userID', this.$store.state.userID)
-    data.append('feedID', this.feedItem.feedID)
 
     const response = await isUserLike(data)
     console.log('isUserLike =>', response)
