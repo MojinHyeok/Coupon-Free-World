@@ -54,7 +54,7 @@
     <div v-if="photos == ''">
       <h1>피드가 존재하지 않습니다.</h1>
     </div>
-    <div v-else>
+    <div v-else class="photo">
       <profile-feed v-for="feed in photos" :key="feed.id" :feed="feed" />
     </div>
   </div>

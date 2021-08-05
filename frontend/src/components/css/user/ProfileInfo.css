@@ -9,3 +9,7 @@ button {
     border-radius: 4px;
     background: #ffa061;
   }
+  .photo{
+      display: flex;
+      flex-wrap: wrap;
+  }
