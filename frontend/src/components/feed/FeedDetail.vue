@@ -5,11 +5,12 @@
     <div>내용: {{ feedItem.content }}</div>
     <div>날짜: {{ feedItem.date }}</div>
     <div>좋아요: {{ feedItem.likeCnt }}</div>
-    <div>사진1url: {{ feedItem.photoPath1 }}</div>
-    <div>사진2url: {{ feedItem.photoPath2 }}</div>
+    <div v-for="photo in photos" :key="photo.id">
+      {{ photo }}
+    </div>
     <!-- 좋아요 버튼 -->
-    <button v-if="isLike" @click="incLike">like</button>
-    <button v-else @click="decLike">unlike</button>
+    <button v-if="isLike" @click="incLike(feedItem.feedID)">like</button>
+    <button v-else @click="decLike(feedItem.feedID)">unlike</button>
     <!-- 피드 삭제 버튼 -->
     <button v-if="isUserValid" @click="feedDelete">삭제</button>
   </div>
@@ -18,7 +19,13 @@
 // <i class="far fa-heart"></i
 // >            <i class="fas fa-heart"></i
 // >
-import { deleteFeed, isUserLike, likeFeed, unlikeFeed } from '@/api/feed.js'
+import {
+  fetchFeed,
+  deleteFeed,
+  isUserLike,
+  likeFeed,
+  unlikeFeed,
+} from '@/api/feed.js'
 export default {
   props: {
     feedItem: {
@@ -29,6 +36,7 @@ export default {
   data() {
     return {
       isLike: true,
+      photos: [],
     }
   },
   methods: {
@@ -36,21 +44,25 @@ export default {
       await deleteFeed(this.$store.state.userID, this.feedItem.feedID)
       this.$router.push('/feed')
     },
-    async incLike() {
+    async incLike(id) {
       const data = new FormData()
       data.append('userID', this.$store.state.userID)
       data.append('feedID', this.feedItem.feedID)
       await likeFeed(data)
+      // 피드 가져오기
+      const response = await fetchFeed(id)
+      this.feedItem.likeCnt = response.data.likeCnt
       this.isLike = false
-      console.log('incLike작동')
     },
-    async decLike() {
+    async decLike(id) {
       const data = new FormData()
       data.append('userID', this.$store.state.userID)
       data.append('feedID', this.feedItem.feedID)
       await unlikeFeed(data)
+      // 피드 가져오기
+      const response = await fetchFeed(id)
+      this.feedItem.likeCnt = response.data.likeCnt
       this.isLike = true
-      console.log('decLike작동')
     },
   },
   computed: {
@@ -59,12 +71,17 @@ export default {
     },
   },
   async created() {
-    const data = new FormData()
-    data.append('userID', this.$store.state.userID)
-
-    const response = await isUserLike(data)
-    console.log('isUserLike =>', response)
-    this.isLike = response
+    const userID = this.$store.state.userID
+    const { data } = await isUserLike(userID)
+    for (var i = 0; i < data.length; i++) {
+      if (data[i] !== null) {
+        if (this.feedItem.feedID == data[i]['feedID']) {
+          this.isLike = false
+          break
+        }
+      }
+    }
+    this.photos = this.feedItem.photoPath.split('|')
   },
 }
 </script>

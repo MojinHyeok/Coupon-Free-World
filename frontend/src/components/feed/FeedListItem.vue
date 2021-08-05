@@ -1,13 +1,16 @@
 <template>
   <div @click="moveDetail">
-    <div>userID: {{ feedItem.userID }}</div>
+    <!-- <div>userID: {{ feedItem.userID }}</div>
     <div>feedID: {{ feedItem.feedID }}</div>
     <div>내용: {{ feedItem.content }}</div>
     <div>날짜: {{ feedItem.date }}</div>
-    <div>좋아요: {{ feedItem.likeCnt }}</div>
-    <div>사진1url: {{ feedItem.photoPath1 }}</div>
-    <div>사진2url: {{ feedItem.photoPath2 }}</div>
-    <hr />
+    <div>좋아요: {{ feedItem.likeCnt }}</div> -->
+    <div>
+      <img
+        :src="photos[0]"
+        style="width: 28vw; height: 28vw; margin-bottom: 3vw;"
+      />
+    </div>
   </div>
 </template>
 
@@ -19,6 +22,11 @@ export default {
       required: true,
     },
   },
+  data() {
+    return {
+      photos: [],
+    }
+  },
   methods: {
     // 해당 게시글 클릭시 상세페이지 이동
     moveDetail() {
@@ -29,7 +37,10 @@ export default {
     // 좋아요 클릭시
     clickLike() {},
   },
+  created() {
+    this.photos = this.feedItem.photoPath.split('|')
+    console.log(this.photos)
+  },
 }
 </script>
-
-<style></style>
+<style scoped></style>

@@ -1,51 +1,62 @@
 <template>
-  <div v-if="userID.length">
-    <b-container class="bv-example-row">
-      <b-row class="justify-content-md-center">
-        <b-col class="imgbox" cols="4">
-          <div v-if="profilePath == ''">
-            <img
-              src="../../assets/profileDefault.jpg"
-              style="width:30vw;height:30vw;  "
-            />
-          </div>
-          <div v-else>
-            <img
-              :src="profilePath"
-              style="border: 1px solid #333;width: 20vw; height: 20vw;border-radius: 50%;  margin:auto;"
-            />
-          </div>
-        </b-col>
-        <b-col class="top" cols="8">
-          <b-row>
-            <b-col cols="3"> 좋아요<br />{{ this.userID }}</b-col>
-            <b-col cols="3" @click="move"
-              >팔로잉<br />
-              {{ this.followerCnt }}</b-col
-            >
-            <b-col cols="3" @click="move"
-              >팔로잉<br />
-              {{ this.followingCnt }}</b-col
-            >
-          </b-row>
-        </b-col>
-      </b-row>
-      <b-row>
-        <button @click="moveProfile" v-if="tempuserID == userID">
-          회원정보수정
-        </button>
-        <button v-else-if="this.findrequestFollow" @click="canclerequestFollow">
-          팔로우 요청 취소
-        </button>
-        <button v-else-if="this.requestFollow" @click="requestFollow2">
-          팔로우요청
-        </button>
-        <button v-else @click="cancleFollow">팔로우 취소</button>
-      </b-row>
-    </b-container>
-  </div>
-  <div v-else>
-    <h1>일치하는 ID가 존재하지 않습니다.!</h1>
+  <div>
+    <div v-if="userID.length">
+      <b-container class="bv-example-row">
+        <b-row class="justify-content-md-center">
+          <b-col class="imgbox" cols="4">
+            <div v-if="profilePath == ''">
+              <img
+                src="../../assets/profileDefault.jpg"
+                style="width:30vw;height:30vw;  "
+              />
+            </div>
+            <div v-else>
+              <img
+                :src="profilePath"
+                style="border: 1px solid #333;width: 20vw; height: 20vw;border-radius: 50%;  margin:auto;"
+              />
+            </div>
+          </b-col>
+          <b-col class="top" cols="8">
+            <b-row>
+              <b-col cols="3"> 좋아요<br />{{ this.userID }}</b-col>
+              <b-col cols="3" @click="move"
+                >팔로잉<br />
+                {{ this.followerCnt }}</b-col
+              >
+              <b-col cols="3" @click="move"
+                >팔로잉<br />
+                {{ this.followingCnt }}</b-col
+              >
+            </b-row>
+          </b-col>
+        </b-row>
+        <b-row>
+          <button @click="moveProfile" v-if="tempuserID == userID">
+            회원정보수정
+          </button>
+          <button
+            v-else-if="this.findrequestFollow"
+            @click="canclerequestFollow"
+          >
+            팔로우 요청 취소
+          </button>
+          <button v-else-if="this.requestFollow" @click="requestFollow2">
+            팔로우요청
+          </button>
+          <button v-else @click="cancleFollow">팔로우 취소</button>
+        </b-row>
+      </b-container>
+    </div>
+    <div v-else>
+      <h1>일치하는 ID가 존재하지 않습니다.!</h1>
+    </div>
+    <div v-if="photos == ''">
+      <h1>피드가 존재하지 않습니다.</h1>
+    </div>
+    <div v-else>
+      <profile-feed v-for="feed in photos" :key="feed.id" :feed="feed" />
+    </div>
   </div>
 </template>
 
@@ -61,7 +72,13 @@ import {
   findrequestFollowOne,
   canclerequestFollow,
 } from '@/api/auth'
+
+import { getFeedList } from '@/api/feed.js'
+import ProfileFeed from './ProfileFeed.vue'
 export default {
+  components: {
+    ProfileFeed,
+  },
   computes: {
     ...mapGetters(['user']),
   },
@@ -81,6 +98,7 @@ export default {
       tempuserID: '', // 이 사용자가 마이페이지로 들어왔다면 회원정보 수정을 해주기 위해 로그인유저 ID이다.
       requestFollow: true, // 팔로우요청 할지..
       findrequestFollow: false,
+      photos: [],
       // eslint-disable-next-line prettier/prettier
       };
   },
@@ -163,9 +181,16 @@ export default {
         alert('에러발생')
       }
     },
+    async getFeedList() {
+      const temp = this.$route.params.userID
+      var res = await getFeedList(temp)
+      this.photos = res.data
+      console.log(this.photos)
+    },
   },
   created() {
     this.detectParams(this.$route.params.userID)
+    this.getFeedList()
   },
   watch: {
     $route(to, from) {
@@ -178,5 +203,5 @@ export default {
 </script>
 
 <style scoped src="../css/user/default.css"></style>
-
+<style scoped src="../css/user/ProfileInfo.css"></style>
 <style></style>
