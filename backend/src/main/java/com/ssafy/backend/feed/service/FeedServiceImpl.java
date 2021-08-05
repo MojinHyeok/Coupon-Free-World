@@ -46,7 +46,7 @@ public class FeedServiceImpl implements FeedService {
 		
 	@Override
 	public int deleteLikeFeed(@Param("feedID") int feedID, @Param("userID") String userID) throws Exception {
-		return mapper.deleteFeed(feedID, userID);
+		return mapper.deleteLikeFeed(feedID, userID);
 	}
 	
 	@Override
