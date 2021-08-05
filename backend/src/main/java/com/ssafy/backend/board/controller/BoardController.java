@@ -151,7 +151,7 @@ public class BoardController {
         
         int cnt = model.getViewCount();
         model.setViewCount(cnt + 1);
-        service.updateViewCount(boardID, cnt);
+        service.updateViewCount(boardID, cnt + 1);
         
         return new ResponseEntity<>(model, HttpStatus.OK);
 	}
