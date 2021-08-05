@@ -15,7 +15,7 @@
     <!-- 하단부 -->
     <div class="feed-detail-bottom margin-sm">
       <!-- 좋아요 버튼 -->
-      <div class="d-flex">
+      <div class="i-am-like">
         <div>
           <button v-if="isLike" @click="incLike(feedItem.feedID)">
             <i class="far fa-heart heart"></i>
@@ -24,7 +24,7 @@
             <i class="fas fa-heart heart"></i>
           </button>
         </div>
-        <div class="i-am-like">
+        <div>
           <p v-if="isLike">{{ feedItem.likeCnt }} 명이 좋아합니다.</p>
           <p v-else-if="feedItem.likeCnt - 1 > 0">
             {{ feedItem.userID }}님 외에 {{ feedItem.likeCnt - 1 }} 명이

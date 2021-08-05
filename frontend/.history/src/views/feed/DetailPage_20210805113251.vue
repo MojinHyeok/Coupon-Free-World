@@ -1,5 +1,6 @@
 <template>
   <div>
+    <h1>Detail 페이지</h1>
     <!-- 댓글 뺀 상세 피드 컴포넌트 -->
     <FeedDetail :feedItem="feedItem"></FeedDetail>
     <!-- 댓글 상세 피드 -->
