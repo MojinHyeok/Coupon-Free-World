@@ -9,7 +9,7 @@
       <div class="d-flex justify-content-end  align-items-center">
         <SearchBar @on-keyword-enter="onKeywordEnter" class="ps-1" />
       </div>
-      <div class="d-flex justify-content-end pt-3">
+      <div class="d-flex justify-content-end">
         <button @click="write" type="button" class="btn btn-light">
           글쓰기
         </button>
