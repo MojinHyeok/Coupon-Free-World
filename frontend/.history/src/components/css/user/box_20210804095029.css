@@ -24,8 +24,7 @@ form p {
   margin-bottom: 1.25em;
 }
 /* input style */
-#userID,
-#password {
+#userID, #password {
   width: 100%;
   height: 34px;
   outline: none;
@@ -58,7 +57,8 @@ label {
 }
 /* label transform */
 .input-box input:not(:placeholder-shown) + label,
-.input-box input:focus + label {
+.input-box input:focus + label
+{
   transform: translateY(-1em);
   font-size: 10px;
 }
@@ -85,12 +85,8 @@ label {
   animation-iteration-count: initial;
 }
 @keyframes fadeOut {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
+  from { opacity: 0; }
+  to   { opacity: 1; }
 }
 
 /* button 크기 style */

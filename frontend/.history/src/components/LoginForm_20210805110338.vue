@@ -1,5 +1,5 @@
 <template>
-  <div class="login-form">
+  <div>
     <div class="login-box">
       <form @submit.prevent="submitForm">
         <p class="sub-title">로그인</p>
@@ -43,7 +43,7 @@
             {{ logBlankpassword }}
           </p>
         </div>
-        <div style="width: 100%;">
+        <div style="width: 100%; height: 44px;">
           <div v-if="logMessage" class="logMessage">{{ logMessage }}</div>
         </div>
         <button :disabled="!userID || !password">로그인</button>
@@ -126,7 +126,6 @@ export default {
 }
 </script>
 
-<style scoped src="./css/user/default.css"></style>
 <style scoped src="./css/user/Login.css"></style>
 <style scoped src="./css/user/modal.css"></style>
 <style scoped></style>

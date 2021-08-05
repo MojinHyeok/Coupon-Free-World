@@ -43,7 +43,7 @@
             {{ logBlankpassword }}
           </p>
         </div>
-        <div style="width: 100%;">
+        <div style="width: 100%; height: 44px;">
           <div v-if="logMessage" class="logMessage">{{ logMessage }}</div>
         </div>
         <button :disabled="!userID || !password">로그인</button>
