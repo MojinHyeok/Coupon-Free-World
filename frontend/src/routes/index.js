@@ -83,7 +83,6 @@ const router = new VueRouter({
 })
 
 router.beforeEach((to, from, next) => {
-  console.log(store.getters.userID)
   if (to.meta.auth && !store.getters.userID) {
     next('/account/login')
     return
