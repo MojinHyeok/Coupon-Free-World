@@ -3,7 +3,7 @@ import { instance } from './index'
 // 전체 게시글 수
 function CountBoard() {
   return instance.get('/board/totalCnt')
-}
+},
 
 // 게시글 가져오는 API
 function fetchBoards(limit, offset) {

@@ -22,7 +22,7 @@
 </template>
 
 <script>
-import { deleteBoard, viewUp } from '@/api/boards.js'
+import { fetchBoard, deleteBoard, viewUp } from '@/api/boards.js'
 import { getUserFromCookie } from '@/utils/cookies.js'
 export default {
   data() {
@@ -34,10 +34,15 @@ export default {
     }
   },
   async created() {
-    const view = await viewUp(this.boardID)
-    this.detail = view.data
-    this.view = view.data.viewCount
-    console.log('조회수')
+    const data = this.$route.params.id
+    const temp = await fetchBoard(data)
+    this.detail = temp.data
+    this.view = this.detail.viewCount
+
+    // const view = await viewUp(this.boardID)
+    // console.log(view.data)
+    // this.view = view.data.viewCount
+    // console.log('조회수')
     console.log(this.view)
   },
   methods: {
