@@ -5,10 +5,10 @@
     <div>내용: {{ feedItem.content }}</div>
     <div>날짜: {{ feedItem.date }}</div>
     <div>좋아요: {{ feedItem.likeCnt }}</div> -->
-    <div>
+    <div style=" margin-bottom: 2vw;">
       <img
         :src="photos[0]"
-        style="width: 28vw; height: 28vw; margin-bottom: 3vw;"
+        style="width: 30vw; height: 30vw; padding: 0 1vw;"
       />
     </div>
   </div>

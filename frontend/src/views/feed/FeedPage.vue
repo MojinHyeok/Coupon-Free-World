@@ -7,7 +7,7 @@
           <i class="fab fa-buromobelexperte fa-2x"></i>
         </span>
       </button>
-      <button></button>
+      <button><i class="far fa-comment fa-2x"></i></button>
     </div>
     <div class="box">
       <!-- 모든 피드들 뿌려주기 -->
