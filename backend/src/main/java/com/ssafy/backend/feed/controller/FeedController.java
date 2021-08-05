@@ -65,7 +65,7 @@ public class FeedController {
 			if(i == size - 1) {
 				sb.append(s3UPloader.upload(multipartFiles.get(i), "feed"));
 			} else {
-				sb.append(s3UPloader.upload(multipartFiles.get(0), "feed") + seperator);
+				sb.append(s3UPloader.upload(multipartFiles.get(i), "feed") + seperator);
 			}
 		}
 		model.setPhotoPath(sb.toString());
