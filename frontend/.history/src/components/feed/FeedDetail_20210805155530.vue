@@ -1,7 +1,7 @@
 <template>
   <div>
     <!-- 유저 정보가 나타나는 곳 -->
-    <div class="feed-detail-top">
+    <div>
       <p>{{ feedItem.userID }}</p>
       <!-- 피드 삭제 버튼 -->
       <button v-if="isUserValid" @click="feedDelete">삭제</button>
@@ -12,39 +12,19 @@
         <img :src="photo" style="width: 100%" />
       </div>
     </div>
-    <!-- 하단부 -->
-    <div class="feed-detail-bottom margin-sm">
-      <!-- 좋아요 버튼 -->
-      <div class="d-flex">
-        <div>
-          <button v-if="isLike" @click="incLike(feedItem.feedID)">
-            <i class="far fa-heart heart"></i>
-          </button>
-          <button v-else @click="decLike(feedItem.feedID)">
-            <i class="fas fa-heart heart"></i>
-          </button>
-        </div>
-        <div class="i-am-like">
-          <p v-if="isLike">{{ feedItem.likeCnt }} 명이 좋아합니다.</p>
-          <p v-else-if="feedItem.likeCnt - 1 > 0">
-            {{ feedItem.userID }}님 외에 {{ feedItem.likeCnt - 1 }} 명이
-            좋아합니다.
-          </p>
-          <p v-else>{{ feedItem.userID }}님이 좋아합니다.</p>
-        </div>
-      </div>
 
-      <!-- 좋아요와 내용 정보가 나타나는 곳 -->
-      <p class="margin-sm">좋아요 {{ feedItem.likeCnt }}개</p>
-      <div class="feed-content">
-        <p class="margin-sm feed-userID">{{ feedItem.userID }}</p>
-        <p class="margin-sm">{{ feedItem.content }}</p>
-      </div>
-      <p class="margin-sm text-s-g">
-        {{ feedItem.date[5] }}{{ feedItem.date[6] }}월 {{ feedItem.date[8]
-        }}{{ feedItem.date[9] }}일
-      </p>
-    </div>
+    <!-- 좋아요 버튼 -->
+    <button v-if="isLike" @click="incLike(feedItem.feedID)">
+      <i class="far fa-heart"></i>
+    </button>
+    <button v-else @click="decLike(feedItem.feedID)">
+      <i class="fas fa-heart"></i></i>
+    </button>
+
+    <!-- 좋아요와 내용 정보가 나타나는 곳 -->
+    <div>내용: {{ feedItem.content }}</div>
+    <div>날짜: {{ feedItem.date }}</div>
+    <div>좋아요: {{ feedItem.likeCnt }}</div>
   </div>
 </template>
 <script>
