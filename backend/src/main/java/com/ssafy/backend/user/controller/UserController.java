@@ -29,6 +29,10 @@ import com.ssafy.backend.amazonS3.S3Uploader;
 import com.ssafy.backend.user.model.UserModel;
 import com.ssafy.backend.user.service.UserService;
 
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiResponse;
+import io.swagger.annotations.ApiResponses;
+
 @RestController
 @CrossOrigin(origins= {"*"},maxAge=6000)
 @RequestMapping("/user")
@@ -41,9 +45,13 @@ public class UserController {
 	@Autowired
 	S3Uploader s3UPloader;
 	
-	
-	
 	//회원가입 URI (RquestBody에 회원정보 전송)
+	@ApiOperation(value = "회원가입 하기", notes = "회원가입")
+	@ApiResponses({
+		@ApiResponse(code = 200, message = "회원가입 성공"),
+		@ApiResponse(code = 404, message = "페이지를 찾을 수 없음"),
+		@ApiResponse(code = 500, message = "내부 서버 오류")
+	})
 	@PostMapping("/join")
 	public ResponseEntity<String> join(@RequestBody UserModel model){
 		String msg="";
@@ -67,6 +75,12 @@ public class UserController {
 	}
 	
 	//회원정보
+	@ApiOperation(value = "회원 정보 보기", notes = "특정 회원의 정보를 봅니다.")
+	@ApiResponses({
+		@ApiResponse(code = 200, message = "회원 정보 조회 성공"),
+		@ApiResponse(code = 404, message = "페이지를 찾을 수 없음"),
+		@ApiResponse(code = 500, message = "내부 서버 오류")
+	})
 	@PostMapping("/info")
 	public ResponseEntity<Map<String, Object>> userInfo(@RequestBody UserModel model){
 		Map<String, Object> resultMap = new HashMap<>();
@@ -86,6 +100,12 @@ public class UserController {
 	
 	
 	//회원정보 수정
+	@ApiOperation(value = "회원 정보 수정", notes = "특정 사용자의 정보를 수정합니다.")
+	@ApiResponses({
+		@ApiResponse(code = 200, message = "로그인 성공"),
+		@ApiResponse(code = 404, message = "페이지를 찾을 수 없음"),
+		@ApiResponse(code = 500, message = "내부 서버 오류")
+	})
 	@PostMapping("/modify")
 	public ResponseEntity<String> userModify(
 //			@RequestBody UserModel model,
@@ -125,7 +145,14 @@ public class UserController {
 		
 		return new ResponseEntity<>(msg,status);
 	}
+	
 	//회원정보삭제하기
+	@ApiOperation(value = "회원 탈퇴", notes = "회원 탈퇴합니다.")
+	@ApiResponses({
+		@ApiResponse(code = 200, message = "회원 탈퇴 성공"),
+		@ApiResponse(code = 404, message = "페이지를 찾을 수 없음"),
+		@ApiResponse(code = 500, message = "내부 서버 오류")
+	})
 	@PostMapping("/delete")
 	public ResponseEntity<String> userDelte(@RequestBody UserModel model){
 		String msg="";
@@ -145,6 +172,12 @@ public class UserController {
 	}
 	
 	//회원 리스트 가져오기
+	@ApiOperation(value = "회원 검색해서 목록 가져오기", notes = "특정 문자열이 들어간 유저들을 검색합니다.")
+	@ApiResponses({
+		@ApiResponse(code = 200, message = "로그인 성공"),
+		@ApiResponse(code = 404, message = "페이지를 찾을 수 없음"),
+		@ApiResponse(code = 500, message = "내부 서버 오류")
+	})
 	@GetMapping("/list/{userID}")
 	public ResponseEntity<?> searchUserList(@PathVariable("userID") String userID) throws Exception {
 		List<String> list = service.searchUserList(userID);
@@ -157,6 +190,12 @@ public class UserController {
 	}
 	
 	//아래부터는 메일 서비스를 위한 확인 절차
+	@ApiOperation(value = "이메일 인증하기", notes = "회원가입 시 이메일 인증을 합니다.")
+	@ApiResponses({
+		@ApiResponse(code = 200, message = "로그인 성공"),
+		@ApiResponse(code = 404, message = "페이지를 찾을 수 없음"),
+		@ApiResponse(code = 500, message = "내부 서버 오류")
+	})
 	@GetMapping("/mail/{email}")
 	public ResponseEntity<Integer> email(@PathVariable("email") String email){
 		System.out.println(email);
