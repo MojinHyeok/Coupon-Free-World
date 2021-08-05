@@ -7,7 +7,7 @@
             <div v-if="profilePath == ''">
               <img
                 src="../../assets/profileDefault.jpg"
-                style="width:30vw;height:30vw;  "
+                style="width:20vw;height:20vw;  "
               />
             </div>
             <div v-else>
