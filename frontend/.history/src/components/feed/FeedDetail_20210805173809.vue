@@ -17,12 +17,12 @@
       <!-- 좋아요 버튼 -->
       <div class="d-flex">
         <div>
-          <button v-if="isLike" @click="incLike(feedItem.feedID)">
-            <span><i class="far fa-heart heart"></i></span>
-          </button>
-          <button v-else @click="decLike(feedItem.feedID)">
-            <span><i class="fas fa-heart heart"></i></span>
-          </button>
+          <span v-if="isLike" @click="incLike(feedItem.feedID)">
+            <i class="far fa-heart heart"></i>
+          </span>
+          <span v-else @click="decLike(feedItem.feedID)">
+            <i class="fas fa-heart heart"></i>
+          </span>
         </div>
         <div class="i-am-like">
           <p v-if="isLike">{{ feedItem.likeCnt }} 명이 좋아합니다.</p>
