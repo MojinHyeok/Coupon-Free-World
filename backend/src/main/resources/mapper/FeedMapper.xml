@@ -67,7 +67,7 @@
 	<select id="getMyTimeline" parameterType="String">
 		SELECT feedID, userID, photoPath, content, date, likeCnt
 		FROM feed A 
-		RIGHT JOIN follow B 
+		LEFT JOIN follow B 
 		ON A.userID = B.targetID
 		WHERE B.sourceID = #{userID}
 		ORDER BY date DESC
@@ -76,7 +76,7 @@
 	<select id="likeFeedList" parameterType="String" resultType="FeedModel">
 		SELECT A.feedID, A.userID, photoPath, content, date, likeCnt
 		FROM feed A 
-		RIGHT JOIN likefeed B 
+		LEFT JOIN likefeed B 
 		ON A.feedID = B.feedID
 		WHERE B.userID = #{userID}
 		ORDER BY date DESC
