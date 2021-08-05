@@ -2,12 +2,25 @@
   <div v-if="userID.length">
     <b-container class="bv-example-row">
       <b-row class="justify-content-md-center">
-        <b-col col>사진</b-col>
-        <b-col cols="10">
+        <b-col class="imgbox" cols="4">
+          <div v-if="profilePath == ''">
+            <img
+              src="../../assets/profileDefault.jpg"
+              style="width:30vw;height:30vw;  "
+            />
+          </div>
+          <div v-else>
+            <img
+              :src="profilePath"
+              style="border: 1px solid #333;width: 20vw; height: 20vw;border-radius: 50%;  margin:auto;"
+            />
+          </div>
+        </b-col>
+        <b-col class="top" cols="8">
           <b-row>
             <b-col cols="3"> 좋아요<br />{{ this.userID }}</b-col>
             <b-col cols="3" @click="move"
-              >팔로워<br />
+              >팔로잉<br />
               {{ this.followerCnt }}</b-col
             >
             <b-col cols="3" @click="move"
@@ -60,6 +73,7 @@ export default {
       email: '',
       alias: '',
       likeCnt: '',
+      profilePath: '',
       follower: [],
       following: [],
       followerCnt: '',
@@ -162,5 +176,7 @@ export default {
   },
 }
 </script>
+
+<style scoped src="../css/user/default.css"></style>
 
 <style></style>
