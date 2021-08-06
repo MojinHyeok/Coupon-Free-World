@@ -5,20 +5,19 @@ import org.springframework.data.repository.query.Param;
 import com.ssafy.backend.board.model.BoardModel;
 
 public interface BoardService {
-	// 글쓰기
     int writeBoard(BoardModel BoardModel) throws Exception;
-    // 글삭제
+    
     int deleteBoard(int boardID) throws Exception;
-    // 
+    
     BoardModel selectBoard(int boardID) throws Exception;
-    // 게시글 검색
+    
     List<BoardModel> searchBoard(String searchOption, String value, int limit, int offset) throws Exception;
-    // 게시글 수정
+    
     int updateBoard(BoardModel BoardModel) throws Exception;
-    // 전체 게시글 수
+    
     public int totalCount() throws Exception;
-    // 
+    
     List<BoardModel> selectBoardLimitOffset(@Param("limit") int limit, @Param("offset") int offset) throws Exception;
-    // 조회수 업데이트
+    
     int updateViewCount(@Param("boardID") int boardID, @Param("viewCount") int viewCount) throws Exception;
 }

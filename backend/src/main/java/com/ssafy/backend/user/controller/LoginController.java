@@ -29,14 +29,12 @@ import io.swagger.annotations.ApiResponses;
 @RequestMapping("/login")
 public class LoginController {
 	
-	// 토큰 암호화를 위한 Jwt Service
 	@Autowired
 	private JwtServiceImpl jwtService;
 	
 	@Autowired
 	private LoginService service;
 	
-	// 로그인 URI(RequestBody에 id, pw 전송)
 	@ApiOperation(value = "로그인하기", notes = "사용자의 정보를 입력받아 로그인을 검증합니다..")
 	@ApiResponses({
 		@ApiResponse(code = 200, message = "로그인 성공"),
@@ -51,16 +49,16 @@ public class LoginController {
 		try {
 			UserModel loginUser = service.login(model);
 			
-			if(loginUser != null) {	// 사용자 존재할 시
+			if(loginUser != null) {	
 				String token = jwtService.create("userid", loginUser.getUserID(), "access-token");
 				resultMap.put("access-token", token);
 				resultMap.put("message", token);
-			} else {	// 사용자 없을 시
+			} else {	
 				resultMap.put("message", "fail");
 			}
 			status = HttpStatus.ACCEPTED;
 			
-		} catch(Exception e) {	// 
+		} catch(Exception e) {	
 			resultMap.put("message", e.getMessage());
 			status = HttpStatus.INTERNAL_SERVER_ERROR;
 		}
@@ -68,7 +66,6 @@ public class LoginController {
 		return new ResponseEntity<>(resultMap, status);
 	}
 	
-	// 사용자 정보 확인
 	@ApiOperation(value = "사용자 검증", notes = "해당 사용자가 맞는지 검증합니다.")
 	@ApiResponses({
 		@ApiResponse(code = 200, message = "사용자 검증 성공"),
@@ -82,7 +79,6 @@ public class LoginController {
         
         if (jwtService.isUsable(request.getHeader("access-token"))) {
             try {
-//				로그인 사용자 정보.
                 UserModel model = service.userInfo(userID);
                 
                 resultMap.put("userInfo", model);

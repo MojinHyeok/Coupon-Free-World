@@ -45,7 +45,6 @@ public class UserController {
 	@Autowired
 	S3Uploader s3UPloader;
 	
-	//회원가입 URI (RquestBody에 회원정보 전송)
 	@ApiOperation(value = "회원가입 하기", notes = "회원가입")
 	@ApiResponses({
 		@ApiResponse(code = 200, message = "회원가입 성공"),
@@ -74,7 +73,6 @@ public class UserController {
 		return new ResponseEntity<>(msg,status);
 	}
 	
-	//회원정보
 	@ApiOperation(value = "회원 정보 보기", notes = "특정 회원의 정보를 봅니다.")
 	@ApiResponses({
 		@ApiResponse(code = 200, message = "회원 정보 조회 성공"),
@@ -108,7 +106,6 @@ public class UserController {
 	})
 	@PostMapping("/modify")
 	public ResponseEntity<String> userModify(
-//			@RequestBody UserModel model,
 			@RequestParam(value="imageData",required=false) MultipartFile multipartFile,
 			@RequestParam("userID") String userID,
 			@RequestParam("userName") String userName,
@@ -146,7 +143,6 @@ public class UserController {
 		return new ResponseEntity<>(msg,status);
 	}
 	
-	//회원정보삭제하기
 	@ApiOperation(value = "회원 탈퇴", notes = "회원 탈퇴합니다.")
 	@ApiResponses({
 		@ApiResponse(code = 200, message = "회원 탈퇴 성공"),
@@ -171,7 +167,6 @@ public class UserController {
 		return new ResponseEntity<>(msg,status);
 	}
 	
-	//회원 리스트 가져오기
 	@ApiOperation(value = "회원 검색해서 목록 가져오기", notes = "특정 문자열이 들어간 유저들을 검색합니다.")
 	@ApiResponses({
 		@ApiResponse(code = 200, message = "로그인 성공"),
@@ -226,7 +221,7 @@ public class UserController {
 	            
 	            System.getProperty("line.separator")+
 	            
-	            "받으신 인증번호를 홈페이지에 입력해 주시면 다음으로 넘어갑니다."; // 내용
+	            "받으신 인증번호를 홈페이지에 입력해 주시면 다음으로 넘어갑니다.";
 		try {
 			MimeMessage message = mailSender.createMimeMessage();
 			MimeMessageHelper messageHelper = new MimeMessageHelper(message,

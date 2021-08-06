@@ -34,7 +34,6 @@ public class BoardController {
 	@Autowired
 	private BoardService service;
 	
-	// 글쓰기
 	@ApiOperation(value = "글쓰기", notes = "게시판에 글을 쓸 수 있습니다.")
 	@ApiResponses({
 		@ApiResponse(code = 200, message = "글쓰기 성공"),
@@ -58,7 +57,6 @@ public class BoardController {
         }
 	}
 	
-	// 글 목록 불러오기
 	// limit = 출력할 행의 수
 	// offset = 몇번째 row부터 출력할 것인지(0부터 시작)
 	@ApiOperation(value = "글 목록 불러오기", notes = "게시판의 모든 글을 불러옵니다.")
@@ -74,8 +72,6 @@ public class BoardController {
 		return new ResponseEntity<>(list, HttpStatus.OK);
 	}
 	
-	// 글 삭제
-	// 게시글 번호(테이블의 PK)로 접근함, 값 보낼 때 boardID를 보내야 함
 	@ApiOperation(value = "게시글 삭제", notes = "게시판의 글을 삭제합니다.")
 	@ApiResponses({
 		@ApiResponse(code = 200, message = "글 삭제 성공"),
@@ -93,7 +89,6 @@ public class BoardController {
 		}
 	}
 	
-	// 글 수정
 	@ApiOperation(value = "글 수정하기", notes = "해당 글을 수정하고 업데이트합니다.")
 	@ApiResponses({
 		@ApiResponse(code = 200, message = "글 수정하기 성공"),
@@ -111,7 +106,6 @@ public class BoardController {
 		}
 	}
 	
-	// 게시글 검색
 	// searchOption = 검색옵션(내용, 제목, 작성자)
 	// searchOption 값 보낼때 내용 = content, 작성자 = writer, 제목 = title로 보내기
 	// value = 포함될 값
@@ -134,7 +128,6 @@ public class BoardController {
 		return new ResponseEntity<>(list, HttpStatus.OK);
 	}
 	
-	// 게시글 내용 보기(클릭 시 조회수 올라가게)
 	@ApiOperation(value = "글 내용 보기", notes = "게시판의 글 내용을 봅니다.")
 	@ApiResponses({
 		@ApiResponse(code = 200, message = "게시글 내용 불러오기 성공"),
@@ -156,7 +149,6 @@ public class BoardController {
         return new ResponseEntity<>(model, HttpStatus.OK);
 	}
 	
-	// 전체 게시글 수 가져오기
 	@ApiOperation(value = "전체 게시글 수 불러오기", notes = "게시판의 모든 글의 개수를 반환합니다.")
 	@ApiResponses({
 		@ApiResponse(code = 200, message = "글 개수 반환하기 성공"),

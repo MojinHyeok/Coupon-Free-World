@@ -25,10 +25,6 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 @EnableSwagger2
 public class SwaggerConfiguration {
 
-//	Swagger 설정 확인
-//	http://localhost:8000/{your-app-root}/v2/api-docs
-//	Swagger-UI 확인
-//	http://localhost:8078/{your-app-root}/swagger-ui.html
 //  * Swagger 접속 주소 *
 //	http://localhost:8078/swagger-ui.html
 

@@ -46,7 +46,6 @@ public class FeedController {
 	})
 	@PostMapping("/write")
 	public ResponseEntity<?> writeFeed(
-//			@RequestBody FeedModel model,
 			@RequestParam("userID")String userID,
 			@RequestParam("content")String content,
 			@RequestParam("files")List<MultipartFile> multipartFiles
@@ -55,12 +54,13 @@ public class FeedController {
 		Date time = new Date();
 		FeedModel model=new FeedModel();
 		
-		System.out.println(userID);
 		model.setUserID(userID);
 		model.setContent(content);
+		
 		StringBuilder sb = new StringBuilder();
-//		사진 작업
+		
 		int size=multipartFiles.size();
+		
 		for(int i = 0; i < size; i++) {
 			if(i == size - 1) {
 				sb.append(s3UPloader.upload(multipartFiles.get(i), "feed"));
@@ -68,9 +68,11 @@ public class FeedController {
 				sb.append(s3UPloader.upload(multipartFiles.get(i), "feed") + seperator);
 			}
 		}
+		
 		model.setPhotoPath(sb.toString());
 		model.setDate(format.format(time));
 		model.setLikeCnt(0);
+		
 		int res = service.writeFeed(model);
 		
 		if(res >= 1) {
@@ -134,7 +136,6 @@ public class FeedController {
 		return new ResponseEntity<Void>(HttpStatus.OK);
 	}
 	
-	// 내 타임라인의 피드(내가 팔로우하는 사람들의 피드) 불러오기
 	@ApiOperation(value = "내 타임라인 보기", notes = "나의 타임라인을 봅니다.")
 	@ApiResponses({
 		@ApiResponse(code = 200, message = "내 타임라인 보기 성공"),
@@ -148,7 +149,6 @@ public class FeedController {
 		return new ResponseEntity<>(list, HttpStatus.OK);
 	}
 	
-	// 특정 유저의 피드 불러오기
 	@ApiOperation(value = "특정 유저의 피드 불러오기", notes = "해당 유저의 피드를 불러옵니다.")
 	@ApiResponses({
 		@ApiResponse(code = 200, message = "피드 불러오기 성공"),
@@ -176,8 +176,7 @@ public class FeedController {
 		return new ResponseEntity<>(list, HttpStatus.OK);
 	}
 	
-	// 메인 화면 피드 보기(모든 유저들)
-	@ApiOperation(value = "메인 피드 불러오기", notes = "메인 피드를 불러옵니다.")
+	@ApiOperation(value = "메인 피드 불러오기", notes = "메인 피드(모든 유저)를 불러옵니다.")
 	@ApiResponses({
 		@ApiResponse(code = 200, message = "피드 불러오기 성공"),
 		@ApiResponse(code = 404, message = "페이지를 찾을 수 없음"),
@@ -190,8 +189,6 @@ public class FeedController {
 		return new ResponseEntity<>(list, HttpStatus.OK);
 	}
 	
-	
-	//피드의 상세페이지 
 	@ApiOperation(value="피드의 상세페이지 불러오기", notes="피드의 상세페이지를 불러옵니다.")
 	@ApiResponses({
 		@ApiResponse(code = 200, message = "피드상세페이지 불러오기 성공"),

@@ -5,23 +5,21 @@ import java.util.List;
 import com.ssafy.backend.social.model.SocialModel;
 
 public interface SocialService {
-	//팔로워찾기
 	List<String> findFollower(String userid);
-	//팔로잉찾기
-	List<String> findFollowing(String userid);
-	//팔로우요청
-	int requestFollow(SocialModel model);
-	//팔로우수락
-	int allowFollow(SocialModel model);
-	//팔로우요청한 사람찾기
-	List<String> findrequestFollow(String userid);
-	//중복검사하기
-	SocialModel checkDuplicate(SocialModel model);
-	//팦로우취소
-	int cancleFollow(SocialModel model);
-	//팔로우 요청 취소하기 위한 검증단계 
-	SocialModel findrequestFollowOne(SocialModel model);
-	//팔로우 요청 취소
-	int canclerequestFollow(SocialModel model);
 	
+	List<String> findFollowing(String userid);
+	
+	int requestFollow(SocialModel model);
+	
+	int allowFollow(SocialModel model);
+	
+	List<String> findrequestFollow(String userid);
+	
+	SocialModel checkDuplicate(SocialModel model);
+	
+	int cancleFollow(SocialModel model);
+	
+	SocialModel findrequestFollowOne(SocialModel model);
+	
+	int canclerequestFollow(SocialModel model);
 }

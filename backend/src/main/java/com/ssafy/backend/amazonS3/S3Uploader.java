@@ -54,11 +54,6 @@ public class S3Uploader {
 		}
 	}
 
-//	private Optional<File> convert(MultipartFile file) throws IllegalStateException, IOException {
-//		File convertFile=new File(file.getOriginalFilename());
-//		file.transferTo(convertFile);
-//		return Optional.of(convertFile);
-//	}
 	private Optional<File> convert(MultipartFile file) throws IOException {
 		File convertFile = new File(file.getOriginalFilename());
 		convertFile.delete();
