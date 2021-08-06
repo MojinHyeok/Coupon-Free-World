@@ -39,7 +39,6 @@ export default {
   },
   created() {
     this.photos = this.feedItem.photoPath.split('|')
-    console.log(this.photos)
   },
 }
 </script>

@@ -270,9 +270,7 @@ export default {
     const userData = {
       userID: getUserFromCookie(),
     }
-    console.log(userData.userID)
     const { data } = await fetchUser(userData)
-    console.log(data)
     this.userID = data.userInfo.userID
     this.userName = data.userInfo.userName
     this.password = data.userInfo.password
@@ -296,7 +294,6 @@ export default {
 
     passwordActive() {
       this.isPwAcitve = !this.isPwAcitve
-      console.log(this.isPwAcitve)
       this.passwordCurrent = ''
       this.passwordChange = ''
       this.passwordChangeConfirm = ''
@@ -320,25 +317,12 @@ export default {
         const data = new FormData()
         data.append('userID', this.userID)
         data.append('userName', this.userName)
-        console.log('data에 담는 pw', this.password)
         data.append('password', this.password)
         data.append('email', this.email)
         data.append('alias', this.alias)
         data.append('imageData', this.imageData)
         data.append('bio', this.bio)
         data.append('profilePath', this.profilePath)
-        console.log(this.imageData)
-        // const userData = {
-        //   userID: this.userID,
-        //   userName: this.userName,
-        //   password: this.password,
-        //   email: this.email,
-        //   alias: this.alias,
-        //   imageData: this.imageData,
-        //   bio: this.bio.trim(),
-        // }
-        // console.log(userData)
-        // console.log(data)
         await editUser(data)
         this.$router.push(`/user/profile/${getUserFromCookie()}`)
       } catch (error) {

@@ -122,8 +122,6 @@ export default {
 
     const boardList = await fetchBoards(10, 0)
     this.boardList = boardList.data
-
-    console.log(this.boardListTotal)
   },
   methods: {
     write() {
@@ -135,7 +133,6 @@ export default {
       this.boardListTotal = boardListTotal
       this.boardTotal = boardTotal
       this.boardList = boardListTotal.slice(0, 10)
-      console.log(this.boardListTotal)
     },
     paging(clickPage) {
       const startPage = (clickPage - 1) * 10
