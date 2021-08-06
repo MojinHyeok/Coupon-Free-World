@@ -22,7 +22,6 @@ export default {
       try {
         // 피드 가져오기
         const response = await fetchFeed(id)
-        console.log('fetchData(피드만): ', response)
         this.feedItem = response
       } catch (error) {
         console.log(error)

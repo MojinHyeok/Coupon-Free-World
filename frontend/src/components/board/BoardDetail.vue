@@ -41,8 +41,6 @@ export default {
     const view = await viewUp(this.boardID)
     this.detail = view.data
     this.view = view.data.viewCount
-    console.log('조회수')
-    console.log(this.view)
   },
   methods: {
     async deleteBoardData() {
