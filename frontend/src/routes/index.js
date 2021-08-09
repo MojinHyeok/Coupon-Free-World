@@ -26,10 +26,12 @@ const router = new VueRouter({
     },
     {
       path: '/board',
+      meta: { auth: true },
       component: () => import('@/views/board/BoardPage.vue'),
     },
     {
       path: '/board/create',
+      meta: { auth: true },
       component: () => import('@/components/board/CreateForm.vue'),
     },
     {
@@ -52,14 +54,17 @@ const router = new VueRouter({
     {
       path: '/user/profile/:userID',
       component: () => import('@/views/Profile.vue'),
+      meta: { auth: true },
     },
     {
       path: '/user/followList',
       component: () => import('@/components/user/followList.vue'),
+      meta: { auth: true },
     },
     {
       path: '/user/requestFollowList',
       component: () => import('@/components/user/requestFollowList.vue'),
+      meta: { auth: true },
     },
     {
       path: '/user/confirmEmail',
@@ -67,6 +72,7 @@ const router = new VueRouter({
     },
     {
       path: '/feed',
+      meta: { auth: true },
       component: () => import('@/views/feed/FeedPage.vue'),
     },
     {
@@ -76,10 +82,12 @@ const router = new VueRouter({
     },
     {
       path: '/feed/:id/update',
+      meta: { auth: true },
       component: () => import('@/views/feed/UpdatePage.vue'),
     },
     {
       path: '/feed/:id',
+      meta: { auth: true },
       component: () => import('@/views/feed/DetailPage.vue'),
     },
   ],
