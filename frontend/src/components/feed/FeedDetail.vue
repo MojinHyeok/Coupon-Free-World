@@ -51,25 +51,24 @@
 // <i class="far fa-heart"></i
 // >            <i class="fas fa-heart"></i
 // >
-import {
-  fetchFeed,
-  deleteFeed,
-  isUserLike,
-  likeFeed,
-  unlikeFeed,
-} from '@/api/feed.js'
+import { fetchFeed, deleteFeed, likeFeed, unlikeFeed } from '@/api/feed.js'
 export default {
   props: {
     feedItem: {
       type: Object,
       required: true,
     },
+    isLike: {
+      type: Boolean,
+      required: true,
+    },
+    photos: {
+      type: Array,
+      require: true,
+    },
   },
   data() {
-    return {
-      isLike: true,
-      photos: [],
-    }
+    return {}
   },
   methods: {
     async feedDelete() {
@@ -101,19 +100,6 @@ export default {
     isUserValid() {
       return this.$store.state.userID === this.feedItem.userID
     },
-  },
-  async created() {
-    const userID = this.$store.state.userID
-    const { data } = await isUserLike(userID)
-    for (var i = 0; i < data.length; i++) {
-      if (data[i] !== null) {
-        if (this.feedItem.feedID == data[i]['feedID']) {
-          this.isLike = false
-          break
-        }
-      }
-    }
-    this.photos = this.feedItem.photoPath.split('|')
   },
 }
 </script>
