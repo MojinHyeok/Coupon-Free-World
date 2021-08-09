@@ -41,8 +41,7 @@
         <p class="margin-sm">{{ feedItem.content }}</p>
       </div>
       <p class="margin-sm text-s-g">
-        {{ feedItem.date[5] }}{{ feedItem.date[6] }}월 {{ feedItem.date[8]
-        }}{{ feedItem.date[9] }}일
+        {{ date }}
       </p>
     </div>
   </div>
@@ -64,7 +63,11 @@ export default {
     },
     photos: {
       type: Array,
-      require: true,
+      required: true,
+    },
+    date: {
+      type: String,
+      required: true,
     },
   },
   data() {

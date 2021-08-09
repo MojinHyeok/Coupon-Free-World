@@ -5,6 +5,7 @@
       :feedItem="feedItem"
       :isLike="isLike"
       :photos="photos"
+      :date="date"
     ></FeedDetail>
     <!-- 댓글 상세 피드 -->
     <!-- <FeedComment :feedItem="feedItem"></FeedComment> -->
@@ -25,6 +26,7 @@ export default {
       feedItem: {},
       isLike: true,
       photos: [],
+      date: '',
     }
   },
   async created() {
@@ -46,6 +48,9 @@ export default {
       }
     }
     this.photos = this.feedItem.photoPath.split('|')
+    this.date = this.feedItem.date
+      .substring(5, 7)
+      .concat('월', this.feedItem.date.substring(8, 10), '일')
   },
 }
 </script>
