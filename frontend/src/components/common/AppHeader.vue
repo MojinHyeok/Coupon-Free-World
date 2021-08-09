@@ -28,14 +28,20 @@
         </ul>
       </div>
       <div class="menu-item" style="margin-left: auto;">
-        <SearchUserForm></SearchUserForm>
+        <SearchUserForm v-if="isUserLogin"></SearchUserForm>
         <span @click="openUser" style="color: white; padding-left: 1rem;">
           <i class="fas fa-user fa-lg"></i>
           <div v-if="isOpen" class="modal">
             <div class="dialog">
-              <router-link to="/user/confirmEmail">signup</router-link>
-              <router-link to="/account/login">login</router-link>
-              <a href="javascript:;" @click="logoutUser">logout</a>
+              <div v-if="!isUserLogin" style="display: flex; flex-wrap: wrap;">
+                <router-link to="/user/confirmEmail" style="width: 100%;"
+                  >signup</router-link
+                >
+                <router-link to="/account/login">login</router-link>
+              </div>
+              <a v-if="isUserLogin" href="javascript:;" @click="logoutUser"
+                >logout</a
+              >
             </div>
           </div>
         </span>
@@ -55,6 +61,11 @@ export default {
     return {
       isOpen: false,
     }
+  },
+  computed: {
+    isUserLogin() {
+      return this.$store.state.userID != ''
+    },
   },
   methods: {
     logoutUser() {

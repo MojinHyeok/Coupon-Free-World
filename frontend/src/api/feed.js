@@ -43,6 +43,14 @@ function unlikeFeed(data) {
 function getFeedList(data) {
   return instance.post('feed/getFeedList', data)
 }
+//피드 댓글 등록하기
+function registerFeedComment(data) {
+  return instance.post('comment/registFeed', data)
+}
+//피드 댓글 불러오기
+function getFeedComment(feedID) {
+  return instance.get(`comment/getFeed/${feedID}`)
+}
 
 export {
   fetchFeeds,
@@ -54,4 +62,6 @@ export {
   likeFeed,
   unlikeFeed,
   getFeedList,
+  getFeedComment,
+  registerFeedComment,
 }

@@ -41,9 +41,11 @@
         <p class="margin-sm">{{ feedItem.content }}</p>
       </div>
       <p class="margin-sm text-s-g">
-        {{ feedItem.date[5] }}{{ feedItem.date[6] }}월 {{ feedItem.date[8]
-        }}{{ feedItem.date[9] }}일
+        {{ date }}
       </p>
+    </div>
+    <div>
+      <feed-comment-create-form />
     </div>
   </div>
 </template>
@@ -51,25 +53,30 @@
 // <i class="far fa-heart"></i
 // >            <i class="fas fa-heart"></i
 // >
-import {
-  fetchFeed,
-  deleteFeed,
-  isUserLike,
-  likeFeed,
-  unlikeFeed,
-} from '@/api/feed.js'
+import { fetchFeed, deleteFeed, likeFeed, unlikeFeed } from '@/api/feed.js'
+import FeedCommentCreateForm from './FeedCommentCreateForm.vue'
 export default {
+  components: { FeedCommentCreateForm },
   props: {
     feedItem: {
       type: Object,
       required: true,
     },
+    isLike: {
+      type: Boolean,
+      required: true,
+    },
+    photos: {
+      type: Array,
+      required: true,
+    },
+    date: {
+      type: String,
+      required: true,
+    },
   },
   data() {
-    return {
-      isLike: true,
-      photos: [],
-    }
+    return {}
   },
   methods: {
     async feedDelete() {
@@ -101,19 +108,6 @@ export default {
     isUserValid() {
       return this.$store.state.userID === this.feedItem.userID
     },
-  },
-  async created() {
-    const userID = this.$store.state.userID
-    const { data } = await isUserLike(userID)
-    for (var i = 0; i < data.length; i++) {
-      if (data[i] !== null) {
-        if (this.feedItem.feedID == data[i]['feedID']) {
-          this.isLike = false
-          break
-        }
-      }
-    }
-    this.photos = this.feedItem.photoPath.split('|')
   },
 }
 </script>
