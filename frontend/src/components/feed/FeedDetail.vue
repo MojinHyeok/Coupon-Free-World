@@ -44,6 +44,9 @@
         {{ date }}
       </p>
     </div>
+    <div>
+      <feed-comment-create-form />
+    </div>
   </div>
 </template>
 <script>
@@ -51,7 +54,9 @@
 // >            <i class="fas fa-heart"></i
 // >
 import { fetchFeed, deleteFeed, likeFeed, unlikeFeed } from '@/api/feed.js'
+import FeedCommentCreateForm from './FeedCommentCreateForm.vue'
 export default {
+  components: { FeedCommentCreateForm },
   props: {
     feedItem: {
       type: Object,
