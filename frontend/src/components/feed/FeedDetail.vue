@@ -76,7 +76,9 @@ export default {
     },
   },
   data() {
-    return {}
+    return {
+      tempLike: null,
+    }
   },
   methods: {
     async feedDelete() {
@@ -90,8 +92,12 @@ export default {
       await likeFeed(data)
       // 피드 가져오기
       const response = await fetchFeed(id)
+
       this.feedItem.likeCnt = response.data.likeCnt
-      this.isLike = false
+      // emit
+      this.tempLike = false
+      this.$emit('changeLike', this.tempLike)
+      // this.isLike = false
     },
     async decLike(id) {
       const data = new FormData()
@@ -101,7 +107,10 @@ export default {
       // 피드 가져오기
       const response = await fetchFeed(id)
       this.feedItem.likeCnt = response.data.likeCnt
-      this.isLike = true
+      // emit
+      this.tempLike = true
+      this.$emit('changeLike', this.tempLike)
+      // this.isLike = true
     },
   },
   computed: {

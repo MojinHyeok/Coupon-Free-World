@@ -29,6 +29,7 @@
       </div>
       <div class="menu-item" style="margin-left: auto;">
         <SearchUserForm v-if="isUserLogin"></SearchUserForm>
+        <Notice v-if="isUserLogin"></Notice>
         <span @click="openUser" style="color: white; padding-left: 1rem;">
           <i class="fas fa-user fa-lg"></i>
           <div v-if="isOpen" class="modal">
@@ -53,9 +54,11 @@
 <script>
 import { deleteCookie } from '@/utils/cookies'
 import SearchUserForm from '@/components/common/SearchUserForm.vue'
+import Notice from '@/components/common/Notice'
 export default {
   components: {
     SearchUserForm,
+    Notice,
   },
   data() {
     return {

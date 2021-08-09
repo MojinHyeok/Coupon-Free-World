@@ -48,7 +48,7 @@
 
 <script>
 import FeedListItem from '@/components/feed/FeedListItem.vue'
-import { fetchFeeds } from '@/api/feed.js'
+import { fetchFeeds, isUserLike } from '@/api/feed.js'
 import { findFollowing } from '@/api/auth.js'
 import { getUserFromCookie } from '@/utils/cookies.js'
 import FollowingFeedItem from '../../components/feed/FollowingFeedItem.vue'
@@ -79,13 +79,11 @@ export default {
     async fetchData() {
       const response = await fetchFeeds()
       this.feedItems = response.data
-      console.log(this.feedItems)
       for (var x in response.data) {
         if (this.following.includes(response.data[x].userID)) {
           this.followingFeedItems.push(response.data[x])
         }
       }
-      console.log(this.followingFeedItems)
     },
     moveCreate() {
       this.$router.push('/feed/create')
@@ -99,9 +97,23 @@ export default {
       this.boxCheckTwo = true
     },
   },
-  created() {
-    this.findFollowing()
-    this.fetchData()
+  async created() {
+    await this.findFollowing()
+    await this.fetchData()
+    const userID = this.$store.state.userID
+    const { data } = await isUserLike(userID)
+    var i = 0
+    for (i = 0; i < this.followingFeedItems.length; i++) {
+      this.followingFeedItems[i].like = false
+    }
+    for (i = 0; i < data.length; i++) {
+      for (var j = 0; j < this.followingFeedItems.length; j++) {
+        if (this.followingFeedItems[j].feedID == data[i]['feedID']) {
+          this.followingFeedItems[j].like = true
+        }
+      }
+    }
+    console.log('좋아요 눌렀는지 check', this.followingFeedItems)
   },
 }
 </script>
