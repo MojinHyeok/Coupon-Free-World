@@ -11,5 +11,4 @@ public class CouponServiceImpl implements CouponService {
 	public void getAFKArenaCoupon() throws Exception {
 		AFKArenaScraper.getCoupon();
 	}
-	
 }
