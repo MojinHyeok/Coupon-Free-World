@@ -6,6 +6,7 @@
       :isLike="isLike"
       :photos="photos"
       :date="date"
+      @changeLike="changeLike"
     ></FeedDetail>
     <!-- 댓글 상세 피드 -->
     <!-- <FeedComment :feedItem="feedItem"></FeedComment> -->
@@ -29,18 +30,20 @@ export default {
       date: '',
     }
   },
+  methods: {
+    changeLike(tempLike) {
+      this.isLike = tempLike
+    },
+  },
   async created() {
     // 해당 피드에 대한 상세 정보 불러오기
     const id = this.$route.params.id
-    console.log(id)
 
     const response = await fetchFeed(id)
-    console.log('특정 피드를 불러온다.', response.data)
     this.feedItem = response.data
 
     const userID = this.$store.state.userID
     const { data } = await isUserLike(userID)
-    console.log('해당유저가 좋아요 눌렀는지', data)
     for (var i = 0; i < data.length; i++) {
       if (this.feedItem.feedID == data[i]['feedID']) {
         this.isLike = false

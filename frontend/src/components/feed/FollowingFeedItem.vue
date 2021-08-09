@@ -5,12 +5,18 @@
     <div>내용: {{ feedItem.content }}</div>
     <div>날짜: {{ feedItem.date }}</div>
     <div>좋아요: {{ feedItem.likeCnt }}</div> -->
-    <div style=" margin-bottom: 2vw;">
+    <div>
+      <div>대표사진: {{ photos[0] }}</div>
+      <div>내용: {{ feedItem.content }}</div>
+      <div>좋아요누를사람임? : {{ feedItem.like }}</div>
+      <br />
+    </div>
+    <!-- <div style=" margin-bottom: 2vw;">
       <img
         :src="photos[0]"
         style="width: 30vw; height: 30vw; padding: 0 1vw;"
       />
-    </div>
+    </div> -->
   </div>
 </template>
 
