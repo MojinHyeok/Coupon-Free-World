@@ -9,7 +9,7 @@
           <li v-for="(comment, index) in commentList" :key="comment.commentID">
             <div
               v-if="index === commentList.length - 1"
-              class="d-flex justify-content-between comment-end"
+              class="d-flex justify-content-between pt-2 pb-2"
             >
               <div class="ms-3">
                 <p>{{ comment.content }}</p>
@@ -25,11 +25,11 @@
                 X
               </button>
             </div>
-            <div v-else class="d-flex justify-content-between comment-start">
+            <div v-else class="d-flex justify-content-between pt-2 pb-2">
               <div class="ms-3">
                 <p>{{ comment.content }}</p>
                 <em>
-                  <span>{{ comment.userID }}</span> |
+                  <span>{{ comment.userID }}</span>
                   <span>{{ comment.date }}</span>
                 </em>
               </div>

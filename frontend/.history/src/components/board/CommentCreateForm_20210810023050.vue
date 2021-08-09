@@ -26,7 +26,7 @@
               </button>
             </div>
             <div v-else class="d-flex justify-content-between comment-start">
-              <div class="ms-3">
+              <div>
                 <p>{{ comment.content }}</p>
                 <em>
                   <span>{{ comment.userID }}</span> |

@@ -1,48 +1,46 @@
 <template>
-  <div>
-    <div class="comment-box">
-      <div class="comment-top">
-        <span>댓글</span>
-      </div>
-      <div class="comment-body">
-        <ul>
-          <li v-for="(comment, index) in commentList" :key="comment.commentID">
-            <div
-              v-if="index === commentList.length - 1"
-              class="d-flex justify-content-between comment-end"
+  <div class="pt-5  comment-box">
+    <div class="comment-top">
+      <h3>댓글</h3>
+    </div>
+    <div class="pt-4">
+      <ul>
+        <li v-for="(comment, index) in commentList" :key="comment.commentID">
+          <div
+            v-if="index === commentList.length - 1"
+            class="d-flex justify-content-between pt-2 pb-2"
+          >
+            <div class="ms-3">
+              <p>{{ comment.content }}</p>
+              <em>
+                <span>{{ comment.userID }}</span>
+                <span>{{ comment.date }}</span>
+              </em>
+            </div>
+            <button
+              class="btn"
+              @click="deleteCommentConfirm(comment.commentID)"
             >
-              <div class="ms-3">
-                <p>{{ comment.content }}</p>
-                <em>
-                  <span>{{ comment.userID }}</span> |
-                  <span>{{ comment.date }}</span>
-                </em>
-              </div>
-              <button
-                class="btn"
-                @click="deleteCommentConfirm(comment.commentID)"
-              >
-                X
-              </button>
+              X
+            </button>
+          </div>
+          <div v-else class="d-flex justify-content-between pt-2 pb-2">
+            <div class="ms-3">
+              <p>{{ comment.content }}</p>
+              <em>
+                <span>{{ comment.userID }}</span>
+                <span>{{ comment.date }}</span>
+              </em>
             </div>
-            <div v-else class="d-flex justify-content-between comment-start">
-              <div class="ms-3">
-                <p>{{ comment.content }}</p>
-                <em>
-                  <span>{{ comment.userID }}</span> |
-                  <span>{{ comment.date }}</span>
-                </em>
-              </div>
-              <button
-                class="btn"
-                @click="deleteCommentConfirm(comment.commentID)"
-              >
-                X
-              </button>
-            </div>
-          </li>
-        </ul>
-      </div>
+            <button
+              class="btn"
+              @click="deleteCommentConfirm(comment.commentID)"
+            >
+              X
+            </button>
+          </div>
+        </li>
+      </ul>
     </div>
     <div class="d-flex">
       <input

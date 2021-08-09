@@ -18,12 +18,12 @@
       </span>
     </div>
     <div class="btn-list">
-      <button class="btn-primary" @click="$router.push('/board')">목록</button>
+      <button class="btn-primary btn-list" @click="$router.push('/board')">
+        목록
+      </button>
       <div v-if="userID == `${detail.writer}`">
-        <button class="btn-primary btn-update" @click="move">수정하기</button>
-        <button class="btn-primary btn-delete" @click="deleteBoardData">
-          삭제하기
-        </button>
+        <button class="btn-primary" @click="deleteBoardData">삭제하기</button>
+        <button class="btn-primary" @click="move">수정하기</button>
       </div>
     </div>
   </div>

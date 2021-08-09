@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="board-top">
+    <div>
       <span>
         <h2 class="board-title">
           <strong>[쿠키런 킹덤]</strong>
@@ -8,23 +8,14 @@
         </h2>
       </span>
       <span>
-        <em class="writer"> {{ detail.writer }}</em>
-        <em> | 조회수 {{ detail.viewCount }} | {{ detail.date }}</em>
+        {{ detail.writer }}
       </span>
     </div>
-    <div class="board-body">
-      <span class=":">
-        {{ detail.content }}
-      </span>
-    </div>
-    <div class="btn-list">
-      <button class="btn-primary" @click="$router.push('/board')">목록</button>
-      <div v-if="userID == `${detail.writer}`">
-        <button class="btn-primary btn-update" @click="move">수정하기</button>
-        <button class="btn-primary btn-delete" @click="deleteBoardData">
-          삭제하기
-        </button>
-      </div>
+
+    <button @click="$router.push('/board')">목록</button>
+    <div v-if="userID == `${detail.writer}`">
+      <button @click="deleteBoardData">삭제하기</button>
+      <button @click="move">수정하기</button>
     </div>
   </div>
 </template>

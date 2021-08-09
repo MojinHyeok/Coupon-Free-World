@@ -1,49 +1,6 @@
 <template>
-  <div>
-    <div class="comment-box">
-      <div class="comment-top">
-        <span>댓글</span>
-      </div>
-      <div class="comment-body">
-        <ul>
-          <li v-for="(comment, index) in commentList" :key="comment.commentID">
-            <div
-              v-if="index === commentList.length - 1"
-              class="d-flex justify-content-between comment-end"
-            >
-              <div class="ms-3">
-                <p>{{ comment.content }}</p>
-                <em>
-                  <span>{{ comment.userID }}</span> |
-                  <span>{{ comment.date }}</span>
-                </em>
-              </div>
-              <button
-                class="btn"
-                @click="deleteCommentConfirm(comment.commentID)"
-              >
-                X
-              </button>
-            </div>
-            <div v-else class="d-flex justify-content-between comment-start">
-              <div class="ms-3">
-                <p>{{ comment.content }}</p>
-                <em>
-                  <span>{{ comment.userID }}</span> |
-                  <span>{{ comment.date }}</span>
-                </em>
-              </div>
-              <button
-                class="btn"
-                @click="deleteCommentConfirm(comment.commentID)"
-              >
-                X
-              </button>
-            </div>
-          </li>
-        </ul>
-      </div>
-    </div>
+  <div class="pt-5">
+    <h3>댓글</h3>
     <div class="d-flex">
       <input
         type="text"
@@ -53,6 +10,45 @@
         autofocus
       />
       <button @click="onSubmit" class="btn btn-primary">등록</button>
+    </div>
+    <div class="pt-4 comment-box">
+      <ul>
+        <li v-for="(comment, index) in commentList" :key="comment.commentID">
+          <div
+            v-if="index === commentList.length - 1"
+            class="d-flex justify-content-between pt-2 pb-2"
+          >
+            <div class="ms-3">
+              <p>{{ comment.content }}</p>
+              <em>
+                <span>{{ comment.userID }}</span>
+                <span>{{ comment.date }}</span>
+              </em>
+            </div>
+            <button
+              class="btn"
+              @click="deleteCommentConfirm(comment.commentID)"
+            >
+              X
+            </button>
+          </div>
+          <div v-else class="d-flex justify-content-between pt-2 pb-2">
+            <div class="ms-3">
+              <p>{{ comment.content }}</p>
+              <em>
+                <span>{{ comment.userID }}</span>
+                <span>{{ comment.date }}</span>
+              </em>
+            </div>
+            <button
+              class="btn"
+              @click="deleteCommentConfirm(comment.commentID)"
+            >
+              X
+            </button>
+          </div>
+        </li>
+      </ul>
     </div>
   </div>
 </template>
@@ -123,4 +119,4 @@ export default {
 }
 </script>
 
-<style scoped src="../css/board/comment.css"></style>
+<style scoped src="./css/board/comment.css"></style>
