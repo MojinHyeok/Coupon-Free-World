@@ -36,8 +36,12 @@
       ></FeedListItem>
     </div>
     <!-- 팔로우한 유저 피드 불러오기 -->
-    <div v-if="boxCheckTwo" @click="followFeed">
-      <p>(공사중)팔로우한 유저 피드 불러오기</p>
+    <div v-if="boxCheckTwo" @click="followFeed" class="box">
+      <following-feed-item
+        v-for="feedItem in followingFeedItems"
+        :key="feedItem.id"
+        :feedItem="feedItem"
+      />
     </div>
   </div>
 </template>
@@ -45,22 +49,43 @@
 <script>
 import FeedListItem from '@/components/feed/FeedListItem.vue'
 import { fetchFeeds } from '@/api/feed.js'
+import { findFollowing } from '@/api/auth.js'
+import { getUserFromCookie } from '@/utils/cookies.js'
+import FollowingFeedItem from '../../components/feed/FollowingFeedItem.vue'
 export default {
   components: {
     FeedListItem,
+    FollowingFeedItem,
   },
   data() {
     return {
       feedItems: [],
       boxCheck: true,
       boxCheckTwo: false,
+      followingFeedItems: [],
+      following: [],
     }
   },
   methods: {
+    //팔로잉 명단 불러오기
+    async findFollowing() {
+      const temp = {
+        userID: getUserFromCookie(),
+      }
+      const res = await findFollowing(temp)
+      this.following = res.data
+    },
     // feeds 불러오기
     async fetchData() {
       const response = await fetchFeeds()
       this.feedItems = response.data
+      console.log(this.feedItems)
+      for (var x in response.data) {
+        if (this.following.includes(response.data[x].userID)) {
+          this.followingFeedItems.push(response.data[x])
+        }
+      }
+      console.log(this.followingFeedItems)
     },
     moveCreate() {
       this.$router.push('/feed/create')
@@ -75,6 +100,7 @@ export default {
     },
   },
   created() {
+    this.findFollowing()
     this.fetchData()
   },
 }
