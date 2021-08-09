@@ -1,6 +1,6 @@
 <template>
   <div>
-    <BoardAppbar />
+    <BoardAppBard />
     <div class="m-3">
       <div class="d-flex justify-content-end  align-items-center">
         <SearchBar @on-keyword-enter="onKeywordEnter" class="ps-1" />
@@ -94,10 +94,10 @@
 import { fetchBoards, CountBoard } from '@/api/boards'
 import SearchBar from '@/components/board/SearchBar.vue'
 import BoardListItem from '@/components/board/BoardListItem.vue'
-import BoardAppbar from '@/components/board/BoardAppbar.vue'
+import BoardAppBar from '@/components/board/BoardAppBar.vue'
 
 export default {
-  components: { BoardListItem, SearchBar, BoardAppbar },
+  components: { BoardListItem, SearchBar, BoardAppBard },
   data() {
     return {
       boardList: [],
