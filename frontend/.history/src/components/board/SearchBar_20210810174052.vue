@@ -28,10 +28,8 @@ import { searchBoard, CountBoard } from '@/api/boards'
 
 export default {
   data() {
-    return {
-      userInput: '',
-    }
-  },
+    userInput: '',
+  }
   name: 'SearchBar',
   methods: {
     async onKeywordEnter() {
