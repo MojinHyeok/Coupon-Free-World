@@ -25,19 +25,6 @@ public class CouponController {
 	@Autowired
 	private CouponService service;
 	
-	@ApiOperation(value = "AFKArena 쿠폰 자동 수집", notes = "AFKArena 쿠폰 자동 수집.")
-	@ApiResponses({
-		@ApiResponse(code = 200, message = "쿠폰 수집 성공"),
-		@ApiResponse(code = 404, message = "페이지를 찾을 수 없음"),
-		@ApiResponse(code = 500, message = "내부 서버 오류")
-	})
-	@GetMapping("/AFKArena")
-	public ResponseEntity<?> getAFKArenaCouponList() throws Exception{
-		service.getAFKArenaCoupon();		
-		
-		return new ResponseEntity<Void>(HttpStatus.OK); 
-	}
-	
 	@ApiOperation(value = "AFKArena UID 등록", notes = "AFKArena UID 등록")
 	@ApiResponses({
 		@ApiResponse(code = 200, message = "UID 등록 성공"),

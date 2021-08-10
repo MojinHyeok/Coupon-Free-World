@@ -5,6 +5,8 @@ import java.security.NoSuchAlgorithmException;
 import java.security.SecureRandom;
 import java.security.cert.CertificateException;
 import java.security.cert.X509Certificate;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.net.ssl.HostnameVerifier;
 import javax.net.ssl.HttpsURLConnection;
@@ -23,7 +25,6 @@ import org.springframework.stereotype.Service;
 
 import com.ssafy.backend.coupon.mapper.CouponMapper;
 import com.ssafy.backend.coupon.model.GameIDModel;
-import com.ssafy.backend.util.CustomSSLSocketFactory;
 
 @Service
 public class CouponServiceImpl implements CouponService {
@@ -34,20 +35,27 @@ public class CouponServiceImpl implements CouponService {
 	private CouponMapper mapper;
 	
 	@Override
-	public void getAFKArenaCoupon() throws Exception {
+	public List<String> getAFKArenaCoupon() throws Exception {
 		final String URL = "https://www.afkarena.net/redemption-codes";
 		
 		Document doc = Jsoup.connect(URL).get();
 		
 		Elements couponList = doc.select("input");
 		
+		List<String> list = new ArrayList<>();
+		
 		for(Element c : couponList) {
 			String coupon = c.val();
 			System.out.println(coupon);
 			if(coupon.equals("")) {
 				break;
+			} else {
+				list.add(coupon);
 			}
 		}
+		
+		return list;
+		
 	}
 
 	@Override
@@ -64,38 +72,42 @@ public class CouponServiceImpl implements CouponService {
 		
 		String AFKArenaUID = mapper.selectAFKArenaUID(userID);
 		
+		String jsonBody = "{\"uid\":" + AFKArenaUID + ", \"game\":\"afk\", \"code\" : \"" + verifyCode + "\"}";
 		setSSL();
 		
 		Connection.Response getLoginCookie = Jsoup.connect(URL)
 				.userAgent(userAgent)
 				.header("Content-Type", "application/json;charset=UTF-8")
+				.header("Accept", "application/json")
+                .followRedirects(true)
+                .ignoreHttpErrors(true)
 				.ignoreContentType(true)
 				.header("referer", "https://cdkey.lilith.com/afk-global")
-				.data("code", verifyCode)
-				.data("game", "afk")
-				.data("uid", AFKArenaUID)
+				.requestBody(jsonBody)
 				.method(Connection.Method.POST)
 				.execute();
 		
+		System.out.println(getLoginCookie.statusCode());
 		
-		String registURL = "https://cdkey.lilith.com/afk-global";
-		String couponCode = "xiaban886";
+		String registURL = "https://cdkey.lilith.com/api/cd-key/consume";
+		List<String> couponList = getAFKArenaCoupon();
 		
-		Connection.Response registCoupon = Jsoup.connect(registURL)
-				.userAgent(userAgent)
-				.header("Content-Type", "application/json;charset=UTF-8")
-				.ignoreContentType(true)
-				.header("referer", "https://cdkey.lilith.com/afk-global")
-//				.sslSocketFactory(new CustomSSLSocketFactory())
-				.cookies(getLoginCookie.cookies())
-				.data("cdkey", couponCode)
-				.data("game", "afk")
-				.data("type", "cdkey_web")
-				.data("uid", AFKArenaUID)
-				.method(Connection.Method.POST)
-				.execute();
-		
-		System.out.println(registCoupon.statusCode());
+		for(String coupon : couponList) {
+			String jsonBody1 = "{\"type\":\"cdkey_web\", \"game\":\"afk\", \"uid\" : " + AFKArenaUID + ", \"cdkey\" : \""+ coupon +"\"}";
+			Connection.Response registCoupon = Jsoup.connect(registURL)
+					.userAgent(userAgent)
+					.header("Content-Type", "application/json;charset=UTF-8")
+					.header("Accept", "application/json")
+					.cookies(getLoginCookie.cookies())
+	                .followRedirects(true)
+	                .ignoreHttpErrors(false)
+					.ignoreContentType(true)
+					.header("referer", "https://cdkey.lilith.com/afk-global")
+					.requestBody(jsonBody1)
+					.method(Connection.Method.POST)
+					.execute();
+			System.out.println(registCoupon.statusCode());
+		}
 				
 	}
 	
@@ -103,8 +115,6 @@ public class CouponServiceImpl implements CouponService {
 		TrustManager[] trustAllCerts = new TrustManager[] {
 			new X509TrustManager() {
 				public X509Certificate[] getAcceptedIssuers() { return null; }
-//				​public void checkClientTrusted(X509Certificate[] certs, String authType) {}​
-//				public void checkServerTrusted(X509Certificate[] certs, String authType) {}
 
 				@Override
 				public void checkClientTrusted(X509Certificate[] chain, String authType) throws CertificateException {}
