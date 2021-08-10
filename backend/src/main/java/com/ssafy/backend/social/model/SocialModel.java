@@ -5,7 +5,14 @@ public class SocialModel {
 	int type;
 	String sourceID;
 	String targetID;
+	int column;
 	
+	public int getColumn() {
+		return column;
+	}
+	public void setColumn(int column) {
+		this.column = column;
+	}
 	public int getFollowID() {
 		return followID;
 	}

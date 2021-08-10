@@ -11,9 +11,6 @@ import com.ssafy.backend.socket.SocketHandler;
 @Configuration
 @EnableWebSocket
 public class WebSocketConfig implements WebSocketConfigurer{
-
-	@Autowired
-	SocketHandler socketHandler;
 	
 	@Override
 	public void registerWebSocketHandlers(WebSocketHandlerRegistry registry) {

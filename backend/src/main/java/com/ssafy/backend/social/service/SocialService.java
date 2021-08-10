@@ -22,4 +22,6 @@ public interface SocialService {
 	SocialModel findrequestFollowOne(SocialModel model);
 	
 	int canclerequestFollow(SocialModel model);
+	
+	SocialModel findAlarm(SocialModel model);
 }
