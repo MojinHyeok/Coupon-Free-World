@@ -100,7 +100,7 @@ public class CouponServiceImpl implements CouponService {
 					.header("Accept", "application/json")
 					.cookies(getLoginCookie.cookies())
 	                .followRedirects(true)
-	                .ignoreHttpErrors(false)
+	                .ignoreHttpErrors(true)
 					.ignoreContentType(true)
 					.header("referer", "https://cdkey.lilith.com/afk-global")
 					.requestBody(jsonBody1)
