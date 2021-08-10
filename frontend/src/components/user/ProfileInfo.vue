@@ -255,12 +255,15 @@ export default {
     connect() {
       var ws = new WebSocket('ws://localhost:8078/replyEcho')
       this.socket = ws
+      // 접속이 되면
       ws.onopen = function() {
         console.log('info:connection opend')
       }
+      // 서버로 부터 메시지가 오면 호출
       ws.onmessage = function(event) {
         console.log('ReceiveMessage:', event.data + '\n')
       }
+      // 서버와 접속이 끊기면 호출
       ws.onclose = function() {
         console.log('Info: connection closed.')
         //setTimeout( function(){ connect(); }, 1000); // retry connection!!
