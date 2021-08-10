@@ -77,6 +77,7 @@ export default {
       deleteCookie('one_auth')
       deleteCookie('one_user')
       this.$router.push('/account/login')
+      sessionStorage.removeItem('userID')
     },
     openUser() {
       this.isOpen = !this.isOpen

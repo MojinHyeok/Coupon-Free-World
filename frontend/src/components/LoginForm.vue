@@ -100,6 +100,8 @@ export default {
       if (res.message === 'fail') {
         this.logMessage = '정보를 정확히 입력해주세요'
       } else {
+        // 세션값 저장하기
+        sessionStorage.setItem('userID', this.userID)
         this.modalSwitch = true
         setTimeout(() => this.$router.push('/main'), 1500)
       }
