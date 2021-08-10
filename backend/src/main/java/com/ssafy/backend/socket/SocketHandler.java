@@ -22,10 +22,23 @@ public class SocketHandler extends TextWebSocketHandler {
 	@Override
 	public void handleTextMessage(WebSocketSession session, TextMessage message) throws IOException {
 		System.out.println("handleTextMessage: "+session+" :"+message);
-		String senderId=session.getId();
-		for( WebSocketSession sess: sessions) {
-			sess.sendMessage(new TextMessage(senderId+" : "+message.getPayload()));
+		String senderId=getId(session);
+		//특정 유저에게 보내기
+		String msg=message.getPayload();
+		if(msg!=null) {
+			String[] str=msg.split(",");
+			String caller=str[0];
+			String target=str[1];
+			WebSocketSession targetSession=userSessions.get(target);
+			if(targetSession!=null) {
+				TextMessage tmpMsg=new TextMessage(caller+"님이 "+ target+"님을 팔로우요청을 하였습니다.!");
+				targetSession.sendMessage(tmpMsg);
+			}
 		}
+		
+//		for( WebSocketSession sess: sessions) {
+//			sess.sendMessage(new TextMessage(senderId+" : "+message.getPayload()));
+//		}
 		//메시지 발송
 //		String msg = message.getPayload();
 //		for(String key : sessionMap.keySet()) {
@@ -44,24 +57,31 @@ public class SocketHandler extends TextWebSocketHandler {
 //		super.afterConnectionEstablished(session);
 //		sessionMap.put(session.getId(), session);
 		System.out.println("AfterConnectionEstablished: "+ session);
-		sessions.add(session);
+		String senderId = getId(session);
+		if(senderId!=null) {	// 로그인 값이 있는 경우만
+			System.out.println(senderId + " 연결 됨");
+			userSessions.put(senderId, session);
+			sessions.add(session);
+		}
 //		String senderId = getId(session);
 //		userSessions.put(senderId, session);
 	}
 	
 	private String getId(WebSocketSession session) {
 		Map<String, Object> httpSession = session.getAttributes();
-		UserModel loginuser= (UserModel)httpSession.get("userID");
-		if(loginuser==null) {
-			return session.getId();
-		}
-		else return loginuser.getUserID();
+		String loginuser= (String)httpSession.get("one_user");
+		System.out.println(loginuser);
+		return loginuser==null? null: loginuser;
 	}
 
 	@Override
 	public void afterConnectionClosed(WebSocketSession session, CloseStatus status) throws Exception {
 		//소켓 종료
-		userSessions.remove(session.getId());
-		super.afterConnectionClosed(session, status);
+		String senderID=getId(session);
+		if(senderID!=null) {	// 로그인 값이 있는 경우만
+			System.out.println(senderID + " 연결 종료됨");
+			userSessions.remove(senderID);
+			sessions.remove(session);
+		}
 	}
 }
