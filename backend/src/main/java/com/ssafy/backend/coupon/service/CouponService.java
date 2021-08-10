@@ -1,11 +1,13 @@
 package com.ssafy.backend.coupon.service;
 
+import java.util.List;
+
 import org.springframework.data.repository.query.Param;
 
 import com.ssafy.backend.coupon.model.GameIDModel;
 
 public interface CouponService {
-	void getAFKArenaCoupon() throws Exception;
+	List<String> getAFKArenaCoupon() throws Exception;
 	
 	int updateAFKArenaUID(GameIDModel model) throws Exception;
 	
