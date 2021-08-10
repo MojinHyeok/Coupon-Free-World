@@ -79,12 +79,18 @@
     <div v-else>
       <h1>일치하는 ID가 존재하지 않습니다.!</h1>
     </div>
+    <div>
+      <input type="text" v-model="test" />
+      <button @click="msgtest">O</button>
+    </div>
   </div>
 </template>
 
 <script>
 import { mapGetters, mapActions } from 'vuex'
 import { getUserFromCookie } from '@/utils/cookies.js'
+// import Stomp from 'webstomp-client'
+// import SockJS from 'sockjs-client'
 import {
   fetchUser,
   findFollower,
@@ -126,6 +132,9 @@ export default {
       likePhotos: [],
       boxCheck: true,
       boxCheckTwo: false,
+      socket: null,
+      isStomp: false,
+      test: '',
       // eslint-disable-next-line prettier/prettier
       };
   },
@@ -227,11 +236,73 @@ export default {
       var res = await isUserLike(temp)
       this.likePhotos = res.data
     },
+    sendMessage(e) {
+      if (e.keyCode === 13 && this.userName !== '' && this.message !== '') {
+        this.send()
+        this.message = ''
+      }
+    },
+    send() {
+      console.log('Send message:' + this.message)
+      if (this.stompClient && this.stompClient.connected) {
+        const msg = {
+          userName: this.userName,
+          content: this.message,
+        }
+        this.stompClient.send('/receive', JSON.stringify(msg), {})
+      }
+    },
+    connect() {
+      var ws = new WebSocket('ws://localhost:8078/replyEcho')
+      this.socket = ws
+      ws.onopen = function() {
+        console.log('info:connection opend')
+      }
+      ws.onmessage = function(event) {
+        console.log('ReceiveMessage:', event.data + '\n')
+      }
+      ws.onclose = function() {
+        console.log('Info: connection closed.')
+        //setTimeout( function(){ connect(); }, 1000); // retry connection!!
+      }
+      ws.onerror = function(err) {
+        console.log('Error:', err)
+      }
+      // const serverURL = 'http://localhost:8078'
+      // let socket = new SockJS(serverURL)
+      // this.stompClient = Stomp.over(socket)
+      // console.log(`소켓 연결을 시도합니다. 서버 주소: ${serverURL}`)
+      // this.stompClient.connect(
+      //   {},
+      //   frame => {
+      //     // 소켓 연결 성공
+      //     this.connected = true
+      //     console.log('소켓 연결 성공', frame)
+      //     // 서버의 메시지 전송 endpoint를 구독합니다.
+      //     // 이런형태를 pub sub 구조라고 합니다.
+      //     this.stompClient.subscribe('/send', res => {
+      //       console.log('구독으로 받은 메시지 입니다.', res.body)
+
+      //       // 받은 데이터를 json으로 파싱하고 리스트에 넣어줍니다.
+      //       this.recvList.push(JSON.parse(res.body))
+      //     })
+      //   },
+      //   error => {
+      //     // 소켓 연결 실패
+      //     console.log('소켓 연결 실패', error)
+      //     this.connected = false
+      //   },
+      // )
+    },
+    msgtest() {
+      this.socket.send(this.test)
+    },
   },
   created() {
     this.detectParams(this.$route.params.userID)
     this.getFeedList()
     this.isUserLike()
+    this.connect()
   },
   watch: {
     $route(to, from) {

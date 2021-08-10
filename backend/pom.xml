@@ -51,6 +51,16 @@
 			<optional>true</optional>
 		</dependency>
 		
+		<!-- 웹소켓 -->
+		<dependency>
+		    <groupId>org.springframework</groupId>
+		    <artifactId>spring-websocket</artifactId>
+		    <version>5.0.2.RELEASE</version>
+		</dependency>
+		<dependency>
+		    <groupId>org.springframework.boot</groupId>
+		    <artifactId>spring-boot-starter-websocket</artifactId>
+		</dependency>
 		<!-- 클라우드 업로드 -->
 		<dependency>
 		    <groupId>org.springframework.cloud</groupId>
