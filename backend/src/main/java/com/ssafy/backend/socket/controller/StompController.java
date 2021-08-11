@@ -43,12 +43,11 @@ public class StompController {
 	@MessageMapping("/TTT")
 	public void ttt(SocketModel model) {
 		System.out.println(model.getTargetID());
-		template.convertAndSend("/topic/"+model.getTargetID(),"안녕하세요");
+		template.convertAndSend("/topic/"+model.getTargetID(),model.getSourceID()+"님이 "+model.getTargetID()+"님을 팔로우 신청했습니다.!");
 	}
 	
 	@MessageMapping("/AlarmCnt")
 	public void AlarmCnt(SocketModel model) {
-		System.out.println("여기옴?"+" "+model.getTargetID());
 		List<SocialModel> result= mapper.findAlaram(model.getTargetID());
 		System.out.println(result.size());
 		template.convertAndSend("/topic/alarm/"+model.getTargetID(),result);
