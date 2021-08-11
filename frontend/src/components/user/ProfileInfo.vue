@@ -238,11 +238,13 @@ export default {
     },
     sendMessage(e) {
       if (e.keyCode === 13 && this.userName !== '' && this.message !== '') {
+        console.log('sendMessage?')
         this.send()
         this.message = ''
       }
     },
     send() {
+      console.log('send?')
       console.log('Send message:' + this.message)
       if (this.stompClient && this.stompClient.connected) {
         const msg = {
@@ -298,6 +300,7 @@ export default {
       // )
     },
     msgtest() {
+      console.log('발사')
       this.socket.send(this.test)
     },
   },
