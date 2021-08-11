@@ -51,11 +51,18 @@ export default {
       })
     },
     async readMsg(msgData) {
+      console.log(msgData.targetID, msgData.sourceID)
       const data = new FormData()
       data.append('targetID', msgData.targetID)
       data.append('sourceID', msgData.sourceID)
       console.log('fetchMsg', data)
       await fetchMsg(data)
+      const msg = {
+        targetID: getUserFromCookie(),
+      }
+      let sending = this.$store.getters.client
+      sending.send('/AlarmCnt', JSON.stringify(msg), {})
+      this.$router.push('/user/requestFollowList')
     },
     openModal() {
       this.isModal = !this.isModal
