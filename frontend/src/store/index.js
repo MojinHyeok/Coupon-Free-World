@@ -18,6 +18,8 @@ export default new Vuex.Store({
     token: getAuthFromCookie() || '',
     user: {},
     nowCommentList: [],
+    client: null,
+    serverMsg: null,
   },
   getters: {
     user(state) {
@@ -30,6 +32,11 @@ export default new Vuex.Store({
     },
     userID(state) {
       return state.userID
+    },
+    // 4번
+    // serverMsg가 변경되면 return해준다.
+    getServerMsg(state) {
+      return state.serverMsg
     },
   },
   mutations: {
@@ -52,6 +59,19 @@ export default new Vuex.Store({
     },
     CREATE_COMMENT(state, newComment) {
       state.nowCommentList.push(newComment)
+    },
+    // 2번
+    // 연결된거 vuex에 저장
+    setClient(state, payload) {
+      state.client = payload
+    },
+    // 3번
+    // 서버로부터 메시지 온거 듣기
+    listenMsg(state) {
+      state.client.subscribe(`/topic/${state.userID}`, function(event) {
+        console.log('listenMsg', event.body)
+        state.serverMsg = event.body
+      })
     },
   },
   actions: {
@@ -76,6 +96,11 @@ export default new Vuex.Store({
     async getUser(context, payload) {
       const { data } = await fetchUser(payload)
       context.commit('setUser', data.userInfo)
+    },
+    // 1번
+    getClient(context, payload) {
+      context.commit('setClient', payload)
+      //얌
     },
   },
 })
