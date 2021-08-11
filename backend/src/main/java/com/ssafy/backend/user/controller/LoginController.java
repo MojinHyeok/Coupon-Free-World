@@ -43,7 +43,7 @@ public class LoginController {
 		@ApiResponse(code = 500, message = "내부 서버 오류")
 	})
 	@PostMapping("/confirm")
-	public ResponseEntity<Map<String, Object>> login(@RequestBody UserModel model,HttpSession session) {
+	public ResponseEntity<Map<String, Object>> login(@RequestBody UserModel model) {
 		Map<String, Object> resultMap = new HashMap<>();
 		HttpStatus status;
 		
@@ -54,8 +54,7 @@ public class LoginController {
 				String token = jwtService.create("userid", loginUser.getUserID(), "access-token");
 				resultMap.put("access-token", token);
 				resultMap.put("message", token);
-				session.setAttribute("userID", model.getUserID());
-				System.out.println(session.getAttribute("userID"));
+				
 			} else {	
 				resultMap.put("message", "fail");
 			}

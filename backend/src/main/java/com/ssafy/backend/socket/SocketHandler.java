@@ -45,6 +45,7 @@ public class SocketHandler extends TextWebSocketHandler {
 				senderID=str[0];
 				userSessions.put(senderID, session);
 				sessions.add(session);				
+				System.out.println(senderID+" 연결 성공");
 			}
 			else {
 				String caller=str[0];
