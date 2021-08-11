@@ -38,7 +38,7 @@
 		where userId LIKE concat('%', #{userId}, '%')
 	</select>
 	
-	<insert id="userRegister" parameterType="userModel">
+	<insert id="insertGameID" parameterType="String">
 		INSERT
 		INTO gameuserid(userid)
 		VALUES(#{userID})

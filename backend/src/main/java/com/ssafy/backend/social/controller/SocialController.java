@@ -1,7 +1,5 @@
 package com.ssafy.backend.social.controller;
 
-import java.net.http.HttpRequest;
-import java.util.Arrays;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
