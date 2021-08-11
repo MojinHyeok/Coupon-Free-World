@@ -2,11 +2,11 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.ssafy.backend.coupon.mapper.CouponMapper">
-	<insert id="updateAFKArenaUID" parameterType="GameIDModel">
+	<update id="updateAFKArenaUID" parameterType="GameIDModel">
 		UPDATE gameuserid
 		SET afkarenaUID = #{afkarenaUID}
 		WHERE userID = #{userID}
-	</insert>
+	</update>
 	
 	<select id="selectAFKArenaUID" parameterType="String" resultType="String">
 		SELECT afkarenaUID
