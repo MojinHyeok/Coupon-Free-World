@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.ssafy.backend.coupon.model.GameIDModel;
 import com.ssafy.backend.coupon.service.CouponService;
 
+import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
@@ -21,6 +22,7 @@ import io.swagger.annotations.ApiResponses;
 @RestController
 @CrossOrigin(origins = {"*"}, maxAge = 6000)
 @RequestMapping("/coupon")
+@Api("Coupon Controller API")
 public class CouponController {
 	@Autowired
 	private CouponService service;
