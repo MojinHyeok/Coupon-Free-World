@@ -5,13 +5,14 @@ public class SocialModel {
 	int type;
 	String sourceID;
 	String targetID;
-	int column;
+	int alarm;
 	
-	public int getColumn() {
-		return column;
+	
+	public int getAlarm() {
+		return alarm;
 	}
-	public void setColumn(int column) {
-		this.column = column;
+	public void setAlarm(int alarm) {
+		this.alarm = alarm;
 	}
 	public int getFollowID() {
 		return followID;
