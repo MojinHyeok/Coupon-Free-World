@@ -1,7 +1,8 @@
 <template>
   <div>
     <FeedAppbar />
-    <div>
+
+    <div style="margin-top: 15%;">
       <div>
         <div>
           <button
