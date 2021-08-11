@@ -15,7 +15,6 @@ export default {
     }
   },
   methods: {
-    //얌
     connect() {
       const serverURL = 'http://localhost:8078/stompTest'
       var sock = new SockJS(serverURL)
@@ -24,17 +23,19 @@ export default {
       console.log(client)
       this.isStomp = true
       this.socket = client
+      // 연결해
       client.connect({}, function() {
         console.log('Connected stompTest!!')
         const msg = {
           targetID: getUserFromCookie(),
         }
-        // 연결되면 보내
-        client.send('/TTT', JSON.stringify(msg), {})
-        // 구독중...
-        // client.subscribe(`/topic/${getUserFromCookie()}`, function(event) {
-        //   console.log('나한테 요청한 user들어와', event.body)
-        // })
+        // 이런식으로 구독할거야
+        client.subscribe(`/topic/alarm/${getUserFromCookie()}`, function(
+          event,
+        ) {
+          console.log('들어와라라라라', event.body)
+        })
+        client.send('/AlarmCnt', JSON.stringify(msg), {})
       })
     },
   },

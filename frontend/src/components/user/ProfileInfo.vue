@@ -261,7 +261,7 @@ export default {
     msgtest() {
       if (this.isStomp) {
         const msg = {
-          targetID: 'gkgk246',
+          targetID: 'zzzzz',
           sourceID: 'asdasd',
         }
         this.socket.send('/AlarmCnt', JSON.stringify(msg), {})
