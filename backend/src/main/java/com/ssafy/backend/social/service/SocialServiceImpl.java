@@ -59,4 +59,10 @@ public class SocialServiceImpl implements SocialService{
 		return mapper.canclerequestFollow(model);
 	}
 
+	@Override
+	public SocialModel findAlarm(SocialModel model) {
+		// TODO Auto-generated method stub
+		return mapper.findAlaram(model);
+	}
+
 }

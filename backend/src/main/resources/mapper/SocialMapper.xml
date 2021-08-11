@@ -17,7 +17,7 @@
 	
 	<insert id="requestFollow" parameterType="SocialModel">
 		insert into follow
-		values(null,1,#{sourceID},#{targetID})
+		values(null,1,#{sourceID},#{targetID},0)
 	</insert>
 	
 	<update id="allowFollow" parameterType="SocialModel">
@@ -53,5 +53,11 @@
 	delete from follow
 	where sourceID= #{sourceID} and targetID= #{targetID} and type=1;
 	</delete>
+	
+	<select id="findAlaram">
+	select * from follow
+	where targetID=#{targetID} and type=1 and column=0;
+	</select>
+	
 
 </mapper>

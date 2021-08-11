@@ -1,7 +1,11 @@
 package com.ssafy.backend.social.controller;
 
+import java.net.http.HttpRequest;
 import java.util.Arrays;
 import java.util.List;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -73,7 +77,9 @@ public class SocialController {
 		@ApiResponse(code = 500, message = "내부 서버 오류")
 	})
 	@PostMapping("/requestFollow")
-	public ResponseEntity<String> requestFollow(@RequestBody SocialModel model){
+	public ResponseEntity<String> requestFollow(@RequestBody SocialModel model,HttpServletRequest request){
+		HttpSession session=request.getSession();
+		System.out.println(session.getAttribute("userID"));
 		SocialModel temp=service.checkDuplicate(model);//중복성검사하는 단계
 		String msg="";
 		if(temp==null) {
@@ -140,6 +146,18 @@ public class SocialController {
 		if(result>0)msg="success";
 		else msg="fail";
 		return new ResponseEntity<String>(msg,HttpStatus.OK);
+	}
+	
+	@ApiOperation(value = "알람 찾기", notes = "팔로우 알람을 찾습니다.")
+	@ApiResponses({
+		@ApiResponse(code = 200, message = "알람 찾기 성공"),
+		@ApiResponse(code = 404, message = "페이지를 찾을 수 없음"),
+		@ApiResponse(code = 500, message = "내부 서버 오류")
+	})
+	@PostMapping("/findAlaram")
+	public ResponseEntity<Object> findAlaram(@RequestBody SocialModel model){
+		SocialModel result=service.findAlarm(model);
+		return new ResponseEntity<Object>(result,HttpStatus.OK);
 	}
 	
 	

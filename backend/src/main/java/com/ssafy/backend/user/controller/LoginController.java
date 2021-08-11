@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -42,7 +43,7 @@ public class LoginController {
 		@ApiResponse(code = 500, message = "내부 서버 오류")
 	})
 	@PostMapping("/confirm")
-	public ResponseEntity<Map<String, Object>> login(@RequestBody UserModel model) {
+	public ResponseEntity<Map<String, Object>> login(@RequestBody UserModel model,HttpSession session) {
 		Map<String, Object> resultMap = new HashMap<>();
 		HttpStatus status;
 		
@@ -53,6 +54,8 @@ public class LoginController {
 				String token = jwtService.create("userid", loginUser.getUserID(), "access-token");
 				resultMap.put("access-token", token);
 				resultMap.put("message", token);
+				session.setAttribute("userID", model.getUserID());
+				System.out.println(session.getAttribute("userID"));
 			} else {	
 				resultMap.put("message", "fail");
 			}
@@ -76,7 +79,6 @@ public class LoginController {
     public ResponseEntity<Map<String, Object>> getInfo(@PathVariable("userID") String userID, HttpServletRequest request) {
         Map<String, Object> resultMap = new HashMap<>();
         HttpStatus status;
-        
         if (jwtService.isUsable(request.getHeader("access-token"))) {
             try {
                 UserModel model = service.userInfo(userID);
