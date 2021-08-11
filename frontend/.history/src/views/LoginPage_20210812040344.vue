@@ -2,9 +2,7 @@
   <div>
     <LoginForm></LoginForm>
     <div class="login-bar"></div>
-    <div class="join-box">
-      <em @click="join">회원가입</em>
-    </div>
+    <em>회원가입</em>
   </div>
 </template>
 
@@ -15,12 +13,6 @@ export default {
   components: {
     LoginForm,
   },
-  methods: {
-    join() {
-      console.log('join')
-      this.$router.push({ path: '/user/confirmEmail' })
-    },
-  },
 }
 </script>
 
@@ -29,12 +21,6 @@ export default {
   border-bottom: 1px solid #dadada;
   margin-left: 30px;
   margin-right: 30px;
-}
-.join-box {
-  margin-left: 30px;
-  margin-right: 30px;
-  display: flex;
-  justify-content: flex-end;
 }
 em {
   font-size: small;

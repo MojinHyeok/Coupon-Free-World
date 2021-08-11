@@ -18,7 +18,7 @@ export default {
   methods: {
     join() {
       console.log('join')
-      this.$router.push({ path: '/user/confirmEmail' })
+      this.$router.replace({ path: 'user/confirmEmail' })
     },
   },
 }

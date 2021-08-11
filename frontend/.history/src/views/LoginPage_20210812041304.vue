@@ -2,8 +2,8 @@
   <div>
     <LoginForm></LoginForm>
     <div class="login-bar"></div>
-    <div class="join-box">
-      <em @click="join">회원가입</em>
+    <div @click="join" class="join-box">
+      <em>회원가입</em>
     </div>
   </div>
 </template>
@@ -15,10 +15,10 @@ export default {
   components: {
     LoginForm,
   },
-  methods: {
+  method: {
     join() {
-      console.log('join')
-      this.$router.push({ path: '/user/confirmEmail' })
+      console.log('hi')
+      this.router.push('/user/confirmEmail')
     },
   },
 }

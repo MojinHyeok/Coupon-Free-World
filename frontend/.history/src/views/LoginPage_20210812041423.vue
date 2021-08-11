@@ -3,7 +3,9 @@
     <LoginForm></LoginForm>
     <div class="login-bar"></div>
     <div class="join-box">
-      <em @click="join">회원가입</em>
+      <em @click="$router.push('user/confirmEmail' + listItem.boardID)"
+        >회원가입</em
+      >
     </div>
   </div>
 </template>
@@ -14,12 +16,6 @@ import LoginForm from '@/components/LoginForm.vue'
 export default {
   components: {
     LoginForm,
-  },
-  methods: {
-    join() {
-      console.log('join')
-      this.$router.push({ path: '/user/confirmEmail' })
-    },
   },
 }
 </script>
