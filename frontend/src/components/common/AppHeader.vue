@@ -30,7 +30,7 @@
       <div class="menu-item" style="margin-left: auto;">
         <SearchUserForm v-if="isUserLogin"></SearchUserForm>
         <Notice v-if="isUserLogin"></Notice>
-        <span @click="openUser" style="color: white; padding-left: 1rem;">
+        <span @click="openUser" style="color: white; padding-left: 0.6rem;">
           <i class="fas fa-user fa-lg"></i>
           <div v-if="isOpen" class="modal">
             <div class="dialog">

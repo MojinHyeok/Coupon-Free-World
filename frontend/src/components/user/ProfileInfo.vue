@@ -89,8 +89,8 @@
 <script>
 import { mapGetters, mapActions } from 'vuex'
 import { getUserFromCookie } from '@/utils/cookies.js'
-import Stomp from 'webstomp-client'
-import SockJS from 'sockjs-client'
+// import Stomp from 'webstomp-client'
+// import SockJS from 'sockjs-client'
 import {
   fetchUser,
   findFollower,
@@ -149,8 +149,12 @@ export default {
         sourceID: getUserFromCookie(),
       }
       const data = await requestFollow(tempData)
-      if (data.data == 'fail') alert('이미 팔로우 요청하셨습니다')
-      else alert('팔로우 요청을 성공적으로 하셨습니다.!')
+      if (data.data == 'fail') {
+        alert('이미 팔로우 요청하셨습니다')
+      } else {
+        let sending = this.$store.getters.client
+        sending.send('/AlarmCnt', JSON.stringify(tempData), {})
+      }
       this.findrequestFollow = true
     },
     async detectParams() {
@@ -196,8 +200,10 @@ export default {
         sourceID: getUserFromCookie(),
       }
       const Data = await canclerequestFollow(tempData)
-      if (Data.data == 'success') alert('팔로우를 요청취소하였습니다.!!')
-      else {
+      if (Data.data == 'success') {
+        let sending = this.$store.getters.client
+        sending.send('/AlarmCnt', JSON.stringify(tempData), {})
+      } else {
         alert('에러발생')
       }
       this.findrequestFollow = false
@@ -236,38 +242,39 @@ export default {
       var res = await isUserLike(temp)
       this.likePhotos = res.data
     },
-    connect() {
-      const serverURL = 'http://localhost:8078/stompTest'
-      var sock = new SockJS(serverURL)
-      var client = Stomp.over(sock)
-      this.isStomp = true
-      this.socket = client
-      client.connect({}, function() {
-        console.log('Connected stompTest!!')
-        // const msg = {
-        //   userName: this.getUserFromCookie(),
-        //   content: 'asdasd',
-        // }
-        // console.log(msg.userName)
-        // client.send('/TTT', JSON.stringify(msg), {})
-        console.log(getUserFromCookie())
-        client.subscribe(`/topic/alarm/${getUserFromCookie()}`, function(
-          event,
-        ) {
-          console.log('!!!Event', event.body)
-        })
-      })
-    },
+    // connect() {
+    //   const serverURL = 'http://localhost:8078/stompTest'
+    //   var sock = new SockJS(serverURL)
+    //   var client = Stomp.over(sock)
+    //   this.isStomp = true
+    //   this.socket = client
+    //   client.connect({}, function() {
+    //     console.log('Connected stompTest!!')
+    // const msg = {
+    //   userName: this.getUserFromCookie(),
+    //   content: 'asdasd',
+    // }
+    // console.log(msg.userName)
+    // client.send('/TTT', JSON.stringify(msg), {})
+    //     console.log(getUserFromCookie())
+    //     client.subscribe(`/topic/alarm/${getUserFromCookie()}`, function(
+    //       event,
+    //     ) {
+    //       console.log('!!!Event', event.body)
+    //     })
+    //   })
+    // },
     msgtest() {
-      if (this.isStomp) {
+      let testing = this.$store.getters.client
+      if (!this.isStomp) {
         const msg = {
-          targetID: 'zzzzz',
-          sourceID: 'asdasd',
+          targetID: 'fffff',
+          sourceID: 'minchan',
         }
-        this.socket.send('/AlarmCnt', JSON.stringify(msg), {})
+        testing.send('/AlarmCnt', JSON.stringify(msg), {})
       } else {
         console.log('발사')
-        this.socket.send(this.test)
+        testing.send(this.test)
       }
     },
   },
@@ -275,7 +282,6 @@ export default {
     this.detectParams(this.$route.params.userID)
     this.getFeedList()
     this.isUserLike()
-    this.connect()
   },
   watch: {
     $route(to, from) {
