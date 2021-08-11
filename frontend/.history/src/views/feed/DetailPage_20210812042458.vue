@@ -17,12 +17,10 @@
 <script>
 import { fetchFeed, isUserLike } from '@/api/feed.js'
 import FeedDetail from '@/components/feed/FeedDetail'
-import FeedAppbar from '@/components/feed/FeedAppbar.vue'
 // import FeedComment from '@/components/feed/FeedComment'
 export default {
   components: {
     FeedDetail,
-    FeedAppbar,
     // FeedComment,
   },
   data() {
