@@ -15,6 +15,7 @@ export default {
     }
   },
   methods: {
+    //얌
     connect() {
       const serverURL = 'http://localhost:8078/stompTest'
       var sock = new SockJS(serverURL)

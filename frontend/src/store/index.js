@@ -100,6 +100,7 @@ export default new Vuex.Store({
     // 1번
     getClient(context, payload) {
       context.commit('setClient', payload)
+      //얌
     },
   },
 })

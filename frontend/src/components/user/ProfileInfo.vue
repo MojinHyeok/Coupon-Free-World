@@ -159,6 +159,7 @@ export default {
         sourceID: getUserFromCookie(),
       }
       const res3 = await findrequestFollowOne(tempData)
+      console.log(res3.data)
       if (res3.data != '') {
         this.findrequestFollow = true
       }
@@ -220,6 +221,7 @@ export default {
       const temp = this.$route.params.userID
       var res = await getFeedList(temp)
       this.photos = res.data
+      console.log(this.photos)
     },
     MyFeed() {
       this.boxCheck = true
@@ -238,32 +240,31 @@ export default {
       const serverURL = 'http://localhost:8078/stompTest'
       var sock = new SockJS(serverURL)
       var client = Stomp.over(sock)
-      console.log(client)
       this.isStomp = true
       this.socket = client
       client.connect({}, function() {
         console.log('Connected stompTest!!')
-        const msg = {
-          userName: 'asd',
-          content: 'asdasd',
-        }
-        // 연결되면 보내
-        console.log('111111')
-        client.send('/TTT', JSON.stringify(msg), {})
-        // 구독중...
-        client.subscribe('/topic/message', function(event) {
+        // const msg = {
+        //   userName: this.getUserFromCookie(),
+        //   content: 'asdasd',
+        // }
+        // console.log(msg.userName)
+        // client.send('/TTT', JSON.stringify(msg), {})
+        console.log(getUserFromCookie())
+        client.subscribe(`/topic/alarm/${getUserFromCookie()}`, function(
+          event,
+        ) {
           console.log('!!!Event', event.body)
         })
-        console.log('222222')
       })
     },
     msgtest() {
       if (this.isStomp) {
         const msg = {
-          userName: 'asd',
-          content: 'asdasd',
+          targetID: 'gkgk246',
+          sourceID: 'asdasd',
         }
-        this.socket.send('/TTT', JSON.stringify(msg), {})
+        this.socket.send('/AlarmCnt', JSON.stringify(msg), {})
       } else {
         console.log('발사')
         this.socket.send(this.test)
