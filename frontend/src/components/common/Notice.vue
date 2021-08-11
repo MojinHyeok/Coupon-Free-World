@@ -1,17 +1,31 @@
 <template>
   <div>
-    알림 공사중
+    <div @click="openModal">
+      <span style="color:white; padding-left: 0.6rem;">
+        <i class="far fa-bell fa-lg"></i>
+      </span>
+    </div>
+    <div class="modal" v-if="isModal">
+      <div class="dialog">
+        <h1 @click="openModal">요거 클릭하면 없어짐</h1>
+        <div v-for="msg in msgs" :key="msg.id" @click="readMsg(msg)">
+          <div>{{ msg.sourceID }}님이 팔로우합니다.</div>
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 
 <script>
 import { getUserFromCookie } from '@/utils/cookies.js'
+import { fetchMsg } from '@/api/notice.js'
 import Stomp from 'webstomp-client'
 import SockJS from 'sockjs-client'
 export default {
   data() {
     return {
-      msg: null,
+      msgs: [],
+      isModal: false,
     }
   },
   methods: {
@@ -24,36 +38,46 @@ export default {
       this.isStomp = true
       this.socket = client
       // 연결해
-      client.connect({}, function() {
+      client.connect({}, () => {
         console.log('Connected stompTest!!')
         const msg = {
           targetID: getUserFromCookie(),
         }
         // 이런식으로 구독할거야
-        client.subscribe(`/topic/alarm/${getUserFromCookie()}`, function(
-          event,
-        ) {
-          console.log('들어와라라라라', event.body)
+        client.subscribe(`/topic/alarm/${getUserFromCookie()}`, event => {
+          this.msgs = JSON.parse(event.body).reverse()
         })
         client.send('/AlarmCnt', JSON.stringify(msg), {})
       })
+    },
+    async readMsg(msgData) {
+      const data = new FormData()
+      data.append('targetID', msgData.targetID)
+      data.append('sourceID', msgData.sourceID)
+      console.log('fetchMsg', data)
+      await fetchMsg(data)
+    },
+    openModal() {
+      this.isModal = !this.isModal
     },
   },
   created() {
     this.connect()
   },
-  computed: {
-    checkServerMsg() {
-      return this.$store.getters.getServerMsg
-    },
-  },
-  watch: {
-    checkServerMsg(val) {
-      this.msg = val
-      console.log('notice.vue', this.msg)
-    },
-  },
+  // computed: {
+  //   checkServerMsg() {
+  //     return this.$store.getters.getServerMsg
+  //   },
+  // },
+  // watch: {
+  //   checkServerMsg(val) {
+  //     this.msg = val
+  //     console.log('notice.vue', this.msg)
+  //   },
+  // },
 }
 </script>
 
-<style></style>
+<style scoped></style>
+<style scoped src="../css/user/default.css"></style>
+<style scoped src="../css/user/modal.css"></style>
