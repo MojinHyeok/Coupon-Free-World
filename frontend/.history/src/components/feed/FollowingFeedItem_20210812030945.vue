@@ -1,5 +1,5 @@
 <template>
-  <div @click="moveDetail" class="feed-follow-body">
+  <div @click="moveDetail" class="w-100">
     <div class="feed-detail-top">
       <p>{{ feedItem.userID }}</p>
       <!-- 피드 삭제 버튼 -->
@@ -28,7 +28,7 @@
           <p v-else-if="feedItem.likeCnt - 1 > 0">
             {{ userID }}님 외에 {{ feedItem.likeCnt - 1 }} 명이 좋아합니다.
           </p>
-          <p v-else>{{ userID }}님이 좋아합니다.</p>
+          <p v-else>{{ feedItem.userID }}님이 좋아합니다.</p>
         </div>
       </div>
 
@@ -36,18 +36,31 @@
       <p class="margin-sm">좋아요 {{ feedItem.likeCnt }}개</p>
       <div class="feed-content">
         <p class="margin-sm feed-userID">{{ feedItem.userID }}</p>
-        <p class="margin-sm follow-feed-content">{{ feedItem.content }}</p>
+        <p class="margin-sm">{{ feedItem.content }}</p>
       </div>
       <em class="feed-date">
         {{ date }}
       </em>
     </div>
+
+    <!-- <div @click="moveDetail">
+      <div>
+        <div>userID: {{ feedItem.userID }}</div>
+        <div>대표사진: {{ photos[0] }}</div>
+        <div>내용: {{ feedItem.content }}</div>
+        <div>좋아요누를사람임? : {{ feedItem.like }}</div>
+      </div>
+    </div>
+    <div>
+      <button v-if="!isLike" @click="incLike">좋아요</button> <br />
+      <button v-if="isLike" @click="decLike">좋아요취소</button>
+      <br />
+    </div> -->
   </div>
 </template>
 
 <script>
 import { fetchFeed, likeFeed, unlikeFeed } from '@/api/feed.js'
-import { getUserFromCookie } from '@/utils/cookies.js'
 export default {
   props: {
     feedItem: {
@@ -58,8 +71,7 @@ export default {
   data() {
     return {
       photos: [],
-      isLike: !this.feedItem.like,
-      userID: getUserFromCookie(),
+      isLike: this.feedItem.like,
     }
   },
   methods: {

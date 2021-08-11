@@ -1,6 +1,5 @@
 .photo-zone {
   width: 100%;
-  border-bottom: 1px solid #dadada;
 }
 
 button {
@@ -75,4 +74,5 @@ em {
   border: 1px solid #dadada;
 
   margin-bottom: 20px;
+  padding: 10px;
 }

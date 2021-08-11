@@ -1,5 +1,5 @@
 <template>
-  <div @click="moveDetail" class="feed-follow-body">
+  <div @click="moveDetail" class="w-100 feed-follow-list-body">
     <div class="feed-detail-top">
       <p>{{ feedItem.userID }}</p>
       <!-- 피드 삭제 버튼 -->
