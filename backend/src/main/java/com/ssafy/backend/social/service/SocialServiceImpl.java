@@ -65,4 +65,9 @@ public class SocialServiceImpl implements SocialService{
 		return mapper.findAlaram(targetID);
 	}
 
+	@Override
+	public int readAlarm(SocialModel model) {
+		return mapper.readAlarm(model);
+	}
+
 }
