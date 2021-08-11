@@ -54,9 +54,9 @@
 	where sourceID= #{sourceID} and targetID= #{targetID} and type=1;
 	</delete>
 	
-	<select id="findAlaram">
+	<select id="findAlaram" parameterType="String" resultType="SocialModel">
 	select * from follow
-	where targetID=#{targetID} and type=1 and column=0;
+	where targetID=#{targetID} and type=1 and alarm=0;
 	</select>
 	
 
