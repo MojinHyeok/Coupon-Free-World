@@ -1,5 +1,6 @@
 <template>
-  <div @click="moveDetail" class="feed-follow-body">
+  <div>
+    <!-- 유저 정보가 나타나는 곳 -->
     <div class="feed-detail-top">
       <p>{{ feedItem.userID }}</p>
       <!-- 피드 삭제 버튼 -->
@@ -26,9 +27,10 @@
         <div class="i-am-like">
           <p v-if="isLike">{{ feedItem.likeCnt }} 명이 좋아합니다.</p>
           <p v-else-if="feedItem.likeCnt - 1 > 0">
-            {{ userID }}님 외에 {{ feedItem.likeCnt - 1 }} 명이 좋아합니다.
+            {{ feedItem.userID }}님 외에 {{ feedItem.likeCnt - 1 }} 명이
+            좋아합니다.
           </p>
-          <p v-else>{{ userID }}님이 좋아합니다.</p>
+          <p v-else>{{ feedItem.userID }}님이 좋아합니다.</p>
         </div>
       </div>
 
@@ -36,65 +38,87 @@
       <p class="margin-sm">좋아요 {{ feedItem.likeCnt }}개</p>
       <div class="feed-content">
         <p class="margin-sm feed-userID">{{ feedItem.userID }}</p>
-        <p class="margin-sm follow-feed-content">{{ feedItem.content }}</p>
+        <p class="margin-sm">{{ feedItem.content }}</p>
       </div>
       <em class="feed-date">
         {{ date }}
       </em>
     </div>
+    <div>
+      <feed-comment-create-form />
+    </div>
   </div>
 </template>
-
 <script>
-import { fetchFeed, likeFeed, unlikeFeed } from '@/api/feed.js'
+// <i class="far fa-heart"></i
+// >            <i class="fas fa-heart"></i
+// >
+import { fetchFeed, deleteFeed, likeFeed, unlikeFeed } from '@/api/feed.js'
+import FeedCommentCreateForm from './FeedCommentCreateForm.vue'
 import { getUserFromCookie } from '@/utils/cookies.js'
 export default {
+  components: { FeedCommentCreateForm },
   props: {
     feedItem: {
       type: Object,
       required: true,
     },
+    isLike: {
+      type: Boolean,
+      required: true,
+    },
+    photos: {
+      type: Array,
+      required: true,
+    },
+    date: {
+      type: String,
+      required: true,
+    },
   },
   data() {
     return {
-      photos: [],
-      isLike: !this.feedItem.like,
+      tempLike: null,
       userID: getUserFromCookie(),
     }
   },
   methods: {
-    // 해당 게시글 클릭시 상세페이지 이동
-    moveDetail() {
-      this.$router.push(`/feed/${this.feedItem.feedID}`)
+    async feedDelete() {
+      await deleteFeed(this.$store.state.userID, this.feedItem.feedID)
+      this.$router.push('/feed')
     },
-    // 유저 클릭시 유저Profile 이동
-    moveProfile() {},
-    // 좋아요 클릭시
-    async incLike() {
+    async incLike(id) {
       const data = new FormData()
       data.append('userID', this.$store.state.userID)
       data.append('feedID', this.feedItem.feedID)
       await likeFeed(data)
       // 피드 가져오기
-      const response = await fetchFeed(this.feedItem.feedID)
+      const response = await fetchFeed(id)
 
       this.feedItem.likeCnt = response.data.likeCnt
       // emit
-      this.isLike = true
+      this.tempLike = false
+      this.$emit('changeLike', this.tempLike)
+      // this.isLike = false
     },
-    async decLike() {
+    async decLike(id) {
       const data = new FormData()
       data.append('userID', this.$store.state.userID)
       data.append('feedID', this.feedItem.feedID)
       await unlikeFeed(data)
-      const response = await fetchFeed(this.feedItem.feedID)
+      // 피드 가져오기
+      const response = await fetchFeed(id)
       this.feedItem.likeCnt = response.data.likeCnt
       // emit
-      this.isLike = false
+      this.tempLike = true
+      this.$emit('changeLike', this.tempLike)
+      // this.isLike = true
     },
   },
-  created() {
-    this.photos = this.feedItem.photoPath.split('|')
+  computed: {
+    isUserValid() {
+      return this.$store.state.userID === this.feedItem.userID
+    },
   },
 }
 </script>

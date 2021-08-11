@@ -1,5 +1,5 @@
 <template>
-  <div @click="moveDetail" class="feed-follow-body">
+  <div @click="moveDetail" class="w-100">
     <div class="feed-detail-top">
       <p>{{ feedItem.userID }}</p>
       <!-- 피드 삭제 버튼 -->
@@ -36,12 +36,26 @@
       <p class="margin-sm">좋아요 {{ feedItem.likeCnt }}개</p>
       <div class="feed-content">
         <p class="margin-sm feed-userID">{{ feedItem.userID }}</p>
-        <p class="margin-sm follow-feed-content">{{ feedItem.content }}</p>
+        <p class="margin-sm">{{ feedItem.content }}</p>
       </div>
       <em class="feed-date">
         {{ date }}
       </em>
     </div>
+
+    <!-- <div @click="moveDetail">
+      <div>
+        <div>userID: {{ feedItem.userID }}</div>
+        <div>대표사진: {{ photos[0] }}</div>
+        <div>내용: {{ feedItem.content }}</div>
+        <div>좋아요누를사람임? : {{ feedItem.like }}</div>
+      </div>
+    </div>
+    <div>
+      <button v-if="!isLike" @click="incLike">좋아요</button> <br />
+      <button v-if="isLike" @click="decLike">좋아요취소</button>
+      <br />
+    </div> -->
   </div>
 </template>
 
@@ -58,7 +72,7 @@ export default {
   data() {
     return {
       photos: [],
-      isLike: !this.feedItem.like,
+      isLike: this.feedItem.like,
       userID: getUserFromCookie(),
     }
   },

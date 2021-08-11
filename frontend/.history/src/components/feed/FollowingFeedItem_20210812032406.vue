@@ -1,5 +1,5 @@
 <template>
-  <div @click="moveDetail" class="feed-follow-body">
+  <div @click="moveDetail" class="w-100">
     <div class="feed-detail-top">
       <p>{{ feedItem.userID }}</p>
       <!-- 피드 삭제 버튼 -->
@@ -36,7 +36,7 @@
       <p class="margin-sm">좋아요 {{ feedItem.likeCnt }}개</p>
       <div class="feed-content">
         <p class="margin-sm feed-userID">{{ feedItem.userID }}</p>
-        <p class="margin-sm follow-feed-content">{{ feedItem.content }}</p>
+        <p class="margin-sm">{{ feedItem.content }}</p>
       </div>
       <em class="feed-date">
         {{ date }}
