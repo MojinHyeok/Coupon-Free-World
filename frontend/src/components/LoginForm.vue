@@ -69,6 +69,7 @@
 
 <script>
 import { BlankValid } from '@/utils/validation'
+import { connect } from '@/api/notice.js'
 export default {
   data() {
     return {
@@ -102,6 +103,8 @@ export default {
       } else {
         // 세션값 저장하기
         sessionStorage.setItem('userID', this.userID)
+        // 연결
+        connect(this.userID)
         this.modalSwitch = true
         setTimeout(() => this.$router.push('/main'), 1500)
       }
