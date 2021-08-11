@@ -3,7 +3,7 @@
     <LoginForm></LoginForm>
     <div class="login-bar"></div>
     <div class="join-box">
-      <em @click="join">회원가입</em>
+      <em>회원가입</em>
     </div>
   </div>
 </template>
@@ -14,12 +14,6 @@ import LoginForm from '@/components/LoginForm.vue'
 export default {
   components: {
     LoginForm,
-  },
-  methods: {
-    join() {
-      console.log('join')
-      this.$router.push({ path: '/user/confirmEmail' })
-    },
   },
 }
 </script>
@@ -34,7 +28,7 @@ export default {
   margin-left: 30px;
   margin-right: 30px;
   display: flex;
-  justify-content: flex-end;
+  justify-self: end;
 }
 em {
   font-size: small;

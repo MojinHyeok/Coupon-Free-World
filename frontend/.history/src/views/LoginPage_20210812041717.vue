@@ -16,10 +16,7 @@ export default {
     LoginForm,
   },
   methods: {
-    join() {
-      console.log('join')
-      this.$router.push({ path: '/user/confirmEmail' })
-    },
+    join() {},
   },
 }
 </script>
