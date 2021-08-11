@@ -89,8 +89,8 @@
 <script>
 import { mapGetters, mapActions } from 'vuex'
 import { getUserFromCookie } from '@/utils/cookies.js'
-// import Stomp from 'webstomp-client'
-// import SockJS from 'sockjs-client'
+import Stomp from 'webstomp-client'
+import SockJS from 'sockjs-client'
 import {
   fetchUser,
   findFollower,
@@ -236,43 +236,61 @@ export default {
       var res = await isUserLike(temp)
       this.likePhotos = res.data
     },
-    sendMessage(e) {
-      if (e.keyCode === 13 && this.userName !== '' && this.message !== '') {
-        console.log('sendMessage?')
-        this.send()
-        this.message = ''
-      }
-    },
-    send() {
-      console.log('send?')
-      console.log('Send message:' + this.message)
-      if (this.stompClient && this.stompClient.connected) {
-        const msg = {
-          userName: this.userName,
-          content: this.message,
-        }
-        this.stompClient.send('/receive', JSON.stringify(msg), {})
-      }
-    },
+    // sendMessage(e) {
+    //   if (e.keyCode === 13 && this.userName !== '' && this.message !== '') {
+    //     console.log('sendMessage?')
+    //     this.send()
+    //     this.message = ''
+    //   }
+    // },
+    // send() {
+    //   console.log('send?')
+    //   console.log('Send message:' + this.message)
+    //   if (this.stompClient && this.stompClient.connected) {
+    //     const msg = {
+    //       userName: this.userName,
+    //       content: this.message,
+    //     }
+    //     this.stompClient.send('/receive', JSON.stringify(msg), {})
+    //   }
+    // },
     connect() {
-      var ws = new WebSocket('ws://localhost:8078/replyEcho')
-      this.socket = ws
-      // 접속이 되면
-      ws.onopen = function() {
-        console.log('info:connection opend')
-      }
-      // 서버로 부터 메시지가 오면 호출
-      ws.onmessage = function(event) {
-        console.log('ReceiveMessage:', event.data + '\n')
-      }
-      // 서버와 접속이 끊기면 호출
-      ws.onclose = function() {
-        console.log('Info: connection closed.')
-        //setTimeout( function(){ connect(); }, 1000); // retry connection!!
-      }
-      ws.onerror = function(err) {
-        console.log('Error:', err)
-      }
+      const serverURL = 'http://localhost:8078/stompTest'
+      var sock = new SockJS(serverURL)
+      var client = Stomp.over(sock)
+      console.log(client)
+      this.isStomp = true
+      this.socket = client
+      client.connect({}, function() {
+        console.log('Connected stompTest!!')
+        const msg = {
+          userName: 'asd',
+          content: 'asdasd',
+        }
+        client.send('/TTT', JSON.stringify(msg), {})
+        client.subscribe('/topic/message', function(event) {
+          console.log('!!!Event', event.body)
+        })
+      })
+      // connect() {
+      //   var ws = new WebSocket('ws://localhost:8078/replyEcho')
+      //   this.socket = ws
+      //   // 접속이 되면
+      //   ws.onopen = function() {
+      //     console.log('info:connection opend')
+      //   }
+      //   // 서버로 부터 메시지가 오면 호출
+      //   ws.onmessage = function(event) {
+      //     console.log('ReceiveMessage:', event.data + '\n')
+      //   }
+      //   // 서버와 접속이 끊기면 호출
+      //   ws.onclose = function() {
+      //     console.log('Info: connection closed.')
+      //     //setTimeout( function(){ connect(); }, 1000); // retry connection!!
+      //   }
+      //   ws.onerror = function(err) {
+      //     console.log('Error:', err)
+      //   }
       // const serverURL = 'http://localhost:8078'
       // let socket = new SockJS(serverURL)
       // this.stompClient = Stomp.over(socket)
@@ -300,8 +318,16 @@ export default {
       // )
     },
     msgtest() {
-      console.log('발사')
-      this.socket.send(this.test)
+      if (this.isStomp) {
+        const msg = {
+          userName: 'asd',
+          content: 'asdasd',
+        }
+        this.socket.send('/TTT', JSON.stringify(msg), {})
+      } else {
+        console.log('발사')
+        this.socket.send(this.test)
+      }
     },
   },
   created() {
