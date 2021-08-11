@@ -154,7 +154,7 @@ public class SocialController {
 	})
 	@PostMapping("/findAlaram")
 	public ResponseEntity<Object> findAlaram(@RequestBody SocialModel model){
-		SocialModel result=service.findAlarm(model);
+		List<SocialModel> result=service.findAlarm(model.getTargetID());
 		return new ResponseEntity<Object>(result,HttpStatus.OK);
 	}
 	

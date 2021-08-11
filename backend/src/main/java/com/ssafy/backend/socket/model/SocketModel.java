@@ -1,24 +1,25 @@
 package com.ssafy.backend.socket.model;
 
 public class SocketModel {
-	String userName;
-	String content;
-	public String getUserName() {
-		return userName;
+	String targetID;
+	String sourceID;
+	public String getTargetID() {
+		return targetID;
 	}
-	public void setUserName(String userName) {
-		this.userName = userName;
+	public void setTargetID(String targetID) {
+		this.targetID = targetID;
 	}
-	public String getContent() {
-		return content;
+	public String getSourceID() {
+		return sourceID;
 	}
-	public SocketModel(String userName, String content) {
+	public void setSourceID(String sourceID) {
+		this.sourceID = sourceID;
+	}
+	public SocketModel(String targetID, String sourceID) {
 		super();
-		this.userName = userName;
-		this.content = content;
+		this.targetID = targetID;
+		this.sourceID = sourceID;
 	}
-	public void setContent(String content) {
-		this.content = content;
-	}
+	
 
 }

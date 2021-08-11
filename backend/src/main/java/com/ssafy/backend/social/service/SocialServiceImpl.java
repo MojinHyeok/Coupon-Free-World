@@ -60,9 +60,9 @@ public class SocialServiceImpl implements SocialService{
 	}
 
 	@Override
-	public SocialModel findAlarm(SocialModel model) {
+	public List<SocialModel> findAlarm(String targetID) {
 		// TODO Auto-generated method stub
-		return mapper.findAlaram(model);
+		return mapper.findAlaram(targetID);
 	}
 
 }

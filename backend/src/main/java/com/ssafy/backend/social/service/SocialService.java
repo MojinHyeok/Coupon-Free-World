@@ -23,5 +23,5 @@ public interface SocialService {
 	
 	int canclerequestFollow(SocialModel model);
 	
-	SocialModel findAlarm(SocialModel model);
+	List<SocialModel> findAlarm(String targetID);
 }
