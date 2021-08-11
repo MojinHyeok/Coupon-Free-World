@@ -16,4 +16,6 @@ public interface UserService {
 	List<String> searchUserList(String userid);
 	
 	UserModel  getUserInfoByEmail(String email);
+	
+	int insertGameID(String userID);
 }

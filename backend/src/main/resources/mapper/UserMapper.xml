@@ -38,4 +38,10 @@
 		where userId LIKE concat('%', #{userId}, '%')
 	</select>
 	
+	<insert id="userRegister" parameterType="userModel">
+		INSERT
+		INTO gameuserid(userid)
+		VALUES(#{userID})
+	</insert>
+	
 </mapper>

@@ -3,15 +3,9 @@
 
 <mapper namespace="com.ssafy.backend.coupon.mapper.CouponMapper">
 	<insert id="updateAFKArenaUID" parameterType="GameIDModel">
-		INSERT
-		INTO gameuserid (
-			userID,
-			afkarenaUID
-		)
-		VALUES (
-			#{userID},
-			#{afkarenaUID}
-		)
+		UPDATE gameuserid
+		SET afkarenaUID = #{afkarenaUID}
+		WHERE userID = #{userID}
 	</insert>
 	
 	<select id="selectAFKArenaUID" parameterType="String" resultType="String">

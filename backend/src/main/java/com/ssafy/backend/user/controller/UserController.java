@@ -61,6 +61,7 @@ public class UserController {
 			System.out.println(result);
 			if(result>=1) {
 				msg="success";
+				service.insertGameID(model.getUserID());
 			}else {
 				msg="fail";
 			}

@@ -50,5 +50,10 @@ public class UserServiceImpl implements UserService{
 		// TODO Auto-generated method stub
 		return mapper.getUserInfoByEmail(email);
 	}
+	
+	@Override
+	public int insertGameID(String userID) {
+		return mapper.insertGameID(userID);
+	}
 
 }
