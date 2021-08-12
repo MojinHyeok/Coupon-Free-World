@@ -55,14 +55,12 @@ public class CouponServiceImpl implements CouponService {
 		}
 		
 		return list;
-		
 	}
 
 	@Override
 	public int updateAFKArenaUID(GameIDModel model) throws Exception {
 		return mapper.updateAFKArenaUID(model);
 	}
-
 	
 	// 132597005
 	@Override
@@ -99,6 +97,7 @@ public class CouponServiceImpl implements CouponService {
 					.header("Content-Type", "application/json;charset=UTF-8")
 					.header("Accept", "application/json")
 					.cookies(getLoginCookie.cookies())
+//					.data("id", AFKArenaUID)
 	                .followRedirects(true)
 	                .ignoreHttpErrors(true)
 					.ignoreContentType(true)
@@ -107,8 +106,13 @@ public class CouponServiceImpl implements CouponService {
 					.method(Connection.Method.POST)
 					.execute();
 			System.out.println(registCoupon.statusCode());
+//			int res = registCoupon.statusCode();
+//			if(res == 200) {
+//				System.out.println("쿠폰 입력 성공");
+//			} else {
+//				System.out.println("사용 기간이 만료되었거나 이미 사용이 완료된 쿠폰입니다.");
+//			}
 		}
-				
 	}
 	
 	public static void setSSL() throws NoSuchAlgorithmException, KeyManagementException {

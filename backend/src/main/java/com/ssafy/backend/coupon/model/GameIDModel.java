@@ -3,6 +3,7 @@ package com.ssafy.backend.coupon.model;
 public class GameIDModel {
 	String userID;
 	String afkarenaUID;
+//	String cookieUID;
 	
 	public String getUserID() {
 		return userID;
