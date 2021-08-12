@@ -1,14 +1,8 @@
 <template>
   <div>
-    <li
-      class="d-flex"
-      v-for="(v, index) in requestFollowList"
-      v-bind:key="index"
-    >
-      <span class="col-8">{{ v }}님이 팔로우 요청을 하였습니다.</span>
-      <button class="btn-primary col-3" @click="allow(v)">
-        팔로우
-      </button>
+    <li v-for="(v, index) in requestFollowList" v-bind:key="index">
+      {{ v }}님이 팔로우 요청을 하였습니다.
+      <button class="btn-primary" @click="allow(v)">팔로우</button>
     </li>
   </div>
 </template>
@@ -48,4 +42,4 @@ export default {
 }
 </script>
 
-<style scoped src="../css/user/userFollowList.css"></style>
+<style scoped src="./css/user/userFollowList.css"></style>

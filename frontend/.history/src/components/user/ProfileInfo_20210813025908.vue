@@ -300,4 +300,5 @@ export default {
 
 <style scoped src="../css/user/default.css"></style>
 <style scoped src="../css/user/ProfileInfo.css"></style>
+<style scoped src="../../components/css/user/default.css"></style>
 <style></style>

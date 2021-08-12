@@ -27,9 +27,5 @@ button:disabled {
 }
 /* 활성화 */
 button:enabled {
-  background: #8c92a3;
-}
-
-.follow-btn {
-  background: #ffa061 !important;
+  background: #8c92a31;
 }

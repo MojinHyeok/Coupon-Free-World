@@ -36,17 +36,12 @@
             회원정보수정
           </button>
           <button
-            class="follow-btn"
             v-else-if="this.findrequestFollow"
             @click="canclerequestFollow"
           >
             팔로우 요청 취소
           </button>
-          <button
-            v-else-if="this.requestFollow"
-            @click="requestFollow2"
-            class="follow-btn"
-          >
+          <button v-else-if="this.requestFollow" @click="requestFollow2">
             팔로우요청
           </button>
           <button v-else @click="cancleFollow">팔로우 취소</button>
