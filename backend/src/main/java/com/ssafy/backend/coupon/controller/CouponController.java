@@ -5,6 +5,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -52,5 +53,18 @@ public class CouponController {
 		service.registAFKArenaCoupon(userID, verifyCode);
 		
 		return new ResponseEntity<Void>(HttpStatus.OK);
+	}
+	
+	@ApiOperation(value = "사용자의 Game UID 가져오기", notes = "사용자의 Game UID 가져오기")
+	@ApiResponses({
+		@ApiResponse(code = 200, message = "조회 성공"),
+		@ApiResponse(code = 404, message = "페이지를 찾을 수 없음"),
+		@ApiResponse(code = 500, message = "내부 서버 오류")
+	})
+	@GetMapping("/getGameUID/{userID}")
+	public ResponseEntity<?> getGameUID(@PathVariable String userID) throws Exception {
+		GameIDModel model = service.getGameUID(userID);
+		
+		return new ResponseEntity<>(model, HttpStatus.OK);
 	}
 }

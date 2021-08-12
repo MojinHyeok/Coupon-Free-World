@@ -62,6 +62,11 @@ public class CouponServiceImpl implements CouponService {
 		return mapper.updateAFKArenaUID(model);
 	}
 	
+	@Override
+	public GameIDModel getGameUID(String userID) throws Exception {
+		return mapper.getGameUID(userID);
+	}
+	
 	// 132597005
 	@Override
 	public void registAFKArenaCoupon(String userID, String verifyCode) throws Exception {

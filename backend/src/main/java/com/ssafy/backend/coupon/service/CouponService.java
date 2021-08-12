@@ -12,4 +12,6 @@ public interface CouponService {
 	int updateAFKArenaUID(GameIDModel model) throws Exception;
 	
 	void registAFKArenaCoupon(@Param("userID") String userID, @Param("verifyCode") String verifyCode) throws Exception;
+	
+	GameIDModel getGameUID(String userID) throws Exception;
 }
