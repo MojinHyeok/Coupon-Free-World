@@ -1,6 +1,5 @@
 <template>
   <div>
-    <h1>Create page</h1>
     <fieldset class="p-4">
       <div class="mb-3">
         <input
@@ -16,7 +15,8 @@
           v-model="boardData.content"
           class="form-control"
           id="content"
-          rows="3"
+          style="resize: none;"
+          rows="10"
         ></textarea>
       </div>
       <div class="d-flex justify-content-end">
