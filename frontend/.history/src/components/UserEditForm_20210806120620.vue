@@ -1,5 +1,6 @@
 <template>
   <div class="box">
+    <p class="sub-title">회원정보 수정</p>
     <form @submit.prevent="submitForm" class="form-box">
       <div class="item img-box" @click="imgClick">
         <!-- 기본이미지 구현-->
@@ -171,7 +172,7 @@
     <div class="deleteButton">
       <button
         @click="deleteAccount"
-        style="margin: 0; height:1.3em; padding: 0 0.5em; background: white; color: #dadada; font-weight:lighter!important;"
+        style="margin: 0; height:1.4em; padding: 0 0.5em; background: #e50914; "
       >
         회원탈퇴
       </button>

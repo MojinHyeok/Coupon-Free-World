@@ -171,7 +171,7 @@
     <div class="deleteButton">
       <button
         @click="deleteAccount"
-        style="margin: 0; height:1.3em; padding: 0 0.5em; background: white; color: #dadada; font-weight:lighter!important;"
+        style="margin: 0; height:1.4em; padding: 0 0.5em; background: white; color: #dadada font-weight:lighter;"
       >
         회원탈퇴
       </button>

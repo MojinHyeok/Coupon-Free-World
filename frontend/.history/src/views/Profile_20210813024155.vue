@@ -1,15 +1,15 @@
 !<template>
   <div>
-    <ProfileBar />
+    <Profilebar />
     <Profile-info />
   </div>
 </template>
 
 <script>
 import ProfileInfo from '../components/user/ProfileInfo.vue'
-import ProfileBar from '@/components/user/ProfileBar.vue'
+import Profilebar from '@/components/user/Profilebar.vue'
 export default {
-  components: { ProfileInfo, ProfileBar },
+  components: { ProfileInfo, Profilebar },
 }
 </script>
 
