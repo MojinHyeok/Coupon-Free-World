@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.ssafy.backend.coupon.model.GameIDModel;
@@ -41,15 +40,16 @@ public class CouponController {
 		return new ResponseEntity<Void>(HttpStatus.OK);
 	}
 	
+	
 	@ApiOperation(value = "AFKArena 쿠폰 자동 등록", notes = "AFKArena 쿠폰 자동 등록")
 	@ApiResponses({
 		@ApiResponse(code = 200, message = "쿠폰 등록 성공"),
 		@ApiResponse(code = 404, message = "페이지를 찾을 수 없음"),
 		@ApiResponse(code = 500, message = "내부 서버 오류")
 	})
-	@PostMapping("/regist/AFKArena")
-	public ResponseEntity<?> registAFKArenaCoupon(@RequestParam String userID,
-												  @RequestParam String verifyCode) throws Exception {
+	@GetMapping("/regist/AFKArena/{userID}/{verifyCode}")
+	public ResponseEntity<?> registAFKArenaCoupon(@PathVariable String userID,
+												  @PathVariable String verifyCode) throws Exception {
 		service.registAFKArenaCoupon(userID, verifyCode);
 		
 		return new ResponseEntity<Void>(HttpStatus.OK);
