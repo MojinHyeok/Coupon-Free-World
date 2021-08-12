@@ -1,12 +1,10 @@
 <template>
-  <div @click="moveDetail" class="feed-follow-body">
+  <div class="feed-follow-body">
     <div class="feed-detail-top">
       <p>{{ feedItem.userID }}</p>
-      <!-- 피드 삭제 버튼 -->
-      <button v-if="isUserValid" @click="feedDelete">삭제</button>
     </div>
     <!-- 사진이 나타나는 곳 -->
-    <div class="photo-zone">
+    <div @click="moveDetail" class="photo-zone">
       <div v-for="photo in photos" :key="photo.id">
         <img :src="photo" style="width: 100%" />
       </div>
@@ -60,6 +58,7 @@ export default {
       photos: [],
       isLike: !this.feedItem.like,
       userID: getUserFromCookie(),
+      date: '',
     }
   },
   methods: {
@@ -95,6 +94,9 @@ export default {
   },
   created() {
     this.photos = this.feedItem.photoPath.split('|')
+    this.date = this.feedItem.date
+      .substring(5, 7)
+      .concat('월', this.feedItem.date.substring(8, 10), '일')
   },
 }
 </script>
