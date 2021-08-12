@@ -1,13 +1,14 @@
 <template>
   <div>
-    <h1>글쓰기 페이지</h1>
+    <BoardAppbar />
+    <CreateForm />
   </div>
-  <CreateForm />
 </template>
 
 <script>
 import CreateForm from '@/components/board/CreateForm.vue'
+import BoardAppbar from '@/components/board/BoardAppbar.vue'
 export default {
-  components: CreateForm,
+  components: { CreateForm, BoardAppbar },
 }
 </script>
