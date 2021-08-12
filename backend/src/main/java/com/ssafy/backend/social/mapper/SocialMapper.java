@@ -19,5 +19,6 @@ public interface SocialMapper {
 	SocialModel findrequestFollowOne(SocialModel model);
 	int canclerequestFollow(SocialModel model);
 	List<SocialModel> findAlaram(String targetID);
+	int readAlarm(SocialModel model);
 	
 }

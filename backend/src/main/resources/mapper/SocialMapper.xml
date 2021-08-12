@@ -59,5 +59,11 @@
 	where targetID=#{targetID} and type=1 and alarm=0;
 	</select>
 	
+	<update id="readAlarm" parameterType="SocialModel" >
+	update follow
+	set alarm = 1
+	where sourceID = #{sourceID} and targetID= #{targetID}
+	
+	</update>
 
 </mapper>

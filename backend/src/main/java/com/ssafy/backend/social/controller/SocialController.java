@@ -9,9 +9,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.ssafy.backend.social.model.SocialModel;
@@ -156,6 +158,28 @@ public class SocialController {
 	public ResponseEntity<Object> findAlaram(@RequestBody SocialModel model){
 		List<SocialModel> result=service.findAlarm(model.getTargetID());
 		return new ResponseEntity<Object>(result,HttpStatus.OK);
+	}
+	
+	@ApiOperation(value = "알람 읽기", notes = "팔로우 알람을 읽었습니다.")
+	@ApiResponses({
+		@ApiResponse(code = 200, message = "알람 읽기 성공"),
+		@ApiResponse(code = 404, message = "페이지를 찾을 수 없음"),
+		@ApiResponse(code = 500, message = "내부 서버 오류")
+	})
+	@PostMapping("/readAlarm")
+	public ResponseEntity<String> readAlarm(
+			@RequestParam("sourceID")String sourceID,
+			@RequestParam("targetID")String targetID
+	){
+		SocialModel model=new SocialModel();
+		model.setSourceID(sourceID);
+		model.setTargetID(targetID);
+		String msg="";
+		int result=service.readAlarm(model);
+		if(result>=1) msg="success";
+		else msg="fail";
+		
+				return new ResponseEntity<String>(msg,HttpStatus.OK);			
 	}
 	
 	

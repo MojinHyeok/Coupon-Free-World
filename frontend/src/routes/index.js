@@ -32,7 +32,7 @@ const router = new VueRouter({
     {
       path: '/board/create',
       meta: { auth: true },
-      component: () => import('@/components/board/CreateForm.vue'),
+      component: () => import('@/views/board/CreatePage.vue'),
     },
     {
       name: 'boardDetail',

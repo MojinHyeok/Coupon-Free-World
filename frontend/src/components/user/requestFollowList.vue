@@ -17,14 +17,17 @@ export default {
     }
   },
   async created() {
-    const userData = {
-      targetID: getUserFromCookie(),
-    }
-    const res = await findrequestFollow(userData)
-    console.log(res)
-    this.requestFollowList = res.data
+    await this.test()
   },
   methods: {
+    async test() {
+      const userData = {
+        targetID: getUserFromCookie(),
+      }
+      const res = await findrequestFollow(userData)
+      console.log(res)
+      this.requestFollowList = res.data
+    },
     async allow(v) {
       const temp = {
         sourceID: v,
@@ -32,7 +35,8 @@ export default {
       }
       const res = await allowFollow(temp)
       console.log(res)
-      if (res.data == 'success') alert('팔로우 요청을 수락하였습니다.!')
+      await this.test()
+      // if (res.data == 'success') alert('팔로우 요청을 수락하였습니다.!')
     },
   },
 }
