@@ -5,12 +5,9 @@
       <div class="dialog">
         <button @click="openPage">모달창끄기</button>
         <hr />
-        <p>등록한 게임</p>
-        <p v-if="isRegist">AFK아레나</p>
-        <hr />
-        <p>등록가능한 게임</p>
-        <div v-if="!isRegist">
-          <button @click="openUid">+ AFK아레나</button>
+        <p>게임</p>
+        <div>
+          <button @click="openUid">+AFK아레나</button>
           <div v-if="isOpenUid">
             <form @submit.prevent="submitForm">
               <label for="uid">uid:</label>
@@ -19,6 +16,7 @@
             </form>
           </div>
         </div>
+        <hr />
       </div>
     </div>
   </div>
@@ -28,12 +26,17 @@
 import { updateUid } from '@/api/main'
 import { getUserFromCookie } from '@/utils/cookies.js'
 export default {
+  props: {
+    userData: {
+      type: [Object, String],
+      required: true,
+    },
+  },
   data() {
     return {
       isOpenPage: false,
       isOpenUid: false,
-      uid: '',
-      isRegist: null,
+      uid: this.userData.afkarenaUID,
     }
   },
   methods: {
@@ -48,11 +51,19 @@ export default {
         afkarenaUID: this.uid,
         userID: getUserFromCookie(),
       }
+      console.log(data)
       let response = await updateUid(data)
       console.log(response)
       this.isOpenUid = !this.isOpenUid
-      this.isRegist = true
+      // 현재 부모 data를 자식에서 바꿔서 문제가 발생 emit을 보내야함
+      this.$emit(
+        'changeUserData',
+        await this.$store.dispatch('getGameUid', getUserFromCookie()),
+      )
     },
+  },
+  created() {
+    this.uid = this.userData.afkarenaUID
   },
 }
 </script>

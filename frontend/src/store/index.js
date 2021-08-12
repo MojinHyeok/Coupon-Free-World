@@ -8,6 +8,7 @@ import {
   // saveAuthToCookie,
   // saveUserToCookie,
 } from '@/utils/cookies'
+import { getUserUid } from '@/api/main'
 Vue.use(Vuex)
 
 import { loginUser, fetchUser } from '@/api/auth'
@@ -75,6 +76,10 @@ export default new Vuex.Store({
       // 쿠키에 넣기
       saveAuthToCookie(data['access-token'])
       saveUserToCookie(userData.userID)
+      return data
+    },
+    async getGameUid(context, userData) {
+      const { data } = await getUserUid(userData)
       return data
     },
     // async getUser({ commit }, userID) {
