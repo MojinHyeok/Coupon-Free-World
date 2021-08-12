@@ -6,9 +6,7 @@
       v-bind:key="index"
     >
       <span class="col-8">{{ v }}님이 팔로우 요청을 하였습니다.</span>
-      <button class="btn-primary col-3" @click="allow(v)">
-        팔로우
-      </button>
+      <button class="btn-primary col-1" @click="allow(v)">팔로우</button>
     </li>
   </div>
 </template>

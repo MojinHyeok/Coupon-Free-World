@@ -29,7 +29,3 @@ button:disabled {
 button:enabled {
   background: #8c92a3;
 }
-
-.follow-btn {
-  background: #ffa061 !important;
-}

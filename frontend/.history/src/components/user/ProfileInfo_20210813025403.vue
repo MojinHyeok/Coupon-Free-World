@@ -36,29 +36,24 @@
             회원정보수정
           </button>
           <button
-            class="follow-btn"
             v-else-if="this.findrequestFollow"
             @click="canclerequestFollow"
           >
             팔로우 요청 취소
           </button>
-          <button
-            v-else-if="this.requestFollow"
-            @click="requestFollow2"
-            class="follow-btn"
-          >
+          <button v-else-if="this.requestFollow" @click="requestFollow2">
             팔로우요청
           </button>
           <button v-else @click="cancleFollow">팔로우 취소</button>
         </b-row>
       </b-container>
       <div>
-        <button class="menu-button" @click="MyFeed" :disabled="boxCheck">
+        <button class="menu-button" @click="MyFeed" :disabled="boxCheckTwo">
           <span>
             <i class="fab fa-buromobelexperte fa-2x"></i>
           </span>
         </button>
-        <button class="menu-button" @click="followFeed" :disabled="boxCheckTwo">
+        <button class="menu-button" @click="followFeed" :disabled="boxCheck">
           <span>
             <i class="fas fa-heart fa-2x"></i>
           </span>
