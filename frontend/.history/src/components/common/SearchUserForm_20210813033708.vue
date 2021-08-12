@@ -22,7 +22,7 @@
             </div>
             <label for="searchData" @click="offResult('searchData')">
               <span v-show="!clickCheck">
-                <i class="fas fa-times-circle fa-lg" style="color:#ffa061;"></i>
+                <i class="fas fa-times-circle fa-lg"></i>
               </span>
             </label>
           </div>
