@@ -1,44 +1,49 @@
 <template>
-  <div class="feed-follow-body">
-    <div class="feed-detail-top">
-      <p>{{ feedItem.userID }}</p>
-    </div>
-    <!-- 사진이 나타나는 곳 -->
-    <div @click="moveDetail" class="photo-zone">
-      <div v-for="photo in photos" :key="photo.id">
-        <img :src="photo" style="width: 100%" />
+  <div>
+    <div>
+      <div class="feed-detail-top">
+        <p>
+          {{ feedItem.userID }}
+        </p>
       </div>
-    </div>
-    <!-- 하단부 -->
-    <div class="feed-detail-bottom margin-sm">
-      <!-- 좋아요 버튼 -->
-      <div class="d-flex">
-        <div>
-          <button v-if="isLike" @click="incLike(feedItem.feedID)">
-            <span><i class="far fa-heart heart"></i></span>
-          </button>
-          <button v-else @click="decLike(feedItem.feedID)">
-            <span><i class="fas fa-heart heart"></i></span>
-          </button>
-        </div>
-        <div class="i-am-like">
-          <p v-if="isLike">{{ feedItem.likeCnt }} 명이 좋아합니다.</p>
-          <p v-else-if="feedItem.likeCnt - 1 > 0">
-            {{ userID }}님 외에 {{ feedItem.likeCnt - 1 }} 명이 좋아합니다.
-          </p>
-          <p v-else>{{ userID }}님이 좋아합니다.</p>
+      <div @click="moveDetail">
+        <div class="photo-zone">
+          <img :src="photos[0]" style="width: 100%" />
         </div>
       </div>
-
-      <!-- 좋아요와 내용 정보가 나타나는 곳 -->
-      <p class="margin-sm">좋아요 {{ feedItem.likeCnt }}개</p>
-      <div class="feed-content">
-        <p class="margin-sm feed-userID">{{ feedItem.userID }}</p>
-        <p class="margin-sm follow-feed-content">{{ feedItem.content }}</p>
+      <div class="feed-detail-bottom margin-sm" style="margin: 0% 0%">
+        <div class="d-flex">
+          <div>
+            <button v-if="!isLike" @click="incLike">
+              <span><i class="far fa-heart heart"></i></span>
+            </button>
+            <button v-if="isLike" @click="decLike">
+              <span><i class="fas fa-heart heart"></i></span>
+            </button>
+          </div>
+          <div class="i-am-like">
+            <p v-if="!isLike">{{ feedItem.likeCnt }} 명이 좋아합니다.</p>
+            <p v-else-if="feedItem.likeCnt - 1 > 0">
+              {{ userID }}님 외에 {{ feedItem.likeCnt - 1 }} 명이 좋아합니다.
+            </p>
+            <p v-else>{{ userID }}님이 좋아합니다.</p>
+          </div>
+        </div>
+        <!-- 좋아요와 내용 정보가 나타나는 곳 -->
+        <p class="margin-sm">좋아요 {{ feedItem.likeCnt }}개</p>
+        <div class="feed-content">
+          <p class="margin-sm feed-userID">{{ feedItem.userID }}</p>
+          <p class="margin-sm">{{ feedItem.content }}</p>
+        </div>
+        <em class="feed-date">
+          {{
+            this.feedItem.date
+              .substring(5, 7)
+              .concat('월', this.feedItem.date.substring(8, 10), '일')
+          }}
+        </em>
       </div>
-      <em class="feed-date">
-        {{ date }}
-      </em>
+      <hr />
     </div>
   </div>
 </template>
@@ -56,9 +61,8 @@ export default {
   data() {
     return {
       photos: [],
-      isLike: !this.feedItem.like,
+      isLike: this.feedItem.like,
       userID: getUserFromCookie(),
-      date: '',
     }
   },
   methods: {
@@ -94,10 +98,8 @@ export default {
   },
   created() {
     this.photos = this.feedItem.photoPath.split('|')
-    this.date = this.feedItem.date
-      .substring(5, 7)
-      .concat('월', this.feedItem.date.substring(8, 10), '일')
   },
 }
 </script>
 <style scoped src="../css/feed/feedDetail.css"></style>
+<style scoped></style>
