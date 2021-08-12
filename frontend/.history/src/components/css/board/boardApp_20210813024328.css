@@ -14,11 +14,14 @@ a {
   text-decoration: none;
 }
 
+a:visited {
+  color: black;
+}
+
 a:-webkit-any-link {
   color: -webkit-link;
   cursor: pointer;
   text-decoration: none;
-  color: black;
 }
 
 .nav-bg {

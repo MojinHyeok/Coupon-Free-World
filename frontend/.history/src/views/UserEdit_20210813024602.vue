@@ -1,7 +1,7 @@
 <template>
   <div>
     <UserEditBar />
-    <UserEditForm />
+    <UserEditForm></UserEditForm>
   </div>
 </template>
 
