@@ -7,7 +7,9 @@ function getUserUid(data) {
   return instance.get(`coupon/getGameUID/${data}`)
 }
 function registCoupon(data) {
-  return instance.post('coupon/regist/AFKArena', data)
+  return instance.get(
+    `coupon/regist/AFKArena/${data.userID}/${data.verifyCode}`,
+  )
 }
 
 export { updateUid, getUserUid, registCoupon }
