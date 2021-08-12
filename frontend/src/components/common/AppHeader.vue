@@ -8,6 +8,13 @@
         <span></span>
         <ul @click="offMenu" class="clickIcon" id="menu">
           <li>
+            <router-link class="link" to="/main">
+              <div style="padding-left: 0.3em;">
+                main공사중
+              </div>
+            </router-link>
+          </li>
+          <li>
             <router-link class="link" to="/board">
               <div style="padding-left: 0.3em;">
                 <i class="fas fa-book"></i>

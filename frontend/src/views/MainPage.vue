@@ -1,11 +1,19 @@
 <template>
   <div>
-    메인페이지입니다.(로그인 성공하셨습니다.)
+    <!-- 게임관리 버튼(컴포넌트) -->
+    <GameManager></GameManager>
+    <!-- 게임이미지 -->
+    <!-- 모든쿠폰등록(흠...) -->
   </div>
 </template>
 
 <script>
-export default {}
+import GameManager from '@/components/GameManager.vue'
+export default {
+  components: {
+    GameManager,
+  },
+}
 </script>
 
 <style></style>
