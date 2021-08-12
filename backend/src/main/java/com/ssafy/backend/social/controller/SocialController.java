@@ -166,12 +166,12 @@ public class SocialController {
 		@ApiResponse(code = 404, message = "페이지를 찾을 수 없음"),
 		@ApiResponse(code = 500, message = "내부 서버 오류")
 	})
-	@GetMapping("/readAlarm")
+	@PostMapping("/readAlarm")
 	public ResponseEntity<String> readAlarm(
 			@RequestParam("sourceID")String sourceID,
 			@RequestParam("targetID")String targetID
 	){
-		SocialModel model=null;
+		SocialModel model=new SocialModel();
 		model.setSourceID(sourceID);
 		model.setTargetID(targetID);
 		String msg="";
