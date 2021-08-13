@@ -42,7 +42,7 @@ export default {
       this.isModal = false
     },
     connect() {
-      const serverURL = 'http://localhost:8078/stompTest'
+      const serverURL = 'http://i5c101.p.ssafy.io/api/stompTest'
       var sock = new SockJS(serverURL)
       var client = Stomp.over(sock)
       this.$store.dispatch('getClient', client)

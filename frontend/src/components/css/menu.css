@@ -119,23 +119,34 @@ nav {
 .modal {
   display: flex;
   justify-content: flex-end;
+  align-items: flex-start;
   /* align-items:end; */
   position: fixed;
   left: 0;
   right: 0;
-  top: 7vh;
+  top: 8vh;
   bottom: 0;
 }
 
 .dialog {
+  width: 20%;
+  /* height: 10%; */
   position: relative;
   /* 뷰포트너비의 100분의 x */
   display: flex;
   flex-direction: column;
-
+  color: gray;
+  text-decoration: none;
   flex-wrap: wrap;
   /* width: 20vw;
   height: 65vw; */
-  padding: 0.5em;
+  padding: 0.1em;
+  border-radius: 5px;
   background: whitesmoke;
+}
+.dialog div {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  
 }
