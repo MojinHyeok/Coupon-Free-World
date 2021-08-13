@@ -14,7 +14,8 @@
 			photoPath3, 
 			photoPath4, 
 			recommend, 
-			viewCount
+			viewCount,
+			Category,
 		)
 		VALUES (
 			#{title},
@@ -26,7 +27,8 @@
 			#{photoPath3},
 			#{photoPath4},
 			#{recommend},
-			#{viewCount}
+			#{viewCount},
+			#{Category},
 		)
 	</insert>
 	
