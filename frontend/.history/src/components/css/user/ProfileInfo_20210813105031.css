@@ -40,8 +40,8 @@ button:enabled {
 }
 
 .pf-userID {
+  padding-left: 12px;
   padding-top: 5px;
-  text-align: center;
 }
 
 .search-input {
@@ -61,10 +61,4 @@ button:enabled {
 
 .any-feed {
   text-align: center;
-}
-
-.profile-top {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
 }

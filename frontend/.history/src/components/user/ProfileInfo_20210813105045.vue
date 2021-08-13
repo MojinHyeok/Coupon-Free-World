@@ -4,14 +4,14 @@
       <b-container class="bv-example-row ">
         <b-row class="justify-content-md-center">
           <b-col class="imgbox top ps-3" cols="3">
-            <div v-if="profilePath == ''" class="profile-top">
+            <div v-if="profilePath == ''">
               <img
                 src="../../assets/profileDefault.jpg"
                 style="width:20vw;height:20vw;  "
               />
               <span class="pf-userID">{{ userID }}</span>
             </div>
-            <div v-else class="profile-top">
+            <div v-else>
               <img
                 :src="profilePath"
                 style="border: 1px solid #333;width: 20vw; height: 20vw;border-radius: 50%;  margin:auto;"
