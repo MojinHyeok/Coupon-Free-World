@@ -197,6 +197,12 @@ body {
   background: white;
 }
 
+.delete-modal {
+}
+
+.follow-modal {
+}
+
 .follow-list-parent {
   height: 200px;
   overflow: scroll;

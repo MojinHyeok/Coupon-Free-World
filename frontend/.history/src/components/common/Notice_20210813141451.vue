@@ -74,6 +74,7 @@ export default {
       }
       let sending = this.$store.getters.client
       sending.send('/AlarmCnt', JSON.stringify(msg), {})
+      this.$router.push('/user/requestFollowList')
     },
     openModal() {
       this.isModal = !this.isModal

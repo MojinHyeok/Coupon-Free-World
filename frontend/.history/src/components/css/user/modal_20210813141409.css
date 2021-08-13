@@ -197,6 +197,11 @@ body {
   background: white;
 }
 
+.modal-btn {
+  display: flex;
+  justify-content: between;
+}
+
 .follow-list-parent {
   height: 200px;
   overflow: scroll;
