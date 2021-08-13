@@ -1,12 +1,12 @@
 <template>
   <div>
     <fieldset class="p-4">
-      <div>
-        <b-form-select v-model="selected" :options="options"></b-form-select>
-        <div class="mt-3">
-          Selected: <strong>{{ selected }}</strong>
-        </div>
-      </div>
+      <select class="form-select" aria-label="Default select example">
+        <option selected>카테고리 선택</option>
+        <option value="1" @click="select">일반</option>
+        <option value="2">AFK 아레나</option>
+        <option value="3">쿠키런 킹덤</option>
+      </select>
       <div class="mb-3">
         <input
           v-model="boardData.title"
@@ -41,18 +41,11 @@ import { getUserFromCookie } from '@/utils/cookies.js'
 export default {
   data() {
     return {
-      selected: null,
-      options: [
-        { value: null, text: '선택' },
-        { value: '일반', text: '일반' },
-        { value: 'AFK 아레나', text: 'AFK 아레나' },
-        { value: '쿠키런 킹덤', text: '쿠키런 킹덤' },
-      ],
       boardData: {
         title: '',
         content: '',
         writer: getUserFromCookie(),
-        category: '일반',
+        category: this.value,
       },
     }
   },
@@ -62,7 +55,8 @@ export default {
       if (this.title === '' || this.content === '') {
         console.log('한 글자도 입력하지 않음')
       } else {
-        this.boardData.category = this.selected
+        console.log(this.boardData)
+        console.log(this.value)
         createBoard(this.boardData)
           .then(() => {
             this.$router.push('/board')
@@ -71,10 +65,6 @@ export default {
             console.error('글 작성 실패')
           })
       }
-    },
-    select() {
-      this.category = this.value
-      console.log(this.category)
     },
   },
 }

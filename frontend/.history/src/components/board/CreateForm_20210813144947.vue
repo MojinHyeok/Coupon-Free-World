@@ -62,7 +62,8 @@ export default {
       if (this.title === '' || this.content === '') {
         console.log('한 글자도 입력하지 않음')
       } else {
-        this.boardData.category = this.selected
+        console.log(this.selected)
+        console.log(this.boardData)
         createBoard(this.boardData)
           .then(() => {
             this.$router.push('/board')
