@@ -14,7 +14,7 @@ public class BoardModel {
 	int recommend;
 	int viewCount;
 	String category;
-	
+
 	public String getCategory() {
 		return category;
 	}
