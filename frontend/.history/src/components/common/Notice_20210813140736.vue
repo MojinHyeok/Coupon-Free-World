@@ -6,19 +6,22 @@
       </span>
     </div>
     <div class="modal" v-if="isModal">
-      <div class="dialog follow-list-parent">
+      <div class="dialog">
         <div v-if="msgs.length == 0">
           새로운 요청이 없습니다.
         </div>
         <div v-else>
-          <div v-for="msg in msgs" :key="msg.id" @click="readMsg(msg)">
+          <div
+            v-for="msg in msgs"
+            :key="msg.id"
+            @click="readMsg(msg)"
+            class="follow-list"
+          >
             <div>{{ msg.sourceID }}님이 팔로우합니다.</div>
           </div>
         </div>
-        <div class="d-flex justify-content-between pt-3">
-          <span @click="goFollowdetail">더 보기</span>
-          <span @click="openModal">닫기</span>
-        </div>
+        <span @click="goFollowdetail" class="follow-modal">더 보기</span>
+        <span @click="openModal" class="delete-modal">닫기</span>
       </div>
     </div>
   </div>
@@ -74,6 +77,7 @@ export default {
       }
       let sending = this.$store.getters.client
       sending.send('/AlarmCnt', JSON.stringify(msg), {})
+      this.$router.push('/user/requestFollowList')
     },
     openModal() {
       this.isModal = !this.isModal
