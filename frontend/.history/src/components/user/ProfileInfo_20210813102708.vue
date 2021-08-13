@@ -3,20 +3,20 @@
     <div v-if="userID.length">
       <b-container class="bv-example-row ">
         <b-row class="justify-content-md-center">
-          <b-col class="imgbox top ps-3" cols="3">
-            <div v-if="profilePath == ''" class="profile-top">
+          <b-col class="imgbox top ps-3 d-flex" cols="3">
+            <div v-if="profilePath == ''">
               <img
                 src="../../assets/profileDefault.jpg"
                 style="width:20vw;height:20vw;  "
               />
-              <span class="pf-userID">{{ userID }}</span>
+              <span>{{ userID }}</span>
             </div>
-            <div v-else class="profile-top">
+            <div v-else>
               <img
                 :src="profilePath"
                 style="border: 1px solid #333;width: 20vw; height: 20vw;border-radius: 50%;  margin:auto;"
               />
-              <span class="pf-userID">{{ userID }}</span>
+              <span>{{ userID }}</span>
             </div>
           </b-col>
           <b-col class="top ps-5" cols="">
@@ -54,17 +54,6 @@
           <button v-else @click="cancleFollow">팔로우 취소</button>
         </b-row>
       </b-container>
-      <div class="d-flex search-input">
-        <input
-          class="form-control"
-          style="height:50px;"
-          autofocustype="text"
-          v-model="test"
-        />
-        <button @click="msgtest" class="search-btn">
-          O
-        </button>
-      </div>
       <div>
         <button class="menu-button" @click="MyFeed" :disabled="boxCheck">
           <span>
@@ -79,7 +68,7 @@
       </div>
       <div v-if="boxCheck">
         <div v-if="photos == ''">
-          <h1 class="any-feed">피드가 없어요</h1>
+          <h1>피드가 존재하지 않습니다.</h1>
         </div>
         <div v-else class="photo">
           <profile-feed v-for="feed in photos" :key="feed.id" :feed="feed" />
@@ -96,6 +85,10 @@
     </div>
     <div v-else>
       <h1>일치하는 ID가 존재하지 않습니다.!</h1>
+    </div>
+    <div>
+      <input type="text" v-model="test" />
+      <button @click="msgtest">O</button>
     </div>
   </div>
 </template>

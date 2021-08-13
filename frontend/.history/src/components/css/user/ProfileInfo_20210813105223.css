@@ -41,7 +41,6 @@ button:enabled {
 
 .pf-userID {
   padding-top: 5px;
-  text-align: center;
 }
 
 .search-input {
@@ -65,6 +64,4 @@ button:enabled {
 
 .profile-top {
   display: flex;
-  flex-direction: column;
-  justify-content: center;
 }
