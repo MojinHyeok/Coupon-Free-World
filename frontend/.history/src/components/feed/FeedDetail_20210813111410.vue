@@ -7,13 +7,12 @@
       <button v-if="isUserValid" @click="feedDelete">삭제</button>
     </div>
     <!-- 사진이 나타나는 곳 -->
-    <div v-if="photos.length == 1" class="photo-zone d-flex">
-      <img :src="photos[photoNum]" style="width: 100%" />
-    </div>
-    <div v-else class="photo-zone d-flex">
-      <button @click="moveSlideToLeft" style="width: 8%">&#60;</button>
-      <img :src="photos[photoNum]" style="width: 85%" />
-      <button @click="moveSlideToRight" style="width: 8%">&#62;</button>
+    <div class="carousel slide" data-bs-ride="carousel">
+      <div class="photo-zoner">
+        <div class="carousel-item" v-for="photo in photos" :key="photo.id">
+          <img :src="photo" style="width: 100%" />
+        </div>
+      </div>
     </div>
     <!-- 하단부 -->
     <div class="feed-detail-bottom margin-sm">
@@ -82,7 +81,6 @@ export default {
     return {
       tempLike: null,
       userID: getUserFromCookie(),
-      photoNum: 0,
     }
   },
   methods: {
@@ -116,22 +114,6 @@ export default {
       this.tempLike = true
       this.$emit('changeLike', this.tempLike)
       // this.isLike = true
-    },
-    moveSlideToRight() {
-      if (this.photos.length - 1 == this.photoNum) {
-        this.photoNum = 0
-      } else {
-        this.photoNum += 1
-      }
-      console.log(this.photoNum)
-    },
-    moveSlideToLeft() {
-      if (this.photoNum == 0) {
-        this.photoNum = this.photos.length - 1
-      } else {
-        this.photoNum -= 1
-      }
-      console.log(this.photoNum)
     },
   },
   computed: {
