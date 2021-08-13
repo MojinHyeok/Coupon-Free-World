@@ -64,17 +64,7 @@ em {
 
 .recomment {
   border-top: 1px dashed #d6d4d4;
-  padding-top: 15px;
+  padding-top: 10px;
   margin-top: 20px;
   margin-bottom: 5px;
-}
-
-.btn-size {
-  height: 35px;
-  padding-left: 0px;
-}
-
-.btn-size-plus {
-  height: 35px;
-  padding-top: 4px;
 }
