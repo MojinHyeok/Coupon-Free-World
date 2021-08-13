@@ -72,6 +72,10 @@ export default {
           })
       }
     },
+    select() {
+      this.category = this.value
+      console.log(this.category)
+    },
   },
 }
 </script>

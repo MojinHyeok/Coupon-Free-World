@@ -13,6 +13,7 @@ public class BoardModel {
 	String photoPath4;
 	int recommend;
 	int viewCount;
+	String category;
 	
 	public int getBoardID() {
 		return boardID;

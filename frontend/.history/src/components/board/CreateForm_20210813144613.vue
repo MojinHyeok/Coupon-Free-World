@@ -3,6 +3,12 @@
     <fieldset class="p-4">
       <div>
         <b-form-select v-model="selected" :options="options"></b-form-select>
+        <b-form-select
+          v-model="selected"
+          :options="options"
+          size="sm"
+          class="mt-3"
+        ></b-form-select>
         <div class="mt-3">
           Selected: <strong>{{ selected }}</strong>
         </div>
@@ -43,16 +49,17 @@ export default {
     return {
       selected: null,
       options: [
-        { value: null, text: '선택' },
-        { value: '일반', text: '일반' },
-        { value: 'AFK 아레나', text: 'AFK 아레나' },
-        { value: '쿠키런 킹덤', text: '쿠키런 킹덤' },
+        { value: null, text: 'Please select an option' },
+        { value: 'a', text: 'This is First option' },
+        { value: 'b', text: 'Selected Option' },
+        { value: { C: '3PO' }, text: 'This is an option with object value' },
+        { value: 'd', text: 'This one is disabled', disabled: true },
       ],
       boardData: {
         title: '',
         content: '',
         writer: getUserFromCookie(),
-        category: '일반',
+        category: 1,
       },
     }
   },
@@ -62,7 +69,8 @@ export default {
       if (this.title === '' || this.content === '') {
         console.log('한 글자도 입력하지 않음')
       } else {
-        this.boardData.category = this.selected
+        console.log(this.boardData)
+        console.log(this.value)
         createBoard(this.boardData)
           .then(() => {
             this.$router.push('/board')
@@ -71,6 +79,10 @@ export default {
             console.error('글 작성 실패')
           })
       }
+    },
+    select() {
+      this.category = this.value
+      console.log(this.category)
     },
   },
 }
