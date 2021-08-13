@@ -15,36 +15,6 @@ public class BoardModel {
 	int viewCount;
 	String category;
 	
-	public String getContent() {
-		return content;
-	}
-	public void setContent(String content) {
-		this.content = content;
-	}
-	public String getPhotoPath1() {
-		return photoPath1;
-	}
-	public void setPhotoPath1(String photoPath1) {
-		this.photoPath1 = photoPath1;
-	}
-	public String getPhotoPath2() {
-		return photoPath2;
-	}
-	public void setPhotoPath2(String photoPath2) {
-		this.photoPath2 = photoPath2;
-	}
-	public String getPhotoPath3() {
-		return photoPath3;
-	}
-	public void setPhotoPath3(String photoPath3) {
-		this.photoPath3 = photoPath3;
-	}
-	public String getPhotoPath4() {
-		return photoPath4;
-	}
-	public void setPhotoPath4(String photoPath4) {
-		this.photoPath4 = photoPath4;
-	}
 	public String getCategory() {
 		return category;
 	}
