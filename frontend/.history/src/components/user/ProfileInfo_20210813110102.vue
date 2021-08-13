@@ -87,7 +87,7 @@
       </div>
       <div v-if="boxCheckTwo">
         <div v-if="likePhotos == ''">
-          <h1 class="any-feed">아직 좋아요가 없어요</h1>
+          <h1>아직 좋아요가 없어요</h1>
         </div>
         <div v-else class="photo">
           <like-feed v-for="feed in likePhotos" :key="feed.id" :feed="feed" />
