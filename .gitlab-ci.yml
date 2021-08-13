@@ -8,7 +8,7 @@ build-back:
     - develop
   script :
     # Java를 sdkman 으로 설치한 경우 JAVA_HOME 설정을 위해서만 필요
-    - source "/home/ubuntu/.sdkman/bin/sdkman-init.sh"
+    #- source "/home/ubuntu/.sdkman/bin/sdkman-init.sh"
     - cd $CI_PROJECT_DIR/backend
     - chmod +x mvn
     - ./mvn package
@@ -28,7 +28,7 @@ build-front:
     - develop
   script :
     # Node.js를 nvm 으로 설치한 경우만 필요
-    - source "/home/ubuntu/.nvm/nvm.sh"
+    # - source "/home/ubuntu/.nvm/nvm.sh"
     - cd $CI_PROJECT_DIR/frontend
     - npm install
     - npm run build
