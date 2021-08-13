@@ -8,7 +8,7 @@
     <div style=" margin-bottom: 2vw;">
       <img
         :src="photos[0]"
-        style="width: 30vw; height: 30vw; padding: 0 1vw;"
+        style="width: 29vw; height: 30vw; padding: 0 1vw;"
       />
     </div>
   </div>
