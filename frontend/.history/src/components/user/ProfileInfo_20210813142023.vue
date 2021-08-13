@@ -54,6 +54,17 @@
           <button v-else @click="cancleFollow">팔로우 취소</button>
         </b-row>
       </b-container>
+      <!-- <div class="d-flex search-input">
+        <input
+          class="form-control"
+          style="height:50px;"
+          autofocustype="text"
+          v-model="test"
+        />
+        <button @click="msgtest" class="search-btn">
+          O
+        </button>
+      </div> -->
       <div>
         <button class="menu-button" @click="MyFeed" :disabled="boxCheck">
           <span>
@@ -267,6 +278,19 @@ export default {
     //     })
     //   })
     // },
+    msgtest() {
+      let testing = this.$store.getters.client
+      if (!this.isStomp) {
+        const msg = {
+          targetID: 'fffff',
+          sourceID: 'minchan',
+        }
+        testing.send('/AlarmCnt', JSON.stringify(msg), {})
+      } else {
+        console.log('발사')
+        testing.send(this.test)
+      }
+    },
   },
   created() {
     this.detectParams(this.$route.params.userID)
