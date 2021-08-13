@@ -21,16 +21,16 @@
                 </div>
                 <div>
                   <button
-                    class="btn btn-size-plus"
+                    class="btn"
                     @click="pushRecommentBtn(comment.commentID)"
                   >
-                    ┼
+                    └
                   </button>
                   <button
-                    class="btn btn-size"
+                    class="btn"
                     @click="deleteCommentConfirm(comment.commentID)"
                   >
-                    Ⅹ
+                    X
                   </button>
                 </div>
               </div>
@@ -46,17 +46,17 @@
                   <!-- 대댓 & 삭제 버튼 -->
                   <div>
                     <button
-                      class="btn btn-size-plus"
+                      class="btn"
                       @click="pushRecommentBtn(comment.commentID)"
                     >
-                      ┼
+                      └
                     </button>
                     <button
                       v-if="userID == comment.userID"
-                      class="btn btn-size"
+                      class="btn"
                       @click="createRecomment(comment.commentID)"
                     >
-                      Ⅹ
+                      X
                     </button>
                   </div>
                 </div>
@@ -67,15 +67,12 @@
                     :key="recomment.commentID"
                   >
                     <div v-if="comment.commentID == recomment.parentComment">
-                      <div class="recomment d-flex">
-                        <span class="ms-4">
-                          └
-                        </span>
+                      <div class="recomment">
                         <div class="ms-3">
-                          <p>{{ recomment.content }}</p>
+                          <p>{{ comment.content }}</p>
                           <em>
-                            <span>{{ recomment.userID }}</span> |
-                            <span>{{ recomment.date }}</span>
+                            <span>{{ comment.userID }}</span> |
+                            <span>{{ comment.date }}</span>
                           </em>
                         </div>
                       </div>

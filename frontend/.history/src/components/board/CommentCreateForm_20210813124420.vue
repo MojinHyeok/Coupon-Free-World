@@ -46,7 +46,7 @@
                   <!-- 대댓 & 삭제 버튼 -->
                   <div>
                     <button
-                      class="btn btn-size-plus"
+                      class="btn btn-size"
                       @click="pushRecommentBtn(comment.commentID)"
                     >
                       ┼

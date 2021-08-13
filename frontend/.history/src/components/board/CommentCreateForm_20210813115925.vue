@@ -7,81 +7,51 @@
       <div class="comment-body">
         <ul>
           <li v-for="(comment, index) in commentList" :key="comment.commentID">
-            <div v-if="!comment.parentComment">
-              <div
-                v-if="index === commentList.length - 1"
-                class="d-flex justify-content-between comment-end"
-              >
-                <div class="ms-3">
-                  <p>{{ comment.content }}</p>
-                  <em>
-                    <span>{{ comment.userID }}</span> |
-                    <span>{{ comment.date }}</span>
-                  </em>
-                </div>
-                <div>
-                  <button
-                    class="btn btn-size-plus"
-                    @click="pushRecommentBtn(comment.commentID)"
-                  >
-                    ┼
-                  </button>
-                  <button
-                    class="btn btn-size"
-                    @click="deleteCommentConfirm(comment.commentID)"
-                  >
-                    Ⅹ
-                  </button>
-                </div>
+            <div
+              v-if="index === commentList.length - 1"
+              class="d-flex justify-content-between comment-end"
+            >
+              <div class="ms-3">
+                <p>{{ comment.content }}</p>
+                <em>
+                  <span>{{ comment.userID }}</span> |
+                  <span>{{ comment.date }}</span>
+                </em>
               </div>
-              <div v-else class="comment-start">
-                <div class="d-flex justify-content-between ">
-                  <div class="ms-3">
-                    <p>{{ comment.content }}</p>
-                    <em>
-                      <span>{{ comment.userID }}</span> |
-                      <span>{{ comment.date }}</span>
-                    </em>
-                  </div>
-                  <!-- 대댓 & 삭제 버튼 -->
-                  <div>
-                    <button
-                      class="btn btn-size-plus"
-                      @click="pushRecommentBtn(comment.commentID)"
-                    >
-                      ┼
-                    </button>
-                    <button
-                      v-if="userID == comment.userID"
-                      class="btn btn-size"
-                      @click="createRecomment(comment.commentID)"
-                    >
-                      Ⅹ
-                    </button>
-                  </div>
-                </div>
-                <!-- 댓글 -->
-                <ul>
-                  <li
-                    v-for="recomment in recommentList"
-                    :key="recomment.commentID"
-                  >
-                    <div v-if="comment.commentID == recomment.parentComment">
-                      <div class="recomment d-flex">
-                        <span class="ms-4">
-                          └
-                        </span>
-                        <div class="ms-3">
-                          <p>{{ recomment.content }}</p>
-                          <em>
-                            <span>{{ recomment.userID }}</span> |
-                            <span>{{ recomment.date }}</span>
-                          </em>
-                        </div>
-                      </div>
-                    </div>
-                  </li>
-                </ul>
+              <div>
+                <button class="btn" @click="createRecomment(comment.commentID)">
+                  └
+                </button>
+                <button
+                  class="btn"
+                  @click="deleteCommentConfirm(comment.commentID)"
+                >
+                  X
+                </button>
+              </div>
+            </div>
+            <div v-else class="d-flex justify-content-between comment-start">
+              <div class="ms-3">
+                <p>{{ comment.content }}</p>
+                <em>
+                  <span>{{ comment.userID }}</span> |
+                  <span>{{ comment.date }}</span>
+                </em>
+              </div>
+              <div>
+                <button
+                  class="btn"
+                  @click="pushRecommentBtn(comment.commentID)"
+                >
+                  └
+                </button>
+                <button
+                  v-if="userID == comment.userID"
+                  class="btn"
+                  @click="createRecomment(comment.commentID)"
+                >
+                  X
+                </button>
               </div>
             </div>
             <div
@@ -95,12 +65,7 @@
                 class="form-control"
                 autofocus
               />
-              <button
-                @click="createRecomment(comment.commentID)"
-                class="btn btn-primary"
-              >
-                등록
-              </button>
+              <button @click="onSubmit" class="btn btn-primary">등록</button>
             </div>
           </li>
         </ul>
@@ -131,7 +96,6 @@ export default {
       userID: getUserFromCookie(),
       commentList: '',
       reCommentNum: -999,
-      recommentList: '',
     }
   },
   created() {
@@ -141,8 +105,6 @@ export default {
     async listUpdate() {
       const commentList = await detailComment(this.boardID)
       this.commentList = commentList.data
-      this.recommentList = commentList.data
-      console.log(this.recommentList)
     },
     onSubmit() {
       if (this.userComment.length > 200) {
@@ -151,11 +113,13 @@ export default {
       } else if (this.userComment.length === 0) {
         alert('내용을 입력해주세요')
       } else {
+        console.log(`댓글 내용 ${this.userComment}`)
         const boardData = {
           content: this.userComment,
           boardID: this.boardID,
           userID: this.userID,
         }
+        console.log(boardData)
         createComment(boardData)
           .then(() => {
             console.log('댓글저장성공')
@@ -186,6 +150,7 @@ export default {
     pushRecommentBtn(commentID) {
       this.reComment = true
       this.reCommentNum = commentID
+      console.log(commentID)
     },
     createRecomment(commentID) {
       if (this.userComment.length > 200) {
@@ -201,6 +166,7 @@ export default {
           userID: this.userID,
           parentComment: commentID,
         }
+        console.log(boardData)
         createComment(boardData)
           .then(() => {
             console.log('댓글저장성공')
