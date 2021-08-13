@@ -35,8 +35,8 @@ script :
 - yarn install
 - yarn test
 - yarn build
-- rm -rf ~/skeleton-project/frontend/dist
-- cp -rf dist ~/skeleton-project/frontend/
+- rm -rf ~/subpjt3/frontend/dist
+- cp -rf dist ~/subpjt3/frontend/
 tags :
 - prd
 deploy-back:
@@ -56,7 +56,7 @@ only :
 - develop
 script :
 # 배포는 이미 끝나서 단순 확인하기 위한 job으로만 구성
-- ls -al ~/skeleton-project/frontend/dist
+- ls -al ~/subpjt3/frontend/dist
 tags :
 - prd
 
