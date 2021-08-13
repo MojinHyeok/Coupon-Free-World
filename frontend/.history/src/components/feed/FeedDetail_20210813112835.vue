@@ -7,13 +7,10 @@
       <button v-if="isUserValid" @click="feedDelete">삭제</button>
     </div>
     <!-- 사진이 나타나는 곳 -->
-    <div v-if="photos.length == 1" class="photo-zone d-flex">
-      <img :src="photos[photoNum]" style="width: 100%" />
-    </div>
-    <div v-else class="photo-zone d-flex">
-      <button @click="moveSlideToLeft" style="width: 8%">&#60;</button>
-      <img :src="photos[photoNum]" style="width: 85%" />
-      <button @click="moveSlideToRight" style="width: 8%">&#62;</button>
+    <div class="photo-zone">
+      <button @click="moveSlideToLeft">&#60;</button>
+      <img :src="photo" style="width: 100%" />
+      <button @click="moveSlideToRight">&#62;</button>
     </div>
     <!-- 하단부 -->
     <div class="feed-detail-bottom margin-sm">
@@ -118,20 +115,10 @@ export default {
       // this.isLike = true
     },
     moveSlideToRight() {
-      if (this.photos.length - 1 == this.photoNum) {
-        this.photoNum = 0
-      } else {
-        this.photoNum += 1
-      }
-      console.log(this.photoNum)
+      if photo
     },
     moveSlideToLeft() {
-      if (this.photoNum == 0) {
-        this.photoNum = this.photos.length - 1
-      } else {
-        this.photoNum -= 1
-      }
-      console.log(this.photoNum)
+      return
     },
   },
   computed: {

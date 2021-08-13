@@ -8,7 +8,9 @@
     </div>
     <!-- 사진이 나타나는 곳 -->
     <div v-if="photos.length == 1" class="photo-zone d-flex">
-      <img :src="photos[photoNum]" style="width: 100%" />
+      <button @click="moveSlideToLeft" style="width: 8%">&#60;</button>
+      <img :src="photos[photoNum]" style="width: 85%" />
+      <button @click="moveSlideToRight" style="width: 8%">&#62;</button>
     </div>
     <div v-else class="photo-zone d-flex">
       <button @click="moveSlideToLeft" style="width: 8%">&#60;</button>
