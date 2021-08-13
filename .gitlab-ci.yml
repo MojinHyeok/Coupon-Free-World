@@ -27,9 +27,8 @@ build-front:
     - cd $CI_PROJECT_DIR/frontend
     - npm install
     - npm run build
-    - pwd
-    # - rm -rf ~/subpjt3/frontend/dist
-    # - cp -rf dist ~/subpjt3/frontend/
+    - rm -rf ~/subpjt3/frontend/dist
+    - cp -rf dist ~/subpjt3/frontend/
   tags :
     - prd
 deploy-back:
