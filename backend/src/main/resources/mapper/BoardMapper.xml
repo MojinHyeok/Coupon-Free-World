@@ -4,7 +4,7 @@
 <mapper namespace="com.ssafy.backend.board.mapper.BoardMapper">
 	<insert id="writeBoard" parameterType="BoardModel">
 		INSERT
-		INTO BOARD (
+		INTO board (
 			title, 
 			content, 
 			writer, 
