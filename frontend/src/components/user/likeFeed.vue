@@ -3,7 +3,7 @@
     <img
       :src="photoPath"
       alt=""
-      style="width: 30vw; height: 30vw; padding: 0 1vw;"
+      style="width: 29vw; height: 30vw; padding: 0 1vw;"
     />
   </div>
 </template>

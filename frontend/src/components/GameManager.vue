@@ -1,22 +1,34 @@
 <template>
   <div>
-    <button @click="openPage">게임 관리</button>
-    <div v-if="isOpenPage" class="modal">
-      <div class="dialog">
-        <button @click="openPage">모달창끄기</button>
-        <hr />
-        <p>게임</p>
-        <div>
-          <button @click="openUid">+AFK아레나</button>
-          <div v-if="isOpenUid">
-            <form @submit.prevent="submitForm">
-              <label for="uid">uid:</label>
-              <input type="text" v-model="uid" />
-              <button type="submit">등록</button>
-            </form>
+    <div class="container">
+      <div class="manager">
+        <button @click="openPage">
+          <i class="fas fa-cog fa-lg"></i>
+        </button>
+      </div>
+      <div v-if="isOpenPage" class="modal">
+        <div class="dialog">
+          <button
+            @click="openPage"
+            style="width: 100%; display: flex; justify-content: flex-end;"
+          >
+            <i class="fas fa-times-circle fa-lg" style="color:#ffa061;"></i>
+          </button>
+          <div class="btn-fm-box">
+            <div class="afk-plus">
+              <button @click="openUid" style="color: #fff;">+AFK아레나</button>
+            </div>
+            <div v-if="isOpenUid">
+              <form @submit.prevent="submitForm" class="form-box">
+                <input type="text" v-model="uid" placeholder="UID" />
+                <div class="form-box-div">
+                  <p>프로필->정보->ID</p>
+                  <button type="submit">등록</button>
+                </div>
+              </form>
+            </div>
           </div>
         </div>
-        <hr />
       </div>
     </div>
   </div>
@@ -60,6 +72,7 @@ export default {
         'changeUserData',
         await this.$store.dispatch('getGameUid', getUserFromCookie()),
       )
+      setTimeout(() => (this.isOpenPage = !this.isOpenPage), 500)
     },
   },
   created() {
@@ -69,5 +82,5 @@ export default {
 </script>
 
 <style scoped src="./css/user/default.css"></style>
-<style scoped src="./css/user/modal.css"></style>
+<style scoped src="./css/main/manager.css"></style>
 <style scoped></style>
