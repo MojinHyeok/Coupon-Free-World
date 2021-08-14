@@ -60,6 +60,13 @@
               <a
                 v-if="isUserLogin"
                 href="javascript:;"
+                @click="move"
+                style="text-decoration: none;color:gray;font-weight:bold;margin-bottom:0.1em;"
+                >프로필</a
+              >
+              <a
+                v-if="isUserLogin"
+                href="javascript:;"
                 @click="logoutUser"
                 style="text-decoration: none;color:gray;font-weight:bold;margin-bottom:0.1em;"
                 >로그아웃</a
@@ -76,6 +83,7 @@
 import { deleteCookie } from '@/utils/cookies'
 import SearchUserForm from '@/components/common/SearchUserForm.vue'
 import Notice from '@/components/common/Notice'
+import { getUserFromCookie } from '@/utils/cookies.js'
 export default {
   components: {
     SearchUserForm,
@@ -110,6 +118,10 @@ export default {
     },
     offMenu() {
       document.getElementById('testInput').click()
+    },
+    move() {
+      console.log(getUserFromCookie())
+      this.$router.push('/user/profile/' + getUserFromCookie())
     },
   },
 }
