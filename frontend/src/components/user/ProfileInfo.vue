@@ -23,7 +23,7 @@
             <b-row>
               <b-col cols="3"> 좋아요<br />{{ this.likeCnt }}</b-col>
               <b-col cols="3" @click="move"
-                >팔로잉<br />
+                >팔로워<br />
                 {{ this.followerCnt }}</b-col
               >
               <b-col cols="3" @click="move"
