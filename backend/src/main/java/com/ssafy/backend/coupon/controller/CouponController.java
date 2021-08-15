@@ -54,6 +54,21 @@ public class CouponController {
 		
 		return new ResponseEntity<Void>(HttpStatus.OK);
 	}
+
+	@ApiOperation(value = "Cookierun 쿠폰 자동 등록", notes = "Cookierun 쿠폰 자동 등록")
+	@ApiResponses({
+		@ApiResponse(code = 200, message = "쿠폰 등록 성공"),
+		@ApiResponse(code = 404, message = "페이지를 찾을 수 없음"),
+		@ApiResponse(code = 500, message = "내부 서버 오류")
+	})
+	@GetMapping("/regist/Cookierun/{userID}")
+	public ResponseEntity<?> registCookierunCoupon(@PathVariable String userID
+												 ) throws Exception {
+		service.registCookierunCoupon(userID);
+		return new ResponseEntity<Void>(HttpStatus.OK);
+	}
+	
+	
 	
 	@ApiOperation(value = "사용자의 Game UID 가져오기", notes = "사용자의 Game UID 가져오기")
 	@ApiResponses({
