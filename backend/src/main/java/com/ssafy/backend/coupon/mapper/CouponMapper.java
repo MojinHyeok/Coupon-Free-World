@@ -9,6 +9,8 @@ import com.ssafy.backend.coupon.model.GameIDModel;
 public interface CouponMapper {
 	int insertAFKCoupon(CouponModel model) throws Exception;
 	
+	int insertCookierunCoupon(CouponModel model) throws Exception;
+	
 	int updateAFKArenaUID(GameIDModel model) throws Exception;
 	
 	String selectAFKArenaUID(String userID) throws Exception;
