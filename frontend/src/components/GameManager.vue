@@ -63,8 +63,8 @@ export default {
       isOpenPage: false,
       isOpenUid: false,
       isOpenDevID: false,
-      uid: this.userData.afkarenaUID,
-      devid: this.userData.cookierunUID,
+      uid: '',
+      devid: '',
     }
   },
   methods: {
@@ -72,9 +72,11 @@ export default {
       this.isOpenPage = !this.isOpenPage
     },
     openUid() {
+      this.uid = this.userData.afkarenaUID
       this.isOpenUid = !this.isOpenUid
     },
     openDevID() {
+      this.devid = this.userData.cookierunUID
       this.isOpenDevID = !this.isOpenDevID
     },
     async submitForm() {
@@ -109,10 +111,6 @@ export default {
       )
       setTimeout(() => (this.isOpenPage = !this.isOpenPage), 500)
     },
-  },
-  created() {
-    this.uid = this.userData.afkarenaUID
-    this.devid = this.userData.cookierunUID
   },
 }
 </script>
