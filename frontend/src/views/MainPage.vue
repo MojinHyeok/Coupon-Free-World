@@ -142,18 +142,18 @@ export default {
         this.logMsg = '인증번호가 틀렸습니다.'
       }
     },
-  },
-  async submitFormTwo() {
-    const data = {
-      userID: getUserFromCookie(),
-    }
-    console.log(data)
-    try {
-      await registCouponTwo(data)
-      this.logMsgTwo = '[등록완료]우편을 확인해보세요.'
-    } catch (error) {
-      this.logMsgTwo = '설정에서 DevID를 확인해주세요.'
-    }
+    async submitFormTwo() {
+      const data = {
+        userID: this.userData.cookierunUID,
+      }
+      console.log(data)
+      try {
+        await registCouponTwo(data)
+        this.logMsgTwo = '[등록완료]우편을 확인해보세요.'
+      } catch (error) {
+        this.logMsgTwo = '설정에서 DevID를 확인해주세요.'
+      }
+    },
   },
   async created() {
     this.userData = await this.$store.dispatch(
