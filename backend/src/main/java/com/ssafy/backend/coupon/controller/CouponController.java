@@ -40,6 +40,19 @@ public class CouponController {
 		return new ResponseEntity<Void>(HttpStatus.OK);
 	}
 	
+	@ApiOperation(value = "CookieRun UID 등록", notes = "CookieRun UID 등록")
+	@ApiResponses({
+		@ApiResponse(code = 200, message = "UID 등록 성공"),
+		@ApiResponse(code = 404, message = "페이지를 찾을 수 없음"),
+		@ApiResponse(code = 500, message = "내부 서버 오류")
+	})
+	@PostMapping("/update/CookieRunUID")
+	public ResponseEntity<?> updateCookieRunUID(@RequestBody GameIDModel model) throws Exception {
+		service.updateAFKArenaUID(model);
+		
+		return new ResponseEntity<Void>(HttpStatus.OK);
+	}
+	
 	
 	@ApiOperation(value = "AFKArena 쿠폰 자동 등록", notes = "AFKArena 쿠폰 자동 등록")
 	@ApiResponses({
