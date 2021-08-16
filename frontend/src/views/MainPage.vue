@@ -16,18 +16,28 @@
         style="width:100%;margin-bottom:2%;"
       />
       <!-- 모든쿠폰등록(흠...) -->
-      <div class="regist-button">
-        <button @click="openPage">자동등록</button>
+      <div class="regist-button" style="margin-bottom: 2em;">
+        <button @click="openPage('afkarena')">자동등록</button>
       </div>
-      <div v-if="isOpenPage" class="modal">
+      <img
+        src="../assets/cookieRun.png"
+        alt=""
+        style="width:100%;margin-bottom:2%;"
+      />
+      <!-- 모든쿠폰등록(흠...) -->
+      <div class="regist-button">
+        <button @click="openPage('cookie')">자동등록</button>
+      </div>
+
+      <div v-if="isOpenPage && isAfk" class="modal">
         <div class="dialog">
           <button
             style="width: 100%; display: flex; justify-content: flex-end;"
-            @click="openPage"
+            @click="openPage('afkarena')"
           >
             <i class="fas fa-times-circle fa-lg" style="color:#ffa061;"></i>
           </button>
-          <div class="btn-fm-box">
+          <div class="btn-fm-box" v-if="isAfk">
             <div class="afk-plus">
               <button style="color: #fff;">AFK아레나</button>
             </div>
@@ -52,6 +62,36 @@
           </div>
         </div>
       </div>
+      <div v-if="isOpenPage && isCookie" class="modal">
+        <div class="dialog">
+          <button
+            style="width: 100%; display: flex; justify-content: flex-end;"
+            @click="openPage('cookie')"
+          >
+            <i class="fas fa-times-circle fa-lg" style="color:#ffa061;"></i>
+          </button>
+          <div class="btn-fm-box" v-if="isCookie">
+            <div class="afk-plus">
+              <button style="color: #fff;">쿠키런 킹덤</button>
+            </div>
+            <form
+              @submit.prevent="submitFormTwo"
+              class="form-box"
+              style="width: 100%; margin-top: 1em;"
+            >
+              <div class="form-box-div">
+                <button type="submit">등록</button>
+              </div>
+            </form>
+            <p
+              v-if="logMsgTwo"
+              style="color: blue; font-weight: bold; font-size: 0.9rem;"
+            >
+              {{ logMsgTwo }}
+            </p>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </template>
@@ -59,7 +99,7 @@
 <script>
 import MainAppbar from '@/components/MainAppbar.vue'
 import { getUserFromCookie } from '@/utils/cookies.js'
-import { registCoupon } from '@/api/main'
+import { registCoupon, registCouponTwo } from '@/api/main'
 import GameManager from '@/components/GameManager.vue'
 export default {
   components: {
@@ -72,14 +112,22 @@ export default {
       isOpenPage: false,
       authenValue: '',
       logMsg: '',
+      logMsgTwo: '',
+      isAfk: false,
+      isCookie: false,
     }
   },
   methods: {
     changeUserData(tempUserData) {
       this.userData = tempUserData
     },
-    openPage() {
+    openPage(gameName) {
       this.isOpenPage = !this.isOpenPage
+      if (gameName == 'cookie') {
+        this.isCookie = !this.isCookie
+      } else if (gameName == 'afkarena') {
+        this.isAfk = !this.isAfk
+      }
     },
     async submitForm() {
       const data = {
@@ -94,6 +142,18 @@ export default {
         this.logMsg = '인증번호가 틀렸습니다.'
       }
     },
+  },
+  async submitFormTwo() {
+    const data = {
+      userID: getUserFromCookie(),
+    }
+    console.log(data)
+    try {
+      await registCouponTwo(data)
+      this.logMsgTwo = '[등록완료]우편을 확인해보세요.'
+    } catch (error) {
+      this.logMsgTwo = '설정에서 DevID를 확인해주세요.'
+    }
   },
   async created() {
     this.userData = await this.$store.dispatch(
