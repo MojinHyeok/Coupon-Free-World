@@ -64,7 +64,7 @@ export default {
       if (this.title === '' || this.content === '') {
         console.log('한 글자도 입력하지 않음')
       } else {
-        if (this.selected == '') {
+        if ((this.selected = '')) {
           this.selected = '일반'
         }
         this.boardData.category = this.selected
