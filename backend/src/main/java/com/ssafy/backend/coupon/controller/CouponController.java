@@ -48,7 +48,7 @@ public class CouponController {
 	})
 	@PostMapping("/update/CookieRunUID")
 	public ResponseEntity<?> updateCookieRunUID(@RequestBody GameIDModel model) throws Exception {
-		service.updateAFKArenaUID(model);
+		service.updateCookierunUID(model);
 		
 		return new ResponseEntity<Void>(HttpStatus.OK);
 	}
