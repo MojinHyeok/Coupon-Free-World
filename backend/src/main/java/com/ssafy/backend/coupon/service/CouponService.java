@@ -18,5 +18,11 @@ public interface CouponService {
 	
 	void registCookierunCoupon(@Param("userID") String userID) throws Exception;	
 	
+	int updateCookierunUID(GameIDModel model) throws Exception;
+	
+	String selectCookierunUID(String userID) throws Exception;
+	
+	
+	
 	GameIDModel getGameUID(String userID) throws Exception;
 }

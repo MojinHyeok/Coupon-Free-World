@@ -7,9 +7,21 @@
 		SET afkarenaUID = #{afkarenaUID}
 		WHERE userID = #{userID}
 	</update>
-	
+
 	<select id="selectAFKArenaUID" parameterType="String" resultType="String">
 		SELECT afkarenaUID
+		FROM gameuserid
+		WHERE userID = #{userID}
+	</select>
+	
+	<update id="updateCookierunUID" parameterType="GameIDModel">
+		UPDATE gameuserid
+		SET cookierunUID = #{cookierunUID}
+		WHERE userID = #{userID}
+	</update>
+
+	<select id="selectCookierunUID" parameterType="String" resultType="String">
+		SELECT cookierunUID
 		FROM gameuserid
 		WHERE userID = #{userID}
 	</select>

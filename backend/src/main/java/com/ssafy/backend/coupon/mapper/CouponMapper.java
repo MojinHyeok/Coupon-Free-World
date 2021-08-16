@@ -15,5 +15,10 @@ public interface CouponMapper {
 	
 	String selectAFKArenaUID(String userID) throws Exception;
 	
+	int updateCookierunUID(GameIDModel model) throws Exception;
+	
+	String selectCookierunUID(String userID) throws Exception;
+	
+	
 	GameIDModel getGameUID(String userID) throws Exception;
 }

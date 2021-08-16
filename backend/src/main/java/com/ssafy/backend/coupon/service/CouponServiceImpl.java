@@ -220,4 +220,17 @@ public class CouponServiceImpl implements CouponService {
 		HttpsURLConnection.setDefaultSSLSocketFactory(sc.getSocketFactory()); 
 	}
 
+
+	@Override
+	public int updateCookierunUID(GameIDModel model) throws Exception {
+		// TODO Auto-generated method stub
+		return mapper.updateCookierunUID(model);
+	}
+
+
+	@Override
+	public String selectCookierunUID(String userID) throws Exception {
+		return mapper.selectCookierunUID(userID);
+	}
+
 }
