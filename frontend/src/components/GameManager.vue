@@ -27,6 +27,20 @@
                 </div>
               </form>
             </div>
+            <div class="afk-plus">
+              <button @click="openDevID" style="color: #fff;">
+                +쿠키런킹덤
+              </button>
+            </div>
+            <div v-if="isOpenDevID">
+              <form @submit.prevent="submitFormTwo" class="form-box">
+                <input type="text" v-model="devid" placeholder="DevID" />
+                <div class="form-box-div">
+                  <p>환경설정->정보->유저정보</p>
+                  <button type="submit">등록</button>
+                </div>
+              </form>
+            </div>
           </div>
         </div>
       </div>
@@ -35,7 +49,7 @@
 </template>
 
 <script>
-import { updateUid } from '@/api/main'
+import { updateUid, updateDevID } from '@/api/main'
 import { getUserFromCookie } from '@/utils/cookies.js'
 export default {
   props: {
@@ -48,7 +62,9 @@ export default {
     return {
       isOpenPage: false,
       isOpenUid: false,
+      isOpenDevID: false,
       uid: this.userData.afkarenaUID,
+      devid: this.userData.cookierunUID,
     }
   },
   methods: {
@@ -57,6 +73,9 @@ export default {
     },
     openUid() {
       this.isOpenUid = !this.isOpenUid
+    },
+    openDevID() {
+      this.isOpenDevID = !this.isOpenDevID
     },
     async submitForm() {
       const data = {
@@ -67,6 +86,22 @@ export default {
       let response = await updateUid(data)
       console.log(response)
       this.isOpenUid = !this.isOpenUid
+      // 현재 부모 data를 자식에서 바꿔서 문제가 발생 emit을 보내야함
+      this.$emit(
+        'changeUserData',
+        await this.$store.dispatch('getGameUid', getUserFromCookie()),
+      )
+      setTimeout(() => (this.isOpenPage = !this.isOpenPage), 500)
+    },
+    async submitFormTwo() {
+      const data = {
+        cookierunUID: this.devid,
+        userID: getUserFromCookie(),
+      }
+      console.log(data)
+      let response = await updateDevID(data)
+      console.log(response)
+      this.isOpenDevID = !this.isOpenDevID
       // 현재 부모 data를 자식에서 바꿔서 문제가 발생 emit을 보내야함
       this.$emit(
         'changeUserData',

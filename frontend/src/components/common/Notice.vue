@@ -82,17 +82,6 @@ export default {
   created() {
     this.connect()
   },
-  // computed: {
-  //   checkServerMsg() {
-  //     return this.$store.getters.getServerMsg
-  //   },
-  // },
-  // watch: {
-  //   checkServerMsg(val) {
-  //     this.msg = val
-  //     console.log('notice.vue', this.msg)
-  //   },
-  // },
 }
 </script>
 

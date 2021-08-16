@@ -11,5 +11,11 @@ function registCoupon(data) {
     `coupon/regist/AFKArena/${data.userID}/${data.verifyCode}`,
   )
 }
+function updateDevID(data) {
+  return instance.post('coupon/update/CookieRunUID', data)
+}
+function registCouponTwo(data) {
+  return instance.get(`coupon/regist/Cookierun/${data.userID}`)
+}
 
-export { updateUid, getUserUid, registCoupon }
+export { updateUid, getUserUid, registCoupon, updateDevID, registCouponTwo }
