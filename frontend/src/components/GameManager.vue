@@ -112,6 +112,7 @@ export default {
   },
   created() {
     this.uid = this.userData.afkarenaUID
+    this.devid = this.userData.cookierunUID
   },
 }
 </script>

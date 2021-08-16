@@ -160,7 +160,7 @@ export default {
       'getGameUid',
       getUserFromCookie(),
     )
-    console.log(this.userData)
+    console.log('userData결과: ', this.userData)
   },
 }
 </script>
