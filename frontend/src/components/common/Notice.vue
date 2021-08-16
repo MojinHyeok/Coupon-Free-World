@@ -32,6 +32,7 @@ import SockJS from 'sockjs-client'
 export default {
   data() {
     return {
+      msg: [],
       msgs: [],
       isModal: false,
     }
@@ -58,6 +59,11 @@ export default {
         // 이런식으로 구독할거야
         client.subscribe(`/topic/alarm/${getUserFromCookie()}`, event => {
           this.msgs = JSON.parse(event.body).reverse()
+        })
+        client.subscribe(`/topic/${getUserFromCookie()}`, event => {
+          this.msg = JSON.parse(event.body)
+          alert('hihihi')
+          console.log('요거거든', this.msg)
         })
         client.send('/AlarmCnt', JSON.stringify(msg), {})
       })

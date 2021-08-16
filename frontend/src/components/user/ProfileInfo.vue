@@ -157,6 +157,7 @@ export default {
       } else {
         let sending = this.$store.getters.client
         sending.send('/AlarmCnt', JSON.stringify(tempData), {})
+        sending.send('/TTT', JSON.stringify(tempData), {})
       }
       this.findrequestFollow = true
     },
