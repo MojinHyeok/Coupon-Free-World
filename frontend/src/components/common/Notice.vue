@@ -61,7 +61,7 @@ export default {
           this.msgs = JSON.parse(event.body).reverse()
         })
         client.subscribe(`/topic/${getUserFromCookie()}`, event => {
-          this.msg = JSON.parse(event.body)
+          this.msg = event.body
           alert('hihihi')
           console.log('요거거든', this.msg)
         })
