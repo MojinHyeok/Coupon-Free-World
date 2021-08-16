@@ -79,6 +79,7 @@ export default new Vuex.Store({
       return data
     },
     async getGameUid(context, userData) {
+      console.log('store', userData)
       const { data } = await getUserUid(userData)
       return data
     },
