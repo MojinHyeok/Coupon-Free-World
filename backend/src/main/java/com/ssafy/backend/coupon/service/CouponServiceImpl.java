@@ -121,14 +121,18 @@ public class CouponServiceImpl implements CouponService {
 	public void registCookierunCoupon(String userID) throws Exception {
 		final String URL="https://account.devplay.com/v2/coupon/ck";
 		List<cookiecoupon> couponList=getCookkieCoupon();
-		setSSL();
+//		setSSL();
 		for(cookiecoupon x:couponList) {
-			String jsonBody="{email: \"" + userID + "\", coupon_code: \"" + x.code + "\"}";
+			String jsonBody="{\r\n"
+					+ "  \"email\": \""+userID+"\",\r\n"
+					+ "  \"coupon_code\": \""+x.code+"\"\r\n"
+					+ "}";
+//			String jsonBody="{email: \"" + userID + "\", coupon_code: \"" + x.code + "\"}";
 			System.out.println(jsonBody);
 			Connection.Response registCoupon=Jsoup.connect(URL)
 					.userAgent("Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/92.0.4515.131 Safari/537.36")
 					.header("Content-Type", "application/json;charset=UTF-8")
-					.header("Accept", "application/json")
+					.header("Accept", "application/json, */*")
 					.followRedirects(true)
 					.ignoreHttpErrors(true)
 					.ignoreContentType(true)
