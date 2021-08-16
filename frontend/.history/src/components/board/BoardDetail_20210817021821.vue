@@ -3,7 +3,7 @@
     <div class="board-top">
       <span>
         <h2 class="board-title">
-          <strong>[{{ detail.category }}]</strong>
+          <strong>{{ detail.category }}</strong>
           {{ detail.title }}
         </h2>
       </span>

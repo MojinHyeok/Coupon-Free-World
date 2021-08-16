@@ -5,7 +5,7 @@
       @click="$router.push('board/' + listItem.boardID)"
     >
       <th>{{ listItem.boardID }}</th>
-      <td>[{{ listItem.category }}]</td>
+      <td>{{ listItem.category }}</td>
       <td class="text-wrap">{{ listItem.title }}</td>
       <td>{{ listItem.writer }}</td>
       <td>{{ listItem.date }}</td>
@@ -17,9 +17,7 @@
       @click="$router.push('board/' + listItem.boardID)"
     >
       <div>
-        <th scope="row" style="color:orange;" class="pe-2">
-          [{{ listItem.category }}]
-        </th>
+        <th scope="row" style="color:blue;" class="pe-2">[쿠키런 킹덤]</th>
         <td class="text-wrap">{{ listItem.title }}</td>
       </div>
       <td style="color:gray; font-size:small;" class="row">

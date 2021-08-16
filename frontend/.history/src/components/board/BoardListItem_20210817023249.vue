@@ -17,10 +17,10 @@
       @click="$router.push('board/' + listItem.boardID)"
     >
       <div>
-        <th scope="row" style="color:orange;" class="pe-2">
+        <th scope="row" style="color:blue;" class="pe-2">
           [{{ listItem.category }}]
         </th>
-        <td class="text-wrap">{{ listItem.title }}</td>
+        <td class="text-wrap">{{ listItem.title }}{{ listItem.category }}</td>
       </div>
       <td style="color:gray; font-size:small;" class="row">
         <div>

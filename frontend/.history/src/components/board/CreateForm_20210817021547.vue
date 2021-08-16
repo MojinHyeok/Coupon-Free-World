@@ -2,12 +2,7 @@
   <div>
     <fieldset class="p-4">
       <div>
-        <b-form-select
-          class="form-control"
-          v-model="selected"
-          :options="options"
-        ></b-form-select>
-        <br />
+        <b-form-select v-model="selected" :options="options"></b-form-select>
       </div>
       <div class="mb-3">
         <input
@@ -64,9 +59,6 @@ export default {
       if (this.title === '' || this.content === '') {
         console.log('한 글자도 입력하지 않음')
       } else {
-        if (this.selected == '') {
-          this.selected = '일반'
-        }
         this.boardData.category = this.selected
         createBoard(this.boardData)
           .then(() => {
