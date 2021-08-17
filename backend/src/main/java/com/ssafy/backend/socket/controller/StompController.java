@@ -43,7 +43,7 @@ public class StompController {
 	@MessageMapping("/TTT")
 	public void ttt(SocketModel model) {
 		System.out.println(model.getTargetID());
-		template.convertAndSend("/topic/"+model.getTargetID(),model.getSourceID()+"님이 "+model.getTargetID()+"님을 팔로우 신청했습니다.!");
+		template.convertAndSend("/topic/"+model.getTargetID(),model.getSourceID()+"님이 팔로우 신청했습니다.");
 	}
 	
 	@MessageMapping("/AlarmCnt")
