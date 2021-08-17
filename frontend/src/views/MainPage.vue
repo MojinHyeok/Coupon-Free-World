@@ -63,7 +63,7 @@
         </div>
       </div>
       <div v-if="isOpenPage && isCookie" class="modal">
-        <div class="dialog">
+        <div class="dialog" style="height: 40vw;">
           <button
             style="width: 100%; display: flex; justify-content: flex-end;"
             @click="openPage('cookie')"
@@ -79,8 +79,11 @@
               class="form-box"
               style="width: 100%; margin-top: 1em;"
             >
-              <div class="form-box-div">
-                <button type="submit">등록</button>
+              <div class="form-box-div" style="justify-content: space-between;">
+                <p>해당게임은 인증번호없이 등록가능</p>
+                <button type="submit" style="width:30%; padding: 0.2em 0;">
+                  등록
+                </button>
               </div>
             </form>
             <p

@@ -43,6 +43,7 @@
           v-for="feedItem in followingFeedItems"
           :key="feedItem.id"
           :feedItem="feedItem"
+          style="width:100%"
         />
       </div>
     </div>

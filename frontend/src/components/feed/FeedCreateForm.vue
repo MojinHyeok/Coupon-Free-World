@@ -6,20 +6,20 @@
           <img
             @click="eventRepreInput"
             src="../../assets/reprePhoto.jpg"
-            style="width: 22vw; height: 22vw; padding: 0 1vw;padding-bottom: 1vw;"
+            style="width: 21vw; height: 21vw; padding: 0 1vw;padding-bottom: 1vw;"
           />
           <input type="file" id="reprePhoto" @change="isInputReprePhoto" />
         </div>
         <div v-if="!RepreCheck">
           <img
             :src="repreImage"
-            style="width: 22vw; height: 22vw; padding: 0 1vw; padding-bottom: 1vw;"
+            style="width: 21vw; height: 21vw; padding: 0 1vw; padding-bottom: 1vw;"
           />
         </div>
         <div v-for="plusImage in plusImages" :key="plusImage.id">
           <img
             :src="plusImage"
-            style="width: 22vw; height: 22vw; padding: 0 1vw;padding-bottom: 1vw;"
+            style="width: 21vw; height: 21vw; padding: 0 1vw;padding-bottom: 1vw;"
           />
         </div>
         <div v-if="!RepreCheck">
