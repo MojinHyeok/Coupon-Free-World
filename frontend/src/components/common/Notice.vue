@@ -21,6 +21,11 @@
         </div>
       </div>
     </div>
+    <div class="alarm-modal">
+      <div class="alarm-dialog">
+        <p><i class="far fa-bell fa-lg"></i> {{ msg }}</p>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -62,8 +67,10 @@ export default {
         })
         client.subscribe(`/topic/${getUserFromCookie()}`, event => {
           this.msg = event.body
-          alert('hihihi')
-          console.log('요거거든', this.msg)
+          document.querySelector('.alarm-modal').style.display = 'block'
+          setTimeout(() => {
+            document.querySelector('.alarm-modal').style.display = 'none'
+          }, 3000)
         })
         client.send('/AlarmCnt', JSON.stringify(msg), {})
       })

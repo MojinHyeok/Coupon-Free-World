@@ -21,7 +21,10 @@
             <div v-if="isOpenUid">
               <form @submit.prevent="submitForm" class="form-box">
                 <input type="text" v-model="uid" placeholder="UID" />
-                <div class="form-box-div">
+                <div
+                  class="form-box-div"
+                  style="justify-content: space-between;"
+                >
                   <p>프로필->정보->ID</p>
                   <button type="submit">등록</button>
                 </div>

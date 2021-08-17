@@ -201,3 +201,33 @@ body {
   height: 200px;
   overflow: scroll;
 }
+.alarm-modal {
+  display: flex;
+  justify-content: center;
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  display: none;
+}
+.alarm-dialog {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  /* 뷰포트너비의 100분의 x */
+  width: 100vw;
+  height: 20vw;
+  padding: 0.5em;
+  border-radius: 0.1em;
+  background: #fcaf58;
+  font-weight: bolder;
+  animation-name: type-search;
+  animation-duration: 0.5s;
+  animation-iteration-count: initial;
+}
+
+@keyframes type-search {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
