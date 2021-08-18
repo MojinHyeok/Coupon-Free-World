@@ -61,7 +61,7 @@
 	</select>
 	
 	<select id="boardList" resultType="BoardModel">
-		SELECT boardID, title, writer, date, recommend, viewCount
+		SELECT *
 		FROM board
 		ORDER BY date DESC
 		LIMIT ${limit}
