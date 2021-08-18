@@ -222,8 +222,10 @@ export default {
         sourceID: getUserFromCookie(),
       }
       const Data = await cancleFollow(tempData)
-      if (Data.data == 'success') alert('팔로우를 취소하였습니다.!!')
-      else {
+      if (Data.data == 'success') {
+        alert('팔로우를 취소하였습니다.')
+        this.requestFollow = true
+      } else {
         alert('에러발생')
       }
     },
