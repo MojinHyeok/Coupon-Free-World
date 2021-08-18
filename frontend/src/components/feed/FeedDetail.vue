@@ -2,7 +2,9 @@
   <div>
     <!-- 유저 정보가 나타나는 곳 -->
     <div class="feed-detail-top">
-      <p>{{ feedItem.userID }}</p>
+      <p style="font-weight:bold;" @click="moveProfile(feedItem.userID)">
+        {{ feedItem.userID }}
+      </p>
       <!-- 피드 삭제 버튼 -->
       <button v-if="isUserValid" @click="feedDelete">삭제</button>
     </div>
@@ -86,6 +88,9 @@ export default {
     }
   },
   methods: {
+    moveProfile(data) {
+      this.$router.push(`/user/profile/${data}`)
+    },
     async feedDelete() {
       await deleteFeed(this.$store.state.userID, this.feedItem.feedID)
       this.$router.push('/feed')

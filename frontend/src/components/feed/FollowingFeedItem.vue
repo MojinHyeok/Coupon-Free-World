@@ -2,7 +2,7 @@
   <div>
     <div>
       <div class="feed-detail-top">
-        <p>
+        <p @click="moveProfile(feedItem.userID)" style="font-weight: bold;">
           {{ feedItem.userID }}
         </p>
       </div>
@@ -71,7 +71,9 @@ export default {
       this.$router.push(`/feed/${this.feedItem.feedID}`)
     },
     // 유저 클릭시 유저Profile 이동
-    moveProfile() {},
+    moveProfile(data) {
+      this.$router.push(`/user/profile/${data}`)
+    },
     // 좋아요 클릭시
     async incLike() {
       const data = new FormData()
