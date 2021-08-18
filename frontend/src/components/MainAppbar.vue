@@ -2,7 +2,7 @@
   <div class="nav-bg">
     <dl class="board-nav">
       <dt>
-        <router-link to="/feed" tab="a">Coupon Free World</router-link>
+        Coupon Free World
       </dt>
     </dl>
   </div>
