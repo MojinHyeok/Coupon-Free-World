@@ -20,7 +20,7 @@ function createBoard(boardData) {
   return instance.post('board/write', boardData)
 }
 
-// 글 삭제
+// 글 삭제 이거네
 function deleteBoard(boardID) {
   return instance.delete(`board/delete/${boardID}`)
 }
