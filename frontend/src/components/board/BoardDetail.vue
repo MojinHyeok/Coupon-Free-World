@@ -55,7 +55,8 @@ export default {
             alert('글 삭제 완료~!')
             this.$router.push('/board')
           })
-          .catch(() => {
+          .catch(e => {
+            console.log(e)
             console.log('에러발생')
           })
       }
