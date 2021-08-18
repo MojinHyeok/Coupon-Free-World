@@ -129,7 +129,9 @@ export default {
       // 캐시가져오기
       const cacheName = this.$store.state.userID
       caches.open(cacheName).then(cache => {
+        console.log('3')
         cache.matchAll().then(responses => {
+          console.log('4')
           for (let response of responses) {
             const findIndex = response['url'].lastIndexOf('/') + 1
             const temp = response['url'].substring(findIndex)
