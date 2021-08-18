@@ -112,9 +112,11 @@ export default {
     saveCache(result) {
       // 캐시추가
       const cacheName = this.$store.state.userID
+      console.log('1')
       caches.open(cacheName).then(cache => {
         cache.add(result)
       })
+      console.log('2')
       this.getCache()
       this.moveProfile(result)
     },
