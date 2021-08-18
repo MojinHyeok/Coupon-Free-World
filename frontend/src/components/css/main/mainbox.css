@@ -44,7 +44,7 @@
   position: relative;
   /* 뷰포트너비의 100분의 x */
   width: 70vw;
-  height: 65vw;
+  /* height: 65vw; */
   padding: 1em;
   border-radius: 1em;
   background: white;
