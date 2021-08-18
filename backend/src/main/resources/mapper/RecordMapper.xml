@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.ssafy.backend.record.mapper.RecordMapper">
+
+	<insert id="registRecord" parameterType="RecordModel">
+	insert 
+	into record(sourceID,targetID) 
+	values(
+	#{sourceID},
+	#{targetID}
+	)
+	</insert>
+    
+    <select id="fetchRecord" parameterType="String" resultType="RecordModel">
+    select * from  record
+    where sourceID = #{sourceID}
+    </select>
+    
+    <delete id="deleteRecord" parameterType="RecordModel">
+    delete from record
+    where sourceID = #{sourceID} and targetID = #{targetID}    
+    </delete>
+    
+</mapper>
