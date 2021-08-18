@@ -78,7 +78,7 @@ public class BoardController {
 		@ApiResponse(code = 404, message = "페이지를 찾을 수 없음"),
 		@ApiResponse(code = 500, message = "내부 서버 오류")
 	})
-	@DeleteMapping("/delete/{boardID}")
+	@PostMapping("/delete/{boardID}")
 	public ResponseEntity<?> deleteBoard(@PathVariable("boardID") int boardID) throws Exception {
 		int res = service.deleteBoard(boardID);
 		
