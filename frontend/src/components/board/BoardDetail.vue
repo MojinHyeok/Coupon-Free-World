@@ -51,8 +51,13 @@ export default {
       if (confirm('정말로 삭제하시겠습니까?')) {
         const temp2 = this.$route.params.id
         await deleteBoard(temp2)
-        alert('글 삭제 완료~!')
-        this.$router.push('/board')
+          .then(() => {
+            alert('글 삭제 완료~!')
+            this.$router.push('/board')
+          })
+          .catch(() => {
+            console.log('에러발생')
+          })
       }
     },
     move() {
