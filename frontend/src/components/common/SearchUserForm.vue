@@ -45,8 +45,8 @@
                   :key="currentResult.id"
                 >
                   <div>
-                    <span @click="moveProfile(currentResult)">
-                      {{ currentResult }}
+                    <span @click="moveProfile(currentResult.targetID)">
+                      {{ currentResult.targetID }}
                     </span>
                     <button @click="deleteUser(currentResult)">
                       <i class="fas fa-user-times"></i>
@@ -123,8 +123,8 @@ export default {
       this.$router.push(`/user/profile/${result}`).catch(() => {})
     },
     // 삭제할때
-    async deleteUser(targetID) {
-      await deleteSearch(getUserFromCookie(), targetID)
+    async deleteUser(searchData) {
+      await deleteSearch(getUserFromCookie(), searchData.targetID)
       let { data } = await fetchSearch(getUserFromCookie())
       console.log('삭제했을때', data)
       this.currentResults = data
