@@ -22,7 +22,7 @@ function createBoard(boardData) {
 
 // 글 삭제
 function deleteBoard(boardID) {
-  return instance.delete(`/board/delete/${boardID}`)
+  return instance.delete(`/board/deleteboard/${boardID}`)
 }
 
 // 글 수정
