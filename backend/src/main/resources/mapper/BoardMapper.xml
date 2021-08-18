@@ -34,7 +34,7 @@
 	
 	<delete id="deleteBoard" parameterType="int">
 		DELETE
-		FROM BOARD
+		FROM board
 		WHERE boardID = #{boardID}
 	</delete>
 	

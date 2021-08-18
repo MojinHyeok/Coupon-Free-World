@@ -79,7 +79,7 @@ public class BoardController {
 		@ApiResponse(code = 500, message = "내부 서버 오류")
 	})
 	@DeleteMapping("/deleteboard/{boardID}")
-	public ResponseEntity<?> deleteBoard(@PathVariable int boardID) throws Exception {
+	public ResponseEntity<?> deleteBoard(@PathVariable("boardID") int boardID) throws Exception {
 		int res = service.deleteBoard(boardID);
 		
 		if(res >= 1) {
