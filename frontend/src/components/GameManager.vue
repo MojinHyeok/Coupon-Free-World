@@ -38,7 +38,10 @@
             <div v-if="isOpenDevID">
               <form @submit.prevent="submitFormTwo" class="form-box">
                 <input type="text" v-model="devid" placeholder="DevID" />
-                <div class="form-box-div">
+                <div
+                  class="form-box-div"
+                  style="justify-content: space-between;"
+                >
                   <p>환경설정->정보->유저정보</p>
                   <button type="submit">등록</button>
                 </div>

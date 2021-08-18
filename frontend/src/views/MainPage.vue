@@ -48,7 +48,7 @@
                 v-model="authenValue"
                 placeholder="인증번호"
               />
-              <div class="form-box-div">
+              <div class="form-box-div" style="justify-content: space-between;">
                 <p>프로필->시스템->인증번호</p>
                 <button type="submit">등록</button>
               </div>
@@ -63,7 +63,7 @@
         </div>
       </div>
       <div v-if="isOpenPage && isCookie" class="modal">
-        <div class="dialog" style="height: 40vw;">
+        <div class="dialog">
           <button
             style="width: 100%; display: flex; justify-content: flex-end;"
             @click="openPage('cookie')"
