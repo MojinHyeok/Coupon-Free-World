@@ -48,8 +48,9 @@ export default {
   },
   methods: {
     async deleteBoardData() {
-      if (confirm('정말로 삭제하시겠습니까?')) {
+      if (confirm('정말로 삭제하시겠습니까?') == true) {
         const temp2 = this.$route.params.id
+        console.log(temp2)
         await deleteBoard(temp2)
           .then(() => {
             alert('글 삭제 완료~!')
