@@ -26,7 +26,7 @@
             <div class="input-box">
               <input
                 id="password"
-                type="text"
+                type="password"
                 autocomplete="off"
                 v-model="password"
                 placeholder=" "
@@ -44,7 +44,7 @@
             <div class="input-box">
               <input
                 id="passwordConfirm"
-                type="text"
+                type="password"
                 autocomplete="off"
                 v-model="passwordConfirm"
                 placeholder=" "

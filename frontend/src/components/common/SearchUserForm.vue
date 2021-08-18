@@ -112,9 +112,11 @@ export default {
     saveCache(result) {
       // 캐시추가
       const cacheName = this.$store.state.userID
+      console.log('1')
       caches.open(cacheName).then(cache => {
         cache.add(result)
       })
+      console.log('2')
       this.getCache()
       this.moveProfile(result)
     },
@@ -126,8 +128,11 @@ export default {
     getCache() {
       // 캐시가져오기
       const cacheName = this.$store.state.userID
-      caches.open(cacheName).then(cache => {
+      console.log('5')
+      window.caches.open(cacheName).then(cache => {
+        console.log('3')
         cache.matchAll().then(responses => {
+          console.log('4')
           for (let response of responses) {
             const findIndex = response['url'].lastIndexOf('/') + 1
             const temp = response['url'].substring(findIndex)
