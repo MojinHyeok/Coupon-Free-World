@@ -39,7 +39,9 @@ public class recordController {
 		RecordModel model=new RecordModel();
 		model.setSourceID(sourceID);
 		model.setTargetID(targetID);
-		int res=service.registRecord(model);
+		RecordModel temp= service.selectRecord(model);
+		int res=0;
+		if(temp==null)res=service.registRecord(model);
 		if(res >= 1) {
 			return new ResponseEntity<Void>(HttpStatus.OK);
 		} else {
@@ -75,7 +77,6 @@ public class recordController {
 		model.setSourceID(sourceID);
 		model.setTargetID(targetID);
 		int res=service.deleteRecord(model);
-		System.out.println(res);
 		if(res >= 1) {
 			return new ResponseEntity<Void>(HttpStatus.OK);
 		} else {

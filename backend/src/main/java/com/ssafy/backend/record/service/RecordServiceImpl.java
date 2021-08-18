@@ -29,4 +29,9 @@ public class RecordServiceImpl implements RecordService {
 		return mapper.deleteRecord(model);
 	}
 
+	@Override
+	public RecordModel selectRecord(RecordModel model) throws Exception {
+		return mapper.selectRecord(model);
+	}
+
 }

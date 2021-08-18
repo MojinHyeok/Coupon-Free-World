@@ -23,4 +23,9 @@
     where sourceID = #{sourceID} and targetID = #{targetID}    
     </delete>
     
+    <select id="selectRecord" parameterType="RecordModel" resultType="RecordModel">
+    select * from record
+    where sourceID = #{sourceID} and targetID = #{targetID}
+    </select> 
+    
 </mapper>

@@ -14,5 +14,7 @@ public interface RecordMapper {
 	List<RecordModel> fetchRecord(String sourceID)throws Exception;
 	
 	int deleteRecord(RecordModel model)throws Exception;
+	
+	RecordModel selectRecord(RecordModel model)throws Exception;
 
 }
