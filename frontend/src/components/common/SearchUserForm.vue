@@ -128,6 +128,7 @@ export default {
     getCache() {
       // 캐시가져오기
       const cacheName = this.$store.state.userID
+      console.log('5')
       caches.open(cacheName).then(cache => {
         console.log('3')
         cache.matchAll().then(responses => {
