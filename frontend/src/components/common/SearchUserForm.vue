@@ -1,6 +1,6 @@
 <template>
   <div>
-    <label for="searchData" @click="offResult('searchData')">
+    <label for="searchData" @click="onResult()">
       <span v-show="clickCheck" style="color:white;">
         <i class="fas fa-search fa-lg"></i>
       </span>
@@ -20,7 +20,7 @@
                 style="border-color:#ffa061; color: #ffa061;"
               />
             </div>
-            <label for="searchData" @click="offResult('searchData')">
+            <label for="searchData" @click="offResult()">
               <span v-show="!clickCheck">
                 <i class="fas fa-times-circle fa-lg" style="color:#ffa061;"></i>
               </span>
@@ -30,7 +30,7 @@
             <hr style="margin: 0.5rem 0" />
             <ul>
               <li
-                @click="saveCache(result)"
+                @click="moveProfile(result)"
                 v-for="result in results"
                 :key="result.id"
               >
@@ -45,10 +45,10 @@
                   :key="currentResult.id"
                 >
                   <div>
-                    <span @click="moveProfile(currentResult)">
-                      {{ currentResult }}
+                    <span @click="moveProfile(currentResult.targetID)">
+                      {{ currentResult.targetID }}
                     </span>
-                    <button @click="deleteCache(currentResult)">
+                    <button @click="deleteUser(currentResult)">
                       <i class="fas fa-user-times"></i>
                     </button>
                   </div>
@@ -67,8 +67,9 @@
 </template>
 
 <script>
-import { searchUser } from '@/api/auth'
+import { searchUser, createSearch, fetchSearch, deleteSearch } from '@/api/auth'
 import { UsernameValid } from '@/utils/validation'
+import { getUserFromCookie } from '@/utils/cookies.js'
 
 export default {
   data() {
@@ -92,72 +93,42 @@ export default {
         }
         const { data } = await searchUser(this.searchData)
         this.results = data
-        this.resultsDisplay = true
         this.logMessage = ''
       } catch (error) {
         this.results = []
         this.logMessage = '해당 유저가 없습니다.'
-        this.resultsDisplay = true
       }
     },
-    offResult(id) {
+    // 검색아이콘 누를때
+    async onResult() {
+      this.searchData = ''
       this.clickCheck = !this.clickCheck
       this.isActive = !this.isActive
-      this[`${id}`] = ''
+      let { data } = await fetchSearch(getUserFromCookie())
+      console.log('검색 아이콘 클릭시', data)
+      this.currentResults = data
+    },
+    // x 아이콘 누를때
+    offResult() {
+      this.clickCheck = !this.clickCheck
+      this.isActive = !this.isActive
+      this.searchData = ''
       this.results = []
       this.logMessage = ''
-      this.resultsDisplay = !this.resultsDisplay
-      this.getCache()
     },
-    saveCache(result) {
-      // 캐시추가
-      const cacheName = this.$store.state.userID
-      console.log('1')
-      caches.open(cacheName).then(cache => {
-        cache.add(result)
-      })
-      console.log('2')
-      this.getCache()
-      this.moveProfile(result)
-    },
-    moveProfile(result) {
+    // 검색된 값 클릭시
+    async moveProfile(result) {
       this.clickCheck = true
       this.isActive = false
+      await createSearch(getUserFromCookie(), result)
       this.$router.push(`/user/profile/${result}`).catch(() => {})
     },
-    getCache() {
-      // 캐시가져오기
-      const cacheName = this.$store.state.userID
-      console.log('5')
-      caches.open(cacheName).then(cache => {
-        console.log('3')
-        cache.matchAll().then(responses => {
-          console.log('4')
-          for (let response of responses) {
-            const findIndex = response['url'].lastIndexOf('/') + 1
-            const temp = response['url'].substring(findIndex)
-            if (!this.currentResults.includes(temp)) {
-              this.currentResults.unshift(temp)
-            }
-          }
-        })
-      })
-    },
-    // 캐시 삭제
-    deleteCache(currentResult) {
-      const cacheName = this.$store.state.userID
-      caches.open(cacheName).then(cache => {
-        cache.matchAll().then(responses => {
-          for (let response of responses) {
-            if (response['url'].includes(currentResult)) {
-              cache.delete(response['url'])
-              const findIndex = response['url'].lastIndexOf('/') + 1
-              const temp = response['url'].substring(findIndex)
-              this.currentResults.splice(this.currentResults.indexOf(temp), 1)
-            }
-          }
-        })
-      })
+    // 삭제할때
+    async deleteUser(searchData) {
+      await deleteSearch(getUserFromCookie(), searchData.targetID)
+      let { data } = await fetchSearch(getUserFromCookie())
+      console.log('삭제했을때', data)
+      this.currentResults = data
     },
   },
 }

@@ -65,7 +65,18 @@ function findrequestFollowOne(userData) {
 function canclerequestFollow(userData) {
   return instance.post('/social/canclerequestFollow', userData)
 }
-
+// 검색 요청 API
+function createSearch(sourceID, targetID) {
+  return instance.get(`record/insert/${sourceID}/${targetID}`)
+}
+// 검색했던 값 가져오기 API
+function fetchSearch(sourceID) {
+  return instance.get(`record/fetchRecord/${sourceID}`)
+}
+// 특정 검색값 삭제
+function deleteSearch(sourceID, targetID) {
+  return instance.get(`record/deleteRecord/${sourceID}/${targetID}`)
+}
 export {
   registerUser,
   loginUser,
@@ -82,4 +93,7 @@ export {
   cancleFollow,
   findrequestFollowOne,
   canclerequestFollow,
+  createSearch,
+  fetchSearch,
+  deleteSearch,
 }
