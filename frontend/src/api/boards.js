@@ -20,9 +20,9 @@ function createBoard(boardData) {
   return instance.post('board/write', boardData)
 }
 
-// 글 삭제 이거네
+// 글 삭제
 function deleteBoard(boardID) {
-  return instance.delete(`board/delete/${boardID}`)
+  return instance.delete(`/board/delete/${boardID}`)
 }
 
 // 글 수정
