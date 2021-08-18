@@ -129,7 +129,7 @@ export default {
       // 캐시가져오기
       const cacheName = this.$store.state.userID
       console.log('5')
-      window.caches.open(cacheName).then(cache => {
+      caches.open(cacheName).then(cache => {
         console.log('3')
         cache.matchAll().then(responses => {
           console.log('4')
