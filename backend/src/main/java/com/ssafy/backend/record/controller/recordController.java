@@ -40,13 +40,9 @@ public class recordController {
 		model.setSourceID(sourceID);
 		model.setTargetID(targetID);
 		RecordModel temp= service.selectRecord(model);
-		int res=0;
-		if(temp==null)res=service.registRecord(model);
-		if(res >= 1) {
-			return new ResponseEntity<Void>(HttpStatus.OK);
-		} else {
-			return new ResponseEntity<Void>(HttpStatus.BAD_REQUEST);
-		}
+		if(temp==null)service.registRecord(model);
+		return new ResponseEntity<Void>(HttpStatus.OK);
+	
 	}
 	
 	@ApiOperation(value = "검색정보 불러오기", notes = "검색정보를 불러옵니다.")
