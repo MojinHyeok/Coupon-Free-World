@@ -102,6 +102,7 @@ export default {
     // 검색아이콘 누를때
     async onResult() {
       this.searchData = ''
+      this.results = []
       this.clickCheck = !this.clickCheck
       this.isActive = !this.isActive
       let { data } = await fetchSearch(getUserFromCookie())
