@@ -52,11 +52,9 @@ export default {
       var sock = new SockJS(serverURL)
       var client = Stomp.over(sock)
       this.$store.dispatch('getClient', client)
-      console.log(client)
       this.isStomp = true
       this.socket = client
       client.connect({}, () => {
-        console.log('Connected stompTest!!')
         const msg = {
           targetID: getUserFromCookie(),
         }
@@ -74,11 +72,9 @@ export default {
       })
     },
     async readMsg(msgData) {
-      console.log(msgData.targetID, msgData.sourceID)
       const data = new FormData()
       data.append('targetID', msgData.targetID)
       data.append('sourceID', msgData.sourceID)
-      console.log('fetchMsg', data)
       await fetchMsg(data)
       const msg = {
         targetID: getUserFromCookie(),

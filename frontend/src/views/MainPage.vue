@@ -139,6 +139,7 @@ export default {
       }
       try {
         await registCoupon(data)
+        alert('쿠폰등록을 완료하였습니다.!')
         this.logMsg = '[등록완료]우편을 확인해보세요.'
       } catch (error) {
         this.logMsg = '인증번호가 틀렸습니다.'
@@ -150,6 +151,7 @@ export default {
       }
       try {
         await registCouponTwo(data)
+        alert('쿠폰등록을 완료하였습니다.!!')
         this.logMsgTwo = '[등록완료]우편을 확인해보세요.'
       } catch (error) {
         this.logMsgTwo = '설정에서 DevID를 확인해주세요.'
