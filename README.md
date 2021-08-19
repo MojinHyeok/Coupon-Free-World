@@ -68,7 +68,7 @@
     
   - 프로필화면 기능(Read 로직 필요)
   
-    <img src="./README.assets/profile.gif" align="left"></img>
+    <img src="./README.assets/profile.gif"></img>
     
     - 다른 유저에게 팔로우 요청및 요청취소를 할 수 있습니다.
     - 해당 유저의 작성한 피드와 좋아요 누른 피드를 확인할 수 있습니다.
@@ -78,7 +78,7 @@
 
   - 팔로우 요청에 대한 알림 및 수락(CRD로직&Socket[1] 필요)
 
-    <img src="./README.assets/alarm.gif" align="left"></img>
+    <img src="./README.assets/alarm.gif"></img>
     
     - 'cksdn135' 유저가 'cksdnwkd135'에게 팔로우 요청시 화면 하단에 알림 메시지가 나옵니다.
     - 오른쪽 상단 알림 아이콘 클릭시 새로운 알림이 들어와 있는것을 확인할 수 있습니다.
