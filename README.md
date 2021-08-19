@@ -59,7 +59,7 @@
 - 프로필
   - 유저 검색(Create, Read, Delete 로직이 필요)
 
-    <img src="./README.assets/userSearch.gif" align="left"></img>
+    ![userSearch](README.assets/userSearch.gif)
 
     - 입력된 값과 유사한 유저아이디를 보여줍니다.
     - 검색된 값을 클릭시 해당 유저의 프로필로 이동하며, 최근검색에 최신순으로 기록이 남습니다.
@@ -68,7 +68,7 @@
     
   - 프로필화면 기능(Read 로직 필요)
   
-    <img src="./README.assets/profile.gif"></img>
+    ![profile](README.assets/profile.gif)
     
     - 다른 유저에게 팔로우 요청및 요청취소를 할 수 있습니다.
     - 해당 유저의 작성한 피드와 좋아요 누른 피드를 확인할 수 있습니다.
@@ -78,7 +78,7 @@
 
   - 팔로우 요청에 대한 알림 및 수락(CRD로직&Socket[1] 필요)
 
-    <img src="./README.assets/alarm.gif"></img>
+    ![alarm](README.assets/alarm.gif)
     
     - 'cksdn135' 유저가 'cksdnwkd135'에게 팔로우 요청시 화면 하단에 알림 메시지가 나옵니다.
     - 오른쪽 상단 알림 아이콘 클릭시 새로운 알림이 들어와 있는것을 확인할 수 있습니다.
