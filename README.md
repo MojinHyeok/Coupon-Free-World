@@ -21,17 +21,17 @@
 
 ## 2. 개발 도구
 
-<img src="README.assets/Vue.png" alt="Vue" height="100" />
+<img src="README.assets/Vue.PNG" alt="Vue" height="100" />
 
-<img src="README.assets/HTML.png" alt="HTML" height="100" />
+<img src="README.assets/HTML.PNG" alt="HTML" height="100" />
 
-<img src="README.assets/springboot.png" alt="springboot" height="100" />
+<img src="README.assets/springboot.PNG" alt="springboot" height="100" />
 
-<img src="README.assets/aws.png" alt="aws" height="100" />
+<img src="README.assets/aws.PNG" alt="aws" height="100" />
 
-<img src="README.assets/jira.png" alt="jira" height="100" />
+<img src="README.assets/jira.PNG" alt="jira" height="100" />
 
-<img src="README.assets/git.png" alt="git" height="100" />
+<img src="README.assets/git.PNG" alt="git" height="100" />
 
 
 
@@ -39,7 +39,7 @@
 
 ## 3. ERD
 
-![ERD](README.assets/ERD.png)
+![ERD](README.assets/ERD.PNG)
 
 ## 4. 컴포넌트 구조
 
