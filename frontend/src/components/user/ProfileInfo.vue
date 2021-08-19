@@ -167,7 +167,6 @@ export default {
         sourceID: getUserFromCookie(),
       }
       const res3 = await findrequestFollowOne(tempData)
-      console.log(res3.data)
       if (res3.data != '') {
         this.findrequestFollow = true
       }
@@ -233,7 +232,6 @@ export default {
       const temp = this.$route.params.userID
       var res = await getFeedList(temp)
       this.photos = res.data
-      console.log(this.photos)
     },
     MyFeed() {
       this.boxCheck = true

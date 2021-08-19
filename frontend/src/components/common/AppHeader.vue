@@ -116,7 +116,6 @@ export default {
       document.getElementById('testInput').click()
     },
     move() {
-      console.log(getUserFromCookie())
       this.$router.push('/user/profile/' + getUserFromCookie())
     },
   },

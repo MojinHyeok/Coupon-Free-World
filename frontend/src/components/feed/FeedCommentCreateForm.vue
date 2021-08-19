@@ -85,13 +85,11 @@ export default {
       } else if (this.userComment.length === 0) {
         alert('내용을 입력해주세요')
       } else {
-        console.log(`댓글 내용 ${this.userComment}`)
         const boardData = {
           content: this.userComment,
           feedID: this.feedID,
           userID: this.userID,
         }
-        console.log(boardData)
         registerFeedComment(boardData)
           .then(() => {
             this.userComment = ''

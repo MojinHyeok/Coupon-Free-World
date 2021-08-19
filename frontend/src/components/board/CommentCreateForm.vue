@@ -158,12 +158,10 @@ export default {
         }
         createComment(boardData)
           .then(() => {
-            console.log('댓글저장성공')
             this.userComment = ''
             this.listUpdate()
           })
           .catch(() => {
-            console.log('댓글작성실패')
             this.userComment = ''
           })
       }
