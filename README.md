@@ -21,6 +21,7 @@
 
 ## 2. 개발 도구
 
+
 <img src="README.assets/Vue.png" alt="userSearch" height="100" />
 
 <img src="README.assets/HTML.png" alt="userSearch" height="100" />
@@ -43,7 +44,9 @@
 
 ## 4. 컴포넌트 구조
 
+![componentArchitecture1](README.assets/componentArchitecture1.PNG)
 
+![componentArchitecture2](README.assets/componentArchitecture2.PNG)
 
 ## 5. 기능
 ### 5.1 회원관리
