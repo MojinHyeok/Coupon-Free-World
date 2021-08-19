@@ -21,6 +21,20 @@
 
 ## 2. 개발 도구
 
+<img src="README.assets/Vue.png" alt="userSearch" height="100" />
+
+<img src="README.assets/HTML.png" alt="userSearch" height="100" />
+
+<img src="README.assets/springboot.png" alt="userSearch" height="100" />
+
+<img src="README.assets/aws.png" alt="userSearch" height="100" />
+
+<img src="README.assets/jira.png" alt="userSearch" height="100" />
+
+<img src="README.assets/git.png" alt="userSearch" height="100" />
+
+
+
 
 
 ## 3. ERD
