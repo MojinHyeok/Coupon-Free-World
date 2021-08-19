@@ -79,7 +79,6 @@ public class SocialController {
 	@PostMapping("/requestFollow")
 	public ResponseEntity<String> requestFollow(@RequestBody SocialModel model,HttpServletRequest request){
 		HttpSession session=request.getSession();
-		System.out.println(session.getAttribute("userID"));
 		SocialModel temp=service.checkDuplicate(model);//중복성검사하는 단계
 		String msg="";
 		if(temp==null) {
@@ -98,7 +97,6 @@ public class SocialController {
 	@PostMapping("/allowFollow")
 	public ResponseEntity<String> allowFollow(@RequestBody SocialModel model){
 		String msg="";
-		System.out.println(model.getSourceID());
 		int result=service.allowFollow(model);
 		if(result>=1)msg="success";
 		else msg="fail";
@@ -114,7 +112,6 @@ public class SocialController {
 	@PostMapping("/cancleFollow")
 	public ResponseEntity<String> cancleFollow(@RequestBody SocialModel model){
 		String msg="";
-		System.out.println(model.getTargetID());
 		int result=service.cancleFollow(model);
 		if(result>=1)msg="success";
 		else msg="fail";

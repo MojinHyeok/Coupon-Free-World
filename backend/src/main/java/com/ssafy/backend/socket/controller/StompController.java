@@ -42,14 +42,13 @@ public class StompController {
 //	}
 	@MessageMapping("/TTT")
 	public void ttt(SocketModel model) {
-		System.out.println(model.getTargetID());
+		
 		template.convertAndSend("/topic/"+model.getTargetID(),model.getSourceID()+"님이 팔로우 신청했습니다.");
 	}
 	
 	@MessageMapping("/AlarmCnt")
 	public void AlarmCnt(SocketModel model) {
 		List<SocialModel> result= mapper.findAlaram(model.getTargetID());
-		System.out.println(result.size());
 		template.convertAndSend("/topic/alarm/"+model.getTargetID(),result);
 	}
 }

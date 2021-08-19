@@ -54,11 +54,9 @@ public class UserController {
 	@PostMapping("/join")
 	public ResponseEntity<String> join(@RequestBody UserModel model){
 		String msg="";
-		System.out.println(model.getUserID());
 		HttpStatus status;
 		try {
 			int result=service.userRegister(model);
-			System.out.println(result);
 			if(result>=1) {
 				msg="success";
 				service.insertGameID(model.getUserID());
@@ -116,7 +114,6 @@ public class UserController {
 			@RequestParam(value="bio",required=false) String bio,
 			@RequestParam(value="profilePath",required=false)String profilePath
 			) throws IllegalArgumentException, FileNotFoundException, IOException{
-		System.out.println(multipartFile);
 		String msg="";
 		HttpStatus status;
 		UserModel model=new UserModel();
@@ -194,7 +191,6 @@ public class UserController {
 	})
 	@GetMapping("/mail/{email}")
 	public ResponseEntity<Integer> email(@PathVariable("email") String email){
-		System.out.println(email);
 		UserModel user=service.getUserInfoByEmail(email);
 		if(user!=null) {
 			return new ResponseEntity<Integer>(1,HttpStatus.OK);
