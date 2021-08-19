@@ -19,10 +19,8 @@ export default {
   },
   methods: {
     async fetchData(id) {
-      try {
-        const response = await fetchFeed(id)
-        this.feedItem = response
-      } catch (error) {}
+      const response = await fetchFeed(id)
+      this.feedItem = response
     },
   },
   created() {

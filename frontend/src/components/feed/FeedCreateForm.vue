@@ -94,12 +94,10 @@ export default {
       document.getElementById('photos').click()
     },
     async submitForm() {
-      try {
-        this.formData.append('userID', this.$store.state.userID)
-        this.formData.append('content', this.content)
-        await createFeed(this.formData)
-        this.$router.push('/feed')
-      } catch (error) {}
+      this.formData.append('userID', this.$store.state.userID)
+      this.formData.append('content', this.content)
+      await createFeed(this.formData)
+      this.$router.push('/feed')
     },
   },
 }

@@ -38,7 +38,7 @@ export default {
         sourceID: v,
         targetID: getUserFromCookie(),
       }
-      const res = await allowFollow(temp)
+      await allowFollow(temp)
       await this.test()
     },
   },

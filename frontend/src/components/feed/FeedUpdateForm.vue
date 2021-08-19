@@ -36,19 +36,17 @@ export default {
   },
   methods: {
     async submitForm() {
-      try {
-        const formData = new FormData()
-        formData.append('userID', this.$store.state.userID)
-        formData.append('content', this.content)
-        const fileElement = document.querySelector('#reprePhoto')
-        const filesElement = document.querySelector('#photos')
-        formData.append('files', fileElement.files[0])
-        for (let i = 0; i < filesElement.files.length; i++) {
-          formData.append('files', filesElement.files[i])
-        }
-        const response = await updateFeed(formData)
-        this.$router.push(`/feed/${response.feedID}`)
-      } catch (error) {}
+      const formData = new FormData()
+      formData.append('userID', this.$store.state.userID)
+      formData.append('content', this.content)
+      const fileElement = document.querySelector('#reprePhoto')
+      const filesElement = document.querySelector('#photos')
+      formData.append('files', fileElement.files[0])
+      for (let i = 0; i < filesElement.files.length; i++) {
+        formData.append('files', filesElement.files[i])
+      }
+      const response = await updateFeed(formData)
+      this.$router.push(`/feed/${response.feedID}`)
     },
   },
   created() {

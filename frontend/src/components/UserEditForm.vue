@@ -290,32 +290,30 @@ export default {
       this.passwordCurrentBlank = false
     },
     async submitForm() {
-      try {
-        if (this.bio.trim() === '') {
-          this.logBlankbio = '공백 사용할 수 없습니다.'
-          this.bioBlank = false
+      if (this.bio.trim() === '') {
+        this.logBlankbio = '공백 사용할 수 없습니다.'
+        this.bioBlank = false
+        return
+      }
+      if (this.isPwAcitve) {
+        if (this.password !== this.passwordCurrent) {
+          this.logMessage = '암호가 정확하지 않습니다.'
           return
+        } else {
+          this.password = this.passwordChange
         }
-        if (this.isPwAcitve) {
-          if (this.password !== this.passwordCurrent) {
-            this.logMessage = '암호가 정확하지 않습니다.'
-            return
-          } else {
-            this.password = this.passwordChange
-          }
-        }
-        const data = new FormData()
-        data.append('userID', this.userID)
-        data.append('userName', this.userName)
-        data.append('password', this.password)
-        data.append('email', this.email)
-        data.append('alias', this.alias)
-        data.append('imageData', this.imageData)
-        data.append('bio', this.bio)
-        data.append('profilePath', this.profilePath)
-        await editUser(data)
-        this.$router.push(`/user/profile/${getUserFromCookie()}`)
-      } catch (error) {}
+      }
+      const data = new FormData()
+      data.append('userID', this.userID)
+      data.append('userName', this.userName)
+      data.append('password', this.password)
+      data.append('email', this.email)
+      data.append('alias', this.alias)
+      data.append('imageData', this.imageData)
+      data.append('bio', this.bio)
+      data.append('profilePath', this.profilePath)
+      await editUser(data)
+      this.$router.push(`/user/profile/${getUserFromCookie()}`)
     },
     isBlankVaild(data, id) {
       if (BlankValid(this[`${id}`])) {
