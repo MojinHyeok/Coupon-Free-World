@@ -107,7 +107,7 @@ export default {
       this.isActive = !this.isActive
       let { data } = await fetchSearch(getUserFromCookie())
       console.log('검색 아이콘 클릭시', data)
-      this.currentResults = data
+      this.currentResults = data.reverse()
     },
     // x 아이콘 누를때
     offResult() {
