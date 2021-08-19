@@ -227,9 +227,7 @@ public class UserController {
 			messageHelper.setTo(tomail);
 			messageHelper.setSubject(title);
 			messageHelper.setText(content);
-			
 			mailSender.send(message);
-			System.out.println("성공?");
 		}catch(Exception e) {
 			System.out.println(e);
 		}

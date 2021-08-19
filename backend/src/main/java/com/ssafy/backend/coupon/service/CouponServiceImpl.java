@@ -61,7 +61,6 @@ public class CouponServiceImpl implements CouponService {
 		
 		for(Element c : couponList) {
 			String coupon = c.val();
-			System.out.println(coupon);
 			if(coupon.equals("")) {
 				break;
 			} else {
@@ -76,16 +75,10 @@ public class CouponServiceImpl implements CouponService {
 	@Override
 	public List<cookiecoupon> getCookkieCoupon() throws Exception {
 		final String URL="https://ui-tricks.netlify.app/cookieCoupon/";
-		System.out.println("여기는?");
 		Document doc = Jsoup.connect(URL).get();
 		Elements couponList = doc.select("td");
 		List<String> list=new ArrayList<>();
 		List<cookiecoupon> cookie =new ArrayList<CouponServiceImpl.cookiecoupon>();
-//		for(Element c :couponList) {
-//			String coupon=c.text();
-//			
-//			System.out.println(coupon);
-//		}
 		for(int i=0;i<couponList.size();i+=3) {
 			String reward=couponList.get(i).text();
 			String code=couponList.get(i+1).text();
@@ -121,14 +114,12 @@ public class CouponServiceImpl implements CouponService {
 	public void registCookierunCoupon(String userID) throws Exception {
 		final String URL="https://account.devplay.com/v2/coupon/ck";
 		List<cookiecoupon> couponList=getCookkieCoupon();
-//		setSSL();
 		for(cookiecoupon x:couponList) {
 			String jsonBody="{\r\n"
 					+ "  \"email\": \""+userID+"\",\r\n"
 					+ "  \"coupon_code\": \""+x.code+"\"\r\n"
 					+ "}";
-//			String jsonBody="{email: \"" + userID + "\", coupon_code: \"" + x.code + "\"}";
-			System.out.println(jsonBody);
+
 			Connection.Response registCoupon=Jsoup.connect(URL)
 					.userAgent("Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/92.0.4515.131 Safari/537.36")
 					.header("Content-Type", "application/json;charset=UTF-8")
@@ -139,8 +130,7 @@ public class CouponServiceImpl implements CouponService {
 					.header("referer", "https://game.devplay.com/")
 					.requestBody(jsonBody)
 					.method(Connection.Method.POST)
-					.execute();
-			System.out.println(registCoupon.statusCode());		
+					.execute();	
 		}
 	}
 	
@@ -167,8 +157,6 @@ public class CouponServiceImpl implements CouponService {
 				.method(Connection.Method.POST)
 				.execute();
 		
-		System.out.println(getLoginCookie.statusCode());
-		
 		String registURL = "https://cdkey.lilith.com/api/cd-key/consume";
 		List<String> couponList = getAFKArenaCoupon();
 		
@@ -179,7 +167,6 @@ public class CouponServiceImpl implements CouponService {
 					.header("Content-Type", "application/json;charset=UTF-8")
 					.header("Accept", "application/json")
 					.cookies(getLoginCookie.cookies())
-//					.data("id", AFKArenaUID)
 	                .followRedirects(true)
 	                .ignoreHttpErrors(true)
 					.ignoreContentType(true)
@@ -187,13 +174,6 @@ public class CouponServiceImpl implements CouponService {
 					.requestBody(jsonBody1)
 					.method(Connection.Method.POST)
 					.execute();
-			System.out.println(registCoupon.statusCode());
-//			int res = registCoupon.statusCode();
-//			if(res == 200) {
-//				System.out.println("쿠폰 입력 성공");
-//			} else {
-//				System.out.println("사용 기간이 만료되었거나 이미 사용이 완료된 쿠폰입니다.");
-//			}
 		}
 	}
 	
@@ -223,7 +203,6 @@ public class CouponServiceImpl implements CouponService {
 
 	@Override
 	public int updateCookierunUID(GameIDModel model) throws Exception {
-		// TODO Auto-generated method stub
 		return mapper.updateCookierunUID(model);
 	}
 
