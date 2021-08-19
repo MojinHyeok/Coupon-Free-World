@@ -313,6 +313,7 @@ export default {
       data.append('bio', this.bio)
       data.append('profilePath', this.profilePath)
       await editUser(data)
+      alert('회원정보 수정 완료')
       this.$router.push(`/user/profile/${getUserFromCookie()}`)
     },
     isBlankVaild(data, id) {

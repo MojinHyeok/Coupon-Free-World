@@ -234,6 +234,7 @@ export default {
           bio: this.bio,
         }
         await registerUser(userData)
+        alert('회원 가입이 완료되었습니다.')
         this.$router.push('/account/login')
       } catch (error) {
         this.logMessage = '이미 존재하는 userID 입니다.'
