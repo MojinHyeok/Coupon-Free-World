@@ -21,15 +21,15 @@
 
 ## 2. 개발 도구
 
-
-
 ## 3. ERD
 
 ![userSearch](README.assets/ERD.png)
 
 ## 4. 컴포넌트 구조
 
+![componentArchitecture1](README.assets/componentArchitecture1.PNG)
 
+![componentArchitecture2](README.assets/componentArchitecture2.PNG)
 
 ## 5. 기능
 ### 5.1 회원관리
