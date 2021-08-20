@@ -78,3 +78,7 @@ em {
   height: 35px;
   padding-top: 4px;
 }
+
+.comment-content {
+  width: 75%;
+}
