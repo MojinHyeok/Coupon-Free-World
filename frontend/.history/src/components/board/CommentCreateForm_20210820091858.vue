@@ -54,7 +54,7 @@
                     <button
                       v-if="userID == comment.userID"
                       class="btn btn-size"
-                      @click="deleteCommentConfirm(comment.commentID)"
+                      @click="createRecomment(comment.commentID)"
                     >
                       Ⅹ
                     </button>
@@ -78,11 +78,9 @@
                             <span>{{ recomment.date }}</span>
                           </em>
                         </div>
-                        <div
-                          v-if="userID == comment.userID"
-                          class="position-absolute end-0"
-                        >
+                        <div class="position-absolute end-0">
                           <button
+                            v-if="userID == comment.userID"
                             class="btn btn-size"
                             @click="deleteCommentConfirm(recomment.commentID)"
                           >

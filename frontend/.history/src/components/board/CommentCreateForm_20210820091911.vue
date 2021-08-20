@@ -54,7 +54,7 @@
                     <button
                       v-if="userID == comment.userID"
                       class="btn btn-size"
-                      @click="deleteCommentConfirm(comment.commentID)"
+                      @click="createRecomment(comment.commentID)"
                     >
                       Ⅹ
                     </button>
