@@ -12,7 +12,7 @@
                 v-if="index === commentList.length - 1"
                 class="d-flex justify-content-between comment-end"
               >
-                <div class="ms-3">
+                <div class="ms-3 comment-content">
                   <p>{{ comment.content }}</p>
                   <em>
                     <span>{{ comment.userID }}</span> |
@@ -36,7 +36,7 @@
               </div>
               <div v-else class="comment-start">
                 <div class="d-flex justify-content-between ">
-                  <div class="ms-3">
+                  <div class="ms-3 comment-content">
                     <p>{{ comment.content }}</p>
                     <em>
                       <span>{{ comment.userID }}</span> |
@@ -71,12 +71,20 @@
                         <span class="ms-4">
                           └
                         </span>
-                        <div class="ms-3">
+                        <div class="ms-3 me-4">
                           <p>{{ recomment.content }}</p>
                           <em>
                             <span>{{ recomment.userID }}</span> |
                             <span>{{ recomment.date }}</span>
                           </em>
+                        </div>
+                        <div class="position-absolute end-0">
+                          <button
+                            class="btn btn-size"
+                            @click="deleteCommentConfirm(recomment.commentID)"
+                          >
+                            Ⅹ
+                          </button>
                         </div>
                       </div>
                     </div>
@@ -91,7 +99,7 @@
               <input
                 type="text"
                 @keyup.enter="onSubmit"
-                v-model="userComment"
+                v-model="userRecomment"
                 class="form-control"
                 autofocus
               />
@@ -132,6 +140,7 @@ export default {
       commentList: '',
       reCommentNum: -999,
       recommentList: '',
+      userRecomment: '',
     }
   },
   created() {
@@ -186,15 +195,15 @@ export default {
       this.reCommentNum = commentID
     },
     createRecomment(commentID) {
-      if (this.userComment.length > 200) {
-        this.userComment = ''
+      if (this.userRecomment.length > 200) {
+        this.userRecomment = ''
         console.log('200자가 넘는 댓글은 작성하실 수 없습니다')
-      } else if (this.userComment.length === 0) {
+      } else if (this.userRecomment.length === 0) {
         alert('내용을 입력해주세요')
       } else {
-        console.log(`댓글 내용 ${this.userComment}`)
+        console.log(`댓글 내용 ${this.userRecomment}`)
         const boardData = {
-          content: this.userComment,
+          content: this.userRecomment,
           boardID: this.boardID,
           userID: this.userID,
           parentComment: commentID,
@@ -202,12 +211,12 @@ export default {
         createComment(boardData)
           .then(() => {
             console.log('댓글저장성공')
-            this.userComment = ''
+            this.userRecomment = ''
             this.listUpdate()
           })
           .catch(() => {
             console.log('댓글작성실패')
-            this.userComment = ''
+            this.userRecomment = ''
           })
       }
     },
