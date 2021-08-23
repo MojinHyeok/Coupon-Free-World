@@ -133,7 +133,7 @@ UCC : https://www.youtube.com/watch?v=wWj9dXl1kcI
 
 
 
-<img src="README.assets/보상획득.png" alt="userSearch" style="zoom:50%;" />
+![보상획득](README.assets/보상획득.PNG)
 
 위 과정 두 가지를 거치면 다음과 같이 쿠폰이 정상적으로 모두 등록되었음을 확인할 수 있습니다.
 
