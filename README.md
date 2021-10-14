@@ -18,7 +18,7 @@
 
 UCC : https://www.youtube.com/watch?v=wWj9dXl1kcI
 
-배포사이트 : http://i5c101.p.ssafy.io/
+배포사이트 : http://i5c101.p.ssafy.io/(지금은 폐쇄)
 
 
 
